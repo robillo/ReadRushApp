@@ -36,14 +36,14 @@ public class SplashActivity extends BaseActivity implements SplashMvpView {
 
         setUnBinder(ButterKnife.bind(this));
 
-        mPresenter.onAttach(this);
+        mPresenter.onAttach(SplashActivity.this);
 
         setUp();
     }
 
     @Override
     protected void setUp() {
-        mPresenter.startCountDown(4);
+        mPresenter.startCountDown(1500);
         topDown = AnimationUtils.loadAnimation(this, R.anim.top_down);
         bottomUp = AnimationUtils.loadAnimation(this, R.anim.bottom_up);
         mViewOne.startAnimation(topDown);

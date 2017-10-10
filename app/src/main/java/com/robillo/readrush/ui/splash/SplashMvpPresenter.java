@@ -10,5 +10,4 @@ public interface SplashMvpPresenter<V extends SplashMvpView> extends MvpPresente
 
     void startCountDown(int millis);
 
-    boolean isFirstTime();
 }

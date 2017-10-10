@@ -4,13 +4,17 @@ import android.os.Handler;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.robillo.readrush.R;
 import com.robillo.readrush.data.DataManager;
 import com.robillo.readrush.ui.base.BasePresenter;
 import com.robillo.readrush.utils.rx.SchedulerProvider;
 
 import javax.inject.Inject;
 
+import io.reactivex.ObservableSource;
 import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
 
 /**
  * Created by robinkamboj on 10/10/17.
@@ -35,16 +39,10 @@ public class SplashPresenter<V extends SplashMvpView> extends BasePresenter<V> i
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                if(isFirstTime()){
-                    Log.e("TAG", "running countdown");
+                if(true){
                     getMvpView().openLoginActivity();
                 }
             }
         }, millis);
-    }
-
-    @Override
-    public boolean isFirstTime() {
-        return false;
     }
 }
