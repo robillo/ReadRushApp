@@ -21,6 +21,9 @@ import android.support.v7.widget.LinearLayoutManager;
 
 import com.robillo.readrush.di.ActivityContext;
 import com.robillo.readrush.di.PerActivity;
+import com.robillo.readrush.ui.splash.SplashMvpPresenter;
+import com.robillo.readrush.ui.splash.SplashMvpView;
+import com.robillo.readrush.ui.splash.SplashPresenter;
 import com.robillo.readrush.utils.rx.AppSchedulerProvider;
 import com.robillo.readrush.utils.rx.SchedulerProvider;
 
@@ -64,12 +67,12 @@ public class ActivityModule {
         return new AppSchedulerProvider();
     }
 
-//    @Provides
-//    @PerActivity
-//    SplashMvpPresenter<SplashMvpView> provideSplashPresenter(
-//            SplashPresenter<SplashMvpView> presenter) {
-//        return presenter;
-//    }
+    @Provides
+    @PerActivity
+    SplashMvpPresenter<SplashMvpView> provideSplashPresenter(
+            SplashPresenter<SplashMvpView> presenter) {
+        return presenter;
+    }
 //
 //    @Provides
 //    AboutMvpPresenter<AboutMvpView> provideAboutPresenter(

@@ -7,4 +7,5 @@
     <string name="connection_error">Connection Error</string>
     <string name="api_retry_error">API Retry Error</string>
     <string name="dummy_text">This Is Dummy Text</string>
+    <string name="tag_line">Book Summaries In 25 Minutes</string>
 </resources>
