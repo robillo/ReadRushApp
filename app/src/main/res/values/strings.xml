@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">ReadRush</string>
+    <string name="app_google_play_store_link">https://play.google.com/store/apps/details?id=com.appbusters.robinkamboj.senseitall</string>
+    <string name="app_market_link">https://play.google.com/store/apps/details?id=com.appbusters.robinkamboj.senseitall</string>
+    <string name="some_error">Some Error Has Occurred</string>
+    <string name="api_default_error">api error</string>
+    <string name="connection_error">Connection Error</string>
+    <string name="api_retry_error">API Retry Error</string>
+</resources>
