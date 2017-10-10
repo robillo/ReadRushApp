@@ -6,6 +6,7 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.interceptors.HttpLoggingInterceptor;
 import com.robillo.readrush.data.DataManager;
 import com.robillo.readrush.di.component.ApplicationComponent;
+import com.robillo.readrush.di.component.DaggerApplicationComponent;
 import com.robillo.readrush.di.module.ApplicationModule;
 import com.robillo.readrush.utils.AppLogger;
 
@@ -25,8 +26,8 @@ public class ReadRushApp extends Application{
     @Override
     public void onCreate() {
         super.onCreate();
-//        mApplicationComponent = DaggerApplicationComponent.builder()
-//                .applicationModule(new ApplicationModule(this)).build();
+        mApplicationComponent = DaggerApplicationComponent.builder()
+                .applicationModule(new ApplicationModule(this)).build();
 
         mApplicationComponent.inject(this);
 

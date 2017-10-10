@@ -1,17 +1,16 @@
 package com.robillo.readrush.ui.splash;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.robillo.readrush.R;
 import com.robillo.readrush.ui.base.BaseActivity;
 
-public class SplashActivity extends BaseActivity implements SplashMvpView{
+public class SplashActivity extends BaseActivity implements SplashMvpView {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_splash);
 
         setUp();
     }
