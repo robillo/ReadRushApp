@@ -18,4 +18,9 @@ public class OnboardPresenter<V extends OnboardMvpView> extends BasePresenter<V>
     public OnboardPresenter(DataManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable) {
         super(dataManager, schedulerProvider, compositeDisposable);
     }
+
+    @Override
+    public void onAttach(V mvpView) {
+        super.onAttach(mvpView);
+    }
 }

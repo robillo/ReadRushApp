@@ -21,6 +21,9 @@ import android.support.v7.widget.LinearLayoutManager;
 
 import com.robillo.readrush.di.ActivityContext;
 import com.robillo.readrush.di.PerActivity;
+import com.robillo.readrush.ui.onboard.Activity.OnboardMvpPresenter;
+import com.robillo.readrush.ui.onboard.Activity.OnboardMvpView;
+import com.robillo.readrush.ui.onboard.Activity.OnboardPresenter;
 import com.robillo.readrush.ui.splash.SplashMvpPresenter;
 import com.robillo.readrush.ui.splash.SplashMvpView;
 import com.robillo.readrush.ui.splash.SplashPresenter;
@@ -73,7 +76,13 @@ public class ActivityModule {
             SplashPresenter<SplashMvpView> presenter) {
         return presenter;
     }
-//
+
+    @Provides
+    @PerActivity
+    OnboardMvpPresenter<OnboardMvpView> provideOnboardPresenter(OnboardPresenter<OnboardMvpView> presenter) {
+        return presenter;
+    }
+
 //    @Provides
 //    AboutMvpPresenter<AboutMvpView> provideAboutPresenter(
 //            AboutPresenter<AboutMvpView> presenter) {
