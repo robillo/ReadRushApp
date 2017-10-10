@@ -15,7 +15,7 @@
 
 package com.robillo.readrush.di.component;
 
-import com.robillo.readrush.SplashActivity;
+import com.robillo.readrush.ui.splash.SplashActivity;
 import com.robillo.readrush.di.PerActivity;
 import com.robillo.readrush.di.module.ActivityModule;
 
