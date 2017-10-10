@@ -68,6 +68,7 @@ dependencies {
     //dagger2 di
     compile "com.google.dagger:dagger:$rootProject.ext.dagger2Version"
     annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.ext.dagger2Version"
-    provided 'javax.annotation:jsr250-api:1.0'
     compile 'javax.inject:javax.inject:1'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    provided 'javax.annotation:jsr250-api:1.0'
 }

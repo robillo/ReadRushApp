@@ -1,5 +1,7 @@
 package com.robillo.readrush.ui.splash;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
@@ -8,6 +10,7 @@ import android.widget.Toast;
 
 import com.robillo.readrush.R;
 import com.robillo.readrush.ui.base.BaseActivity;
+import com.robillo.readrush.ui.onboard.OnboardActivity;
 
 import javax.inject.Inject;
 
@@ -26,6 +29,10 @@ public class SplashActivity extends BaseActivity implements SplashMvpView {
 
     @BindView(R.id.ll_two)
     View mViewTwo;
+
+    public static Intent getStartIntent(Context context) {
+        return new Intent(context, SplashActivity.class);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +59,7 @@ public class SplashActivity extends BaseActivity implements SplashMvpView {
 
     @Override
     public void openLoginActivity() {
-        Toast.makeText(getApplicationContext(), "Opening Login Activity", Toast.LENGTH_SHORT).show();
+        startActivity(OnboardActivity.getStartIntent(this));
     }
 
     @Override
