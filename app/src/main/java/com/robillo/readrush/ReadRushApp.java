@@ -12,6 +12,8 @@ import com.robillo.readrush.utils.AppLogger;
 
 import javax.inject.Inject;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
+
 /**
  * Created by robinkamboj on 10/10/17.
  */
@@ -38,6 +40,11 @@ public class ReadRushApp extends Application{
             AndroidNetworking.enableLogging(HttpLoggingInterceptor.Level.BODY);
         }
 
+        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
+                .setDefaultFontPath("fonts/Roboto-RobotoRegular.ttf")
+                .setFontAttrId(R.attr.fontPath)
+                .build()
+        );
     }
 
     public ApplicationComponent getComponent() {

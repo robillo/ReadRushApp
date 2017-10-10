@@ -58,6 +58,9 @@ dependencies {
     // database
     compile "org.greenrobot:greendao:$rootProject.ext.greenDaoVersion"
 
+    //calligraphy
+    compile "uk.co.chrisjenx:calligraphy:$rootProject.ext.calligraphyVersion"
+
     //rxJava
     compile "io.reactivex.rxjava2:rxjava:$rootProject.ext.rxjava2Version"
     compile "io.reactivex.rxjava2:rxandroid:$rootProject.ext.rxandroidVersion"

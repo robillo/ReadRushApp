@@ -36,6 +36,7 @@ import com.robillo.readrush.utils.CommonUtils;
 import com.robillo.readrush.utils.NetworkUtils;
 
 import butterknife.Unbinder;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public abstract class BaseActivity extends AppCompatActivity
         implements MvpView, BaseFragment.Callback {
@@ -55,6 +56,11 @@ public abstract class BaseActivity extends AppCompatActivity
     public boolean hasPermission(String permission) {
         return Build.VERSION.SDK_INT < Build.VERSION_CODES.M ||
                 checkSelfPermission(permission) == PackageManager.PERMISSION_GRANTED;
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 
     @Override
