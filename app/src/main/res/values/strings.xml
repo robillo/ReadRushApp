@@ -8,4 +8,7 @@
     <string name="api_retry_error">API Retry Error</string>
     <string name="dummy_text">This Is Dummy Text</string>
     <string name="tag_line">Book Summaries In 25 Minutes</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

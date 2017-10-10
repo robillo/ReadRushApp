@@ -40,7 +40,7 @@ dependencies {
     compile "com.android.support.constraint:constraint-layout:$rootProject.ext.constraintLayoutVersion"
 
     //circular_reveal
-    compile ("com.github.ozodrukh:CircularReveal:$rootProject.ext.circularRevealVersion") {
+    compile("com.github.ozodrukh:CircularReveal:$rootProject.ext.circularRevealVersion") {
         transitive = true;
     }
 
@@ -75,5 +75,6 @@ dependencies {
     annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.ext.dagger2Version"
     compile 'javax.inject:javax.inject:1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.android.support:support-v4:26.+'
     provided 'javax.annotation:jsr250-api:1.0'
 }

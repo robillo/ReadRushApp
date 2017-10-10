@@ -1,13 +1,11 @@
-package com.robillo.readrush.ui.onboard;
+package com.robillo.readrush.ui.onboard.Activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.robillo.readrush.R;
 import com.robillo.readrush.ui.base.BaseActivity;
-import com.robillo.readrush.ui.splash.SplashActivity;
 
 public class OnboardActivity extends BaseActivity implements OnboardMvpView{
 
@@ -28,4 +26,5 @@ public class OnboardActivity extends BaseActivity implements OnboardMvpView{
     protected void setUp() {
 
     }
+
 }

@@ -1,4 +1,4 @@
-package com.robillo.readrush.ui.onboard;
+package com.robillo.readrush.ui.onboard.Activity;
 
 import com.robillo.readrush.data.DataManager;
 import com.robillo.readrush.ui.base.BasePresenter;

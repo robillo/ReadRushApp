@@ -22,7 +22,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.onboard.OnboardActivity" android:theme="@style/AppTheme.NoActionBar"
+        <activity android:name=".ui.onboard.Activity.OnboardActivity" android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait"/>
     </application>
 

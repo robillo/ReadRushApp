@@ -6,11 +6,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Toast;
 
 import com.robillo.readrush.R;
 import com.robillo.readrush.ui.base.BaseActivity;
-import com.robillo.readrush.ui.onboard.OnboardActivity;
+import com.robillo.readrush.ui.onboard.Activity.OnboardActivity;
 
 import javax.inject.Inject;
 

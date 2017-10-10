@@ -4,6 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.robillo.readrush.ui.onboard.OnboardActivity">
+    tools:context="com.robillo.readrush.ui.onboard.Activity.OnboardActivity">
 
 </android.support.constraint.ConstraintLayout>
