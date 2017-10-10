@@ -32,6 +32,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.robillo.readrush.R;
+import com.robillo.readrush.ReadRushApp;
+import com.robillo.readrush.di.component.ActivityComponent;
+import com.robillo.readrush.di.component.DaggerActivityComponent;
+import com.robillo.readrush.di.module.ActivityModule;
 import com.robillo.readrush.utils.CommonUtils;
 import com.robillo.readrush.utils.NetworkUtils;
 
@@ -45,6 +49,8 @@ public abstract class BaseActivity extends AppCompatActivity
 
     private Unbinder mUnBinder;
 
+    private ActivityComponent mActivityComponent;
+
     @TargetApi(Build.VERSION_CODES.M)
     public void requestPermissionsSafely(String[] permissions, int requestCode) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -56,6 +62,20 @@ public abstract class BaseActivity extends AppCompatActivity
     public boolean hasPermission(String permission) {
         return Build.VERSION.SDK_INT < Build.VERSION_CODES.M ||
                 checkSelfPermission(permission) == PackageManager.PERMISSION_GRANTED;
+    }
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mActivityComponent = DaggerActivityComponent.builder()
+                .activityModule(new ActivityModule(this))
+                .applicationComponent(((ReadRushApp) getApplication()).getComponent())
+                .build();
+
+    }
+
+    public ActivityComponent getActivityComponent() {
+        return mActivityComponent;
     }
 
     @Override
