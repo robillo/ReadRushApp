@@ -7,4 +7,8 @@ import com.robillo.readrush.ui.base.MvpPresenter;
  */
 
 public interface SplashMvpPresenter<V extends SplashMvpView> extends MvpPresenter<V> {
+
+    void startCountDown(int millis);
+
+    boolean isFirstTime();
 }

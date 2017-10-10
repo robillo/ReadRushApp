@@ -1,5 +1,9 @@
 package com.robillo.readrush.ui.splash;
 
+import android.os.Handler;
+import android.util.Log;
+import android.widget.Toast;
+
 import com.robillo.readrush.data.DataManager;
 import com.robillo.readrush.ui.base.BasePresenter;
 import com.robillo.readrush.utils.rx.SchedulerProvider;
@@ -22,5 +26,25 @@ public class SplashPresenter<V extends SplashMvpView> extends BasePresenter<V> i
     @Override
     public void onAttach(V mvpView) {
         super.onAttach(mvpView);
+    }
+
+    @Override
+    public void startCountDown(int millis) {
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if(isFirstTime()){
+                    Log.e("TAG", "running countdown");
+                    getMvpView().openLoginActivity();
+                }
+            }
+        }, millis);
+    }
+
+    @Override
+    public boolean isFirstTime() {
+        return false;
     }
 }

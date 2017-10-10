@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Toast;
 
 import com.robillo.readrush.R;
 import com.robillo.readrush.ui.base.BaseActivity;
@@ -42,6 +43,7 @@ public class SplashActivity extends BaseActivity implements SplashMvpView {
 
     @Override
     protected void setUp() {
+        mPresenter.startCountDown(4);
         topDown = AnimationUtils.loadAnimation(this, R.anim.top_down);
         bottomUp = AnimationUtils.loadAnimation(this, R.anim.bottom_up);
         mViewOne.startAnimation(topDown);
@@ -50,7 +52,7 @@ public class SplashActivity extends BaseActivity implements SplashMvpView {
 
     @Override
     public void openLoginActivity() {
-
+        Toast.makeText(getApplicationContext(), "Opening Login Activity", Toast.LENGTH_SHORT).show();
     }
 
     @Override
