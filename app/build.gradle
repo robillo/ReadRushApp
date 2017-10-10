@@ -51,6 +51,9 @@ dependencies {
     //timber
     compile "com.jakewharton.timber:timber:$rootProject.ext.timberVersion"
 
+    //h textview
+    compile "com.hanks:htextview-line:$rootProject.ext.htextviewVersion"
+
     // image
     compile "com.github.bumptech.glide:glide:$rootProject.ext.glideVersion"
 

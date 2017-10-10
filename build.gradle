@@ -45,6 +45,7 @@ ext {
     glideVersion = '3.7.0'
 
     circularRevealVersion = '2.0.1@aar'
+    htextviewVersion = '0.1.1'
 
     rx2FastAndroidNetworking = '1.0.0'
 
