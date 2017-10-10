@@ -39,6 +39,11 @@ dependencies {
     compile "com.android.support:design:$rootProject.ext.supportLibraryVersion"
     compile "com.android.support.constraint:constraint-layout:$rootProject.ext.constraintLayoutVersion"
 
+    //circular_reveal
+    compile ("com.github.ozodrukh:CircularReveal:$rootProject.ext.circularRevealVersion") {
+        transitive = true;
+    }
+
     //butterknife
     compile "com.jakewharton:butterknife:$rootProject.ext.butterKnifeVersion"
     annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.ext.butterKnifeVersion"

@@ -20,6 +20,9 @@ allprojects {
         maven{
             url 'https://oss.sonatype.org/content/repositories/snapshots/'
         }
+        maven {
+            url "https://jitpack.io"
+        }
     }
 }
 
@@ -40,6 +43,8 @@ ext {
     gsonVersion = '2.8.0'
     calligraphyVersion = '2.3.0'
     glideVersion = '3.7.0'
+
+    circularRevealVersion = '2.0.1@aar'
 
     rx2FastAndroidNetworking = '1.0.0'
 
