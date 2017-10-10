@@ -24,6 +24,9 @@ import com.robillo.readrush.di.PerActivity;
 import com.robillo.readrush.ui.onboard.Activity.OnboardMvpPresenter;
 import com.robillo.readrush.ui.onboard.Activity.OnboardMvpView;
 import com.robillo.readrush.ui.onboard.Activity.OnboardPresenter;
+import com.robillo.readrush.ui.onboard.Fragment.OnboardFMvpPresenter;
+import com.robillo.readrush.ui.onboard.Fragment.OnboardFMvpView;
+import com.robillo.readrush.ui.onboard.Fragment.OnboardFPresenter;
 import com.robillo.readrush.ui.splash.SplashMvpPresenter;
 import com.robillo.readrush.ui.splash.SplashMvpView;
 import com.robillo.readrush.ui.splash.SplashPresenter;
@@ -80,6 +83,12 @@ public class ActivityModule {
     @Provides
     @PerActivity
     OnboardMvpPresenter<OnboardMvpView> provideOnboardPresenter(OnboardPresenter<OnboardMvpView> presenter) {
+        return presenter;
+    }
+
+    @Provides
+    @PerActivity
+    OnboardFMvpPresenter<OnboardFMvpView> provideOnboardFPresenter(OnboardFPresenter<OnboardFMvpView> presenter) {
         return presenter;
     }
 

@@ -23,6 +23,7 @@ import android.support.annotation.StringRes;
 import android.support.v4.app.Fragment;
 import android.view.View;
 
+import com.robillo.readrush.di.component.ActivityComponent;
 import com.robillo.readrush.utils.CommonUtils;
 
 import butterknife.Unbinder;
@@ -129,12 +130,12 @@ public abstract class BaseFragment extends Fragment implements MvpView {
         super.onDetach();
     }
 
-//    public ActivityComponent getActivityComponent() {
-//        if (mActivity != null) {
-//            return mActivity.getActivityComponent();
-//        }
-//        return null;
-//    }
+    public ActivityComponent getActivityComponent() {
+        if (mActivity != null) {
+            return mActivity.getActivityComponent();
+        }
+        return null;
+    }
 
     public BaseActivity getBaseActivity() {
         return mActivity;

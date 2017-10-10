@@ -16,6 +16,7 @@
 package com.robillo.readrush.di.component;
 
 import com.robillo.readrush.ui.onboard.Activity.OnboardActivity;
+import com.robillo.readrush.ui.onboard.Fragment.OnboardFragment;
 import com.robillo.readrush.ui.splash.SplashActivity;
 import com.robillo.readrush.di.PerActivity;
 import com.robillo.readrush.di.module.ActivityModule;
@@ -37,7 +38,9 @@ public interface ActivityComponent {
     void inject(SplashActivity activity);
 
     void inject(OnboardActivity activity);
-//
+
+    void inject(OnboardFragment fragment);
+
 //    void inject(AboutFragment fragment);
 //
 //    void inject(OpenSourceFragment fragment);
