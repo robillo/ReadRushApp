@@ -15,6 +15,7 @@
 
 package com.robillo.readrush.di.component;
 
+import com.robillo.readrush.ui.login.LoginActivity;
 import com.robillo.readrush.ui.onboard.OnboardActivity;
 import com.robillo.readrush.ui.splash.SplashActivity;
 import com.robillo.readrush.di.PerActivity;
@@ -31,12 +32,12 @@ import dagger.Component;
 public interface ActivityComponent {
 
 //    void inject(MainActivity activity);
-//
-//    void inject(LoginActivity activity);
 
     void inject(SplashActivity activity);
 
     void inject(OnboardActivity activity);
+
+//    void inject(LoginActivity activity);
 
 //    void inject(OnboardFragment fragment);
 

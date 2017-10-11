@@ -27,7 +27,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class OnboardActivity extends BaseActivity implements OnboardMvpView{
+public class OnboardActivity extends BaseActivity implements OnboardMvpView {
 
     private static final int NUM_PAGES = 4;
 

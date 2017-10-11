@@ -21,6 +21,9 @@ import android.support.v7.widget.LinearLayoutManager;
 
 import com.robillo.readrush.di.ActivityContext;
 import com.robillo.readrush.di.PerActivity;
+import com.robillo.readrush.ui.login.LoginMvpPresenter;
+import com.robillo.readrush.ui.login.LoginMvpView;
+import com.robillo.readrush.ui.login.LoginPresenter;
 import com.robillo.readrush.ui.onboard.OnboardMvpPresenter;
 import com.robillo.readrush.ui.onboard.OnboardMvpView;
 import com.robillo.readrush.ui.onboard.OnboardPresenter;
@@ -77,6 +80,13 @@ public class ActivityModule {
             OnboardPresenter<OnboardMvpView> presenter) {
         return presenter;
     }
+
+//    @Provides
+//    @PerActivity
+//    LoginMvpPresenter<LoginMvpView> provideLoginPresenter(
+//            LoginPresenter<LoginMvpView> presenter) {
+//        return presenter;
+//    }
 
 //    @Provides
 //    OnboardFMvpPresenter<OnboardFMvpView> provideOnboardFPresenter(
