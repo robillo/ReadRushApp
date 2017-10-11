@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.robillo.readrush.R;
 import com.robillo.readrush.ui.base.BaseActivity;
+import com.robillo.readrush.ui.login.LoginActivity;
 import com.robillo.readrush.ui.onboard.Fragment.OnboardFragment;
 import com.robillo.readrush.utils.page_transforms.AccordianTransformer;
 import com.robillo.readrush.utils.page_transforms.CubeOutTransformer;
@@ -83,11 +84,12 @@ public class OnboardActivity extends BaseActivity implements OnboardMvpView{
 
     @Override
     public void goNext() {
-        if(mPager.getCurrentItem()!=NUM_PAGES){
+        if(mPager.getCurrentItem()!=NUM_PAGES-1){
             mPager.setCurrentItem(mPager.getCurrentItem()+1);
         }
         else {
             //start login activity
+            startActivity(LoginActivity.getStartIntent(this));
         }
     }
 
