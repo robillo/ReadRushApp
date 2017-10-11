@@ -1,4 +1,4 @@
-package com.robillo.readrush.utils;
+package com.robillo.readrush.utils.page_transforms;
 
 import android.support.v4.view.ViewPager;
 import android.view.View;

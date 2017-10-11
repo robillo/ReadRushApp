@@ -1,4 +1,4 @@
-package com.robillo.readrush.ui.onboard.Activity;
+package com.robillo.readrush.ui.onboard;
 
 import com.robillo.readrush.ui.base.MvpPresenter;
 

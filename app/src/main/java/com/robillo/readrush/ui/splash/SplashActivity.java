@@ -9,7 +9,7 @@ import android.view.animation.AnimationUtils;
 
 import com.robillo.readrush.R;
 import com.robillo.readrush.ui.base.BaseActivity;
-import com.robillo.readrush.ui.onboard.Activity.OnboardActivity;
+import com.robillo.readrush.ui.onboard.OnboardActivity;
 
 import javax.inject.Inject;
 

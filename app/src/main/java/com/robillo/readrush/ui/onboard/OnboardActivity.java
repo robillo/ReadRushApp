@@ -1,4 +1,4 @@
-package com.robillo.readrush.ui.onboard.Activity;
+package com.robillo.readrush.ui.onboard;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,8 +14,8 @@ import android.widget.Button;
 import com.robillo.readrush.R;
 import com.robillo.readrush.ui.base.BaseActivity;
 import com.robillo.readrush.ui.onboard.Fragment.OnboardFragment;
-import com.robillo.readrush.ui.splash.SplashActivity;
-import com.robillo.readrush.utils.ZoomOutPageTransformer;
+import com.robillo.readrush.utils.page_transforms.ZoomOutPageTransformer;
+import com.robillo.readrush.utils.page_transforms.ZoomOutTransformer;
 
 import javax.inject.Inject;
 
@@ -61,7 +61,7 @@ public class OnboardActivity extends BaseActivity implements OnboardMvpView{
         PagerAdapter adapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
         mPager.setAdapter(adapter);
         mPager.setClipToPadding(false);
-        mPager.setPageTransformer(true, new ZoomOutPageTransformer());
+        mPager.setPageTransformer(true, new ZoomOutTransformer());
     }
 
     @Override
@@ -87,7 +87,7 @@ public class OnboardActivity extends BaseActivity implements OnboardMvpView{
                     return OnboardFragment.newInstance(R.drawable.one, "one", "one one one one");
                 }
                 case 1:{
-                    return OnboardFragment.newInstance(R.drawable.two, "two", "two two two two");
+                    return OnboardFragment.newInstance(R.drawable.four, "two", "two two two two");
                 }
                 case 2:{
                     return OnboardFragment.newInstance(R.drawable.three, "three", "three three three three");

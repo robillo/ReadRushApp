@@ -2,8 +2,6 @@ package com.robillo.readrush.ui.onboard.Fragment;
 
 import com.robillo.readrush.data.DataManager;
 import com.robillo.readrush.ui.base.BasePresenter;
-import com.robillo.readrush.ui.onboard.Activity.OnboardMvpPresenter;
-import com.robillo.readrush.ui.onboard.Activity.OnboardMvpView;
 import com.robillo.readrush.utils.rx.SchedulerProvider;
 
 import io.reactivex.disposables.CompositeDisposable;

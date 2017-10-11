@@ -16,25 +16,19 @@
 package com.robillo.readrush.di.module;
 
 import android.content.Context;
-import android.support.v4.view.PagerAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 
 import com.robillo.readrush.di.ActivityContext;
 import com.robillo.readrush.di.PerActivity;
-import com.robillo.readrush.ui.onboard.Activity.OnboardMvpPresenter;
-import com.robillo.readrush.ui.onboard.Activity.OnboardMvpView;
-import com.robillo.readrush.ui.onboard.Activity.OnboardPresenter;
-import com.robillo.readrush.ui.onboard.Fragment.OnboardFMvpPresenter;
-import com.robillo.readrush.ui.onboard.Fragment.OnboardFMvpView;
-import com.robillo.readrush.ui.onboard.Fragment.OnboardFPresenter;
+import com.robillo.readrush.ui.onboard.OnboardMvpPresenter;
+import com.robillo.readrush.ui.onboard.OnboardMvpView;
+import com.robillo.readrush.ui.onboard.OnboardPresenter;
 import com.robillo.readrush.ui.splash.SplashMvpPresenter;
 import com.robillo.readrush.ui.splash.SplashMvpView;
 import com.robillo.readrush.ui.splash.SplashPresenter;
 import com.robillo.readrush.utils.rx.AppSchedulerProvider;
 import com.robillo.readrush.utils.rx.SchedulerProvider;
-
-import java.util.ArrayList;
 
 import dagger.Module;
 import dagger.Provides;
