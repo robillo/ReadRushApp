@@ -2,13 +2,16 @@ package com.robillo.readrush.ui.onboard.Fragment;
 
 
 import android.os.Bundle;
+import android.support.annotation.DrawableRes;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.hanks.htextview.line.LineTextView;
 import com.robillo.readrush.R;
 import com.robillo.readrush.di.component.ActivityComponent;
@@ -24,8 +27,8 @@ import butterknife.ButterKnife;
  */
 public class OnboardFragment extends BaseFragment implements OnboardFMvpView {
 
-    @Inject
-    OnboardFMvpPresenter<OnboardFMvpView> mPresenter;
+//    @Inject
+//    OnboardFMvpPresenter<OnboardFMvpView> mPresenter;
 
     @BindView(R.id.image)
     ImageView mImageView;
@@ -42,7 +45,11 @@ public class OnboardFragment extends BaseFragment implements OnboardFMvpView {
         // Required empty public constructor
     }
 
-    public static OnboardFragment newInstance(Bundle bundle) {
+    public static OnboardFragment newInstance(@DrawableRes int id, String heading, String description) {
+        Bundle bundle = new Bundle();
+        bundle.putInt("drawableId", id);
+        bundle.putString("header", heading);
+        bundle.putString("description", description);
         OnboardFragment fragment = new OnboardFragment();
         fragment.setArguments(bundle);
         return fragment;
@@ -57,11 +64,11 @@ public class OnboardFragment extends BaseFragment implements OnboardFMvpView {
         ActivityComponent component = getActivityComponent();
         if(component!=null){
 
-            component.inject(this);
+//            component.inject(OnboardFragment.this);
 
             setUnBinder(ButterKnife.bind(this, v));
 
-            mPresenter.onAttach(this);
+//            mPresenter.onAttach(OnboardFragment.this);
 
         }
 
@@ -71,12 +78,20 @@ public class OnboardFragment extends BaseFragment implements OnboardFMvpView {
 
     @Override
     public void onDestroy() {
-        mPresenter.onDetach();
+//        mPresenter.onDetach();
         super.onDestroy();
     }
 
     @Override
     protected void setUp(View view) {
-        Bundle args = getArguments().getBundle(BUNDLE_NAME);
+        Bundle args = getArguments();
+        if (args != null) {
+            int id = args.getInt("drawableId");
+            String headerString = args.getString("header");
+            String descriptionString = args.getString("description");
+            Glide.with(getActivity()).load(id).fitCenter().into(mImageView);
+            mLineHeader.setText(headerString);
+            mTextDescription.setText(descriptionString);
+        }
     }
 }

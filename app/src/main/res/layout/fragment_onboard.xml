@@ -13,8 +13,8 @@
         android:gravity="center">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100sp"
+            android:layout_height="100sp"
             android:src="@drawable/one"
             android:contentDescription="@string/fragment_image"
             android:id="@+id/image"/>
@@ -35,7 +35,9 @@
             tools:ignore="MissingPrefix"
             fontPath="fonts/four.ttf"
             android:text="@string/dummy_header"
-            android:textSize="25sp"
+            android:textSize="35sp"
+            android:paddingLeft="10sp"
+            android:paddingRight="10sp"
             app:animationDuration="3000"
             app:lineColor="@color/readBlack"
             app:lineWidth="4dp"
@@ -48,7 +50,7 @@
             tools:ignore="MissingPrefix"
             android:gravity="center_horizontal"
             fontPath="fonts/four.ttf"
-            android:padding="15sp"
+            android:padding="25sp"
             android:textSize="18sp"
             android:textColor="@color/colorTextTwo"
             android:id="@+id/description"/>

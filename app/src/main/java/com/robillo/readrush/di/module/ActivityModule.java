@@ -16,6 +16,7 @@
 package com.robillo.readrush.di.module;
 
 import android.content.Context;
+import android.support.v4.view.PagerAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 
@@ -38,10 +39,6 @@ import java.util.ArrayList;
 import dagger.Module;
 import dagger.Provides;
 import io.reactivex.disposables.CompositeDisposable;
-
-/**
- * Created by janisharali on 27/01/17.
- */
 
 @Module
 public class ActivityModule {
@@ -82,15 +79,16 @@ public class ActivityModule {
 
     @Provides
     @PerActivity
-    OnboardMvpPresenter<OnboardMvpView> provideOnboardPresenter(OnboardPresenter<OnboardMvpView> presenter) {
+    OnboardMvpPresenter<OnboardMvpView> provideOnboardPresenter(
+            OnboardPresenter<OnboardMvpView> presenter) {
         return presenter;
     }
 
-    @Provides
-    @PerActivity
-    OnboardFMvpPresenter<OnboardFMvpView> provideOnboardFPresenter(OnboardFPresenter<OnboardFMvpView> presenter) {
-        return presenter;
-    }
+//    @Provides
+//    OnboardFMvpPresenter<OnboardFMvpView> provideOnboardFPresenter(
+//            OnboardFPresenter<OnboardFMvpView> presenter) {
+//        return presenter;
+//    }
 
 //    @Provides
 //    AboutMvpPresenter<AboutMvpView> provideAboutPresenter(
@@ -137,7 +135,7 @@ public class ActivityModule {
 //    }
 //
 //    @Provides
-//    FeedPagerAdapter provideFeedPagerAdapter(AppCompatActivity activity) {
+//    PagerAdapter provideFeedPagerAdapter(AppCompatActivity activity) {
 //        return new FeedPagerAdapter(activity.getSupportFragmentManager());
 //    }
 //
