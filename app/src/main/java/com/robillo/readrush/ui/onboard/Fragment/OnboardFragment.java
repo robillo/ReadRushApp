@@ -89,7 +89,7 @@ public class OnboardFragment extends BaseFragment implements OnboardFMvpView {
             int id = args.getInt("drawableId");
             String headerString = args.getString("header");
             String descriptionString = args.getString("description");
-            Glide.with(getActivity()).load(id).fitCenter().into(mImageView);
+            Glide.with(getActivity()).load(id).fitCenter().crossFade().into(mImageView);
             mLineHeader.setText(headerString);
             mTextDescription.setText(descriptionString);
         }

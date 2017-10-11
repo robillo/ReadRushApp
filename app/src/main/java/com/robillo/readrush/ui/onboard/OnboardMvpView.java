@@ -7,4 +7,9 @@ import com.robillo.readrush.ui.base.MvpView;
  */
 
 public interface OnboardMvpView extends MvpView {
+
+    void goPrevious();
+
+    void goNext();
+
 }

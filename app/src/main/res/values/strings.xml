@@ -17,4 +17,10 @@
     <string name="dummy_header">The Dummy Header</string>
     <string name="dummy_sentence">The Dummy Header has a dummy sentence that comes with it.</string>
     <string name="fragment_image">Fragment Image</string>
+    <string name="finish">Finish</string>
+    <string name="dummy_header1">Same Book</string>
+    <string name="dummy_header2">Opening Door</string>
+    <string name="dummy_header3">Intellectual Man</string>
+    <string name="dummy_header4">Half an hour</string>
+    <string name="dummy_header5">Half an hour</string>
 </resources>

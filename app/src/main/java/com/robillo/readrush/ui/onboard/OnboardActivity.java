@@ -10,6 +10,7 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.robillo.readrush.R;
 import com.robillo.readrush.ui.base.BaseActivity;
@@ -23,6 +24,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class OnboardActivity extends BaseActivity implements OnboardMvpView{
 
@@ -64,12 +66,39 @@ public class OnboardActivity extends BaseActivity implements OnboardMvpView{
         mPager.setAdapter(adapter);
         mPager.setClipToPadding(false);
         mPager.setPageTransformer(true, new CubeOutTransformer());
+        mPager.addOnPageChangeListener(viewPagerPageChangeListener);
+        previous.setEnabled(false);
     }
 
     @Override
     protected void onDestroy() {
         mPresenter.onDetach();
         super.onDestroy();
+    }
+
+    @Override
+    public void goPrevious() {
+        mPager.setCurrentItem(mPager.getCurrentItem()-1);
+    }
+
+    @Override
+    public void goNext() {
+        if(mPager.getCurrentItem()!=NUM_PAGES){
+            mPager.setCurrentItem(mPager.getCurrentItem()+1);
+        }
+        else {
+            //start login activity
+        }
+    }
+
+    @OnClick(R.id.next)
+    public void setNext(){
+        goNext();
+    }
+
+    @OnClick(R.id.prev)
+    public void setPrevious(){
+        goPrevious();
     }
 
     /**
@@ -86,19 +115,19 @@ public class OnboardActivity extends BaseActivity implements OnboardMvpView{
 
             switch (position){
                 case 0:{
-                    return OnboardFragment.newInstance(R.drawable.one, "Same Book", "No two persons ever read the same book.");
+                    return OnboardFragment.newInstance(R.drawable.one, getString(R.string.dummy_header1), "No two persons ever read the same book.");
                 }
                 case 1:{
-                    return OnboardFragment.newInstance(R.drawable.four, "Opening Door", "Whenever you read a good book, somewhere in the world a door opens to allow in more light.");
+                    return OnboardFragment.newInstance(R.drawable.four, getString(R.string.dummy_header2), "Whenever you read a good book, somewhere in the world a door opens to allow in more light.");
                 }
                 case 2:{
-                    return OnboardFragment.newInstance(R.drawable.three, "Intellectual Man", "If we encounter a man of rare intellect, we should ask him what books he reads.");
+                    return OnboardFragment.newInstance(R.drawable.three, getString(R.string.dummy_header3), "If we encounter a man of rare intellect, we should ask him what books he reads.");
                 }
                 case 3:{
-                    return OnboardFragment.newInstance(R.drawable.four, "Half an hour", "I would never read a book if it were possible for me to talk half an hour with the man who wrote it.");
+                    return OnboardFragment.newInstance(R.drawable.four, getString(R.string.dummy_header4), "I would never read a book if it were possible for me to talk half an hour with the man who wrote it.");
                 }
                 default:{
-                    return OnboardFragment.newInstance(R.drawable.four, "Half an hour", "I would never read a book if it were possible for me to talk half an hour with the man who wrote it.");
+                    return OnboardFragment.newInstance(R.drawable.four, getString(R.string.dummy_header5), "I would never read a book if it were possible for me to talk half an hour with the man who wrote it.");
                 }
             }
         }
@@ -119,4 +148,41 @@ public class OnboardActivity extends BaseActivity implements OnboardMvpView{
         }
 
     }
+
+    //  viewpager change listener
+    ViewPager.OnPageChangeListener viewPagerPageChangeListener = new ViewPager.OnPageChangeListener() {
+
+        @Override
+        public void onPageSelected(int position) {
+
+//            addBottomDots(position);
+
+            if(position==0 && previous.isEnabled()){
+                previous.setEnabled(false);
+            }
+            else {
+                if(!previous.isEnabled()){
+                    previous.setEnabled(true);
+                }
+            }
+
+            if(position == NUM_PAGES-1){
+                next.setText(R.string.finish);
+            }
+
+            if(position!=NUM_PAGES-1 && next.getText().equals("Finish")){
+                next.setText(getString(R.string.next));
+            }
+        }
+
+        @Override
+        public void onPageScrolled(int arg0, float arg1, int arg2) {
+
+        }
+
+        @Override
+        public void onPageScrollStateChanged(int arg0) {
+
+        }
+    };
 }
