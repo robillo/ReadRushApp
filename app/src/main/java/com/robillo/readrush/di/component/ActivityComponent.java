@@ -39,7 +39,7 @@ public interface ActivityComponent {
 
     void inject(OnboardActivity activity);
 
-    void inject(OnboardFragment fragment);
+//    void inject(OnboardFragment fragment);
 
 //    void inject(AboutFragment fragment);
 //
