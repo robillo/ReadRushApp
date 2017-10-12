@@ -10,16 +10,12 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.robillo.readrush.R;
 import com.robillo.readrush.ui.base.BaseActivity;
 import com.robillo.readrush.ui.login.LoginActivity;
-import com.robillo.readrush.ui.onboard.Fragment.OnboardFragment;
-import com.robillo.readrush.utils.page_transforms.AccordianTransformer;
+import com.robillo.readrush.ui.onboard.fragment.OnboardFragment;
 import com.robillo.readrush.utils.page_transforms.CubeOutTransformer;
-import com.robillo.readrush.utils.page_transforms.ZoomOutPageTransformer;
-import com.robillo.readrush.utils.page_transforms.ZoomOutTransformer;
 
 import javax.inject.Inject;
 
