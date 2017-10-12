@@ -3,4 +3,7 @@
     <declare-styleable name="MyChatView">
         <attr name="chat_text" format="string"/>
     </declare-styleable>
+    <declare-styleable name="MyChatEdittext">
+        <attr name="hint_text" format="string"/>
+    </declare-styleable>
 </resources>

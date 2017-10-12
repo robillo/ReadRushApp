@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context="com.robillo.readrush.ui.login.fragment.LoginFragment">
 
@@ -15,15 +16,23 @@
 
     <TextView
         tools:ignore="MissingPrefix"
-        fontPath="fonts/two.ttf"
+        fontPath="fonts/three.ttf"
+        android:layout_marginTop="20sp"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        tools:text="Have we met before?"
+        android:text="Have we met before?"
         android:textColor="@color/black"
         android:textStyle="bold"
-        android:textSize="30sp"
+        android:textSize="35sp"
         android:gravity="left"
-        android:paddingLeft="10sp"/>
+        android:paddingLeft="20sp"/>
+
+    <com.robillo.readrush.ui.custom.MyChatEdittext
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:layout_marginTop="15sp"
+        app:hint_text="@string/sample_email"/>
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"

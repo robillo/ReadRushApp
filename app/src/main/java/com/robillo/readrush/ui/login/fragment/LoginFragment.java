@@ -25,14 +25,8 @@ public class LoginFragment extends BaseFragment implements LoginMvpView {
         // Required empty public constructor
     }
 
-    public static LoginFragment newInstance(@DrawableRes int id, String heading, String description) {
-        Bundle bundle = new Bundle();
-        bundle.putInt("drawableId", id);
-        bundle.putString("header", heading);
-        bundle.putString("description", description);
-        LoginFragment fragment = new LoginFragment();
-        fragment.setArguments(bundle);
-        return fragment;
+    public static LoginFragment newInstance() {
+        return new LoginFragment();
     }
 
     @Override

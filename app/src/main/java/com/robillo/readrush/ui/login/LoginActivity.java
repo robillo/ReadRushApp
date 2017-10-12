@@ -2,12 +2,15 @@ package com.robillo.readrush.ui.login;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 import com.robillo.readrush.R;
 import com.robillo.readrush.ui.base.BaseActivity;
+import com.robillo.readrush.ui.login.fragment.LoginFragment;
 import com.robillo.readrush.ui.onboard.OnboardActivity;
 
 import javax.inject.Inject;
@@ -21,10 +24,10 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
     LoginMvpPresenter<LoginMvpView> mPresenter;
 
     @BindView(R.id.prev)
-    LinearLayout mLinearPrevious;
+    FrameLayout mLinearPrevious;
 
     @BindView(R.id.next)
-    LinearLayout mLinearNext;
+    FrameLayout mLinearNext;
 
     public static Intent getStartIntent(Context context) {
         return new Intent(context, LoginActivity.class);
@@ -45,8 +48,14 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
     }
 
     @Override
-    protected void setUp() {
+    public void setLoginFragment() {
+        FragmentManager manager = getSupportFragmentManager();
+        manager.beginTransaction().replace(R.id.next, LoginFragment.newInstance()).commit();
+    }
 
+    @Override
+    protected void setUp() {
+        setLoginFragment();
     }
 
     @Override
@@ -54,4 +63,5 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
 //        mPresenter.onDetach();
         super.onDestroy();
     }
+
 }
