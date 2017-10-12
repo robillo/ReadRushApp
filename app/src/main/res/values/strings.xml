@@ -23,4 +23,6 @@
     <string name="dummy_header3">Intellectual Man</string>
     <string name="dummy_header4">Half an hour</string>
     <string name="dummy_header5">Half an hour</string>
+    <string name="app_icon">App Icon</string>
+    <string name="sample_email">abcdefgh@gmail.com</string>
 </resources>
