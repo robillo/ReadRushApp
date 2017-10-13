@@ -6,23 +6,75 @@
     <string name="api_default_error">api error</string>
     <string name="connection_error">Connection Error</string>
     <string name="api_retry_error">API Retry Error</string>
+
+    <!-- DUMMY TEXT -->
     <string name="dummy_text">This Is Dummy Text</string>
     <string name="tag_line">Book Summaries In 25 Minutes</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="line">line</string>
-    <string name="previous">Previous</string>
-    <string name="next">Next</string>
-    <string name="dummy_header">The Dummy Header</string>
-    <string name="dummy_sentence">The Dummy Header has a dummy sentence that comes with it.</string>
-    <string name="fragment_image">Fragment Image</string>
-    <string name="finish">Finish</string>
     <string name="dummy_header1">Same Book</string>
     <string name="dummy_header2">Opening Door</string>
     <string name="dummy_header3">Intellectual Man</string>
     <string name="dummy_header4">Half an hour</string>
     <string name="dummy_header5">Half an hour</string>
+    <string name="dummy_header">The Dummy Header</string>
+    <string name="dummy_sentence">The Dummy Header has a dummy sentence that comes with it.</string>
+
+    <!-- APP TEXT -->
+    <string name="line">line</string>
+    <string name="previous">Previous</string>
+    <string name="next">Next</string>
+    <string name="fragment_image">Fragment Image</string>
+    <string name="finish">Finish</string>
     <string name="app_icon">App Icon</string>
     <string name="sample_email">abcdefgh@gmail.com</string>
+
+    <!-- LOGIN ADA-LIKE STRING CONVERSATIONS -->
+    <string-array name="ken_text">
+        <item>Hi, I am Ken. I can help you learn something useful in a very short span of time.</item>
+        <item>Have we met before?</item>
+        <item>Pleased to meet you. To keep your data safe, we need to set you up a private account.</item>
+        <item>You can always change your answer by tapping on it.</item>
+        <item>Please give us your email Id.</item>
+        <item>Now, set up a strong password to keep your account safe.</item>
+        <item>Almost there! \nThe more you tell me, the smarter I get. So I am going to ask you a few questions that will help me personalise the content for you.</item>
+        <item>Great! What is your name?</item>
+        <item>OK mile, you can start by telling me your preferences of books.</item>
+    </string-array>
+
+    <string-array name="chat_edit_text_hint">
+        <item>NULL</item>
+        <item>NULL</item>
+        <item>NULL</item>
+        <item>NULL</item>
+        <item>@string/sample_email</item>
+        <item>Test123@</item>
+        <item>NULL</item>
+        <item>Elon Musk</item>
+        <item>NULL</item>
+    </string-array>
+
+    <string-array name="chat_primary">
+        <item>Okay</item>
+        <item>Yes</item>
+        <item>Okay</item>
+        <item>Okay</item>
+        <item>Done</item>
+        <item>Done</item>
+        <item>Okay</item>
+        <item>Done</item>
+        <item>Done</item>
+    </string-array>
+
+    <string-array name="chat_secondary">
+        <item>NULL</item>
+        <item>Yes</item>
+        <item>NULL</item>
+        <item>NULL</item>
+        <item>NULL</item>
+        <item>NULL</item>
+        <item>NULL</item>
+        <item>NULL</item>
+        <item>NULL</item>
+    </string-array>
+
 </resources>

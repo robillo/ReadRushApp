@@ -2,17 +2,14 @@ package com.robillo.readrush.ui.login;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.robillo.readrush.R;
 import com.robillo.readrush.ui.base.BaseActivity;
-import com.robillo.readrush.ui.login.fragment.LoginFragment;
-import com.robillo.readrush.ui.onboard.OnboardActivity;
+import com.robillo.readrush.ui.custom.MyChatEditText;
+import com.robillo.readrush.ui.custom.MyChatView;
 
 import javax.inject.Inject;
 
@@ -28,7 +25,16 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
     TextView mTextPrevious;
 
     @BindView(R.id.next)
-    FrameLayout mLinearNext;
+    LinearLayout mLinearNext;
+
+    @BindView(R.id.chat_primary)
+    MyChatView mChatPrimary;
+
+    @BindView(R.id.chat_secondary)
+    MyChatView mChatSecondary;
+
+    @BindView(R.id.chat_edit_text)
+    MyChatEditText myChatEditText;
 
     public static Intent getStartIntent(Context context) {
         return new Intent(context, LoginActivity.class);
@@ -57,14 +63,8 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
     }
 
     @Override
-    public void setLoginFragment() {
-        FragmentManager manager = getSupportFragmentManager();
-        manager.beginTransaction().replace(R.id.next, LoginFragment.newInstance()).commit();
-    }
-
-    @Override
     protected void setUp() {
-        setLoginFragment();
+
     }
 
     @Override

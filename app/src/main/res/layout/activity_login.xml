@@ -24,12 +24,66 @@
         android:alpha="0.5"
         android:visibility="visible"/>
 
-    <FrameLayout
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="0sp"
         android:layout_weight="4"
-        android:id="@+id/next">
+        android:id="@+id/next"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        tools:context="com.robillo.readrush.ui.login.fragment.LoginFragment">
 
-    </FrameLayout>
+        <ImageView
+            android:layout_width="70sp"
+            android:layout_height="70sp"
+            android:src="@mipmap/ic_launcher"
+            android:layout_marginLeft="10sp"
+            android:layout_marginTop="10sp"
+            android:contentDescription="@string/app_icon"/>
+
+        <TextView
+            tools:ignore="MissingPrefix"
+            fontPath="fonts/three.ttf"
+            android:layout_marginTop="5sp"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:text="Have we met before?"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="35sp"
+            android:gravity="left"
+            android:paddingLeft="20sp"/>
+
+        <com.robillo.readrush.ui.custom.MyChatEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:id="@+id/chat_edit_text"
+            android:layout_margin="10sp"
+            tools:hint_text="@string/sample_email"
+            android:visibility="gone"/>
+
+        <com.robillo.readrush.ui.custom.MyChatView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:chat_text="Yes"
+            android:layout_marginTop="10sp"
+            android:layout_marginRight="25sp"
+            android:layout_gravity="end"
+            android:id="@+id/chat_primary"
+            android:visibility="gone"/>
+
+        <com.robillo.readrush.ui.custom.MyChatView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:chat_text="No"
+            android:layout_marginTop="15sp"
+            android:layout_marginRight="25sp"
+            android:layout_gravity="end"
+            android:id="@+id/chat_secondary"
+            android:visibility="gone"/>
+
+    </LinearLayout>
 
 </LinearLayout>
