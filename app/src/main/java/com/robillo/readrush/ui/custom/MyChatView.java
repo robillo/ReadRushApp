@@ -51,4 +51,8 @@ public class MyChatView extends LinearLayout {
         postInvalidate();
         ta.recycle();
     }
+
+    public void setChatText(String text) {
+        ((TextView) findViewById(R.id.text)).setText(text);
+    }
 }

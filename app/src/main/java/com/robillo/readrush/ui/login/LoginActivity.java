@@ -25,6 +25,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class LoginActivity extends BaseActivity implements LoginMvpView {
 
@@ -106,10 +107,30 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
             mTextPrevious.setText(mConversations.get(page-1).getKenText());
         }
         kenCurrent.setText(mConversations.get(page).getKenText());
-        if(mConversations.get(page).getEditTextHint()!=null){
+        if(mConversations.get(page).getEditTextHint()!=null) {
             myChatEditText.setVisibility(View.VISIBLE);
             myChatEditText.hintText(mConversations.get(page).getEditTextHint());
         }
+        if(mConversations.get(page).getChatPrimary()!=null) {
+            mChatPrimary.setVisibility(View.VISIBLE);
+            mChatPrimary.setChatText(mConversations.get(page).getChatPrimary());
+        }
+        if(mConversations.get(page).getChatSecondary()!=null) {
+            mChatSecondary.setVisibility(View.VISIBLE);
+            mChatSecondary.setChatText(mConversations.get(page).getChatSecondary());
+        }
+    }
+
+    @OnClick(R.id.prev)
+    public void goPrev() {
+        page-=1;
+        setUp();
+    }
+
+    @OnClick(R.id.next)
+    public void goNext() {
+        page+=1;
+        setUp();
     }
 
     @Override
