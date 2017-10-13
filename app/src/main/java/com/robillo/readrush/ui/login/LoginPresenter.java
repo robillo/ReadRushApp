@@ -27,7 +27,9 @@ public class LoginPresenter<V extends LoginMvpView> extends BasePresenter<V> imp
     @Override
     public List<Conversation> loadLists(String[] ken, String[] hint, String[] primary, String[] secondary) {
         List<Conversation> mList = new ArrayList<>();
-
-        return null;
+        for(int i=0; i<ken.length; i++){
+            mList.add(new Conversation(ken[i], hint[i], primary[i], secondary[i]));
+        }
+        return mList;
     }
 }
