@@ -1,17 +1,26 @@
 package com.robillo.readrush.ui.preference;
 
+import android.animation.Animator;
 import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.robillo.readrush.R;
+import com.willowtreeapps.spruce.Spruce;
+import com.willowtreeapps.spruce.animation.DefaultAnimations;
+import com.willowtreeapps.spruce.sort.CorneredSort;
+import com.willowtreeapps.spruce.sort.InlineSort;
+import com.willowtreeapps.spruce.sort.LinearSort;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -39,6 +48,23 @@ public class PreferenceAdapter extends RecyclerView.Adapter<PreferenceAdapter.Pr
     @Override
     public void onBindViewHolder(PreferenceHolder holder, int position) {
         holder.textView.setText(mList.get(position));
+        animateView(holder.linearLayout);
+    }
+
+    private void animateView(LinearLayout view) {
+
+        Animator[] animators = new Animator[]{
+                DefaultAnimations.shrinkAnimator(view, 800L),
+                DefaultAnimations.fadeInAnimator(view, 800L)
+        };
+
+        InlineSort inlineSort = new InlineSort(100, false, CorneredSort.Corner.TOP_LEFT);
+
+        new Spruce
+                .SpruceBuilder(view)
+                .sortWith(inlineSort)
+                .animateWith(animators)
+                .start();
     }
 
     @Override
@@ -53,6 +79,9 @@ public class PreferenceAdapter extends RecyclerView.Adapter<PreferenceAdapter.Pr
 
         @BindView(R.id.text)
         public TextView textView;
+
+        @BindView(R.id.linear)
+        public LinearLayout linearLayout;
 
         public PreferenceHolder(View itemView) {
             super(itemView);

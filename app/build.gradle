@@ -70,6 +70,9 @@ dependencies {
     //calligraphy
     compile "uk.co.chrisjenx:calligraphy:$rootProject.ext.calligraphyVersion"
 
+    //spruce
+    compile "com.willowtreeapps.spruce:spruce-android:$rootProject.ext.spruceVersion"
+
     //rxJava
     compile "io.reactivex.rxjava2:rxjava:$rootProject.ext.rxjava2Version"
     compile "io.reactivex.rxjava2:rxandroid:$rootProject.ext.rxandroidVersion"
@@ -78,7 +81,6 @@ dependencies {
     compile "com.google.dagger:dagger:$rootProject.ext.dagger2Version"
     annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.ext.dagger2Version"
     compile 'javax.inject:javax.inject:1'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:support-v4:26.+'
     provided 'javax.annotation:jsr250-api:1.0'
 }
