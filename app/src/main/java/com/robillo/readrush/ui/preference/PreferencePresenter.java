@@ -1,4 +1,4 @@
-package com.robillo.readrush.ui.interests;
+package com.robillo.readrush.ui.preference;
 
 import com.robillo.readrush.data.DataManager;
 import com.robillo.readrush.ui.base.BasePresenter;

@@ -5,7 +5,8 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_margin="5sp"
-    app:cardElevation="3sp">
+    app:cardElevation="3sp"
+    android:id="@+id/card">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -21,7 +22,8 @@
             android:paddingLeft="20sp"
             android:paddingRight="20sp"
             android:paddingTop="10sp"
-            android:paddingBottom="10sp"/>
+            android:paddingBottom="10sp"
+            android:id="@+id/text"/>
 
     </LinearLayout>
 

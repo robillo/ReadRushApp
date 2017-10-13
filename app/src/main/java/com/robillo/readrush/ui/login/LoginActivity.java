@@ -17,7 +17,7 @@ import com.robillo.readrush.data.others.Conversation;
 import com.robillo.readrush.ui.base.BaseActivity;
 import com.robillo.readrush.ui.custom.MyChatEditText;
 import com.robillo.readrush.ui.custom.MyChatView;
-import com.robillo.readrush.ui.interests.PreferenceActivity;
+import com.robillo.readrush.ui.preference.PreferenceActivity;
 
 import java.util.ArrayList;
 import java.util.List;

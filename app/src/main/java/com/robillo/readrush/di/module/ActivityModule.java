@@ -21,9 +21,9 @@ import android.support.v7.widget.LinearLayoutManager;
 
 import com.robillo.readrush.di.ActivityContext;
 import com.robillo.readrush.di.PerActivity;
-import com.robillo.readrush.ui.interests.PreferenceMvpPresenter;
-import com.robillo.readrush.ui.interests.PreferenceMvpView;
-import com.robillo.readrush.ui.interests.PreferencePresenter;
+import com.robillo.readrush.ui.preference.PreferenceMvpPresenter;
+import com.robillo.readrush.ui.preference.PreferenceMvpView;
+import com.robillo.readrush.ui.preference.PreferencePresenter;
 import com.robillo.readrush.ui.login.LoginMvpPresenter;
 import com.robillo.readrush.ui.login.LoginMvpView;
 import com.robillo.readrush.ui.login.LoginPresenter;
@@ -38,8 +38,6 @@ import com.robillo.readrush.ui.splash.SplashMvpView;
 import com.robillo.readrush.ui.splash.SplashPresenter;
 import com.robillo.readrush.utils.rx.AppSchedulerProvider;
 import com.robillo.readrush.utils.rx.SchedulerProvider;
-
-import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;

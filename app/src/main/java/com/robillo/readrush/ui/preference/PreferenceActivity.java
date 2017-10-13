@@ -1,4 +1,4 @@
-package com.robillo.readrush.ui.interests;
+package com.robillo.readrush.ui.preference;
 
 import android.content.Context;
 import android.content.Intent;

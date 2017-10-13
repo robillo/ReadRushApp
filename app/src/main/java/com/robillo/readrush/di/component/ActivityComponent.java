@@ -15,7 +15,7 @@
 
 package com.robillo.readrush.di.component;
 
-import com.robillo.readrush.ui.interests.PreferenceActivity;
+import com.robillo.readrush.ui.preference.PreferenceActivity;
 import com.robillo.readrush.ui.login.LoginActivity;
 import com.robillo.readrush.ui.onboard.OnboardActivity;
 import com.robillo.readrush.ui.onboard.fragment.OnboardFragment;
