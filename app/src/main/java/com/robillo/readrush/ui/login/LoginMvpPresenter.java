@@ -13,6 +13,6 @@ import java.util.List;
 
 public interface LoginMvpPresenter<V extends LoginMvpView> extends MvpPresenter<V> {
 
-    List<Conversation> loadLists();
+    List<Conversation> loadLists(String[] ken, String[] hint, String[] primary, String[] secondary);
 
 }

@@ -5,6 +5,7 @@ import com.robillo.readrush.data.others.Conversation;
 import com.robillo.readrush.ui.base.BasePresenter;
 import com.robillo.readrush.utils.rx.SchedulerProvider;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -24,7 +25,9 @@ public class LoginPresenter<V extends LoginMvpView> extends BasePresenter<V> imp
     }
 
     @Override
-    public List<Conversation> loadLists() {
+    public List<Conversation> loadLists(String[] ken, String[] hint, String[] primary, String[] secondary) {
+        List<Conversation> mList = new ArrayList<>();
+
         return null;
     }
 }

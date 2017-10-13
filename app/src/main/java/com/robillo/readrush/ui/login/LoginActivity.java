@@ -3,6 +3,9 @@ package com.robillo.readrush.ui.login;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.annotation.ArrayRes;
+import android.support.annotation.StringRes;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -72,14 +75,24 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
 
     @Override
     protected void setUp() {
-
+        Handler handler = new Handler();
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                loadConversations();
+            }
+        });
     }
 
     @Override
     public void loadConversations() {
+        mConversations = mPresenter.loadLists(loadArray(R.array.ken_text), loadArray(R.array.chat_edit_text_hint), loadArray(R.array.chat_primary), loadArray(R.array.chat_secondary));
 
-        mConversations = mPresenter.loadLists();
+    }
 
+    @Override
+    public String[] loadArray(@ArrayRes int id) {
+        return getResources().getStringArray(id);
     }
 
     @Override
