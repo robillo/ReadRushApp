@@ -27,11 +27,16 @@ import com.robillo.readrush.ui.login.LoginPresenter;
 import com.robillo.readrush.ui.onboard.OnboardMvpPresenter;
 import com.robillo.readrush.ui.onboard.OnboardMvpView;
 import com.robillo.readrush.ui.onboard.OnboardPresenter;
+import com.robillo.readrush.ui.onboard.fragment.OnboardFMvpPresenter;
+import com.robillo.readrush.ui.onboard.fragment.OnboardFMvpView;
+import com.robillo.readrush.ui.onboard.fragment.OnboardFPresenter;
 import com.robillo.readrush.ui.splash.SplashMvpPresenter;
 import com.robillo.readrush.ui.splash.SplashMvpView;
 import com.robillo.readrush.ui.splash.SplashPresenter;
 import com.robillo.readrush.utils.rx.AppSchedulerProvider;
 import com.robillo.readrush.utils.rx.SchedulerProvider;
+
+import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
@@ -81,32 +86,25 @@ public class ActivityModule {
         return presenter;
     }
 
-//    @Provides
-//    @PerActivity
-//    LoginMvpPresenter<LoginMvpView> provideLoginPresenter(
-//            LoginPresenter<LoginMvpView> presenter) {
-//        return presenter;
-//    }
-
-//    @Provides
-//    OnboardFMvpPresenter<OnboardFMvpView> provideOnboardFPresenter(
-//            OnboardFPresenter<OnboardFMvpView> presenter) {
-//        return presenter;
-//    }
+    @Provides
+    OnboardFMvpPresenter<OnboardFMvpView> provideOnboardFPresenter(
+            OnboardFPresenter<OnboardFMvpView> presenter) {
+        return presenter;
+    }
 
 //    @Provides
 //    AboutMvpPresenter<AboutMvpView> provideAboutPresenter(
 //            AboutPresenter<AboutMvpView> presenter) {
 //        return presenter;
 //    }
-//
-//    @Provides
-//    @PerActivity
-//    LoginMvpPresenter<LoginMvpView> provideLoginPresenter(
-//            LoginPresenter<LoginMvpView> presenter) {
-//        return presenter;
-//    }
-//
+
+    @Provides
+    @PerActivity
+    LoginMvpPresenter<LoginMvpView> provideLoginPresenter(
+            LoginPresenter<LoginMvpView> presenter) {
+        return presenter;
+    }
+
 //    @Provides
 //    @PerActivity
 //    MainMvpPresenter<MainMvpView> provideMainPresenter(

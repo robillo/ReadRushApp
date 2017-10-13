@@ -16,6 +16,8 @@ import com.robillo.readrush.R;
 import com.robillo.readrush.di.component.ActivityComponent;
 import com.robillo.readrush.ui.base.BaseFragment;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -24,8 +26,8 @@ import butterknife.ButterKnife;
  */
 public class OnboardFragment extends BaseFragment implements OnboardFMvpView {
 
-//    @Inject
-//    OnboardFMvpPresenter<OnboardFMvpView> mPresenter;
+    @Inject
+    OnboardFMvpPresenter<OnboardFMvpView> mPresenter;
 
     @BindView(R.id.image)
     ImageView mImageView;
@@ -61,11 +63,11 @@ public class OnboardFragment extends BaseFragment implements OnboardFMvpView {
         ActivityComponent component = getActivityComponent();
         if(component!=null){
 
-//            component.inject(OnboardFragment.this);
+            component.inject(OnboardFragment.this);
 
             setUnBinder(ButterKnife.bind(this, v));
 
-//            mPresenter.onAttach(OnboardFragment.this);
+            mPresenter.onAttach(OnboardFragment.this);
 
         }
 
@@ -75,7 +77,7 @@ public class OnboardFragment extends BaseFragment implements OnboardFMvpView {
 
     @Override
     public void onDestroy() {
-//        mPresenter.onDetach();
+        mPresenter.onDetach();
         super.onDestroy();
     }
 

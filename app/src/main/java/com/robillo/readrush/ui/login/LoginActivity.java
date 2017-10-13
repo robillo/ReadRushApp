@@ -6,10 +6,16 @@ import android.os.Bundle;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.androidnetworking.error.ANError;
 import com.robillo.readrush.R;
+import com.robillo.readrush.ReadRushApp;
+import com.robillo.readrush.data.others.Conversation;
 import com.robillo.readrush.ui.base.BaseActivity;
 import com.robillo.readrush.ui.custom.MyChatEditText;
 import com.robillo.readrush.ui.custom.MyChatView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -17,6 +23,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class LoginActivity extends BaseActivity implements LoginMvpView {
+
+    List<Conversation> mConversations = new ArrayList<>();
 
     @Inject
     LoginMvpPresenter<LoginMvpView> mPresenter;
@@ -45,11 +53,11 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-//        getActivityComponent().inject(LoginActivity.this);
+        getActivityComponent().inject(LoginActivity.this);
 
         setUnBinder(ButterKnife.bind(this));
 
-//        mPresenter.onAttach(LoginActivity.this);
+        mPresenter.onAttach(LoginActivity.this);
 
         setUp();
     }
@@ -68,8 +76,15 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
     }
 
     @Override
+    public void loadConversations() {
+
+        mConversations = mPresenter.loadLists();
+
+    }
+
+    @Override
     protected void onDestroy() {
-//        mPresenter.onDetach();
+        mPresenter.onDetach();
         super.onDestroy();
     }
 
