@@ -51,4 +51,9 @@ public class MyChatEditText extends LinearLayout {
         postInvalidate();
         ta.recycle();
     }
+
+    public void hintText(String hint) {
+        ((EditText) findViewById(R.id.edit_text)).setHint(hint);
+        postInvalidate();
+    }
 }

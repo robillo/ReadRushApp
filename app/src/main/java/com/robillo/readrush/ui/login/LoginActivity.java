@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.ArrayRes;
 import android.support.annotation.StringRes;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -28,6 +29,8 @@ import butterknife.ButterKnife;
 public class LoginActivity extends BaseActivity implements LoginMvpView {
 
     List<Conversation> mConversations = new ArrayList<>();
+    @SuppressWarnings("FieldCanBeLocal")
+    private static int page = 0;
 
     @Inject
     LoginMvpPresenter<LoginMvpView> mPresenter;
@@ -37,6 +40,9 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
 
     @BindView(R.id.next)
     LinearLayout mLinearNext;
+
+    @BindView(R.id.ken_current)
+    TextView kenCurrent;
 
     @BindView(R.id.chat_primary)
     MyChatView mChatPrimary;
@@ -75,13 +81,8 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
 
     @Override
     protected void setUp() {
-        Handler handler = new Handler();
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                loadConversations();
-            }
-        });
+        loadConversations();
+        setPageDetails(page);
     }
 
     @Override
@@ -93,6 +94,22 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
     @Override
     public String[] loadArray(@ArrayRes int id) {
         return getResources().getStringArray(id);
+    }
+
+    @Override
+    public void setPageDetails(int page) {
+        if(page==0){
+            mTextPrevious.setVisibility(View.GONE);
+        }
+        else {
+            mTextPrevious.setVisibility(View.VISIBLE);
+            mTextPrevious.setText(mConversations.get(page-1).getKenText());
+        }
+        kenCurrent.setText(mConversations.get(page).getKenText());
+        if(mConversations.get(page).getEditTextHint()!=null){
+            myChatEditText.setVisibility(View.VISIBLE);
+            myChatEditText.hintText(mConversations.get(page).getEditTextHint());
+        }
     }
 
     @Override

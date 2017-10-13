@@ -48,12 +48,13 @@
             android:layout_marginTop="5sp"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:text="Have we met before?"
+            tools:text="Have we met before?"
             android:textColor="@color/black"
             android:textStyle="bold"
             android:textSize="35sp"
             android:gravity="left"
-            android:paddingLeft="20sp"/>
+            android:paddingLeft="20sp"
+            android:id="@+id/ken_current"/>
 
         <com.robillo.readrush.ui.custom.MyChatEditText
             android:layout_width="match_parent"

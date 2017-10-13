@@ -17,4 +17,6 @@ public interface LoginMvpView extends MvpView {
 
     String[] loadArray(@ArrayRes int id);
 
+    void setPageDetails(int page);
+
 }
