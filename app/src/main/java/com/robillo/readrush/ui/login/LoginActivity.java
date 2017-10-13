@@ -7,6 +7,8 @@ import android.os.Handler;
 import android.support.annotation.ArrayRes;
 import android.support.annotation.StringRes;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -100,10 +102,20 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
     @Override
     public void setPageDetails(int page) {
         if(page==0){
-            mTextPrevious.setVisibility(View.GONE);
+            Animation animation = AnimationUtils.loadAnimation(this, R.anim.hide);
+            mTextPrevious.setAnimation(animation);
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    mTextPrevious.setVisibility(View.INVISIBLE);
+                }
+            }, 500);
         }
         else {
             mTextPrevious.setVisibility(View.VISIBLE);
+            Animation animation = AnimationUtils.loadAnimation(this, R.anim.show);
+            mTextPrevious.setAnimation(animation);
             mTextPrevious.setText(mConversations.get(page-1).getKenText());
         }
         kenCurrent.setText(mConversations.get(page).getKenText());
@@ -111,20 +123,31 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
             myChatEditText.setVisibility(View.VISIBLE);
             myChatEditText.hintText(mConversations.get(page).getEditTextHint());
         }
+        else {
+            myChatEditText.setVisibility(View.GONE);
+        }
         if(mConversations.get(page).getChatPrimary()!=null) {
             mChatPrimary.setVisibility(View.VISIBLE);
             mChatPrimary.setChatText(mConversations.get(page).getChatPrimary());
+        }
+        else {
+            mChatPrimary.setVisibility(View.GONE);
         }
         if(mConversations.get(page).getChatSecondary()!=null) {
             mChatSecondary.setVisibility(View.VISIBLE);
             mChatSecondary.setChatText(mConversations.get(page).getChatSecondary());
         }
+        else {
+            mChatSecondary.setVisibility(View.GONE);
+        }
     }
 
     @OnClick(R.id.prev)
     public void goPrev() {
-        page-=1;
-        setUp();
+        if(page!=0){
+            page-=1;
+            setUp();
+        }
     }
 
     @OnClick(R.id.next)
