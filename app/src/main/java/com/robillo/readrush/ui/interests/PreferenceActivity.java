@@ -2,7 +2,6 @@ package com.robillo.readrush.ui.interests;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.robillo.readrush.R;
@@ -24,7 +23,7 @@ public class PreferenceActivity extends BaseActivity implements PreferenceMvpVie
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_interests);
+        setContentView(R.layout.activity_preferences);
 
         getActivityComponent().inject(PreferenceActivity.this);
 
