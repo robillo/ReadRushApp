@@ -25,6 +25,7 @@ public class AppPreferencesHelper implements PreferencesHelper {
 
     private final SharedPreferences mPrefs;
 
+    @SuppressWarnings("WeakerAccess")
     @Inject
     public AppPreferencesHelper(@ApplicationContext Context context, @PreferenceInfo String prefFileName) {
         mPrefs = context.getSharedPreferences(prefFileName, Context.MODE_PRIVATE);

@@ -62,12 +62,12 @@
         <item>Done</item>
         <item>Okay</item>
         <item>Done</item>
-        <item>Done</item>
+        <item>Okay</item>
     </string-array>
 
     <string-array name="chat_secondary">
         <item>NULL</item>
-        <item>Yes</item>
+        <item>No</item>
         <item>NULL</item>
         <item>NULL</item>
         <item>NULL</item>

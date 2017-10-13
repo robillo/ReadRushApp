@@ -12,6 +12,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.androidnetworking.error.ANError;
 import com.robillo.readrush.R;
@@ -20,6 +21,7 @@ import com.robillo.readrush.data.others.Conversation;
 import com.robillo.readrush.ui.base.BaseActivity;
 import com.robillo.readrush.ui.custom.MyChatEditText;
 import com.robillo.readrush.ui.custom.MyChatView;
+import com.robillo.readrush.ui.interests.InterestsActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -128,9 +130,12 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
         mIcon.setAnimation(animation);
         kenCurrent.setAnimation(animation);
 
+        animation = AnimationUtils.loadAnimation(this, R.anim.slide_in_right);
+
         if(mConversations.get(page).getEditTextHint()!=null) {
             myChatEditText.setVisibility(View.VISIBLE);
             myChatEditText.hintText(mConversations.get(page).getEditTextHint());
+            myChatEditText.setAnimation(animation);
         }
         else {
             myChatEditText.setVisibility(View.GONE);
@@ -139,6 +144,7 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
         if(mConversations.get(page).getChatPrimary()!=null) {
             mChatPrimary.setVisibility(View.VISIBLE);
             mChatPrimary.setChatText(mConversations.get(page).getChatPrimary());
+            mChatPrimary.setAnimation(animation);
         }
         else {
             mChatPrimary.setVisibility(View.GONE);
@@ -147,6 +153,7 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
         if(mConversations.get(page).getChatSecondary()!=null) {
             mChatSecondary.setVisibility(View.VISIBLE);
             mChatSecondary.setChatText(mConversations.get(page).getChatSecondary());
+            mChatSecondary.setAnimation(animation);
         }
         else {
             mChatSecondary.setVisibility(View.GONE);
@@ -163,8 +170,13 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
 
     @OnClick(R.id.next)
     public void goNext() {
-        page+=1;
-        setUp();
+        if(page!=mConversations.size()-1){
+            page+=1;
+            setUp();
+        }
+        else {
+            startActivity(InterestsActivity.getStartIntent(this));
+        }
     }
 
     @Override
