@@ -9,6 +9,7 @@ import android.support.annotation.StringRes;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -37,6 +38,9 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
 
     @Inject
     LoginMvpPresenter<LoginMvpView> mPresenter;
+
+    @BindView(R.id.icon)
+    ImageView mIcon;
 
     @BindView(R.id.prev)
     TextView mTextPrevious;
@@ -118,7 +122,12 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
             mTextPrevious.setAnimation(animation);
             mTextPrevious.setText(mConversations.get(page-1).getKenText());
         }
+
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.fade_in);
         kenCurrent.setText(mConversations.get(page).getKenText());
+        mIcon.setAnimation(animation);
+        kenCurrent.setAnimation(animation);
+
         if(mConversations.get(page).getEditTextHint()!=null) {
             myChatEditText.setVisibility(View.VISIBLE);
             myChatEditText.hintText(mConversations.get(page).getEditTextHint());
@@ -126,6 +135,7 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
         else {
             myChatEditText.setVisibility(View.GONE);
         }
+
         if(mConversations.get(page).getChatPrimary()!=null) {
             mChatPrimary.setVisibility(View.VISIBLE);
             mChatPrimary.setChatText(mConversations.get(page).getChatPrimary());
@@ -133,6 +143,7 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
         else {
             mChatPrimary.setVisibility(View.GONE);
         }
+
         if(mConversations.get(page).getChatSecondary()!=null) {
             mChatSecondary.setVisibility(View.VISIBLE);
             mChatSecondary.setChatText(mConversations.get(page).getChatSecondary());
