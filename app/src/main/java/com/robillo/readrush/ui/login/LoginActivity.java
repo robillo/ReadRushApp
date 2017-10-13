@@ -5,23 +5,19 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.ArrayRes;
-import android.support.annotation.StringRes;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.androidnetworking.error.ANError;
 import com.robillo.readrush.R;
-import com.robillo.readrush.ReadRushApp;
 import com.robillo.readrush.data.others.Conversation;
 import com.robillo.readrush.ui.base.BaseActivity;
 import com.robillo.readrush.ui.custom.MyChatEditText;
 import com.robillo.readrush.ui.custom.MyChatView;
-import com.robillo.readrush.ui.interests.InterestsActivity;
+import com.robillo.readrush.ui.interests.PreferenceActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -175,7 +171,7 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
             setUp();
         }
         else {
-            startActivity(InterestsActivity.getStartIntent(this));
+            startActivity(PreferenceActivity.getStartIntent(this));
         }
     }
 

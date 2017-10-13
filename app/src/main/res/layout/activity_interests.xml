@@ -1,10 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.robillo.readrush.ui.interests.InterestsActivity">
+    tools:context="com.robillo.readrush.ui.interests.PreferenceActivity">
+
+    <TextView
+        tools:ignore="MissingPrefix"
+        fontPath="fonts/four.ttf"
+        android:layout_marginTop="5sp"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="Book Preferences"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="35sp"
+        android:gravity="center"
+        android:paddingLeft="20sp"
+        android:id="@+id/ken_current"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="0sp"
+        android:layout_weight="1"
+        android:id="@+id/recycler"/>
+
+    <Button
+        tools:ignore="MissingPrefix"
+        fontPath="fonts/four.ttf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/rushRed"
+        android:text="Done"
+        android:textSize="25sp"
+        android:textColor="@color/white" />
 
 </LinearLayout>
