@@ -7,20 +7,27 @@
     android:orientation="vertical"
     tools:context="com.robillo.readrush.ui.login.LoginActivity">
 
-    <FrameLayout
+    <TextView
+        tools:ignore="MissingPrefix"
+        fontPath="fonts/three.ttf"
         android:layout_width="match_parent"
         android:layout_height="0sp"
         android:layout_weight="1"
-        android:id="@+id/prev"
+        android:text="Hi! I am Ken. \n I am here to assist you."
         android:background="@color/colorPrimaryDark"
-        android:visibility="invisible">
-
-    </FrameLayout>
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="30sp"
+        android:gravity="left"
+        android:padding="20sp"
+        android:id="@+id/prev"
+        android:alpha="0.5"
+        android:visibility="visible"/>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0sp"
-        android:layout_weight="3"
+        android:layout_weight="4"
         android:id="@+id/next">
 
     </FrameLayout>

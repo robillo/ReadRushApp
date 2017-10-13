@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.robillo.readrush.R;
 import com.robillo.readrush.ui.base.BaseActivity;
@@ -24,7 +25,7 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
     LoginMvpPresenter<LoginMvpView> mPresenter;
 
     @BindView(R.id.prev)
-    FrameLayout mLinearPrevious;
+    TextView mTextPrevious;
 
     @BindView(R.id.next)
     FrameLayout mLinearNext;
