@@ -74,6 +74,9 @@ dependencies {
     //spruce
     compile "com.willowtreeapps.spruce:spruce-android:$rootProject.ext.spruceVersion"
 
+    //Navigation Tab Bar
+    compile "devlight.io:navigationtabbar:$rootProject.ext.navTabBarVersion"
+
     //rxJava
     compile "io.reactivex.rxjava2:rxjava:$rootProject.ext.rxjava2Version"
     compile "io.reactivex.rxjava2:rxandroid:$rootProject.ext.rxandroidVersion"
@@ -85,5 +88,6 @@ dependencies {
     compile 'com.android.support:support-v4:26.+'
     compile 'com.android.support:design:26.+'
     compile 'com.android.support:support-vector-drawable:26.+'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
     provided 'javax.annotation:jsr250-api:1.0'
 }

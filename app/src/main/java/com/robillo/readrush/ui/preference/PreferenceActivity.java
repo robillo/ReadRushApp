@@ -1,22 +1,15 @@
 package com.robillo.readrush.ui.preference;
 
-import android.animation.Animator;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Button;
-import android.widget.LinearLayout;
 
 import com.robillo.readrush.R;
 import com.robillo.readrush.ui.base.BaseActivity;
 import com.robillo.readrush.ui.main.MainActivity;
-import com.willowtreeapps.spruce.Spruce;
-import com.willowtreeapps.spruce.animation.DefaultAnimations;
-import com.willowtreeapps.spruce.sort.CorneredSort;
-import com.willowtreeapps.spruce.sort.InlineSort;
-import com.willowtreeapps.spruce.sort.LinearSort;
 
 import java.util.ArrayList;
 import java.util.Arrays;

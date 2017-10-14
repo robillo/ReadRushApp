@@ -2,53 +2,54 @@ package com.robillo.readrush.ui.main;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
-import android.view.MenuItem;
-import android.widget.TextView;
+import android.os.Bundle;
 
 import com.robillo.readrush.R;
-import com.robillo.readrush.ui.preference.PreferenceActivity;
+import com.robillo.readrush.ui.onboard.OnboardActivity;
+
+import java.util.ArrayList;
+
+import devlight.io.library.ntb.NavigationTabBar;
+
+import static com.robillo.readrush.R.array.colors;
 
 public class MainActivity extends AppCompatActivity {
-
-    private TextView mTextMessage;
 
     public static Intent getStartIntent(Context context) {
         return new Intent(context, MainActivity.class);
     }
-
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
-
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.navigation_home:
-                    mTextMessage.setText(R.string.title_home);
-                    return true;
-                case R.id.navigation_dashboard:
-                    mTextMessage.setText(R.string.title_dashboard);
-                    return true;
-                case R.id.navigation_notifications:
-                    mTextMessage.setText(R.string.title_notifications);
-                    return true;
-            }
-            return false;
-        }
-
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mTextMessage = (TextView) findViewById(R.id.message);
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        final NavigationTabBar navigationTabBar = (NavigationTabBar) findViewById(R.id.ntb);
+        final ArrayList<NavigationTabBar.Model> models = new ArrayList<>();
+        models.add(
+                new NavigationTabBar.Model.Builder(
+                        getResources().getDrawable(R.drawable.ic_notifications_black_24dp),
+                        getResources().getColor(R.color.white)
+                ).title("Heart")
+                        .build()
+        );
+        models.add(
+                new NavigationTabBar.Model.Builder(
+                        getResources().getDrawable(R.drawable.ic_home_black_24dp),
+                        getResources().getColor(R.color.white)
+                ).title("Cup")
+                        .build()
+        );
+        models.add(
+                new NavigationTabBar.Model.Builder(
+                        getResources().getDrawable(R.drawable.ic_notifications_black_24dp),
+                        getResources().getColor(R.color.white)
+                ).title("Diploma")
+                        .build()
+        );
+        navigationTabBar.setModels(models);
     }
 
 }

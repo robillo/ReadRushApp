@@ -47,6 +47,7 @@ ext {
     circularRevealVersion = '2.0.1@aar'
     htextviewVersion = '0.1.1'
     spruceVersion = '1.0.1'
+    navTabBarVersion = '1.2.5'
 
     rx2FastAndroidNetworking = '1.0.0'
 
