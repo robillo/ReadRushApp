@@ -55,6 +55,7 @@
         app:ntb_bg_color="@color/white"
         app:ntb_active_color="@color/colorTextTwo"
         app:ntb_inactive_color="@color/colorTextThree"
-        app:ntb_preview_colors="@array/colors" />
+        app:ntb_preview_colors="@array/colors"
+        app:ntb_scaled="false"/>
 
 </LinearLayout>

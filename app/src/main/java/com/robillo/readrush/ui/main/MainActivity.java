@@ -7,15 +7,27 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.robillo.readrush.R;
+import com.robillo.readrush.ui.base.BaseActivity;
 import com.robillo.readrush.ui.onboard.OnboardActivity;
 
 import java.util.ArrayList;
 
+import javax.inject.Inject;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import devlight.io.library.ntb.NavigationTabBar;
 
 import static com.robillo.readrush.R.array.colors;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity implements MainMvpView {
+
+    @BindView(R.id.ntb)
+    NavigationTabBar mNavigationTabBar;
+
+    @Inject
+    MainMvpPresenter<MainMvpView> mPresenter;
 
     public static Intent getStartIntent(Context context) {
         return new Intent(context, MainActivity.class);
@@ -26,7 +38,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final NavigationTabBar navigationTabBar = (NavigationTabBar) findViewById(R.id.ntb);
+        getActivityComponent().inject(MainActivity.this);
+
+        setUnBinder(ButterKnife.bind(this));
+
+        mPresenter.onAttach(MainActivity.this);
+
+        setUp();
+
+    }
+
+    @Override
+    protected void setUp() {
         final ArrayList<NavigationTabBar.Model> models = new ArrayList<>();
         models.add(
                 new NavigationTabBar.Model.Builder(
@@ -49,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
                 ).title("Diploma")
                         .build()
         );
-        navigationTabBar.setModels(models);
+        mNavigationTabBar.setModels(models);
     }
 
 }

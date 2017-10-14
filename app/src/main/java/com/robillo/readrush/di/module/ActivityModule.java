@@ -21,6 +21,9 @@ import android.support.v7.widget.LinearLayoutManager;
 
 import com.robillo.readrush.di.ActivityContext;
 import com.robillo.readrush.di.PerActivity;
+import com.robillo.readrush.ui.main.MainMvpPresenter;
+import com.robillo.readrush.ui.main.MainMvpView;
+import com.robillo.readrush.ui.main.MainPresenter;
 import com.robillo.readrush.ui.preference.PreferenceMvpPresenter;
 import com.robillo.readrush.ui.preference.PreferenceMvpView;
 import com.robillo.readrush.ui.preference.PreferencePresenter;
@@ -96,6 +99,12 @@ public class ActivityModule {
     @Provides
     PreferenceMvpPresenter<PreferenceMvpView> providePreferencePresenter(
             PreferencePresenter<PreferenceMvpView> presenter) {
+        return presenter;
+    }
+
+    @Provides
+    MainMvpPresenter<MainMvpView> provideMainPresenter(
+            MainPresenter<MainMvpView> presenter) {
         return presenter;
     }
 
