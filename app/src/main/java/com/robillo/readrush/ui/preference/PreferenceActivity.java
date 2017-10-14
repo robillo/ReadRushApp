@@ -58,7 +58,7 @@ public class PreferenceActivity extends BaseActivity implements PreferenceMvpVie
     protected void setUp() {
         mList = Arrays.asList(getResources().getStringArray(R.array.preferences));
         mAdapter = new PreferenceAdapter(mList, this);
-        GridLayoutManager manager = new GridLayoutManager(this, 2);
+        GridLayoutManager manager = new GridLayoutManager(this, 3);
         mRecycler.setLayoutManager(manager);
         mRecycler.setAdapter(mAdapter);
     }

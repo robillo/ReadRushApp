@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -32,6 +33,7 @@ import butterknife.ButterKnife;
 public class PreferenceAdapter extends RecyclerView.Adapter<PreferenceAdapter.PreferenceHolder> {
 
     private List<String> mList = new ArrayList<>();
+    private List<String> mSelectedItems = new ArrayList<>();
     private Context mContext;
 
     public PreferenceAdapter(List<String> mList, Context mContext) {
@@ -46,9 +48,19 @@ public class PreferenceAdapter extends RecyclerView.Adapter<PreferenceAdapter.Pr
     }
 
     @Override
-    public void onBindViewHolder(PreferenceHolder holder, int position) {
+    public void onBindViewHolder(final PreferenceHolder holder, int position) {
         holder.textView.setText(mList.get(position));
-        animateView(holder.linearLayout);
+        holder.textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(holder.textView.getCurrentTextColor() == mContext.getResources().getColor(R.color.readBlack)) {
+                    holder.textView.setTextColor(mContext.getResources().getColor(R.color.rushRed));
+                }
+                else {
+                    holder.textView.setTextColor(mContext.getResources().getColor(R.color.readBlack));
+                }
+            }
+        });
     }
 
     private void animateView(LinearLayout view) {
@@ -74,14 +86,8 @@ public class PreferenceAdapter extends RecyclerView.Adapter<PreferenceAdapter.Pr
 
     class PreferenceHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.card)
-        public CardView mCard;
-
         @BindView(R.id.text)
         public TextView textView;
-
-        @BindView(R.id.linear)
-        public LinearLayout linearLayout;
 
         public PreferenceHolder(View itemView) {
             super(itemView);
