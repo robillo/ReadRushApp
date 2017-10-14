@@ -39,7 +39,7 @@ public class SplashPresenter<V extends SplashMvpView> extends BasePresenter<V> i
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                if(true){
+                if(getMvpView() != null){
                     getMvpView().openLoginActivity();
                 }
             }
