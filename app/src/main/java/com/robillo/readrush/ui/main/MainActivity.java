@@ -30,21 +30,21 @@ public class MainActivity extends AppCompatActivity {
         final ArrayList<NavigationTabBar.Model> models = new ArrayList<>();
         models.add(
                 new NavigationTabBar.Model.Builder(
-                        getResources().getDrawable(R.drawable.ic_notifications_black_24dp),
+                        getResources().getDrawable(R.drawable.ic_book_black_24dp),
                         getResources().getColor(R.color.white)
                 ).title("Heart")
                         .build()
         );
         models.add(
                 new NavigationTabBar.Model.Builder(
-                        getResources().getDrawable(R.drawable.ic_home_black_24dp),
+                        getResources().getDrawable(R.drawable.ic_whatshot_black_24dp),
                         getResources().getColor(R.color.white)
                 ).title("Cup")
                         .build()
         );
         models.add(
                 new NavigationTabBar.Model.Builder(
-                        getResources().getDrawable(R.drawable.ic_notifications_black_24dp),
+                        getResources().getDrawable(R.drawable.ic_person_black_24dp),
                         getResources().getColor(R.color.white)
                 ).title("Diploma")
                         .build()
