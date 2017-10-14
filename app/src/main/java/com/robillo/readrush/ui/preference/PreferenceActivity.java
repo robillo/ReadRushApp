@@ -6,10 +6,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.robillo.readrush.R;
 import com.robillo.readrush.ui.base.BaseActivity;
+import com.robillo.readrush.ui.main.MainActivity;
 import com.willowtreeapps.spruce.Spruce;
 import com.willowtreeapps.spruce.animation.DefaultAnimations;
 import com.willowtreeapps.spruce.sort.CorneredSort;
@@ -24,6 +26,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class PreferenceActivity extends BaseActivity implements PreferenceMvpView {
 
@@ -35,6 +38,9 @@ public class PreferenceActivity extends BaseActivity implements PreferenceMvpVie
 
     @BindView(R.id.recycler)
     RecyclerView mRecycler;
+
+    @BindView(R.id.done)
+    Button mDoneButton;
 
     public static Intent getStartIntent(Context context) {
         return new Intent(context, PreferenceActivity.class);
@@ -52,6 +58,11 @@ public class PreferenceActivity extends BaseActivity implements PreferenceMvpVie
         mPresenter.onAttach(this);
 
         setUp();
+    }
+
+    @OnClick(R.id.done)
+    public void onDone() {
+        startActivity(MainActivity.getStartIntent(this));
     }
 
     @Override
