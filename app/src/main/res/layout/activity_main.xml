@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/white"
     tools:context="com.robillo.readrush.ui.main.MainActivity">
 
     <LinearLayout
@@ -48,14 +49,35 @@
 
     </FrameLayout>
 
-    <devlight.io.library.ntb.NavigationTabBar
-        android:id="@+id/ntb"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        app:ntb_bg_color="@color/white"
-        app:ntb_active_color="@color/colorTextTwo"
-        app:ntb_inactive_color="@color/colorTextThree"
-        app:ntb_preview_colors="@array/colors"
-        app:ntb_scaled="false"/>
+        android:layout_height="50sp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="0sp"
+            android:layout_height="30sp"
+            android:layout_gravity="center_vertical"
+            android:tint="@color/colorTextOne"
+            android:src="@drawable/ic_book_black_24dp"
+            android:layout_weight="1"/>
+
+        <ImageView
+            android:layout_width="0sp"
+            android:layout_height="30sp"
+            android:layout_gravity="center_vertical"
+            android:tint="@color/colorTextThree"
+            android:src="@drawable/ic_whatshot_black_24dp"
+            android:layout_weight="1"/>
+
+        <ImageView
+            android:layout_width="0sp"
+            android:layout_height="30sp"
+            android:tint="@color/colorTextThree"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_person_black_24dp"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
 
 </LinearLayout>

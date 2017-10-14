@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 
 import com.robillo.readrush.R;
 import com.robillo.readrush.ui.base.BaseActivity;
@@ -22,9 +23,6 @@ import devlight.io.library.ntb.NavigationTabBar;
 import static com.robillo.readrush.R.array.colors;
 
 public class MainActivity extends BaseActivity implements MainMvpView {
-
-    @BindView(R.id.ntb)
-    NavigationTabBar mNavigationTabBar;
 
     @Inject
     MainMvpPresenter<MainMvpView> mPresenter;
@@ -50,29 +48,7 @@ public class MainActivity extends BaseActivity implements MainMvpView {
 
     @Override
     protected void setUp() {
-        final ArrayList<NavigationTabBar.Model> models = new ArrayList<>();
-        models.add(
-                new NavigationTabBar.Model.Builder(
-                        getResources().getDrawable(R.drawable.ic_book_black_24dp),
-                        getResources().getColor(R.color.white)
-                ).title("Heart")
-                        .build()
-        );
-        models.add(
-                new NavigationTabBar.Model.Builder(
-                        getResources().getDrawable(R.drawable.ic_whatshot_black_24dp),
-                        getResources().getColor(R.color.white)
-                ).title("Cup")
-                        .build()
-        );
-        models.add(
-                new NavigationTabBar.Model.Builder(
-                        getResources().getDrawable(R.drawable.ic_person_black_24dp),
-                        getResources().getColor(R.color.white)
-                ).title("Diploma")
-                        .build()
-        );
-        mNavigationTabBar.setModels(models);
+
     }
 
 }
