@@ -30,6 +30,9 @@ import com.robillo.readrush.ui.main.discover.DiscoverPresenter;
 import com.robillo.readrush.ui.main.library.LibraryMvpPresenter;
 import com.robillo.readrush.ui.main.library.LibraryMvpView;
 import com.robillo.readrush.ui.main.library.LibraryPresenter;
+import com.robillo.readrush.ui.main.profile.ProfileMvpPresenter;
+import com.robillo.readrush.ui.main.profile.ProfileMvpView;
+import com.robillo.readrush.ui.main.profile.ProfilePresenter;
 import com.robillo.readrush.ui.preference.PreferenceMvpPresenter;
 import com.robillo.readrush.ui.preference.PreferenceMvpView;
 import com.robillo.readrush.ui.preference.PreferencePresenter;
@@ -130,6 +133,12 @@ public class ActivityModule {
     @Provides
     DiscoverMvpPresenter<DiscoverMvpView> provideDiscoverPresenter(
             DiscoverPresenter<DiscoverMvpView> presenter) {
+        return presenter;
+    }
+
+    @Provides
+    ProfileMvpPresenter<ProfileMvpView> provideProfilePresenter(
+            ProfilePresenter<ProfileMvpView> presenter) {
         return presenter;
     }
 
