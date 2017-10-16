@@ -69,7 +69,7 @@ public class MainActivity extends BaseActivity implements MainMvpView {
 
     @Override
     protected void setUp() {
-        setLibraryFragment();
+        setmLibrary();
     }
 
     @Override
@@ -92,29 +92,23 @@ public class MainActivity extends BaseActivity implements MainMvpView {
         switch (position){
             case 0:{
                 mHeader.setText(getString(R.string.library));
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    mLibrary.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.colorTextOne)));
-                    mDiscover.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.colorTextThree)));
-                    mProfile.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.colorTextThree)));
-                }
+                mLibrary.setColorFilter(ContextCompat.getColor(this, R.color.colorTextOne));
+                mDiscover.setColorFilter(ContextCompat.getColor(this, R.color.colorTextThree));
+                mProfile.setColorFilter(ContextCompat.getColor(this, R.color.colorTextThree));
                 break;
             }
             case 1:{
                 mHeader.setText(getString(R.string.discover));
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    mLibrary.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.colorTextThree)));
-                    mDiscover.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.colorTextOne)));
-                    mProfile.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.colorTextThree)));
-                }
+                mLibrary.setColorFilter(ContextCompat.getColor(this, R.color.colorTextThree));
+                mDiscover.setColorFilter(ContextCompat.getColor(this, R.color.colorTextOne));
+                mProfile.setColorFilter(ContextCompat.getColor(this, R.color.colorTextThree));
                 break;
             }
             case 2:{
                 mHeader.setText(getString(R.string.profile));
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    mLibrary.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.colorTextThree)));
-                    mDiscover.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.colorTextThree)));
-                    mProfile.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.colorTextOne)));
-                }
+                mLibrary.setColorFilter(ContextCompat.getColor(this, R.color.colorTextThree));
+                mDiscover.setColorFilter(ContextCompat.getColor(this, R.color.colorTextThree));
+                mProfile.setColorFilter(ContextCompat.getColor(this, R.color.colorTextOne));
                 break;
             }
         }
