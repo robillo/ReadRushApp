@@ -24,6 +24,9 @@ import com.robillo.readrush.di.PerActivity;
 import com.robillo.readrush.ui.main.MainMvpPresenter;
 import com.robillo.readrush.ui.main.MainMvpView;
 import com.robillo.readrush.ui.main.MainPresenter;
+import com.robillo.readrush.ui.main.library.LibraryMvpPresenter;
+import com.robillo.readrush.ui.main.library.LibraryMvpView;
+import com.robillo.readrush.ui.main.library.LibraryPresenter;
 import com.robillo.readrush.ui.preference.PreferenceMvpPresenter;
 import com.robillo.readrush.ui.preference.PreferenceMvpView;
 import com.robillo.readrush.ui.preference.PreferencePresenter;
@@ -91,12 +94,6 @@ public class ActivityModule {
     }
 
     @Provides
-    OnboardFMvpPresenter<OnboardFMvpView> provideOnboardFPresenter(
-            OnboardFPresenter<OnboardFMvpView> presenter) {
-        return presenter;
-    }
-
-    @Provides
     PreferenceMvpPresenter<PreferenceMvpView> providePreferencePresenter(
             PreferencePresenter<PreferenceMvpView> presenter) {
         return presenter;
@@ -108,16 +105,22 @@ public class ActivityModule {
         return presenter;
     }
 
-//    @Provides
-//    AboutMvpPresenter<AboutMvpView> provideAboutPresenter(
-//            AboutPresenter<AboutMvpView> presenter) {
-//        return presenter;
-//    }
-
     @Provides
     @PerActivity
     LoginMvpPresenter<LoginMvpView> provideLoginPresenter(
             LoginPresenter<LoginMvpView> presenter) {
+        return presenter;
+    }
+
+    @Provides
+    OnboardFMvpPresenter<OnboardFMvpView> provideOnboardFPresenter(
+            OnboardFPresenter<OnboardFMvpView> presenter) {
+        return presenter;
+    }
+
+    @Provides
+    LibraryMvpPresenter<LibraryMvpView> provideLibraryPresenter(
+            LibraryPresenter<LibraryMvpView> presenter) {
         return presenter;
     }
 
