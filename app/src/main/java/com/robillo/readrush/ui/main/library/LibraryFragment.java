@@ -73,8 +73,8 @@ public class LibraryFragment extends BaseFragment implements LibraryMvpView {
 
     @Override
     public void loadRushes() {
-        Glide.with(this).load(R.drawable.gandhi).centerCrop().into(mRushOne);
-        Glide.with(this).load(R.drawable.wings_of_fire).centerCrop().into(mRushTwo);
-        Glide.with(this).load(R.drawable.harry_potter).centerCrop().into(mRushThree);
+        Glide.with(this).load(R.drawable.gandhi).crossFade(400).centerCrop().into(mRushOne);
+        Glide.with(this).load(R.drawable.wings_of_fire).crossFade(400).centerCrop().into(mRushTwo);
+        Glide.with(this).load(R.drawable.harry_potter).crossFade(400).centerCrop().into(mRushThree);
     }
 }
