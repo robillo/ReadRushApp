@@ -9,9 +9,13 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.hanks.htextview.base.HTextView;
+import com.hanks.htextview.scale.ScaleTextView;
 import com.robillo.readrush.R;
 import com.robillo.readrush.ui.base.BaseActivity;
 import com.robillo.readrush.ui.onboard.OnboardActivity;
@@ -89,15 +93,18 @@ public class MainActivity extends BaseActivity implements MainMvpView {
 
     @Override
     public void setBottomNavigationTint(int position) {
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.header);
         switch (position){
             case 0:{
                 mHeader.setText(getString(R.string.library));
+                mHeader.startAnimation(animation);
                 mLibrary.setColorFilter(ContextCompat.getColor(this, R.color.colorTextOne));
                 mDiscover.setColorFilter(ContextCompat.getColor(this, R.color.colorTextThree));
                 mProfile.setColorFilter(ContextCompat.getColor(this, R.color.colorTextThree));
                 break;
             }
             case 1:{
+                mHeader.startAnimation(animation);
                 mHeader.setText(getString(R.string.discover));
                 mLibrary.setColorFilter(ContextCompat.getColor(this, R.color.colorTextThree));
                 mDiscover.setColorFilter(ContextCompat.getColor(this, R.color.colorTextOne));
@@ -105,6 +112,7 @@ public class MainActivity extends BaseActivity implements MainMvpView {
                 break;
             }
             case 2:{
+                mHeader.startAnimation(animation);
                 mHeader.setText(getString(R.string.profile));
                 mLibrary.setColorFilter(ContextCompat.getColor(this, R.color.colorTextThree));
                 mDiscover.setColorFilter(ContextCompat.getColor(this, R.color.colorTextThree));

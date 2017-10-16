@@ -61,7 +61,7 @@
 
         <ImageView
             android:layout_width="0sp"
-            android:layout_height="30sp"
+            android:layout_height="35sp"
             android:layout_gravity="center_vertical"
             android:tint="@color/colorTextThree"
             android:src="@drawable/ic_book_black_24dp"
