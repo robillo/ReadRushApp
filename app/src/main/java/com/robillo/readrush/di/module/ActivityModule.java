@@ -24,6 +24,9 @@ import com.robillo.readrush.di.PerActivity;
 import com.robillo.readrush.ui.main.MainMvpPresenter;
 import com.robillo.readrush.ui.main.MainMvpView;
 import com.robillo.readrush.ui.main.MainPresenter;
+import com.robillo.readrush.ui.main.discover.DiscoverMvpPresenter;
+import com.robillo.readrush.ui.main.discover.DiscoverMvpView;
+import com.robillo.readrush.ui.main.discover.DiscoverPresenter;
 import com.robillo.readrush.ui.main.library.LibraryMvpPresenter;
 import com.robillo.readrush.ui.main.library.LibraryMvpView;
 import com.robillo.readrush.ui.main.library.LibraryPresenter;
@@ -121,6 +124,12 @@ public class ActivityModule {
     @Provides
     LibraryMvpPresenter<LibraryMvpView> provideLibraryPresenter(
             LibraryPresenter<LibraryMvpView> presenter) {
+        return presenter;
+    }
+
+    @Provides
+    DiscoverMvpPresenter<DiscoverMvpView> provideDiscoverPresenter(
+            DiscoverPresenter<DiscoverMvpView> presenter) {
         return presenter;
     }
 

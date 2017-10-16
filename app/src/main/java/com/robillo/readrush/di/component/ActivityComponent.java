@@ -16,6 +16,7 @@
 package com.robillo.readrush.di.component;
 
 import com.robillo.readrush.ui.main.MainActivity;
+import com.robillo.readrush.ui.main.discover.DiscoverFragment;
 import com.robillo.readrush.ui.main.library.LibraryFragment;
 import com.robillo.readrush.ui.preference.PreferenceActivity;
 import com.robillo.readrush.ui.login.LoginActivity;
@@ -48,5 +49,7 @@ public interface ActivityComponent {
     void inject(OnboardFragment fragment);
 
     void inject(LibraryFragment fragment);
+
+    void inject(DiscoverFragment fragment);
 
 }

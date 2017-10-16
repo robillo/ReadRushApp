@@ -18,6 +18,8 @@ import com.hanks.htextview.base.HTextView;
 import com.hanks.htextview.scale.ScaleTextView;
 import com.robillo.readrush.R;
 import com.robillo.readrush.ui.base.BaseActivity;
+import com.robillo.readrush.ui.main.discover.DiscoverFragment;
+import com.robillo.readrush.ui.main.library.LibraryFragment;
 import com.robillo.readrush.ui.onboard.OnboardActivity;
 
 import java.util.ArrayList;
@@ -78,17 +80,17 @@ public class MainActivity extends BaseActivity implements MainMvpView {
 
     @Override
     public void setLibraryFragment() {
-
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, LibraryFragment.newInstance()).commit();
     }
 
     @Override
     public void setDiscoverFragment() {
-
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, DiscoverFragment.newInstance()).commit();
     }
 
     @Override
     public void setProfileFragment() {
-
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, LibraryFragment.newInstance()).commit();
     }
 
     @Override

@@ -1,8 +1,7 @@
-package com.robillo.readrush.ui.main.library;
+package com.robillo.readrush.ui.main.discover;
 
 
 import android.os.Bundle;
-import android.support.annotation.DrawableRes;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +10,7 @@ import android.view.ViewGroup;
 import com.robillo.readrush.R;
 import com.robillo.readrush.di.component.ActivityComponent;
 import com.robillo.readrush.ui.base.BaseFragment;
-import com.robillo.readrush.ui.onboard.fragment.OnboardFragment;
+import com.robillo.readrush.ui.main.library.LibraryFragment;
 
 import javax.inject.Inject;
 
@@ -20,33 +19,33 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class LibraryFragment extends BaseFragment implements LibraryMvpView {
+public class DiscoverFragment extends BaseFragment implements DiscoverMvpView {
 
     @Inject
-    LibraryMvpPresenter<LibraryMvpView> mPresenter;
+    DiscoverMvpPresenter<DiscoverMvpView> mPresenter;
 
-    public LibraryFragment() {
+    public DiscoverFragment() {
         // Required empty public constructor
     }
 
-    public static LibraryFragment newInstance() {
-        return new LibraryFragment();
+    public static DiscoverFragment newInstance() {
+        return new DiscoverFragment();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_library, container, false);
+        View v = inflater.inflate(R.layout.fragment_discover, container, false);
 
         ActivityComponent component = getActivityComponent();
         if(component!=null){
 
-            component.inject(LibraryFragment.this);
+            component.inject(DiscoverFragment.this);
 
             setUnBinder(ButterKnife.bind(this, v));
 
-            mPresenter.onAttach(LibraryFragment.this);
+            mPresenter.onAttach(DiscoverFragment.this);
 
         }
 
