@@ -1,13 +1,105 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     tools:context="com.robillo.readrush.ui.main.library.LibraryFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="0sp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="bottom">
 
-</FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginLeft="20sp"
+            android:layout_marginRight="20sp">
+
+            <ImageView
+                android:layout_width="0sp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:paddingLeft="5sp"
+                android:paddingRight="5sp"
+                android:id="@+id/rush1"/>
+
+            <ImageView
+                android:layout_width="0sp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:paddingLeft="5sp"
+                android:paddingRight="5sp"
+                android:id="@+id/rush2"/>
+
+            <ImageView
+                android:layout_width="0sp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:paddingLeft="5sp"
+                android:paddingRight="5sp"
+                android:id="@+id/rush3"/>
+
+        </LinearLayout>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="20sp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="5sp"
+            app:cardElevation="7sp"
+            android:layout_marginBottom="25sp"
+            android:layout_marginLeft="15sp"
+            android:layout_marginRight="15sp">
+
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0sp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="bottom">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="20sp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="5sp"
+            app:cardElevation="6sp"
+            android:layout_marginBottom="25sp"
+            android:layout_marginLeft="15sp"
+            android:layout_marginRight="15sp">
+
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0sp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="bottom">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="20sp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="5sp"
+            app:cardElevation="5sp"
+            android:layout_marginBottom="25sp"
+            android:layout_marginLeft="15sp"
+            android:layout_marginRight="15sp">
+
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
+</LinearLayout>

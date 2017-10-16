@@ -7,4 +7,7 @@ import com.robillo.readrush.ui.base.MvpView;
  */
 
 public interface LibraryMvpView extends MvpView {
+
+    void loadRushes();
+
 }
