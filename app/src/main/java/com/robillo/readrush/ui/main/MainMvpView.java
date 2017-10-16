@@ -7,4 +7,12 @@ import com.robillo.readrush.ui.base.MvpView;
  */
 
 public interface MainMvpView extends MvpView {
+
+    void setLibraryFragment();
+
+    void setDiscoverFragment();
+
+    void setProfileFragment();
+
+    void setBottomNavigationTint(int position);
 }

@@ -19,13 +19,15 @@
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="18sp"
             android:tint="@color/colorTextOne"
-            android:src="@drawable/ic_search_black_24dp"/>
+            android:src="@drawable/ic_search_black_24dp"
+            android:contentDescription="@string/search"
+            android:id="@+id/search"/>
 
         <TextView
             android:layout_width="0sp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="HOME"
+            tools:text="@string/library"
             android:textColor="@color/colorTextOne"
             tools:ignore="MissingPrefix"
             fontPath="fonts/four.ttf"
@@ -38,7 +40,9 @@
             android:tint="@color/colorTextOne"
             android:layout_gravity="center_vertical"
             android:layout_marginRight="18sp"
-            android:src="@drawable/ic_add_black_24dp"/>
+            android:src="@drawable/ic_add_black_24dp"
+            android:contentDescription="@string/discover"
+            android:id="@+id/add"/>
 
     </LinearLayout>
 
@@ -58,9 +62,11 @@
             android:layout_width="0sp"
             android:layout_height="30sp"
             android:layout_gravity="center_vertical"
-            android:tint="@color/colorTextOne"
+            android:tint="@color/colorTextThree"
             android:src="@drawable/ic_book_black_24dp"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:id="@+id/library"
+            android:contentDescription="@string/library"/>
 
         <ImageView
             android:layout_width="0sp"
@@ -68,7 +74,9 @@
             android:layout_gravity="center_vertical"
             android:tint="@color/colorTextThree"
             android:src="@drawable/ic_whatshot_black_24dp"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:id="@+id/discover"
+            android:contentDescription="@string/discover"/>
 
         <ImageView
             android:layout_width="0sp"
@@ -76,7 +84,9 @@
             android:tint="@color/colorTextThree"
             android:layout_gravity="center_vertical"
             android:src="@drawable/ic_person_black_24dp"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:id="@+id/profile"
+            android:contentDescription="@string/profile"/>
 
     </LinearLayout>
 
