@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.robillo.readrush.R;
 import com.robillo.readrush.ui.base.BaseActivity;
@@ -28,6 +29,9 @@ import devlight.io.library.ntb.NavigationTabBar;
 import static com.robillo.readrush.R.array.colors;
 
 public class MainActivity extends BaseActivity implements MainMvpView {
+
+    @BindView(R.id.header)
+    TextView mHeader;
 
     @BindView(R.id.library)
     ImageView mLibrary;
@@ -87,6 +91,7 @@ public class MainActivity extends BaseActivity implements MainMvpView {
     public void setBottomNavigationTint(int position) {
         switch (position){
             case 0:{
+                mHeader.setText(getString(R.string.library));
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     mLibrary.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.colorTextOne)));
                     mDiscover.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.colorTextThree)));
@@ -95,6 +100,7 @@ public class MainActivity extends BaseActivity implements MainMvpView {
                 break;
             }
             case 1:{
+                mHeader.setText(getString(R.string.discover));
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     mLibrary.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.colorTextThree)));
                     mDiscover.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.colorTextOne)));
@@ -103,6 +109,7 @@ public class MainActivity extends BaseActivity implements MainMvpView {
                 break;
             }
             case 2:{
+                mHeader.setText(getString(R.string.profile));
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     mLibrary.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.colorTextThree)));
                     mDiscover.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.colorTextThree)));
