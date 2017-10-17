@@ -8,7 +8,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.robillo.readrush.R;
@@ -27,6 +30,15 @@ import butterknife.ButterKnife;
 public class LibraryFragment extends BaseFragment implements LibraryMvpView {
 
     static int RUSH_COUNT = 0;
+
+    @BindView(R.id.error_drawable)
+    ImageView mErrorDrawable;
+
+    @BindView(R.id.error_header)
+    TextView mErrorHeader;
+
+    @BindView(R.id.error_description)
+    TextView mErrorDescription;
 
     @BindView(R.id.rush1)
     ImageView mRushOne;
@@ -93,6 +105,10 @@ public class LibraryFragment extends BaseFragment implements LibraryMvpView {
 
     @Override
     public void showNoRushes() {
-
+        Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.slide_in_right);
+        mErrorDrawable.setAnimation(animation);
+        mErrorDescription.setAnimation(animation);
+        animation = AnimationUtils.loadAnimation(getActivity(), R.anim.slide_in_left);
+        mErrorHeader.setAnimation(animation);
     }
 }

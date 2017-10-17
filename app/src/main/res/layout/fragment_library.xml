@@ -16,7 +16,9 @@
             android:layout_height="100sp"
             android:src="@drawable/book"
             android:layout_gravity="center_horizontal"
-            android:scaleType="centerCrop"/>
+            android:scaleType="centerCrop"
+            android:contentDescription="book"
+            android:id="@+id/error_drawable"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -27,7 +29,8 @@
             android:textColor="@color/readBlack"
             android:textSize="30sp"
             android:layout_gravity="center_horizontal"
-            fontPath="fonts/four.ttf"/>
+            fontPath="fonts/four.ttf"
+            android:id="@+id/error_header"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -41,7 +44,8 @@
             android:textColor="@color/readBlack"
             android:textSize="25sp"
             android:layout_gravity="center_horizontal"
-            fontPath="fonts/three.ttf"/>
+            fontPath="fonts/three.ttf"
+            android:id="@+id/error_description"/>
 
     </LinearLayout>
 
