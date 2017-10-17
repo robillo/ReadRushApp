@@ -81,17 +81,17 @@ public class MainActivity extends BaseActivity implements MainMvpView {
 
     @Override
     public void setLibraryFragment() {
-        getSupportFragmentManager().beginTransaction().replace(R.id.container, LibraryFragment.newInstance()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, LibraryFragment.newInstance(), getString(R.string.library)).commit();
     }
 
     @Override
     public void setDiscoverFragment() {
-        getSupportFragmentManager().beginTransaction().replace(R.id.container, DiscoverFragment.newInstance()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, DiscoverFragment.newInstance(), getString(R.string.discover)).commit();
     }
 
     @Override
     public void setProfileFragment() {
-        getSupportFragmentManager().beginTransaction().replace(R.id.container, ProfileFragment.newInstance()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, ProfileFragment.newInstance(), getString(R.string.profile)).commit();
     }
 
     @Override
@@ -123,6 +123,20 @@ public class MainActivity extends BaseActivity implements MainMvpView {
                 break;
             }
         }
+    }
+
+    @Override
+    public void refreshLibraryRushes() {
+        LibraryFragment fragment = (LibraryFragment) getSupportFragmentManager().findFragmentByTag(getString(R.string.library));
+        if(fragment!=null && fragment.isVisible()){
+            LibraryFragment.RUSH_COUNT++;
+            fragment.checkForExistingRushes();
+        }
+    }
+
+    @OnClick(R.id.add)
+    public void setmAdd() {
+        refreshLibraryRushes();
     }
 
     @OnClick(R.id.library)

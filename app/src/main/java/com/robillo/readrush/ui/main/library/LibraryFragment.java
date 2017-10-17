@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -29,7 +30,13 @@ import butterknife.ButterKnife;
  */
 public class LibraryFragment extends BaseFragment implements LibraryMvpView {
 
-    static int RUSH_COUNT = 0;
+    public static int RUSH_COUNT = 0;
+
+    @BindView(R.id.error_layout)
+    LinearLayout mErrorLayout;
+
+    @BindView(R.id.main_layout)
+    LinearLayout mMainLayout;
 
     @BindView(R.id.error_drawable)
     ImageView mErrorDrawable;
@@ -88,6 +95,9 @@ public class LibraryFragment extends BaseFragment implements LibraryMvpView {
 
     @Override
     public void loadRushes() {
+        if(mMainLayout.getVisibility()==View.GONE){
+            mMainLayout.setVisibility(View.VISIBLE);
+        }
         Glide.with(this).load(R.drawable.gandhi).crossFade(400).centerCrop().into(mRushOne);
         Glide.with(this).load(R.drawable.wings_of_fire).crossFade(400).centerCrop().into(mRushTwo);
         Glide.with(this).load(R.drawable.harry_potter).crossFade(400).centerCrop().into(mRushThree);
@@ -96,15 +106,24 @@ public class LibraryFragment extends BaseFragment implements LibraryMvpView {
     @Override
     public void checkForExistingRushes() {
         if(RUSH_COUNT == 0){
+            if(mMainLayout.getVisibility()==View.VISIBLE){
+                mMainLayout.setVisibility(View.GONE);
+            }
             showNoRushes();
         }
         else {
+            if(mErrorLayout.getVisibility()==View.VISIBLE){
+                mErrorLayout.setVisibility(View.GONE);
+            }
             loadRushes();
         }
     }
 
     @Override
     public void showNoRushes() {
+        if(mErrorLayout.getVisibility()==View.GONE){
+            mErrorLayout.setVisibility(View.VISIBLE);
+        }
         Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.slide_in_right);
         mErrorDrawable.setAnimation(animation);
         mErrorDescription.setAnimation(animation);

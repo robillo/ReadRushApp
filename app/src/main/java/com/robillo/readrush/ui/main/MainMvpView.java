@@ -15,4 +15,6 @@ public interface MainMvpView extends MvpView {
     void setProfileFragment();
 
     void setBottomNavigationTint(int position);
+
+    void refreshLibraryRushes();
 }
