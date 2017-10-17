@@ -15,7 +15,9 @@ import com.robillo.readrush.R;
 import com.robillo.readrush.ui.base.BaseActivity;
 import com.robillo.readrush.ui.login.LoginActivity;
 import com.robillo.readrush.ui.onboard.fragment.OnboardFragment;
+import com.robillo.readrush.utils.page_transforms.AccordianTransformer;
 import com.robillo.readrush.utils.page_transforms.CubeOutTransformer;
+import com.robillo.readrush.utils.page_transforms.ZoomOutPageTransformer;
 
 import javax.inject.Inject;
 

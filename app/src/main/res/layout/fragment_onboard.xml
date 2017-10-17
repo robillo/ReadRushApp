@@ -17,7 +17,7 @@
             android:layout_height="150sp"
             android:src="@drawable/one"
             android:padding="30sp"
-            android:background="@color/rushRed"
+            android:background="@color/colorPrimaryDark"
             android:contentDescription="@string/fragment_image"
             android:id="@+id/image"/>
 
