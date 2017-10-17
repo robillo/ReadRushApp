@@ -81,6 +81,9 @@ dependencies {
     //Navigation Tab Bar
     compile "devlight.io:navigationtabbar:$rootProject.ext.navTabBarVersion"
 
+    //circle imageview
+    compile "de.hdodenhof:circleimageview:2.2.0"
+
     //rxJava
     compile "io.reactivex.rxjava2:rxjava:$rootProject.ext.rxjava2Version"
     compile "io.reactivex.rxjava2:rxandroid:$rootProject.ext.rxandroidVersion"

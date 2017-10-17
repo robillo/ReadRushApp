@@ -1,13 +1,48 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     tools:context="com.robillo.readrush.ui.main.profile.ProfileFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="0sp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
 
-</FrameLayout>
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="100sp"
+            android:layout_height="100sp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="20sp"
+            app:civ_border_width="2sp"
+            app:civ_border_color="@color/colorTextOne"
+            android:id="@+id/dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:ignore="MissingPrefix"
+            android:text="Robin Kamboj"
+            android:layout_margin="15sp"
+            android:textColor="@color/colorTextOne"
+            android:textSize="25sp"
+            android:gravity="end"
+            android:layout_gravity="center_vertical"
+            fontPath="fonts/four.ttf"
+            android:id="@+id/name"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0sp"
+        android:layout_weight="2"
+        android:orientation="vertical">
+
+
+    </LinearLayout>
+
+</LinearLayout>
