@@ -2,6 +2,7 @@ package com.robillo.readrush.ui.main.library;
 
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.DrawableRes;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -24,6 +25,8 @@ import butterknife.ButterKnife;
  * A simple {@link Fragment} subclass.
  */
 public class LibraryFragment extends BaseFragment implements LibraryMvpView {
+
+    static int RUSH_COUNT = 0;
 
     @BindView(R.id.rush1)
     ImageView mRushOne;
@@ -68,7 +71,7 @@ public class LibraryFragment extends BaseFragment implements LibraryMvpView {
 
     @Override
     protected void setUp(View view) {
-        loadRushes();
+        checkForExistingRushes();
     }
 
     @Override
@@ -76,5 +79,20 @@ public class LibraryFragment extends BaseFragment implements LibraryMvpView {
         Glide.with(this).load(R.drawable.gandhi).crossFade(400).centerCrop().into(mRushOne);
         Glide.with(this).load(R.drawable.wings_of_fire).crossFade(400).centerCrop().into(mRushTwo);
         Glide.with(this).load(R.drawable.harry_potter).crossFade(400).centerCrop().into(mRushThree);
+    }
+
+    @Override
+    public void checkForExistingRushes() {
+        if(RUSH_COUNT == 0){
+            showNoRushes();
+        }
+        else {
+            loadRushes();
+        }
+    }
+
+    @Override
+    public void showNoRushes() {
+
     }
 }

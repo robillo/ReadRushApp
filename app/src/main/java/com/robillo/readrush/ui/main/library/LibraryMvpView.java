@@ -10,4 +10,8 @@ public interface LibraryMvpView extends MvpView {
 
     void loadRushes();
 
+    void checkForExistingRushes();
+
+    void showNoRushes();
+
 }
