@@ -10,7 +10,8 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center"
-        android:id="@+id/error_layout">
+        android:id="@+id/error_layout"
+        android:visibility="gone">
 
         <ImageView
             android:layout_width="100sp"
@@ -55,7 +56,8 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:visibility="gone"
-        android:id="@+id/main_layout">
+        android:id="@+id/main_layout"
+        tools:visibility="visible">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -71,29 +73,56 @@
                 android:layout_marginLeft="20sp"
                 android:layout_marginRight="20sp">
 
-                <ImageView
+                <android.support.v7.widget.CardView
                     android:layout_width="0sp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:layout_marginLeft="10sp"
                     android:layout_marginRight="10sp"
-                    android:id="@+id/rush1"/>
+                    android:elevation="8sp"
+                    tools:targetApi="lollipop">
 
-                <ImageView
-                    android:layout_width="0sp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:layout_marginLeft="10sp"
-                    android:layout_marginRight="10sp"
-                    android:id="@+id/rush2"/>
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/rush1"
+                        android:contentDescription="rush1"/>
 
-                <ImageView
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
                     android:layout_width="0sp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:layout_marginLeft="10sp"
                     android:layout_marginRight="10sp"
-                    android:id="@+id/rush3"/>
+                    android:elevation="8sp"
+                    tools:targetApi="lollipop">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/rush2"
+                        android:contentDescription="rush2"/>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="0sp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="10sp"
+                    android:layout_marginRight="10sp"
+                    android:elevation="8sp"
+                    tools:targetApi="lollipop">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/rush3"
+                        android:contentDescription="rush3"/>
+
+                </android.support.v7.widget.CardView>
 
             </LinearLayout>
 
@@ -118,6 +147,66 @@
             android:orientation="vertical"
             android:gravity="bottom">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginLeft="20sp"
+                android:layout_marginRight="20sp">
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="0sp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="10sp"
+                    android:layout_marginRight="10sp"
+                    android:elevation="8sp"
+                    tools:targetApi="lollipop">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/rush4"
+                        android:contentDescription="rush4"/>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="0sp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="10sp"
+                    android:layout_marginRight="10sp"
+                    android:elevation="8sp"
+                    tools:targetApi="lollipop">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/rush5"
+                        android:contentDescription="rush5"/>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="0sp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="10sp"
+                    android:layout_marginRight="10sp"
+                    android:elevation="8sp"
+                    tools:targetApi="lollipop">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/rush6"
+                        android:contentDescription="rush6"/>
+
+                </android.support.v7.widget.CardView>
+
+            </LinearLayout>
+
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="20sp"
@@ -138,6 +227,66 @@
             android:layout_weight="1"
             android:orientation="vertical"
             android:gravity="bottom">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginLeft="20sp"
+                android:layout_marginRight="20sp">
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="0sp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="10sp"
+                    android:layout_marginRight="10sp"
+                    android:elevation="8sp"
+                    tools:targetApi="lollipop">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/rush7"
+                        android:contentDescription="rush7"/>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="0sp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="10sp"
+                    android:layout_marginRight="10sp"
+                    android:elevation="8sp"
+                    tools:targetApi="lollipop">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/rush8"
+                        android:contentDescription="rush8"/>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="0sp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="10sp"
+                    android:layout_marginRight="10sp"
+                    android:elevation="8sp"
+                    tools:targetApi="lollipop">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/rush9"
+                        android:contentDescription="rush9"/>
+
+                </android.support.v7.widget.CardView>
+
+            </LinearLayout>
 
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
