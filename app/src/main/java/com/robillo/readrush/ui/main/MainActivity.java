@@ -96,7 +96,7 @@ public class MainActivity extends BaseActivity implements MainMvpView {
 
     @Override
     public void setBottomNavigationTint(int position) {
-        Animation animation = AnimationUtils.loadAnimation(this, R.anim.header);
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.top_down);
         switch (position){
             case 0:{
                 mHeader.setText(getString(R.string.library));

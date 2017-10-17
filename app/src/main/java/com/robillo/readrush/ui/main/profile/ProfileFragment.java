@@ -68,7 +68,7 @@ public class ProfileFragment extends BaseFragment implements ProfileMvpView {
     @Override
     protected void setUp(View view) {
         Glide.with(this).load(R.drawable.robin).centerCrop().crossFade().into(mDp);
-        Animation animation = AnimationUtils.loadAnimation(getContext(), R.anim.slide_in_right);
+        Animation animation = AnimationUtils.loadAnimation(getContext(), R.anim.fade_in);
         mName.setAnimation(animation);
     }
 }
