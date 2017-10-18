@@ -17,4 +17,6 @@ public interface MainMvpView extends MvpView {
     void setBottomNavigationTint(int position);
 
     void refreshLibraryRushes();
+
+    void setUpWindowAnimations();
 }

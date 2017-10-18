@@ -1,5 +1,6 @@
 package com.robillo.readrush.ui.main;
 
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
@@ -8,6 +9,9 @@ import android.os.Build;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.transition.Explode;
+import android.transition.Slide;
+import android.view.Gravity;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -131,6 +135,16 @@ public class MainActivity extends BaseActivity implements MainMvpView {
         if(fragment!=null && fragment.isVisible()){
             LibraryFragment.RUSH_COUNT++;
             fragment.checkForExistingRushes();
+        }
+    }
+
+    @Override
+    public void setUpWindowAnimations() {
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            Slide slide = new Slide();
+            slide.setSlideEdge(Gravity.RIGHT);
+            slide.setDuration(400);
+            getWindow().setEnterTransition(slide);
         }
     }
 

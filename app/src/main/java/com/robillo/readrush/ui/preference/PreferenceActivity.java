@@ -1,5 +1,6 @@
 package com.robillo.readrush.ui.preference;
 
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -26,6 +27,7 @@ import butterknife.OnClick;
 
 public class PreferenceActivity extends BaseActivity implements PreferenceMvpView {
 
+    private Bundle mBundle;
     PreferenceAdapter mAdapter;
     List<String> mList = new ArrayList<>();
 
@@ -58,7 +60,7 @@ public class PreferenceActivity extends BaseActivity implements PreferenceMvpVie
 
     @OnClick(R.id.done)
     public void onDone() {
-        startActivity(MainActivity.getStartIntent(this));
+        startActivity(MainActivity.getStartIntent(this), mBundle);
     }
 
     @Override
@@ -78,6 +80,12 @@ public class PreferenceActivity extends BaseActivity implements PreferenceMvpVie
             explode.setDuration(400);
             getWindow().setEnterTransition(explode);
             getWindow().setReenterTransition(explode);
+
+            Fade fade = new Fade();
+            fade.setDuration(400);
+            getWindow().setExitTransition(fade);
+
+            mBundle = ActivityOptions.makeSceneTransitionAnimation(this).toBundle();
         }
     }
 }
