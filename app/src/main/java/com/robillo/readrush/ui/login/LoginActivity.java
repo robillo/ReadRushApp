@@ -1,5 +1,6 @@
 package com.robillo.readrush.ui.login;
 
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -33,6 +34,7 @@ import butterknife.OnClick;
 
 public class LoginActivity extends BaseActivity implements LoginMvpView {
 
+    private Bundle mBundle;
     List<Conversation> mConversations = new ArrayList<>();
     @SuppressWarnings("FieldCanBeLocal")
     private static int page = 0;
@@ -164,12 +166,9 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
     public void setUpWindowAnimations() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Fade fade = new Fade();
-            fade.setDuration(500);
+            fade.setDuration(400);
             getWindow().setExitTransition(fade);
-
-            Explode explode = new Explode();
-            explode.setDuration(500);
-            getWindow().setEnterTransition(explode);
+            mBundle = ActivityOptions.makeSceneTransitionAnimation(this).toBundle();
         }
     }
 
@@ -188,7 +187,7 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
             setUp();
         }
         else {
-            startActivity(PreferenceActivity.getStartIntent(this));
+            startActivity(PreferenceActivity.getStartIntent(this), mBundle);
         }
     }
 

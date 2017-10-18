@@ -75,12 +75,9 @@ public class PreferenceActivity extends BaseActivity implements PreferenceMvpVie
     public void setUpWindowAnimations() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Explode explode = new Explode();
-            explode.setDuration(500);
+            explode.setDuration(400);
             getWindow().setEnterTransition(explode);
-
-            Fade fade = new Fade();
-            fade.setDuration(500);
-            getWindow().setExitTransition(fade);
+            getWindow().setReenterTransition(explode);
         }
     }
 }
