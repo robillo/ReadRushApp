@@ -2,9 +2,12 @@ package com.robillo.readrush.ui.preference;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.transition.Explode;
+import android.transition.Fade;
 import android.widget.Button;
 
 import com.robillo.readrush.R;
@@ -60,6 +63,7 @@ public class PreferenceActivity extends BaseActivity implements PreferenceMvpVie
 
     @Override
     protected void setUp() {
+        setUpWindowAnimations();
         mList = Arrays.asList(getResources().getStringArray(R.array.preferences));
         mAdapter = new PreferenceAdapter(mList, this);
         GridLayoutManager manager = new GridLayoutManager(this, 3);
@@ -67,4 +71,16 @@ public class PreferenceActivity extends BaseActivity implements PreferenceMvpVie
         mRecycler.setAdapter(mAdapter);
     }
 
+    @Override
+    public void setUpWindowAnimations() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Explode explode = new Explode();
+            explode.setDuration(500);
+            getWindow().setEnterTransition(explode);
+
+            Fade fade = new Fade();
+            fade.setDuration(500);
+            getWindow().setExitTransition(fade);
+        }
+    }
 }

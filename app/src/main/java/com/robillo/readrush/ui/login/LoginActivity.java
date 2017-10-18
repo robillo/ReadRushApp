@@ -2,9 +2,12 @@ package com.robillo.readrush.ui.login;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.ArrayRes;
+import android.transition.Explode;
+import android.transition.Fade;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -86,6 +89,7 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
 
     @Override
     protected void setUp() {
+        setUpWindowAnimations();
         loadConversations();
         setPageDetails(page);
     }
@@ -153,6 +157,19 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
         }
         else {
             mChatSecondary.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void setUpWindowAnimations() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Fade fade = new Fade();
+            fade.setDuration(500);
+            getWindow().setExitTransition(fade);
+
+            Explode explode = new Explode();
+            explode.setDuration(500);
+            getWindow().setEnterTransition(explode);
         }
     }
 
