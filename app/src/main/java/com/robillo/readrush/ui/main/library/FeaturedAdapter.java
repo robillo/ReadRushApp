@@ -2,10 +2,12 @@ package com.robillo.readrush.ui.main.library;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.robillo.readrush.R;
 import com.robillo.readrush.data.others.Feature;
 
@@ -31,12 +33,13 @@ public class FeaturedAdapter extends RecyclerView.Adapter<FeaturedAdapter.Featur
 
     @Override
     public FeaturedHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return null;
+        mContext = parent.getContext();
+        return new FeaturedHolder(LayoutInflater.from(mContext).inflate(R.layout.row_featured, parent, false));
     }
 
     @Override
     public void onBindViewHolder(FeaturedHolder holder, int position) {
-
+        Glide.with(mContext).load(mList.get(position).getDrawableId()).centerCrop().crossFade().into(holder.cover);
     }
 
     @Override
