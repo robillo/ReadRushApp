@@ -160,7 +160,7 @@
                     android:layout_weight="1"
                     android:layout_marginLeft="10sp"
                     android:layout_marginRight="10sp"
-                    android:elevation="8sp"
+                    android:elevation="3sp"
                     tools:targetApi="lollipop">
 
                     <ImageView
@@ -212,7 +212,7 @@
                 android:layout_height="20sp"
                 app:cardBackgroundColor="@color/white"
                 app:cardCornerRadius="5sp"
-                app:cardElevation="6sp"
+                app:cardElevation="3sp"
                 android:layout_marginBottom="25sp"
                 android:layout_marginLeft="15sp"
                 android:layout_marginRight="15sp">
@@ -293,7 +293,7 @@
                 android:layout_height="20sp"
                 app:cardBackgroundColor="@color/white"
                 app:cardCornerRadius="5sp"
-                app:cardElevation="5sp"
+                app:cardElevation="3sp"
                 android:layout_marginBottom="25sp"
                 android:layout_marginLeft="15sp"
                 android:layout_marginRight="15sp">

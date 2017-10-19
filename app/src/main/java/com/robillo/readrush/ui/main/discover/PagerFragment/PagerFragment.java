@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.robillo.readrush.R;
+import com.robillo.readrush.ui.main.discover.DiscoverFragment;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -19,6 +20,9 @@ public class PagerFragment extends Fragment {
         // Required empty public constructor
     }
 
+    public static PagerFragment newInstance() {
+        return new PagerFragment();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
