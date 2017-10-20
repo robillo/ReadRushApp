@@ -1,4 +1,4 @@
-package com.robillo.readrush.ui.main.library;
+package com.robillo.readrush.ui.main.discover;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
