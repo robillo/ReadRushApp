@@ -38,7 +38,9 @@
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/featured">
+            android:id="@+id/featured"
+            android:paddingLeft="10sp"
+            android:paddingRight="10sp">
 
         </android.support.v7.widget.RecyclerView>
 
@@ -64,7 +66,8 @@
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/collections">
+            android:id="@+id/collections"
+            android:padding="10sp">
 
         </android.support.v7.widget.RecyclerView>
 

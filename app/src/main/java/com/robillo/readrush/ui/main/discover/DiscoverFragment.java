@@ -119,25 +119,28 @@ public class DiscoverFragment extends BaseFragment implements DiscoverMvpView {
 
         @Override
         public Fragment getItem(int position) {
-
+            Bundle args = new Bundle();
             switch (position){
                 case 0:{
-
+                    args.putInt("drawable_id", R.drawable.larry_page_quote);
+                    return PagerFragment.newInstance(args);
                 }
                 case 1:{
-
+                    args.putInt("drawable_id", R.drawable.larry_page);
+                    return PagerFragment.newInstance(args);
                 }
                 case 2:{
-
+                    args.putInt("drawable_id", R.drawable.steve_jobs_quote);
+                    return PagerFragment.newInstance(args);
                 }
                 case 3:{
-
+                    args.putInt("drawable_id", R.drawable.larry_page_quote);
+                    return PagerFragment.newInstance(args);
                 }
                 default:{
-
+                    return PagerFragment.newInstance(args);
                 }
             }
-            return new PagerFragment();
         }
 
         @Override
