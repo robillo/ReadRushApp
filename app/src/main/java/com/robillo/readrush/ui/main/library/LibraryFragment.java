@@ -101,10 +101,10 @@ public class LibraryFragment extends BaseFragment implements LibraryMvpView {
         if(mMainLayout.getVisibility()==View.GONE){
             mMainLayout.setVisibility(View.VISIBLE);
         }
-        Glide.with(this).load(R.drawable.gandhi).crossFade(400).centerCrop().into(mRushOne);
-        Glide.with(this).load(R.drawable.wings_of_fire).crossFade(400).centerCrop().into(mRushTwo);
-        Glide.with(this).load(R.drawable.harry_potter).crossFade(400).centerCrop().into(mRushThree);
-        Glide.with(this).load(R.drawable.steve_jobs).crossFade(400).centerCrop().into(mRushFour);
+        Glide.with(this).load(R.drawable.cover1).crossFade(400).centerCrop().into(mRushOne);
+        Glide.with(this).load(R.drawable.cover2).crossFade(400).centerCrop().into(mRushTwo);
+        Glide.with(this).load(R.drawable.cover3).crossFade(400).centerCrop().into(mRushThree);
+        Glide.with(this).load(R.drawable.cover4).crossFade(400).centerCrop().into(mRushFour);
     }
 
     @Override
