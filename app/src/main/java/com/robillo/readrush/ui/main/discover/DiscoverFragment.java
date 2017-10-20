@@ -7,19 +7,26 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.robillo.readrush.R;
+import com.robillo.readrush.data.others.Feature;
 import com.robillo.readrush.di.component.ActivityComponent;
 import com.robillo.readrush.ui.base.BaseFragment;
 import com.robillo.readrush.ui.main.discover.PagerFragment.PagerFragment;
+import com.robillo.readrush.ui.main.library.FeaturedAdapter;
 import com.robillo.readrush.ui.main.library.LibraryFragment;
 import com.robillo.readrush.ui.onboard.OnboardActivity;
 import com.robillo.readrush.ui.onboard.fragment.OnboardFragment;
 import com.robillo.readrush.utils.page_transforms.CubeOutTransformer;
 import com.robillo.readrush.utils.page_transforms.ZoomOutPageTransformer;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -32,9 +39,14 @@ import butterknife.ButterKnife;
 public class DiscoverFragment extends BaseFragment implements DiscoverMvpView {
 
     static int NUM_PAGES = 3;
+    List<Feature> mFeatureList = new ArrayList<>();
+    FeaturedAdapter mFeatureAdapter;
 
     @BindView(R.id.pager)
     ViewPager mPager;
+
+    @BindView(R.id.featured)
+    RecyclerView mFeatureRv;
 
     @Inject
     DiscoverMvpPresenter<DiscoverMvpView> mPresenter;
@@ -71,11 +83,33 @@ public class DiscoverFragment extends BaseFragment implements DiscoverMvpView {
     @Override
     protected void setUp(View view) {
 
+        //SETTING PAGER
         PagerAdapter adapter = new ScreenSlidePagerAdapter(getActivity().getSupportFragmentManager());
         mPager.setAdapter(adapter);
         mPager.setClipToPadding(false);
         mPager.setPageTransformer(true, new ZoomOutPageTransformer());
         mPager.addOnPageChangeListener(viewPagerPageChangeListener);
+
+        //SETTING FEATURE RV
+        mFeatureRv.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+        fetchFeaturedBooks();
+    }
+
+    @Override
+    public void fetchFeaturedBooks() {
+        mFeatureList.add(new Feature(R.drawable.cover1, "ROBILLO"));
+        mFeatureList.add(new Feature(R.drawable.cover2, "ROBILLO"));
+        mFeatureList.add(new Feature(R.drawable.cover3, "ROBILLO"));
+        mFeatureList.add(new Feature(R.drawable.cover4, "ROBILLO"));
+        mFeatureList.add(new Feature(R.drawable.cover5, "ROBILLO"));
+        mFeatureList.add(new Feature(R.drawable.cover6, "ROBILLO"));
+        mFeatureAdapter = new FeaturedAdapter(mFeatureList, getActivity());
+        mFeatureRv.setAdapter(mFeatureAdapter);
+    }
+
+    @Override
+    public void fetchCollectionNames() {
+
     }
 
     private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {

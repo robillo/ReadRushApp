@@ -7,4 +7,9 @@ import com.robillo.readrush.ui.base.MvpView;
  */
 
 public interface DiscoverMvpView extends MvpView {
+
+    void fetchFeaturedBooks();
+
+    void fetchCollectionNames();
+
 }
