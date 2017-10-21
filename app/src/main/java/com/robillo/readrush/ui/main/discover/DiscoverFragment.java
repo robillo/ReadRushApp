@@ -9,6 +9,7 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SnapHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ import com.robillo.readrush.ui.base.BaseFragment;
 import com.robillo.readrush.ui.main.discover.PagerFragment.PagerFragment;
 import com.robillo.readrush.ui.main.discover.adapters.CollectionsAdapter;
 import com.robillo.readrush.ui.main.discover.adapters.FeaturedAdapter;
+import com.robillo.readrush.utils.other_helper.StartSnapHelper;
 import com.robillo.readrush.utils.page_transforms.ZoomOutPageTransformer;
 
 import java.util.ArrayList;
@@ -41,6 +43,7 @@ public class DiscoverFragment extends BaseFragment implements DiscoverMvpView {
     List<Collection> mCollectionList = new ArrayList<>();
     CollectionsAdapter mCollectionAdapter;
     FeaturedAdapter mFeatureAdapter;
+    SnapHelper featureSnapHelper, collectionsSnapHelper;
 
     @BindView(R.id.pager)
     ViewPager mPager;
@@ -86,6 +89,9 @@ public class DiscoverFragment extends BaseFragment implements DiscoverMvpView {
     @Override
     protected void setUp(View view) {
 
+        featureSnapHelper = new StartSnapHelper();
+        collectionsSnapHelper = new StartSnapHelper();
+
         //SETTING PAGER
         PagerAdapter adapter = new ScreenSlidePagerAdapter(getActivity().getSupportFragmentManager());
         mPager.setAdapter(adapter);
@@ -112,6 +118,8 @@ public class DiscoverFragment extends BaseFragment implements DiscoverMvpView {
         mFeatureList.add(new Feature(R.drawable.cover6, "ROBILLO"));
         mFeatureAdapter = new FeaturedAdapter(mFeatureList, getActivity());
         mFeatureRv.setAdapter(mFeatureAdapter);
+        mFeatureRv.setOnFlingListener(null);
+        featureSnapHelper.attachToRecyclerView(mFeatureRv);
     }
 
     @Override
@@ -121,6 +129,8 @@ public class DiscoverFragment extends BaseFragment implements DiscoverMvpView {
         mCollectionList.add(new Collection(R.drawable.coll3, "Best Fiction", "ROBILLO"));
         mCollectionAdapter = new CollectionsAdapter(mCollectionList, getActivity());
         mCollectionRv.setAdapter(mCollectionAdapter);
+        mCollectionRv.setOnFlingListener(null);
+        collectionsSnapHelper.attachToRecyclerView(mCollectionRv);
     }
 
     private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
