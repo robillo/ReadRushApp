@@ -1,5 +1,7 @@
 package com.robillo.readrush.ui.search;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -15,6 +17,10 @@ public class SearchActivity extends BaseActivity implements SearchMvpView {
 
     @Inject
     SearchMvpPresenter<SearchMvpView> mPresenter;
+
+    public static Intent getStartIntent(Context context) {
+        return new Intent(context, SearchActivity.class);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -1,15 +1,9 @@
 package com.robillo.readrush.ui.main;
 
-import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
-import android.os.Build;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.transition.Explode;
 import android.transition.Slide;
 import android.view.Gravity;
 import android.view.View;
@@ -18,26 +12,18 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.hanks.htextview.base.HTextView;
-import com.hanks.htextview.scale.ScaleTextView;
 import com.robillo.readrush.R;
 import com.robillo.readrush.ui.base.BaseActivity;
 import com.robillo.readrush.ui.main.discover.DiscoverFragment;
 import com.robillo.readrush.ui.main.library.LibraryFragment;
 import com.robillo.readrush.ui.main.profile.ProfileFragment;
-import com.robillo.readrush.ui.onboard.OnboardActivity;
-
-import java.util.ArrayList;
+import com.robillo.readrush.ui.search.SearchActivity;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.Unbinder;
-import devlight.io.library.ntb.NavigationTabBar;
-
-import static com.robillo.readrush.R.array.colors;
 
 public class MainActivity extends BaseActivity implements MainMvpView {
 
@@ -109,23 +95,23 @@ public class MainActivity extends BaseActivity implements MainMvpView {
                 mHeader.setText(getString(R.string.library));
                 mHeader.startAnimation(animation);
                 mLibrary.setColorFilter(ContextCompat.getColor(this, R.color.colorTextOne));
-                mDiscover.setColorFilter(ContextCompat.getColor(this, R.color.colorTextThree));
-                mProfile.setColorFilter(ContextCompat.getColor(this, R.color.colorTextThree));
+                mDiscover.setColorFilter(ContextCompat.getColor(this, R.color.colorTextFour));
+                mProfile.setColorFilter(ContextCompat.getColor(this, R.color.colorTextFour));
                 break;
             }
             case 1:{
                 mHeader.startAnimation(animation);
                 mHeader.setText(getString(R.string.discover));
-                mLibrary.setColorFilter(ContextCompat.getColor(this, R.color.colorTextThree));
+                mLibrary.setColorFilter(ContextCompat.getColor(this, R.color.colorTextFour));
                 mDiscover.setColorFilter(ContextCompat.getColor(this, R.color.colorTextOne));
-                mProfile.setColorFilter(ContextCompat.getColor(this, R.color.colorTextThree));
+                mProfile.setColorFilter(ContextCompat.getColor(this, R.color.colorTextFour));
                 break;
             }
             case 2:{
                 mHeader.startAnimation(animation);
                 mHeader.setText(getString(R.string.profile));
-                mLibrary.setColorFilter(ContextCompat.getColor(this, R.color.colorTextThree));
-                mDiscover.setColorFilter(ContextCompat.getColor(this, R.color.colorTextThree));
+                mLibrary.setColorFilter(ContextCompat.getColor(this, R.color.colorTextFour));
+                mDiscover.setColorFilter(ContextCompat.getColor(this, R.color.colorTextFour));
                 mProfile.setColorFilter(ContextCompat.getColor(this, R.color.colorTextOne));
                 break;
             }
@@ -190,7 +176,7 @@ public class MainActivity extends BaseActivity implements MainMvpView {
 
     @OnClick(R.id.search)
     public void setmSearch() {
-
+        startActivity(SearchActivity.getStartIntent(this));
     }
 
     @OnClick(R.id.library)
