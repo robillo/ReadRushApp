@@ -14,10 +14,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.robillo.readrush.R;
+import com.robillo.readrush.data.others.Collection;
 import com.robillo.readrush.data.others.Feature;
 import com.robillo.readrush.di.component.ActivityComponent;
 import com.robillo.readrush.ui.base.BaseFragment;
 import com.robillo.readrush.ui.main.discover.PagerFragment.PagerFragment;
+import com.robillo.readrush.ui.main.discover.adapters.CollectionsAdapter;
 import com.robillo.readrush.ui.main.discover.adapters.FeaturedAdapter;
 import com.robillo.readrush.utils.page_transforms.ZoomOutPageTransformer;
 
@@ -36,6 +38,8 @@ public class DiscoverFragment extends BaseFragment implements DiscoverMvpView {
 
     static int NUM_PAGES = 3;
     List<Feature> mFeatureList = new ArrayList<>();
+    List<Collection> mCollectionList = new ArrayList<>();
+    CollectionsAdapter mCollectionAdapter;
     FeaturedAdapter mFeatureAdapter;
 
     @BindView(R.id.pager)
@@ -43,6 +47,9 @@ public class DiscoverFragment extends BaseFragment implements DiscoverMvpView {
 
     @BindView(R.id.featured)
     RecyclerView mFeatureRv;
+
+    @BindView(R.id.collections)
+    RecyclerView mCollectionRv;
 
     @Inject
     DiscoverMvpPresenter<DiscoverMvpView> mPresenter;
@@ -89,6 +96,10 @@ public class DiscoverFragment extends BaseFragment implements DiscoverMvpView {
         //SETTING FEATURE RV
         mFeatureRv.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         fetchFeaturedBooks();
+
+        //SETTING COLLECTION ADAPTER
+        mCollectionRv.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+        fetchCollectionNames();
     }
 
     @Override
@@ -105,7 +116,11 @@ public class DiscoverFragment extends BaseFragment implements DiscoverMvpView {
 
     @Override
     public void fetchCollectionNames() {
-
+        mCollectionList.add(new Collection(R.drawable.coll1, "Best Of 2016", "ROBILLO"));
+        mCollectionList.add(new Collection(R.drawable.coll2, "Best Horror Books", "ROBILLO"));
+        mCollectionList.add(new Collection(R.drawable.coll3, "Best Fiction", "ROBILLO"));
+        mCollectionAdapter = new CollectionsAdapter(mCollectionList, getActivity());
+        mCollectionRv.setAdapter(mCollectionAdapter);
     }
 
     private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {

@@ -59,6 +59,12 @@ public class LibraryFragment extends BaseFragment implements LibraryMvpView {
     @BindView(R.id.rush4)
     ImageView mRushFour;
 
+    @BindView(R.id.rush5)
+    ImageView mRushFive;
+
+    @BindView(R.id.rush6)
+    ImageView mRushSix;
+
     @Inject
     LibraryMvpPresenter<LibraryMvpView> mPresenter;
 
@@ -105,6 +111,7 @@ public class LibraryFragment extends BaseFragment implements LibraryMvpView {
         Glide.with(this).load(R.drawable.cover2).crossFade(400).centerCrop().into(mRushTwo);
         Glide.with(this).load(R.drawable.cover3).crossFade(400).centerCrop().into(mRushThree);
         Glide.with(this).load(R.drawable.cover4).crossFade(400).centerCrop().into(mRushFour);
+        Glide.with(this).load(R.drawable.cover6).crossFade(400).centerCrop().into(mRushFive);
     }
 
     @Override

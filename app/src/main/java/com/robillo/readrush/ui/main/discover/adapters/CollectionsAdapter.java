@@ -9,8 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
-import com.bumptech.glide.request.RequestOptions;
 import com.robillo.readrush.R;
 import com.robillo.readrush.data.others.Collection;
 
@@ -20,6 +18,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import jp.wasabeef.glide.transformations.gpu.BrightnessFilterTransformation;
+//import jp.wasabeef.glide.transformations.gpu.BrightnessFilterTransformation;
 
 /**
  * Created by robinkamboj on 20/10/17.
@@ -45,7 +44,8 @@ public class CollectionsAdapter extends RecyclerView.Adapter<CollectionsAdapter.
     public void onBindViewHolder(CollectionsHolder holder, int position) {
         holder.mHeader.setText(mList.get(position).getHeader());
         Glide.with(mContext).load(mList.get(position).getDrawableId())
-                .apply(RequestOptions.bitmapTransform(new BrightnessFilterTransformation(0.5f)))
+                .bitmapTransform(new BrightnessFilterTransformation(mContext, -0.5f))
+                .centerCrop()
                 .into(holder.mCover);
     }
 
