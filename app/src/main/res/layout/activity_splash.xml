@@ -20,7 +20,8 @@
                 android:layout_margin="10sp"
                 android:layout_gravity="bottom"
                 android:src="@drawable/logo_full"
-                android:scaleType="centerInside"/>
+                android:scaleType="centerInside"
+                android:contentDescription="Full Logo"/>
 
         </LinearLayout>
 

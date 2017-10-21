@@ -61,6 +61,8 @@ dependencies {
 
     // image
     compile "com.github.bumptech.glide:glide:$rootProject.ext.glideVersion"
+    compile "jp.wasabeef:glide-transformations:3.0.1"
+    compile "jp.co.cyberagent.android.gpuimage:gpuimage-library:1.4.1"
 
     // parser
     compile "com.google.code.gson:gson:$rootProject.ext.gsonVersion"

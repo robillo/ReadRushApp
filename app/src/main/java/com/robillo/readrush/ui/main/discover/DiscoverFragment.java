@@ -18,6 +18,7 @@ import com.robillo.readrush.data.others.Feature;
 import com.robillo.readrush.di.component.ActivityComponent;
 import com.robillo.readrush.ui.base.BaseFragment;
 import com.robillo.readrush.ui.main.discover.PagerFragment.PagerFragment;
+import com.robillo.readrush.ui.main.discover.adapters.FeaturedAdapter;
 import com.robillo.readrush.utils.page_transforms.ZoomOutPageTransformer;
 
 import java.util.ArrayList;
