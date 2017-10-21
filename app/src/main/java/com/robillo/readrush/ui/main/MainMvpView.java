@@ -19,4 +19,12 @@ public interface MainMvpView extends MvpView {
     void refreshLibraryRushes();
 
     void setUpWindowAnimations();
+
+    void hideAndUnclickableSearch();
+
+    void hideAndUnclickableAdd();
+
+    void showAndClickableSearch();
+
+    void showAndClickableAdd();
 }

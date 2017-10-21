@@ -56,6 +56,9 @@ public class MainActivity extends BaseActivity implements MainMvpView {
     @BindView(R.id.add)
     ImageView mAdd;
 
+    @BindView(R.id.search)
+    ImageView mSearch;
+
     @Inject
     MainMvpPresenter<MainMvpView> mPresenter;
 
@@ -148,26 +151,69 @@ public class MainActivity extends BaseActivity implements MainMvpView {
         }
     }
 
+    @Override
+    public void hideAndUnclickableSearch() {
+        if(mSearch.getVisibility()==View.VISIBLE){
+            mSearch.setVisibility(View.INVISIBLE);
+            mSearch.setClickable(false);
+        }
+    }
+
+    @Override
+    public void hideAndUnclickableAdd() {
+        if(mAdd.getVisibility()==View.VISIBLE){
+            mAdd.setVisibility(View.INVISIBLE);
+            mAdd.setClickable(false);
+        }
+    }
+
+    @Override
+    public void showAndClickableSearch() {
+        if(mSearch.getVisibility()==View.INVISIBLE){
+            mSearch.setVisibility(View.VISIBLE);
+            mSearch.setClickable(true);
+        }
+    }
+
+    @Override
+    public void showAndClickableAdd() {
+        if(mAdd.getVisibility()==View.INVISIBLE){
+            mAdd.setVisibility(View.VISIBLE);
+            mAdd.setClickable(true);
+        }
+    }
+
     @OnClick(R.id.add)
     public void setmAdd() {
         refreshLibraryRushes();
+    }
+
+    @OnClick(R.id.search)
+    public void setmSearch() {
+
     }
 
     @OnClick(R.id.library)
     public void setmLibrary() {
         setBottomNavigationTint(0);
         setLibraryFragment();
+        showAndClickableAdd();
+        showAndClickableSearch();
     }
 
     @OnClick(R.id.discover)
     public void setmDiscover() {
         setBottomNavigationTint(1);
         setDiscoverFragment();
+        hideAndUnclickableAdd();
+        showAndClickableSearch();
     }
 
     @OnClick(R.id.profile)
     public void setmProfile() {
         setBottomNavigationTint(2);
         setProfileFragment();
+        hideAndUnclickableAdd();
+        hideAndUnclickableSearch();
     }
 }
