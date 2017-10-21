@@ -23,6 +23,7 @@ import com.robillo.readrush.ui.preference.PreferenceActivity;
 import com.robillo.readrush.ui.login.LoginActivity;
 import com.robillo.readrush.ui.onboard.OnboardActivity;
 import com.robillo.readrush.ui.onboard.fragment.OnboardFragment;
+import com.robillo.readrush.ui.search.SearchActivity;
 import com.robillo.readrush.ui.splash.SplashActivity;
 import com.robillo.readrush.di.PerActivity;
 import com.robillo.readrush.di.module.ActivityModule;
@@ -46,6 +47,8 @@ public interface ActivityComponent {
     void inject(PreferenceActivity activity);
 
     void inject(MainActivity activity);
+
+    void inject(SearchActivity activity);
 
     void inject(OnboardFragment fragment);
 

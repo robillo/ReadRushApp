@@ -45,6 +45,9 @@ import com.robillo.readrush.ui.onboard.OnboardPresenter;
 import com.robillo.readrush.ui.onboard.fragment.OnboardFMvpPresenter;
 import com.robillo.readrush.ui.onboard.fragment.OnboardFMvpView;
 import com.robillo.readrush.ui.onboard.fragment.OnboardFPresenter;
+import com.robillo.readrush.ui.search.SearchMvpPresenter;
+import com.robillo.readrush.ui.search.SearchMvpView;
+import com.robillo.readrush.ui.search.SearchPresenter;
 import com.robillo.readrush.ui.splash.SplashMvpPresenter;
 import com.robillo.readrush.ui.splash.SplashMvpView;
 import com.robillo.readrush.ui.splash.SplashPresenter;
@@ -100,6 +103,20 @@ public class ActivityModule {
     }
 
     @Provides
+    @PerActivity
+    LoginMvpPresenter<LoginMvpView> provideLoginPresenter(
+            LoginPresenter<LoginMvpView> presenter) {
+        return presenter;
+    }
+
+    @Provides
+    @PerActivity
+    SearchMvpPresenter<SearchMvpView> provideSearchPresenter(
+            SearchPresenter<SearchMvpView> presenter) {
+        return presenter;
+    }
+
+    @Provides
     PreferenceMvpPresenter<PreferenceMvpView> providePreferencePresenter(
             PreferencePresenter<PreferenceMvpView> presenter) {
         return presenter;
@@ -108,13 +125,6 @@ public class ActivityModule {
     @Provides
     MainMvpPresenter<MainMvpView> provideMainPresenter(
             MainPresenter<MainMvpView> presenter) {
-        return presenter;
-    }
-
-    @Provides
-    @PerActivity
-    LoginMvpPresenter<LoginMvpView> provideLoginPresenter(
-            LoginPresenter<LoginMvpView> presenter) {
         return presenter;
     }
 
