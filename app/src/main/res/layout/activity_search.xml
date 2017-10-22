@@ -36,4 +36,58 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0sp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:id="@+id/layout_suggestions">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30sp"
+            android:textSize="20sp"
+            android:gravity="center_vertical"
+            android:paddingLeft="15sp"
+            android:textColor="@color/colorTextOne"
+            tools:ignore="MissingPrefix"
+            fontPath="fonts/three.ttf"
+            android:text="Suggestions"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/suggestions"
+            android:paddingTop="10sp"
+            android:paddingBottom="10sp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0sp"
+        android:layout_weight="2"
+        android:orientation="vertical"
+        android:id="@+id/layout_search_history">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30sp"
+            android:textSize="20sp"
+            android:gravity="center_vertical"
+            android:paddingLeft="15sp"
+            android:textColor="@color/colorTextOne"
+            tools:ignore="MissingPrefix"
+            fontPath="fonts/three.ttf"
+            android:text="Search History"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/search_history"
+            android:paddingTop="10sp"
+            android:paddingBottom="10sp"/>
+
+    </LinearLayout>
+
 </LinearLayout>
