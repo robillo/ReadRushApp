@@ -73,7 +73,7 @@ public class SearchActivity extends BaseActivity implements SearchMvpView {
 
     @Override
     protected void setUp() {
-
+        showSuggestions();
     }
 
     @Override
@@ -88,7 +88,6 @@ public class SearchActivity extends BaseActivity implements SearchMvpView {
         mFeatureAdapter = new FeaturedAdapter(mFeatureList, this);
         Animation animation = AnimationUtils.loadAnimation(this, R.anim.slide_in_left);
         mSuggestionsRv.setAdapter(mFeatureAdapter);
-        mLayoutSuggestions.setVisibility(View.VISIBLE);
         mLayoutSuggestions.setAnimation(animation);
     }
 
