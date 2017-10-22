@@ -23,7 +23,8 @@
             android:textColor="@color/white"
             android:textColorHint="@color/colorTextFour"
             android:background="@color/colorTextThree"
-            android:paddingLeft="15sp"/>
+            android:paddingLeft="15sp"
+            android:id="@+id/search"/>
 
         <ImageView
             android:layout_width="0sp"
@@ -32,7 +33,9 @@
             android:layout_margin="5sp"
             android:src="@drawable/ic_search_black_24dp"
             android:scaleType="centerInside"
-            android:tint="@color/colorTextOne"/>
+            android:tint="@color/colorTextOne"
+            android:id="@+id/search_buttom"
+            android:contentDescription="Search Button"/>
 
     </LinearLayout>
 
