@@ -7,4 +7,9 @@ import com.robillo.readrush.ui.base.MvpView;
  */
 
 public interface SearchMvpView extends MvpView {
+
+    void showSuggestions();
+
+    void showSearchHistory();
+
 }

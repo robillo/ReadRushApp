@@ -44,7 +44,8 @@
         android:layout_height="0sp"
         android:layout_weight="1"
         android:orientation="vertical"
-        android:id="@+id/layout_suggestions">
+        android:id="@+id/layout_suggestions"
+        android:visibility="gone">
 
         <TextView
             android:layout_width="match_parent"
@@ -71,7 +72,8 @@
         android:layout_height="0sp"
         android:layout_weight="2"
         android:orientation="vertical"
-        android:id="@+id/layout_search_history">
+        android:id="@+id/layout_search_history"
+        android:visibility="gone">
 
         <TextView
             android:layout_width="match_parent"
