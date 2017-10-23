@@ -60,7 +60,6 @@ dependencies {
     compile "com.hanks:htextview-scale:$rootProject.ext.htextviewVersion"
 
     // image
-    
 
     // parser
     compile "com.google.code.gson:gson:$rootProject.ext.gsonVersion"
@@ -78,13 +77,12 @@ dependencies {
     compile "com.willowtreeapps.spruce:spruce-android:$rootProject.ext.spruceVersion"
 
     //avi loading
-    
 
     //Navigation Tab Bar
     compile "devlight.io:navigationtabbar:$rootProject.ext.navTabBarVersion"
 
     //circle imageview
-    
+
     //rxJava
     compile "io.reactivex.rxjava2:rxjava:$rootProject.ext.rxjava2Version"
     compile "io.reactivex.rxjava2:rxandroid:$rootProject.ext.rxandroidVersion"
