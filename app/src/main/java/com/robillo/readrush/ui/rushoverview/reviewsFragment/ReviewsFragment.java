@@ -1,4 +1,4 @@
-package com.robillo.readrush.ui.rushoverview.overviewFragment;
+package com.robillo.readrush.ui.rushoverview.reviewsFragment;
 
 
 import android.os.Bundle;
@@ -10,8 +10,6 @@ import android.view.ViewGroup;
 import com.robillo.readrush.R;
 import com.robillo.readrush.di.component.ActivityComponent;
 import com.robillo.readrush.ui.base.BaseFragment;
-import com.robillo.readrush.ui.main.discover.DiscoverFragment;
-import com.robillo.readrush.ui.main.discover.PagerFragment.PagerFragment;
 
 import javax.inject.Inject;
 
@@ -20,35 +18,30 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class OverviewFragment extends BaseFragment implements OverviewFragmentMvpView {
+public class ReviewsFragment extends BaseFragment implements ReviewsMvpView {
 
     @Inject
-    OverviewFragmentMvpPresenter<OverviewFragmentMvpView> mPresenter;
+    ReviewsMvpPresenter<ReviewsMvpView> mPresenter;
 
-    public OverviewFragment() {
+    public ReviewsFragment() {
         // Required empty public constructor
-    }
-
-    public static OverviewFragment newInstance(Bundle bundle) {
-        //        fragment.setArguments(bundle);
-        return new OverviewFragment();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_overview, container, false);
+        View v = inflater.inflate(R.layout.fragment_reviews, container, false);
 
         ActivityComponent component = getActivityComponent();
-        if(component!=null){
 
-            component.inject(OverviewFragment.this);
+        if(getActivityComponent()!=null){
+
+            component.inject(ReviewsFragment.this);
 
             setUnBinder(ButterKnife.bind(this, v));
 
-            mPresenter.onAttach(OverviewFragment.this);
-
+            mPresenter.onAttach(ReviewsFragment.this);
         }
 
         setUp(v);
