@@ -48,6 +48,9 @@ import com.robillo.readrush.ui.onboard.fragment.OnboardFPresenter;
 import com.robillo.readrush.ui.rushoverview.OverviewMvpPresenter;
 import com.robillo.readrush.ui.rushoverview.OverviewMvpView;
 import com.robillo.readrush.ui.rushoverview.OverviewPresenter;
+import com.robillo.readrush.ui.rushoverview.overviewFragment.OverviewFragmentMvpPresenter;
+import com.robillo.readrush.ui.rushoverview.overviewFragment.OverviewFragmentMvpView;
+import com.robillo.readrush.ui.rushoverview.overviewFragment.OverviewFragmentPresenter;
 import com.robillo.readrush.ui.search.SearchMvpPresenter;
 import com.robillo.readrush.ui.search.SearchMvpView;
 import com.robillo.readrush.ui.search.SearchPresenter;
@@ -123,6 +126,12 @@ public class ActivityModule {
     @PerActivity
     OverviewMvpPresenter<OverviewMvpView> provideOverviewPresenter(
             OverviewPresenter<OverviewMvpView> presenter) {
+        return presenter;
+    }
+
+    @Provides
+    OverviewFragmentMvpPresenter<OverviewFragmentMvpView> provideOverviewFragmentPresenter(
+            OverviewFragmentPresenter<OverviewFragmentMvpView> presenter) {
         return presenter;
     }
 
