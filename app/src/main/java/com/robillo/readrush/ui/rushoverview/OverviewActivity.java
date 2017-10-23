@@ -1,10 +1,13 @@
 package com.robillo.readrush.ui.rushoverview;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.robillo.readrush.R;
 import com.robillo.readrush.ui.base.BaseActivity;
+import com.robillo.readrush.ui.main.MainActivity;
 import com.robillo.readrush.ui.main.MainMvpView;
 import com.robillo.readrush.ui.rushoverview.overviewFragment.OverviewFragment;
 import com.robillo.readrush.ui.search.SearchActivity;
@@ -17,6 +20,10 @@ public class OverviewActivity extends BaseActivity implements OverviewMvpView {
 
     @Inject
     OverviewMvpPresenter<OverviewMvpView> mPresenter;
+
+    public static Intent getStartIntent(Context context) {
+        return new Intent(context, OverviewActivity.class);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

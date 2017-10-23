@@ -19,11 +19,13 @@ import com.robillo.readrush.R;
 import com.robillo.readrush.di.component.ActivityComponent;
 import com.robillo.readrush.ui.base.BaseFragment;
 import com.robillo.readrush.ui.onboard.fragment.OnboardFragment;
+import com.robillo.readrush.ui.rushoverview.OverviewActivity;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -140,5 +142,10 @@ public class LibraryFragment extends BaseFragment implements LibraryMvpView {
         mErrorDescription.setAnimation(animation);
         animation = AnimationUtils.loadAnimation(getActivity(), R.anim.slide_in_left);
         mErrorHeader.setAnimation(animation);
+    }
+
+    @OnClick(R.id.rush3)
+    public void clickmRushThree() {
+        startActivity(OverviewActivity.getStartIntent(getActivity()));
     }
 }

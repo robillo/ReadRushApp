@@ -27,9 +27,8 @@ public class OverviewFragment extends BaseFragment implements OverviewFragmentMv
     }
 
     public static OverviewFragment newInstance(Bundle bundle) {
-        OverviewFragment fragment = new OverviewFragment();
-        fragment.setArguments(bundle);
-        return fragment;
+        //        fragment.setArguments(bundle);
+        return new OverviewFragment();
     }
 
     @Override
@@ -45,7 +44,7 @@ public class OverviewFragment extends BaseFragment implements OverviewFragmentMv
 
             setUnBinder(ButterKnife.bind(this, v));
 
-            mPresenter.onAttach(OverviewFragment.this);
+//            mPresenter.onAttach(OverviewFragment.this);
 
         }
 

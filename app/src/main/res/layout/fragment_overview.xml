@@ -7,8 +7,8 @@
     tools:context="com.robillo.readrush.ui.rushoverview.overviewFragment.OverviewFragment">
 
     <ImageView
-        android:layout_width="?attr/actionBarSize"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_width="40sp"
+        android:layout_height="40sp"
         android:src="@drawable/ic_clear_black_24dp"
         android:scaleType="centerInside"
         android:layout_gravity="end"
@@ -36,7 +36,7 @@
                 android:layout_height="match_parent"
                 android:contentDescription="Cover"
                 android:scaleType="centerCrop"
-                tools:src="@drawable/cover3"/>
+                android:src="@drawable/cover3"/>
 
         </android.support.v7.widget.CardView>
 
@@ -56,9 +56,9 @@
                 tools:ignore="MissingPrefix"
                 fontPath="fonts/four.ttf"
                 android:layout_gravity="center_horizontal"
-                tools:text="Perfect Dutch"
-                android:paddingTop="10sp"
-                android:paddingBottom="10sp"
+                android:text="Perfect Dutch"
+                android:paddingTop="5sp"
+                android:paddingBottom="5sp"
                 android:paddingLeft="20sp"
                 android:paddingRight="20sp"
                 android:id="@+id/name"/>
@@ -73,9 +73,9 @@
                 tools:ignore="MissingPrefix"
                 fontPath="fonts/four.ttf"
                 android:layout_gravity="center_horizontal"
-                tools:text="Mark Manson"
-                android:paddingTop="10sp"
-                android:paddingBottom="10sp"
+                android:text="Mark Manson"
+                android:paddingTop="5sp"
+                android:paddingBottom="5sp"
                 android:paddingLeft="20sp"
                 android:paddingRight="20sp"
                 android:id="@+id/author"/>
@@ -92,7 +92,7 @@
                 fontPath="fonts/four.ttf"
                 android:maxLines="3"
                 android:layout_gravity="center_horizontal"
-                tools:text="This book refers to the early Dutch people who were esteemed guests of Americans and were against slavery."
+                android:text="This book refers to the early Dutch people who were esteemed guests of Americans and were against slavery."
                 android:paddingTop="10sp"
                 android:paddingBottom="10sp"
                 android:paddingLeft="20sp"
@@ -123,7 +123,7 @@
                         fontPath="fonts/four.ttf"
                         android:background="?attr/selectableItemBackground"
                         android:layout_gravity="center_horizontal"
-                        tools:text="See Reviews"
+                        android:text="See Reviews"
                         android:paddingTop="10sp"
                         android:paddingBottom="10sp"
                         android:paddingLeft="20sp"
@@ -149,7 +149,7 @@
                         fontPath="fonts/four.ttf"
                         android:background="?attr/selectableItemBackground"
                         android:layout_gravity="center_horizontal"
-                        tools:text="Add Rush"
+                        android:text="Add Rush"
                         android:paddingTop="10sp"
                         android:paddingBottom="10sp"
                         android:paddingLeft="20sp"
