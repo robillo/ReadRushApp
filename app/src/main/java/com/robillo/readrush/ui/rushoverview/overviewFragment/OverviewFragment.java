@@ -11,6 +11,7 @@ import com.robillo.readrush.R;
 import com.robillo.readrush.di.component.ActivityComponent;
 import com.robillo.readrush.ui.base.BaseFragment;
 import com.robillo.readrush.ui.main.discover.DiscoverFragment;
+import com.robillo.readrush.ui.main.discover.PagerFragment.PagerFragment;
 
 import butterknife.ButterKnife;
 
@@ -25,6 +26,11 @@ public class OverviewFragment extends BaseFragment implements OverviewFragmentMv
         // Required empty public constructor
     }
 
+    public static OverviewFragment newInstance(Bundle bundle) {
+        OverviewFragment fragment = new OverviewFragment();
+        fragment.setArguments(bundle);
+        return fragment;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

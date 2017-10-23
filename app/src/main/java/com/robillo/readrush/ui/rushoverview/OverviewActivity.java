@@ -6,6 +6,7 @@ import android.os.Bundle;
 import com.robillo.readrush.R;
 import com.robillo.readrush.ui.base.BaseActivity;
 import com.robillo.readrush.ui.main.MainMvpView;
+import com.robillo.readrush.ui.rushoverview.overviewFragment.OverviewFragment;
 import com.robillo.readrush.ui.search.SearchActivity;
 
 import javax.inject.Inject;
@@ -33,6 +34,11 @@ public class OverviewActivity extends BaseActivity implements OverviewMvpView {
 
     @Override
     protected void setUp() {
+        setOverviewFragment();
+    }
 
+    @Override
+    public void setOverviewFragment() {
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, OverviewFragment.newInstance(null)).commit();
     }
 }
