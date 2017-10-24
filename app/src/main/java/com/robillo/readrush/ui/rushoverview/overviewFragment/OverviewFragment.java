@@ -66,7 +66,7 @@ public class OverviewFragment extends BaseFragment implements OverviewFragmentMv
     @Override
     public void setReviewsFragment() {
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-        transaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_in_right);
+        transaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
         transaction.add(R.id.container, ReviewsFragment.newInstance(null)).commit();
     }
 
