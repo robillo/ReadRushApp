@@ -10,6 +10,4 @@ public interface OverviewMvpView extends MvpView {
 
     void setOverviewFragment();
 
-    void setReviewsFragment();
-
 }

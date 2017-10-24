@@ -12,10 +12,12 @@ import com.robillo.readrush.di.component.ActivityComponent;
 import com.robillo.readrush.ui.base.BaseFragment;
 import com.robillo.readrush.ui.main.discover.DiscoverFragment;
 import com.robillo.readrush.ui.main.discover.PagerFragment.PagerFragment;
+import com.robillo.readrush.ui.rushoverview.reviewsFragment.ReviewsFragment;
 
 import javax.inject.Inject;
 
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -58,5 +60,15 @@ public class OverviewFragment extends BaseFragment implements OverviewFragmentMv
     @Override
     protected void setUp(View view) {
 
+    }
+
+    @Override
+    public void setReviewsFragment() {
+        getActivity().getSupportFragmentManager().beginTransaction().add(R.id.container, ReviewsFragment.newInstance(null)).commit();
+    }
+
+    @OnClick(R.id.reviews)
+    public void seeReviews() {
+        setReviewsFragment();
     }
 }

@@ -50,14 +50,4 @@ public class OverviewActivity extends BaseActivity implements OverviewMvpView {
     public void setOverviewFragment() {
         getSupportFragmentManager().beginTransaction().replace(R.id.container, OverviewFragment.newInstance(null)).commit();
     }
-
-    @Override
-    public void setReviewsFragment() {
-        getSupportFragmentManager().beginTransaction().add(R.id.container, ReviewsFragment.newInstance(null)).commit();
-    }
-
-    @OnClick(R.id.reviews)
-    public void seeReviews() {
-
-    }
 }

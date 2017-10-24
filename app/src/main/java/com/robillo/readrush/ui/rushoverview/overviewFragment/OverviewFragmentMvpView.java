@@ -7,4 +7,7 @@ import com.robillo.readrush.ui.base.MvpView;
  */
 
 public interface OverviewFragmentMvpView extends MvpView {
+
+    void setReviewsFragment();
+
 }
