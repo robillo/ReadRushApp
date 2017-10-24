@@ -3,6 +3,7 @@ package com.robillo.readrush.ui.rushoverview.overviewFragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,7 +65,9 @@ public class OverviewFragment extends BaseFragment implements OverviewFragmentMv
 
     @Override
     public void setReviewsFragment() {
-        getActivity().getSupportFragmentManager().beginTransaction().add(R.id.container, ReviewsFragment.newInstance(null)).commit();
+        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+        transaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_in_right);
+        transaction.add(R.id.container, ReviewsFragment.newInstance(null)).commit();
     }
 
     @OnClick(R.id.reviews)
