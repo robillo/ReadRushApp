@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import com.robillo.readrush.R;
 import com.robillo.readrush.di.component.ActivityComponent;
 import com.robillo.readrush.ui.base.BaseFragment;
+import com.robillo.readrush.ui.rushoverview.overviewFragment.OverviewFragment;
 
 import javax.inject.Inject;
 
@@ -25,6 +26,11 @@ public class ReviewsFragment extends BaseFragment implements ReviewsMvpView {
 
     public ReviewsFragment() {
         // Required empty public constructor
+    }
+
+    public static ReviewsFragment newInstance(Bundle bundle) {
+        //        fragment.setArguments(bundle);
+        return new ReviewsFragment();
     }
 
     @Override

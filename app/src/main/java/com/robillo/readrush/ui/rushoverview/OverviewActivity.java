@@ -10,11 +10,13 @@ import com.robillo.readrush.ui.base.BaseActivity;
 import com.robillo.readrush.ui.main.MainActivity;
 import com.robillo.readrush.ui.main.MainMvpView;
 import com.robillo.readrush.ui.rushoverview.overviewFragment.OverviewFragment;
+import com.robillo.readrush.ui.rushoverview.reviewsFragment.ReviewsFragment;
 import com.robillo.readrush.ui.search.SearchActivity;
 
 import javax.inject.Inject;
 
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class OverviewActivity extends BaseActivity implements OverviewMvpView {
 
@@ -47,5 +49,15 @@ public class OverviewActivity extends BaseActivity implements OverviewMvpView {
     @Override
     public void setOverviewFragment() {
         getSupportFragmentManager().beginTransaction().replace(R.id.container, OverviewFragment.newInstance(null)).commit();
+    }
+
+    @Override
+    public void setReviewsFragment() {
+        getSupportFragmentManager().beginTransaction().add(R.id.container, ReviewsFragment.newInstance(null)).commit();
+    }
+
+    @OnClick(R.id.reviews)
+    public void seeReviews() {
+
     }
 }
