@@ -56,4 +56,13 @@ public class MyChatEditText extends LinearLayout {
         ((EditText) findViewById(R.id.edit_text)).setHint(hint);
         postInvalidate();
     }
+
+    public String getText() {
+        return ((EditText) findViewById(R.id.edit_text)).getText().toString();
+    }
+
+    public void nullify() {
+        ((EditText) findViewById(R.id.edit_text)).setText(null);
+        postInvalidate();
+    }
 }

@@ -102,7 +102,6 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
     @Override
     public void loadConversations() {
         mConversations = mPresenter.loadLists(loadArray(R.array.ken_text_initial), loadArray(R.array.chat_edit_text_hint_initial), loadArray(R.array.chat_primary_initial), loadArray(R.array.chat_secondary_initial));
-
     }
 
     @Override
@@ -193,15 +192,108 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
         }
     }
 
-    @OnClick(R.id.next)
-    public void goNext() {
-        if(page!=mConversations.size()-1){
-            page+=1;
-            setUp();
+//    @OnClick(R.id.next)
+//    public void goNext() {
+//        if(page!=mConversations.size()-1){
+//            page+=1;
+//            setUp();
+//        }
+//        else {
+////            startActivity(PreferenceActivity.getStartIntent(this), mBundle);
+//            startActivity(PreferenceActivity.getStartIntent(this));
+//        }
+//    }
+
+    @OnClick(R.id.chat_primary)
+    public void goNextCP() {
+        if(myChatEditText.getText()!=null) {
+            myChatEditText.nullify();
         }
-        else {
+
+        switch (page) {
+            case 0:{
+                page++;
+                setUp();
+                break;
+            }
+            case 1:{
+                page++;
+                mConversations = mPresenter.loadLists(loadArray(R.array.ken_text_login), loadArray(R.array.chat_edit_text_hint_login), loadArray(R.array.chat_primary_login), loadArray(R.array.chat_secondary_login));
+                setUp();
+                break;
+            }
+            case 2:{
+                page++;
+                setUp();
+                break;
+            }
+            case 3:{
+                page++;
+                setUp();
+                break;
+            }
+            default:{
 //            startActivity(PreferenceActivity.getStartIntent(this), mBundle);
-            startActivity(PreferenceActivity.getStartIntent(this));
+                startActivity(PreferenceActivity.getStartIntent(this));
+            }
+        }
+    }
+
+    @OnClick(R.id.chat_secondary)
+    public void goNextCS() {
+        if(myChatEditText.getText()!=null) {
+            myChatEditText.nullify();
+        }
+
+        switch (page) {
+            case 0:{
+                page++;
+                setUp();
+                break;
+            }
+            case 1:{
+                mConversations = mPresenter.loadLists(loadArray(R.array.ken_text_register), loadArray(R.array.chat_edit_text_hint_register), loadArray(R.array.chat_primary_register), loadArray(R.array.chat_secondary_register));
+                break;
+            }
+            case 2:{
+                page++;
+                setUp();
+                break;
+            }
+            case 3:{
+                page++;
+                setUp();
+                break;
+            }
+            case 4:{
+                page++;
+                setUp();
+                break;
+            }
+            case 5:{
+                page++;
+                setUp();
+                break;
+            }
+            case 6:{
+                page++;
+                setUp();
+                break;
+            }
+            case 7:{
+                page++;
+                setUp();
+                break;
+            }
+            case 8:{
+                page++;
+                setUp();
+                break;
+            }
+            default:{
+//            startActivity(PreferenceActivity.getStartIntent(this), mBundle);
+                startActivity(PreferenceActivity.getStartIntent(this));
+            }
         }
     }
 

@@ -53,47 +53,27 @@
     <string-array name="ken_text_login">
         <item>Hi, I am Ken. I can help you learn something useful in a very short span of time.</item>
         <item>Have we met before?</item>
-        <item>Pleased to meet you. To keep your data safe, we need to set you up a private account.</item>
-        <item>You can always change your answer by tapping on it.</item>
         <item>Please give us your email Id.</item>
-        <item>Now, set up a strong password to keep your account safe.</item>
-        <item>Almost there! \nThe more you tell me, the smarter I get. So I am going to ask you a few questions that will help me personalise the content for you.</item>
-        <item>Great! What is your name?</item>
-        <item>OK mile, you can start by telling me your preferences of books.</item>
+        <item>Please give us your password.</item>
     </string-array>
 
     <string-array name="chat_edit_text_hint_login">
         <item>NULL</item>
         <item>NULL</item>
-        <item>NULL</item>
-        <item>NULL</item>
         <item>@string/sample_email</item>
         <item>Test123@</item>
-        <item>NULL</item>
-        <item>Elon Musk</item>
-        <item>NULL</item>
     </string-array>
 
     <string-array name="chat_primary_login">
         <item>Okay</item>
         <item>Yes</item>
-        <item>Okay</item>
-        <item>Okay</item>
         <item>Done</item>
         <item>Done</item>
-        <item>Okay</item>
-        <item>Done</item>
-        <item>Okay</item>
     </string-array>
 
     <string-array name="chat_secondary_login">
         <item>NULL</item>
         <item>No</item>
-        <item>NULL</item>
-        <item>NULL</item>
-        <item>NULL</item>
-        <item>NULL</item>
-        <item>NULL</item>
         <item>NULL</item>
         <item>NULL</item>
     </string-array>
