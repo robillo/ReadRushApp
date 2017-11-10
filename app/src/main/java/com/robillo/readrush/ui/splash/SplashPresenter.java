@@ -5,7 +5,9 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.robillo.readrush.R;
+import com.robillo.readrush.ReadRushApp;
 import com.robillo.readrush.data.DataManager;
+import com.robillo.readrush.data.prefs.AppPreferencesHelper;
 import com.robillo.readrush.ui.base.BasePresenter;
 import com.robillo.readrush.utils.rx.SchedulerProvider;
 
@@ -40,7 +42,7 @@ public class SplashPresenter<V extends SplashMvpView> extends BasePresenter<V> i
             @Override
             public void run() {
                 if(getMvpView() != null){
-                    getMvpView().openOnBoardActivity();
+                    getMvpView().startNextActivity();
                 }
             }
         }, millis);

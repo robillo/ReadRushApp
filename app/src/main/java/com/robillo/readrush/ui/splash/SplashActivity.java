@@ -8,8 +8,11 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
 import com.robillo.readrush.R;
+import com.robillo.readrush.ReadRushApp;
+import com.robillo.readrush.data.prefs.AppPreferencesHelper;
 import com.robillo.readrush.ui.base.BaseActivity;
 import com.robillo.readrush.ui.login.LoginActivity;
+import com.robillo.readrush.ui.main.MainActivity;
 import com.robillo.readrush.ui.onboard.OnboardActivity;
 
 import javax.inject.Inject;
@@ -69,12 +72,26 @@ public class SplashActivity extends BaseActivity implements SplashMvpView {
 
     @Override
     public void openMainActivity() {
-
+        startActivity(MainActivity.getStartIntent(this));
     }
 
     @Override
     public void startSyncService() {
 
+    }
+
+    @Override
+    public void startNextActivity() {
+        AppPreferencesHelper helper = new AppPreferencesHelper(this, ReadRushApp.PREF_FILE_NAME);
+        if(!helper.getUserIsOnBoarded()){
+            openOnBoardActivity();
+        }
+        else if(!helper.getUserIsLoggedIn()){
+            openLoginActivity();
+        }
+        else {
+            openMainActivity();
+        }
     }
 
     @Override
