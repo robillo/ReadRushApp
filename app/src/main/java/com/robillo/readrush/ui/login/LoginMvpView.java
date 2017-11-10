@@ -21,6 +21,6 @@ public interface LoginMvpView extends MvpView {
 
     void setUpWindowAnimations();
 
-    void setIsOnboarded();
+    void setIsOnBoarded();
 
 }

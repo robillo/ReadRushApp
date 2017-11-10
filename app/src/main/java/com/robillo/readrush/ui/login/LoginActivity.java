@@ -96,6 +96,7 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
         setUpWindowAnimations();
         loadConversations();
         setPageDetails(page);
+        setIsOnBoarded();
     }
 
     @Override
@@ -175,7 +176,7 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
     }
 
     @Override
-    public void setIsOnboarded() {
+    public void setIsOnBoarded() {
         new Handler().post(new Runnable() {
             @Override
             public void run() {

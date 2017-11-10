@@ -49,6 +49,77 @@ public class AppDataManager implements DataManager {
         mPreferencesHelper.setAccessToken(accessToken);
 //        mApiHelper.getApiHeader().getProtectedApiHeader().setAccessToken(accessToken);
     }
+
+    @Override
+    public void setUserEmail(String email) {
+
+    }
+
+    @Override
+    public String getUserEmail() {
+        return null;
+    }
+
+    @Override
+    public void setUserName(String userName) {
+
+    }
+
+    @Override
+    public String getUserName() {
+        return null;
+    }
+
+    @Override
+    public void setUserPassword(String userPassword) {
+
+    }
+
+    @Override
+    public String getUserPassword() {
+        return null;
+    }
+
+    @Override
+    public void setUserPreference1(String userPreference1) {
+
+    }
+
+    @Override
+    public String getUserPreference1() {
+        return null;
+    }
+
+    @Override
+    public void setUserPreference2(String userPreference2) {
+
+    }
+
+    @Override
+    public String getUserPreference2() {
+        return null;
+    }
+
+    @Override
+    public void setUserIsLoggedIn(boolean isLoggedIn) {
+
+    }
+
+    @Override
+    public boolean getUserIsLoggedIn() {
+        return false;
+    }
+
+    @Override
+    public void setUserIsOnBoarded(boolean isOnBoarded) {
+
+    }
+
+    @Override
+    public boolean getUserIsOnBoarded() {
+        return false;
+    }
+
     @Override
     public int getCurrentUserLoggedInMode() {
         return mPreferencesHelper.getCurrentUserLoggedInMode();
