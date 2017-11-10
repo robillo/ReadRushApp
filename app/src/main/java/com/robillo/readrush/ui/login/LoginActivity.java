@@ -101,7 +101,7 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
 
     @Override
     public void loadConversations() {
-        mConversations = mPresenter.loadLists(loadArray(R.array.ken_text), loadArray(R.array.chat_edit_text_hint), loadArray(R.array.chat_primary), loadArray(R.array.chat_secondary));
+        mConversations = mPresenter.loadLists(loadArray(R.array.ken_text_initial), loadArray(R.array.chat_edit_text_hint_initial), loadArray(R.array.chat_primary_initial), loadArray(R.array.chat_secondary_initial));
 
     }
 
