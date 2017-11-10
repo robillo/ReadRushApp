@@ -32,4 +32,34 @@ public interface PreferencesHelper {
 
     void setAccessToken(String accessToken);
 
+    //RR
+
+    void setUserEmail(String email);
+
+    String getUserEmail();
+
+    void setUserName(String userName);
+
+    String getUserName();
+
+    void setUserPassword(String userPassword);
+
+    String getUserPassword();
+
+    void setUserPreference1(String userPreference1);
+
+    String getUserPreference1();
+
+    void setUserPreference2(String userPreference2);
+
+    String getUserPreference2();
+
+    void setUserIsLoggedIn(boolean isLoggedIn);
+
+    boolean getUserIsLoggedIn();
+
+    void setUserIsOnBoarded(boolean isOnBoarded);
+
+    boolean getUserIsOnBoarded();
+
 }
