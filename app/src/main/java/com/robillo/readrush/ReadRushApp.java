@@ -23,6 +23,8 @@ public class ReadRushApp extends Application{
     @Inject
     DataManager mDataManager;
 
+    public static final String PREF_FILE_NAME = "READRUSH";
+
     private ApplicationComponent mApplicationComponent;
 
     @Override

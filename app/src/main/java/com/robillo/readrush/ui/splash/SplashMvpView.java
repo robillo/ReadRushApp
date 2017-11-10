@@ -8,6 +8,8 @@ import com.robillo.readrush.ui.base.MvpView;
 
 public interface SplashMvpView extends MvpView {
 
+    void openOnBoardActivity();
+
     void openLoginActivity();
 
     void openMainActivity();

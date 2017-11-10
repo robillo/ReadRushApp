@@ -9,6 +9,7 @@ import android.view.animation.AnimationUtils;
 
 import com.robillo.readrush.R;
 import com.robillo.readrush.ui.base.BaseActivity;
+import com.robillo.readrush.ui.login.LoginActivity;
 import com.robillo.readrush.ui.onboard.OnboardActivity;
 
 import javax.inject.Inject;
@@ -57,8 +58,13 @@ public class SplashActivity extends BaseActivity implements SplashMvpView {
     }
 
     @Override
-    public void openLoginActivity() {
+    public void openOnBoardActivity() {
         startActivity(OnboardActivity.getStartIntent(this));
+    }
+
+    @Override
+    public void openLoginActivity() {
+        startActivity(LoginActivity.getStartIntent(this));
     }
 
     @Override

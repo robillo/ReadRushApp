@@ -60,7 +60,8 @@ public class PreferenceActivity extends BaseActivity implements PreferenceMvpVie
 
     @OnClick(R.id.done)
     public void onDone() {
-        startActivity(MainActivity.getStartIntent(this), mBundle);
+//        startActivity(MainActivity.getStartIntent(this), mBundle);
+        startActivity(MainActivity.getStartIntent(this));
     }
 
     @Override
@@ -85,7 +86,7 @@ public class PreferenceActivity extends BaseActivity implements PreferenceMvpVie
             fade.setDuration(400);
             getWindow().setExitTransition(fade);
 
-            mBundle = ActivityOptions.makeSceneTransitionAnimation(this).toBundle();
+//            mBundle = ActivityOptions.makeSceneTransitionAnimation(this).toBundle();
         }
     }
 }

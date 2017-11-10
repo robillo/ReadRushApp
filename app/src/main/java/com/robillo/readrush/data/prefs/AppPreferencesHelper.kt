@@ -77,59 +77,59 @@ constructor(@ApplicationContext context: Context, @PreferenceInfo prefFileName: 
     //RR SHAREDPREFS FUNCTIONS
 
 
-    override fun setUserEmail(email: String) {
+    public override fun setUserEmail(email: String) {
         mPrefs.edit().putString(PREF_KEY_EMAIL, email).apply();
     }
 
-    override fun getUserEmail(): String? {
+    public override fun getUserEmail(): String? {
         return mPrefs.getString(PREF_KEY_EMAIL, null);
     }
 
-    override fun setUserName(userName: String?) {
+    public override fun setUserName(userName: String?) {
         mPrefs.edit().putString(PREF_KEY_USERNAME, userName).apply();
     }
 
-    override fun getUserName(): String {
+    public override fun getUserName(): String {
         return mPrefs.getString(PREF_KEY_USERNAME, null);
     }
 
-    override fun setUserPassword(userPassword: String?) {
+    public override fun setUserPassword(userPassword: String?) {
         mPrefs.edit().putString(PREF_KEY_PASSWORD, userPassword).apply();
     }
 
-    override fun getUserPassword(): String {
+    public override fun getUserPassword(): String {
         return mPrefs.getString(PREF_KEY_PASSWORD, null);
     }
 
-    override fun setUserPreference1(userPreference1: String?) {
+    public override fun setUserPreference1(userPreference1: String?) {
         mPrefs.edit().putString(PREF_KEY_PREFERENCE_1, userPreference1).apply();
     }
 
-    override fun getUserPreference1(): String {
+    public override fun getUserPreference1(): String {
         return mPrefs.getString(PREF_KEY_PREFERENCE_1, null);
     }
 
-    override fun setUserPreference2(userPreference2: String?) {
+    public override fun setUserPreference2(userPreference2: String?) {
         mPrefs.edit().putString(PREF_KEY_PREFERENCE_2, userPreference2).apply();
     }
 
-    override fun getUserPreference2(): String {
+    public override fun getUserPreference2(): String {
         return mPrefs.getString(PREF_KEY_PREFERENCE_2, null);
     }
 
-    override fun setUserIsLoggedIn(isLoggedIn: Boolean) {
+    public override fun setUserIsLoggedIn(isLoggedIn: Boolean) {
         mPrefs.edit().putBoolean(PREF_KEY_IS_LOGGED_IN, isLoggedIn).apply();
     }
 
-    override fun getUserIsLoggedIn(): Boolean {
+    public override fun getUserIsLoggedIn(): Boolean {
         return mPrefs.getBoolean(PREF_KEY_IS_LOGGED_IN, false);
     }
 
-    override fun setUserIsOnBoarded(isOnBoarded: Boolean) {
+    public override fun setUserIsOnBoarded(isOnBoarded: Boolean) {
         mPrefs.edit().putBoolean(PREF_KEY_IS_ON_BOARDED, isOnBoarded).apply();
     }
 
-    override fun getUserIsOnBoarded(): Boolean {
+    public override fun getUserIsOnBoarded(): Boolean {
         return mPrefs.getBoolean(PREF_KEY_IS_ON_BOARDED, false);
     }
 

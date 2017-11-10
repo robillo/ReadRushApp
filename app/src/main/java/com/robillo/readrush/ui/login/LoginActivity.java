@@ -17,7 +17,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.robillo.readrush.R;
+import com.robillo.readrush.ReadRushApp;
 import com.robillo.readrush.data.others.Conversation;
+import com.robillo.readrush.data.prefs.AppPreferencesHelper;
 import com.robillo.readrush.ui.base.BaseActivity;
 import com.robillo.readrush.ui.custom.MyChatEditText;
 import com.robillo.readrush.ui.custom.MyChatView;
@@ -168,8 +170,18 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
             Fade fade = new Fade();
             fade.setDuration(400);
             getWindow().setExitTransition(fade);
-            mBundle = ActivityOptions.makeSceneTransitionAnimation(this).toBundle();
+//            mBundle = ActivityOptions.makeSceneTransitionAnimation(this).toBundle();
         }
+    }
+
+    @Override
+    public void setIsOnboarded() {
+        new Handler().post(new Runnable() {
+            @Override
+            public void run() {
+                new AppPreferencesHelper(LoginActivity.this, ReadRushApp.PREF_FILE_NAME).setUserIsOnBoarded(true);
+            }
+        });
     }
 
     @OnClick(R.id.prev)
@@ -187,7 +199,8 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
             setUp();
         }
         else {
-            startActivity(PreferenceActivity.getStartIntent(this), mBundle);
+//            startActivity(PreferenceActivity.getStartIntent(this), mBundle);
+            startActivity(PreferenceActivity.getStartIntent(this));
         }
     }
 
