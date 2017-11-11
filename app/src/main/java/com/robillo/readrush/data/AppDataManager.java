@@ -121,6 +121,16 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
+    public void setUserEnterMode(String mode) {
+
+    }
+
+    @Override
+    public String getUserEnterMode() {
+        return null;
+    }
+
+    @Override
     public int getCurrentUserLoggedInMode() {
         return mPreferencesHelper.getCurrentUserLoggedInMode();
     }

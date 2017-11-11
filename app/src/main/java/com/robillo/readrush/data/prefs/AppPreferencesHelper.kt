@@ -2,6 +2,7 @@ package com.robillo.readrush.data.prefs
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.robillo.readrush.ReadRushApp
 
 import com.robillo.readrush.data.DataManager
 import com.robillo.readrush.di.ApplicationContext
@@ -77,60 +78,69 @@ constructor(@ApplicationContext context: Context, @PreferenceInfo prefFileName: 
     //RR SHAREDPREFS FUNCTIONS
 
 
-    public override fun setUserEmail(email: String) {
+    override fun setUserEmail(email: String) {
         mPrefs.edit().putString(PREF_KEY_EMAIL, email).apply();
     }
 
-    public override fun getUserEmail(): String? {
+    override fun getUserEmail(): String? {
         return mPrefs.getString(PREF_KEY_EMAIL, null);
     }
 
-    public override fun setUserName(userName: String?) {
+    override fun setUserName(userName: String?) {
         mPrefs.edit().putString(PREF_KEY_USERNAME, userName).apply();
     }
 
-    public override fun getUserName(): String {
+    override fun getUserName(): String {
         return mPrefs.getString(PREF_KEY_USERNAME, null);
     }
 
-    public override fun setUserPassword(userPassword: String?) {
+    override fun setUserPassword(userPassword: String?) {
         mPrefs.edit().putString(PREF_KEY_PASSWORD, userPassword).apply();
     }
 
-    public override fun getUserPassword(): String {
+    override fun getUserPassword(): String {
         return mPrefs.getString(PREF_KEY_PASSWORD, null);
     }
 
-    public override fun setUserPreference1(userPreference1: String?) {
+    override fun setUserPreference1(userPreference1: String?) {
         mPrefs.edit().putString(PREF_KEY_PREFERENCE_1, userPreference1).apply();
     }
 
-    public override fun getUserPreference1(): String {
+    override fun getUserPreference1(): String {
         return mPrefs.getString(PREF_KEY_PREFERENCE_1, null);
     }
 
-    public override fun setUserPreference2(userPreference2: String?) {
+    override fun setUserPreference2(userPreference2: String?) {
         mPrefs.edit().putString(PREF_KEY_PREFERENCE_2, userPreference2).apply();
     }
 
-    public override fun getUserPreference2(): String {
+    override fun getUserPreference2(): String {
         return mPrefs.getString(PREF_KEY_PREFERENCE_2, null);
     }
 
-    public override fun setUserIsLoggedIn(isLoggedIn: Boolean) {
+    override fun setUserIsLoggedIn(isLoggedIn: Boolean) {
         mPrefs.edit().putBoolean(PREF_KEY_IS_LOGGED_IN, isLoggedIn).apply();
     }
 
-    public override fun getUserIsLoggedIn(): Boolean {
+    override fun getUserIsLoggedIn(): Boolean {
         return mPrefs.getBoolean(PREF_KEY_IS_LOGGED_IN, false);
     }
 
-    public override fun setUserIsOnBoarded(isOnBoarded: Boolean) {
+    override fun setUserIsOnBoarded(isOnBoarded: Boolean) {
         mPrefs.edit().putBoolean(PREF_KEY_IS_ON_BOARDED, isOnBoarded).apply();
     }
 
-    public override fun getUserIsOnBoarded(): Boolean {
+    override fun getUserIsOnBoarded(): Boolean {
         return mPrefs.getBoolean(PREF_KEY_IS_ON_BOARDED, false);
+    }
+
+    //LOGIN OR REGISTER MODE
+    override fun setUserEnterMode(mode: String?) {
+        mPrefs.edit().putString(PREF_KEY_ENTER_MODE, mode).apply();
+    }
+
+    override fun getUserEnterMode(): String {
+        return  mPrefs.getString(PREF_KEY_ENTER_MODE, ReadRushApp.REGISTER_MODE);
     }
 
     companion object {
@@ -154,5 +164,6 @@ constructor(@ApplicationContext context: Context, @PreferenceInfo prefFileName: 
         private val PREF_KEY_PASSWORD = "PREF_KEY_PASSWORD"
         private val PREF_KEY_PREFERENCE_1 = "PREF_KEY_PREFERENCE_1"
         private val PREF_KEY_PREFERENCE_2 = "PREF_KEY_PREFERENCE_2"
+        private val PREF_KEY_ENTER_MODE = "PREF_KEY_ENTER_MODE"
     }
 }

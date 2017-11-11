@@ -23,6 +23,7 @@ import com.robillo.readrush.data.prefs.AppPreferencesHelper;
 import com.robillo.readrush.ui.base.BaseActivity;
 import com.robillo.readrush.ui.custom.MyChatEditText;
 import com.robillo.readrush.ui.custom.MyChatView;
+import com.robillo.readrush.ui.main.MainActivity;
 import com.robillo.readrush.ui.preference.PreferenceActivity;
 
 import java.util.ArrayList;
@@ -40,6 +41,7 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
     List<Conversation> mConversations = new ArrayList<>();
     @SuppressWarnings("FieldCanBeLocal")
     private static int page = 0;
+    private AppPreferencesHelper mPrefsHelper;
 
     @Inject
     LoginMvpPresenter<LoginMvpView> mPresenter;
@@ -94,9 +96,12 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
     @Override
     protected void setUp() {
         setUpWindowAnimations();
-        loadConversations();
+        if(page==0){
+            loadConversations();
+            setIsOnBoarded();
+            mPrefsHelper = new AppPreferencesHelper(this, ReadRushApp.PREF_FILE_NAME);
+        }
         setPageDetails(page);
-        setIsOnBoarded();
     }
 
     @Override
@@ -179,7 +184,7 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
         new Handler().post(new Runnable() {
             @Override
             public void run() {
-                new AppPreferencesHelper(LoginActivity.this, ReadRushApp.PREF_FILE_NAME).setUserIsOnBoarded(true);
+                mPrefsHelper.setUserIsOnBoarded(true);
             }
         });
     }
@@ -218,23 +223,43 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
             }
             case 1:{
                 page++;
+                mConversations = new ArrayList<>();
                 mConversations = mPresenter.loadLists(loadArray(R.array.ken_text_login), loadArray(R.array.chat_edit_text_hint_login), loadArray(R.array.chat_primary_login), loadArray(R.array.chat_secondary_login));
+                mPrefsHelper.setUserEnterMode(ReadRushApp.LOGIN_MODE);
                 setUp();
                 break;
             }
             case 2:{
-                page++;
-                setUp();
+                if(mPrefsHelper.getUserEnterMode().equals(ReadRushApp.LOGIN_MODE)){
+                    page++;
+                    setUp();
+                }
+                else {
+                    goNextCS();
+                }
                 break;
             }
             case 3:{
-                page++;
-                setUp();
+                if(mPrefsHelper.getUserEnterMode().equals(ReadRushApp.LOGIN_MODE)){
+                    //validate email id and password
+                    //start next activity
+
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            //startActivity(MainActivity.getStartIntent(this), mBundle);
+                            startActivity(MainActivity.getStartIntent(LoginActivity.this));
+                        }
+                    }, 2000);
+                }
+                else {
+                    goNextCS();
+                }
                 break;
             }
             default:{
-//            startActivity(PreferenceActivity.getStartIntent(this), mBundle);
-                startActivity(PreferenceActivity.getStartIntent(this));
+                goNextCS();
+                break;
             }
         }
     }
@@ -252,7 +277,11 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
                 break;
             }
             case 1:{
+                page++;
+                mConversations = new ArrayList<>();
                 mConversations = mPresenter.loadLists(loadArray(R.array.ken_text_register), loadArray(R.array.chat_edit_text_hint_register), loadArray(R.array.chat_primary_register), loadArray(R.array.chat_secondary_register));
+                mPrefsHelper.setUserEnterMode(ReadRushApp.REGISTER_MODE);
+                setUp();
                 break;
             }
             case 2:{
@@ -286,13 +315,17 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
                 break;
             }
             case 8:{
-                page++;
-                setUp();
+                //add email id and password to spf
+                //start preference activity
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        //startActivity(PreferenceActivity.getStartIntent(this), mBundle);
+                        startActivity(PreferenceActivity.getStartIntent(LoginActivity.this));
+                    }
+                }, 2000);
                 break;
-            }
-            default:{
-//            startActivity(PreferenceActivity.getStartIntent(this), mBundle);
-                startActivity(PreferenceActivity.getStartIntent(this));
             }
         }
     }

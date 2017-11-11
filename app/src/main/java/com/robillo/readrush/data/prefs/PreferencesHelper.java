@@ -58,8 +58,12 @@ public interface PreferencesHelper {
 
     boolean getUserIsLoggedIn();
 
-    void setUserIsOnBoarded(boolean isOnBoarded);
+    void setUserIsOnBoarded(@SuppressWarnings("SameParameterValue") boolean isOnBoarded);
 
     boolean getUserIsOnBoarded();
+
+    void setUserEnterMode(String mode);
+
+    String getUserEnterMode();
 
 }

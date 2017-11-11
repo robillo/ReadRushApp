@@ -21,9 +21,11 @@ import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 public class ReadRushApp extends Application{
 
     @Inject
-    DataManager mDataManager;
+    public DataManager mDataManager;
 
     public static final String PREF_FILE_NAME = "READRUSH";
+    public static String LOGIN_MODE = "LOGIN";
+    public static String REGISTER_MODE = "REGISTER";
 
     private ApplicationComponent mApplicationComponent;
 
