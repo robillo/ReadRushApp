@@ -10,4 +10,6 @@ public interface PreferenceMvpView extends MvpView {
 
     void setUpWindowAnimations();
 
+    void postUserDetails();
+
 }

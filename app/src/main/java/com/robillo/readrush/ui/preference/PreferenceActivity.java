@@ -5,14 +5,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.transition.Explode;
 import android.transition.Fade;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.robillo.readrush.R;
+import com.robillo.readrush.ReadRushApp;
+import com.robillo.readrush.data.prefs.AppPreferencesHelper;
 import com.robillo.readrush.ui.base.BaseActivity;
 import com.robillo.readrush.ui.main.MainActivity;
 
@@ -29,6 +33,7 @@ import butterknife.OnClick;
 public class PreferenceActivity extends BaseActivity implements PreferenceMvpView {
 
     private Bundle mBundle;
+    AppPreferencesHelper mPrefsHelper;
     PreferenceAdapter mAdapter;
     List<String> mList = new ArrayList<>();
 
@@ -49,7 +54,6 @@ public class PreferenceActivity extends BaseActivity implements PreferenceMvpVie
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_preferences);
-
         getActivityComponent().inject(PreferenceActivity.this);
 
         ButterKnife.bind(this);
@@ -62,11 +66,20 @@ public class PreferenceActivity extends BaseActivity implements PreferenceMvpVie
     @OnClick(R.id.done)
     public void onDone() {
 //        startActivity(MainActivity.getStartIntent(this), mBundle);
-        startActivity(MainActivity.getStartIntent(this));
+        if(mAdapter.mSelectedItems.size()==2){
+            mPrefsHelper.setUserPreference1(mAdapter.mSelectedItems.get(0));
+            mPrefsHelper.setUserPreference2(mAdapter.mSelectedItems.get(1));
+            Toast.makeText(this, "Please wait while we update your details.", Toast.LENGTH_SHORT).show();
+            postUserDetails();
+        }
+        else {
+            Toast.makeText(this, "You Have To Select Two Preferences", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
     protected void setUp() {
+        mPrefsHelper = new AppPreferencesHelper(this, ReadRushApp.PREF_FILE_NAME);
         setUpWindowAnimations();
         mList = Arrays.asList(getResources().getStringArray(R.array.preferences));
         mAdapter = new PreferenceAdapter(mList, this);
@@ -90,5 +103,15 @@ public class PreferenceActivity extends BaseActivity implements PreferenceMvpVie
 
 //            mBundle = ActivityOptions.makeSceneTransitionAnimation(this).toBundle();
         }
+    }
+
+    @Override
+    public void postUserDetails() {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                startActivity(MainActivity.getStartIntent(PreferenceActivity.this));
+            }
+        }, 2000);
     }
 }

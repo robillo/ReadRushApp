@@ -127,12 +127,12 @@
     </string-array>
 
     <string-array name="preferences">
-        <item>Biography / Autobiography</item>
-        <item>Motivational / Self help</item>
-        <item>Leadership and Management</item>
         <item>Science</item>
         <item>Psychology</item>
         <item>Economics</item>
+        <item>Biography and Autobiography</item>
+        <item>Motivational/Self help</item>
+        <item>Leadership and Management</item>
     </string-array>
 
     <string name="title_activity_main">MainActivity</string>

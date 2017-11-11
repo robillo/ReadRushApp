@@ -252,6 +252,7 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
                     boolean isEmailValid = CommonUtils.isEmailValid(myChatEditText.getText());
                     if(isEmailValid){
                         //save email in prefs
+                        mPrefsHelper.setUserEmail(myChatEditText.getText());
                         nullifyMyChatEditText();
                         page++;
                         setUp();
@@ -270,9 +271,10 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
                 if(mPrefsHelper.getUserEnterMode().equals(ReadRushApp.LOGIN_MODE)){
 
                     //validate password
-                    boolean isPasswordValid = CommonUtils.isValidPassword(myChatEditText.getText());
-                    if(myChatEditText.getText().length()<8 && !isPasswordValid){
+//                    boolean isPasswordValid = CommonUtils.isValidPassword(myChatEditText.getText());
+                    if(myChatEditText.getText().length()>8){
                         //save password in prefs
+                        mPrefsHelper.setUserPassword(myChatEditText.getText());
                         nullifyMyChatEditText();
                         page++;
                         setUp();
@@ -335,6 +337,7 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
                 boolean isEmailValid = CommonUtils.isEmailValid(myChatEditText.getText());
                 if(isEmailValid){
                     //save email in prefs
+                    mPrefsHelper.setUserEmail(myChatEditText.getText());
                     nullifyMyChatEditText();
                     page++;
                     setUp();
@@ -346,9 +349,10 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
             }
             case 5:{ // ENTER PASSWORD => VALIDATE PASSWORD
 
-                boolean isPasswordValid = CommonUtils.isValidPassword(myChatEditText.getText());
-                if(myChatEditText.getText().length()<8 && !isPasswordValid){
+//                boolean isPasswordValid = CommonUtils.isValidPassword(myChatEditText.getText());
+                if(myChatEditText.getText().length()>8){
                     //save password in prefs
+                    mPrefsHelper.setUserPassword(myChatEditText.getText());
                     nullifyMyChatEditText();
                     page++;
                     setUp();
@@ -365,23 +369,27 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
             }
             case 7:{ // WHATS YOUR NAME  => VALIDATE USER NAME
 
+//                boolean isValidUserName = CommonUtils.isValidUserName(myChatEditText.getText());
+                if(myChatEditText.getText().length()>8){
+                    //save username in prefs
+                    mPrefsHelper.setUserName(myChatEditText.getText());
+                    nullifyMyChatEditText();
+                    page++;
+                    setUp();
+                }
+                else {
+                    Toast.makeText(this, "Please Enter a Valid UserName", Toast.LENGTH_SHORT).show();;
+                }
                 nullifyMyChatEditText();
 
-                page++;
-                setUp();
                 break;
             }
             case 8:{ // CHOOSE PREFERENCES
                 //add email id and password to spf
                 //start preference activity
 
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        //startActivity(PreferenceActivity.getStartIntent(this), mBundle);
-                        startActivity(PreferenceActivity.getStartIntent(LoginActivity.this));
-                    }
-                }, 2000);
+                //startActivity(PreferenceActivity.getStartIntent(this), mBundle);
+                startActivity(PreferenceActivity.getStartIntent(LoginActivity.this));
                 break;
             }
         }
