@@ -15,6 +15,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.robillo.readrush.R;
 import com.robillo.readrush.ReadRushApp;
@@ -25,6 +26,8 @@ import com.robillo.readrush.ui.custom.MyChatEditText;
 import com.robillo.readrush.ui.custom.MyChatView;
 import com.robillo.readrush.ui.main.MainActivity;
 import com.robillo.readrush.ui.preference.PreferenceActivity;
+import com.robillo.readrush.utils.CommonUtils;
+import com.robillo.readrush.utils.KeyboardUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -197,6 +200,13 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
         });
     }
 
+    @Override
+    public void nullifyMyChatEditText() {
+        if(myChatEditText.getText()!=null) {
+            myChatEditText.nullify();
+        }
+    }
+
     @OnClick(R.id.prev)
     public void goPrev() {
         if(page!=0){
@@ -219,9 +229,6 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
 
     @OnClick(R.id.chat_primary)
     public void goNextCP() {
-        if(myChatEditText.getText()!=null) {
-            myChatEditText.nullify();
-        }
 
         switch (page) {
             case 0:{ // I AM KEN
@@ -238,9 +245,20 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
                 break;
             }
             case 2:{ // ENTER EMAIL ID => VALIDATE EMAIL ID
+
                 if(mPrefsHelper.getUserEnterMode().equals(ReadRushApp.LOGIN_MODE)){
-                    page++;
-                    setUp();
+
+                    //validate email
+                    boolean isEmailValid = CommonUtils.isEmailValid(myChatEditText.getText());
+                    if(isEmailValid){
+                        //save email in prefs
+                        nullifyMyChatEditText();
+                        page++;
+                        setUp();
+                    }
+                    else {
+                        Toast.makeText(this, "Please Enter a Valid Email ID", Toast.LENGTH_SHORT).show();;
+                    }
                 }
                 else {
                     goNextCS();
@@ -248,17 +266,30 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
                 break;
             }
             case 3:{ // ENTER PASSWORD => VALIDATE PASSWORD
-                if(mPrefsHelper.getUserEnterMode().equals(ReadRushApp.LOGIN_MODE)){
-                    //validate email id and password
-                    //start next activity
 
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            //startActivity(MainActivity.getStartIntent(this), mBundle);
-                            startActivity(MainActivity.getStartIntent(LoginActivity.this));
-                        }
-                    }, 2000);
+                if(mPrefsHelper.getUserEnterMode().equals(ReadRushApp.LOGIN_MODE)){
+
+                    //validate password
+                    boolean isPasswordValid = CommonUtils.isValidPassword(myChatEditText.getText());
+                    if(myChatEditText.getText().length()<8 && !isPasswordValid){
+                        //save password in prefs
+                        nullifyMyChatEditText();
+                        page++;
+                        setUp();
+
+                        //start next activity
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                //startActivity(MainActivity.getStartIntent(this), mBundle);
+                                startActivity(MainActivity.getStartIntent(LoginActivity.this));
+                            }
+                        }, 2000);
+                    }
+                    else {
+                        Toast.makeText(this, "Please Enter a Valid Password", Toast.LENGTH_SHORT).show();;
+                    }
+
                 }
                 else {
                     goNextCS();
@@ -274,9 +305,6 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
 
     @OnClick(R.id.chat_secondary)
     public void goNextCS() {
-        if(myChatEditText.getText()!=null) {
-            myChatEditText.nullify();
-        }
 
         switch (page) {
             case 0:{ // I AM KEN
@@ -303,13 +331,31 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
                 break;
             }
             case 4:{ // ENTER EMAIL ID => VALIDATE EMAIL ID
-                page++;
-                setUp();
+
+                boolean isEmailValid = CommonUtils.isEmailValid(myChatEditText.getText());
+                if(isEmailValid){
+                    //save email in prefs
+                    nullifyMyChatEditText();
+                    page++;
+                    setUp();
+                }
+                else {
+                    Toast.makeText(this, "Please Enter a Valid Email ID", Toast.LENGTH_SHORT).show();;
+                }
                 break;
             }
             case 5:{ // ENTER PASSWORD => VALIDATE PASSWORD
-                page++;
-                setUp();
+
+                boolean isPasswordValid = CommonUtils.isValidPassword(myChatEditText.getText());
+                if(myChatEditText.getText().length()<8 && !isPasswordValid){
+                    //save password in prefs
+                    nullifyMyChatEditText();
+                    page++;
+                    setUp();
+                }
+                else {
+                    Toast.makeText(this, "Please Enter a Valid Password", Toast.LENGTH_SHORT).show();;
+                }
                 break;
             }
             case 6:{ //ASK QUESTIONS
@@ -318,6 +364,9 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
                 break;
             }
             case 7:{ // WHATS YOUR NAME  => VALIDATE USER NAME
+
+                nullifyMyChatEditText();
+
                 page++;
                 setUp();
                 break;

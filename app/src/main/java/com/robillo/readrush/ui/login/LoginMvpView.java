@@ -23,4 +23,5 @@ public interface LoginMvpView extends MvpView {
 
     void setIsOnBoarded();
 
+    void nullifyMyChatEditText();
 }

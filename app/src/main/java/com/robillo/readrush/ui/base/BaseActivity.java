@@ -145,7 +145,7 @@ public abstract class BaseActivity extends AppCompatActivity
 
     @Override
     public boolean isNetworkConnected() {
-        return NetworkUtils.isNetworkConnected(getApplicationContext());
+        return NetworkUtils.INSTANCE.isNetworkConnected(getApplicationContext());
     }
 
     @Override
