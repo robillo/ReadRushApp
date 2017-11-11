@@ -56,17 +56,17 @@ public class PreferenceAdapter extends RecyclerView.Adapter<PreferenceAdapter.Pr
             @Override
             public void onClick(View v) {
                 if(holder.textView.getCurrentTextColor() == mContext.getResources().getColor(R.color.readBlack)) {
-                    holder.textView.setTextColor(mContext.getResources().getColor(R.color.rushRed));
-                    mSelectedItems.add(mList.get(pos));
-                }
-                else {
                     if(mSelectedItems.size()>=2){
                         Toast.makeText(mContext, "You Can Only Add Two Preferences", Toast.LENGTH_SHORT).show();
                     }
                     else {
-                        holder.textView.setTextColor(mContext.getResources().getColor(R.color.readBlack));
-                        mSelectedItems.remove(mList.get(pos));
+                        holder.textView.setTextColor(mContext.getResources().getColor(R.color.rushRed));
+                        mSelectedItems.add(mList.get(pos));
                     }
+                }
+                else {
+                    holder.textView.setTextColor(mContext.getResources().getColor(R.color.readBlack));
+                    mSelectedItems.remove(mList.get(pos));
                 }
             }
         });
