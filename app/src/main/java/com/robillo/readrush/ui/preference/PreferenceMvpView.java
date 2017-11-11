@@ -12,4 +12,6 @@ public interface PreferenceMvpView extends MvpView {
 
     void postUserDetails();
 
+    void setApiInterface();
+
 }
