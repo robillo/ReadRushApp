@@ -107,11 +107,9 @@ public class PreferenceActivity extends BaseActivity implements PreferenceMvpVie
 
     @Override
     public void postUserDetails() {
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                startActivity(MainActivity.getStartIntent(PreferenceActivity.this));
-            }
-        }, 2000);
+
+
+
+        startActivity(MainActivity.getStartIntent(PreferenceActivity.this));
     }
 }
