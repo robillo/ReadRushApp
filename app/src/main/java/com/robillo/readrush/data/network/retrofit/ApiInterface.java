@@ -13,7 +13,7 @@ import retrofit2.http.POST;
 public interface ApiInterface {
 
     @FormUrlEncoded
-    @POST("/new_api/create_user")
+    @POST("new_api/create_user")
     Call<ResponseBody> createUser(
             @Field("name") String name,
             @Field("email_id") String email,

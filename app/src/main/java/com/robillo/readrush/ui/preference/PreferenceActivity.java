@@ -11,6 +11,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.transition.Explode;
 import android.transition.Fade;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -126,6 +127,7 @@ public class PreferenceActivity extends BaseActivity implements PreferenceMvpVie
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                     Toast.makeText(PreferenceActivity.this, "Profile Updated Successfully", Toast.LENGTH_SHORT).show();
+                    Log.e("response", response.message());
                     startActivity(MainActivity.getStartIntent(PreferenceActivity.this));
                 }
 
