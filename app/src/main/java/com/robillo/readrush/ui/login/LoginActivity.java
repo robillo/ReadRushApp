@@ -43,6 +43,14 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
     private static int page = 0;
     private AppPreferencesHelper mPrefsHelper;
 
+    enum LOGIN { I_AM_KEN(0), MET_BEFORE(1), ENTER_EMAIL_ID(2), ENTER_PASSWORD(3);
+        int value;
+        LOGIN(int value){
+            this.value = value;
+        }
+    };
+    enum REGISTER { I_AM_KEN, MET_BEFORE, PLEASED_TO_MEET_YOU, CHANGE_ANSWER, ENTER_EMAIL_ID, ENTER_PASSWORD, ASK_QUESTIONS, ENTER_USERNAME, CHOOSE_PREFERENCES };
+
     @Inject
     LoginMvpPresenter<LoginMvpView> mPresenter;
 
@@ -216,12 +224,12 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
         }
 
         switch (page) {
-            case 0:{
+            case 0:{ // I AM KEN
                 page++;
                 setUp();
                 break;
             }
-            case 1:{
+            case 1:{ // MET BEFORE
                 page++;
                 mConversations = new ArrayList<>();
                 mConversations = mPresenter.loadLists(loadArray(R.array.ken_text_login), loadArray(R.array.chat_edit_text_hint_login), loadArray(R.array.chat_primary_login), loadArray(R.array.chat_secondary_login));
@@ -229,7 +237,7 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
                 setUp();
                 break;
             }
-            case 2:{
+            case 2:{ // ENTER EMAIL ID => VALIDATE EMAIL ID
                 if(mPrefsHelper.getUserEnterMode().equals(ReadRushApp.LOGIN_MODE)){
                     page++;
                     setUp();
@@ -239,7 +247,7 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
                 }
                 break;
             }
-            case 3:{
+            case 3:{ // ENTER PASSWORD => VALIDATE PASSWORD
                 if(mPrefsHelper.getUserEnterMode().equals(ReadRushApp.LOGIN_MODE)){
                     //validate email id and password
                     //start next activity
@@ -271,12 +279,12 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
         }
 
         switch (page) {
-            case 0:{
+            case 0:{ // I AM KEN
                 page++;
                 setUp();
                 break;
             }
-            case 1:{
+            case 1:{ // MET BEOFRE
                 page++;
                 mConversations = new ArrayList<>();
                 mConversations = mPresenter.loadLists(loadArray(R.array.ken_text_register), loadArray(R.array.chat_edit_text_hint_register), loadArray(R.array.chat_primary_register), loadArray(R.array.chat_secondary_register));
@@ -284,37 +292,37 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
                 setUp();
                 break;
             }
-            case 2:{
+            case 2:{ // PLEASED TO MEET YOU
                 page++;
                 setUp();
                 break;
             }
-            case 3:{
+            case 3:{ // CHANGE ANSWER
                 page++;
                 setUp();
                 break;
             }
-            case 4:{
+            case 4:{ // ENTER EMAIL ID => VALIDATE EMAIL ID
                 page++;
                 setUp();
                 break;
             }
-            case 5:{
+            case 5:{ // ENTER PASSWORD => VALIDATE PASSWORD
                 page++;
                 setUp();
                 break;
             }
-            case 6:{
+            case 6:{ //ASK QUESTIONS
                 page++;
                 setUp();
                 break;
             }
-            case 7:{
+            case 7:{ // WHATS YOUR NAME  => VALIDATE USER NAME
                 page++;
                 setUp();
                 break;
             }
-            case 8:{
+            case 8:{ // CHOOSE PREFERENCES
                 //add email id and password to spf
                 //start preference activity
 
