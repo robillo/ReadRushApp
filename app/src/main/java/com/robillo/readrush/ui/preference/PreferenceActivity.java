@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.transition.Explode;
 import android.transition.Fade;
@@ -69,7 +70,8 @@ public class PreferenceActivity extends BaseActivity implements PreferenceMvpVie
         setUpWindowAnimations();
         mList = Arrays.asList(getResources().getStringArray(R.array.preferences));
         mAdapter = new PreferenceAdapter(mList, this);
-        GridLayoutManager manager = new GridLayoutManager(this, 3);
+//        GridLayoutManager manager = new GridLayoutManager(this, 3);
+        LinearLayoutManager manager = new LinearLayoutManager(this);
         mRecycler.setLayoutManager(manager);
         mRecycler.setAdapter(mAdapter);
     }
