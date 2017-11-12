@@ -43,6 +43,7 @@ public class PreferenceActivity extends BaseActivity implements PreferenceMvpVie
     AppPreferencesHelper mPrefsHelper;
     PreferenceAdapter mAdapter;
     List<String> mList = new ArrayList<>();
+    @SuppressWarnings("FieldCanBeLocal")
     private ApiInterface mApiService;
 
     @Inject

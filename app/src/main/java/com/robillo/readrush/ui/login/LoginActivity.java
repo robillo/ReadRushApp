@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.support.annotation.ArrayRes;
 import android.transition.Explode;
 import android.transition.Fade;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -19,6 +20,9 @@ import android.widget.Toast;
 
 import com.robillo.readrush.R;
 import com.robillo.readrush.ReadRushApp;
+import com.robillo.readrush.data.network.retrofit.ApiClient;
+import com.robillo.readrush.data.network.retrofit.ApiInterface;
+import com.robillo.readrush.data.network.retrofit.model.User;
 import com.robillo.readrush.data.others.Conversation;
 import com.robillo.readrush.data.prefs.AppPreferencesHelper;
 import com.robillo.readrush.ui.base.BaseActivity;
@@ -37,6 +41,10 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class LoginActivity extends BaseActivity implements LoginMvpView {
 
@@ -45,14 +53,8 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
     @SuppressWarnings("FieldCanBeLocal")
     private static int page = 0;
     private AppPreferencesHelper mPrefsHelper;
-
-    enum LOGIN { I_AM_KEN(0), MET_BEFORE(1), ENTER_EMAIL_ID(2), ENTER_PASSWORD(3);
-        int value;
-        LOGIN(int value){
-            this.value = value;
-        }
-    };
-    enum REGISTER { I_AM_KEN, MET_BEFORE, PLEASED_TO_MEET_YOU, CHANGE_ANSWER, ENTER_EMAIL_ID, ENTER_PASSWORD, ASK_QUESTIONS, ENTER_USERNAME, CHOOSE_PREFERENCES };
+    @SuppressWarnings("FieldCanBeLocal")
+    private ApiInterface mApiService;
 
     @Inject
     LoginMvpPresenter<LoginMvpView> mPresenter;
@@ -276,18 +278,27 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
                         //save password in prefs
                         mPrefsHelper.setUserPassword(myChatEditText.getText());
                         nullifyMyChatEditText();
-                        page++;
-                        setUp();
+//                        page++;
+//                        setUp();
 
+                        mApiService = ApiClient.getClient().create(ApiInterface.class);
+                        Call<ResponseBody> call = mApiService.validateUser(mPrefsHelper.getUserEmail(), mPrefsHelper.getUserPassword());
+                        if(call!=null){
+                            call.enqueue(new Callback<ResponseBody>() {
+                                @Override
+                                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                    Toast.makeText(LoginActivity.this, "Profile Updated Successfully", Toast.LENGTH_SHORT).show();
+                                    Log.e("response", response.message());
+                                    startActivity(MainActivity.getStartIntent(LoginActivity.this));
+                                }
 
-                        //start next activity
-                        new Handler().postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                //startActivity(MainActivity.getStartIntent(this), mBundle);
-                                startActivity(MainActivity.getStartIntent(LoginActivity.this));
-                            }
-                        }, 2000);
+                                @Override
+                                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                                    Toast.makeText(LoginActivity.this, "Failed To Update. RETRY LATER", Toast.LENGTH_SHORT).show();
+                                    t.printStackTrace();
+                                }
+                            });
+                        }
                     }
                     else {
                         Toast.makeText(this, "Please Enter a Valid Password", Toast.LENGTH_SHORT).show();;

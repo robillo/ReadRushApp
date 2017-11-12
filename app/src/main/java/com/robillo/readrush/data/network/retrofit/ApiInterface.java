@@ -25,8 +25,8 @@ public interface ApiInterface {
             @Field("preference") String preference
     );
 
-    @GET("new_api/login/")
-    Call<User> validateUser(
+    @GET("new_api/login/{email}/{password}")
+    Call<ResponseBody> validateUser(
             @Path("email") String email,
             @Path("password") String password
     );
