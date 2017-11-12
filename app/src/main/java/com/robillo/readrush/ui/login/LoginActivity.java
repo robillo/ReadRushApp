@@ -279,6 +279,7 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
                         page++;
                         setUp();
 
+
                         //start next activity
                         new Handler().postDelayed(new Runnable() {
                             @Override
