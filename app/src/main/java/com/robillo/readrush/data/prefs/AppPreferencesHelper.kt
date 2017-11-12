@@ -77,13 +77,30 @@ constructor(@ApplicationContext context: Context, @PreferenceInfo prefFileName: 
 
     //RR SHAREDPREFS FUNCTIONS
 
-
-    override fun setUserEmail(email: String) {
-        mPrefs.edit().putString(PREF_KEY_EMAIL, email).apply();
+    override fun setUserIsLoggedIn(isLoggedIn: Boolean) {
+        mPrefs.edit().putBoolean(PREF_KEY_IS_LOGGED_IN, isLoggedIn).apply();
     }
 
-    override fun getUserEmail(): String? {
-        return mPrefs.getString(PREF_KEY_EMAIL, null);
+    override fun getUserIsLoggedIn(): Boolean {
+        return mPrefs.getBoolean(PREF_KEY_IS_LOGGED_IN, false);
+    }
+
+    override fun setUserIsOnBoarded(isOnBoarded: Boolean) {
+        mPrefs.edit().putBoolean(PREF_KEY_IS_ON_BOARDED, isOnBoarded).apply();
+    }
+
+    override fun getUserIsOnBoarded(): Boolean {
+        return mPrefs.getBoolean(PREF_KEY_IS_ON_BOARDED, false);
+    }
+
+    //USER
+
+    override fun setUserId(userId: String?) {
+        mPrefs.edit().putString(PREF_KEY_USER_ID, userId).apply();
+    }
+
+    override fun getUserId(): String {
+        return mPrefs.getString(PREF_KEY_USER_ID, null);
     }
 
     override fun setUserName(userName: String?) {
@@ -118,42 +135,24 @@ constructor(@ApplicationContext context: Context, @PreferenceInfo prefFileName: 
         return mPrefs.getString(PREF_KEY_PREFERENCE_2, null);
     }
 
-    override fun setUserIsLoggedIn(isLoggedIn: Boolean) {
-        mPrefs.edit().putBoolean(PREF_KEY_IS_LOGGED_IN, isLoggedIn).apply();
-    }
-
-    override fun getUserIsLoggedIn(): Boolean {
-        return mPrefs.getBoolean(PREF_KEY_IS_LOGGED_IN, false);
-    }
-
-    override fun setUserIsOnBoarded(isOnBoarded: Boolean) {
-        mPrefs.edit().putBoolean(PREF_KEY_IS_ON_BOARDED, isOnBoarded).apply();
-    }
-
-    override fun getUserIsOnBoarded(): Boolean {
-        return mPrefs.getBoolean(PREF_KEY_IS_ON_BOARDED, false);
-    }
-
-    //USER
-
-    override fun setUserId(userId: String?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun getUserId(): String {
-        return mPrefs.getString(PREF_KEY_USER_ID, null);
-    }
-
     override fun setRushCount(rushCount: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        mPrefs.edit().putInt(PREF_KEY_RUSH_COUNT, rushCount).apply();
     }
 
     override fun getRushCount(): Int {
         return mPrefs.getInt(PREF_KEY_RUSH_COUNT, 0);
     }
 
+    override fun setUserEmail(email: String) {
+        mPrefs.edit().putString(PREF_KEY_EMAIL, email).apply();
+    }
+
+    override fun getUserEmail(): String? {
+        return mPrefs.getString(PREF_KEY_EMAIL, null);
+    }
+
     override fun setLibrary(library: String?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        mPrefs.edit().putString(PREF_KEY_LIBRARY, library).apply();
     }
 
     override fun getLibrary(): String {
@@ -161,7 +160,7 @@ constructor(@ApplicationContext context: Context, @PreferenceInfo prefFileName: 
     }
 
     override fun setRead(read: String?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        mPrefs.edit().putString(PREF_KEY_READ, read).apply();
     }
 
     override fun getRead(): String {
@@ -169,7 +168,7 @@ constructor(@ApplicationContext context: Context, @PreferenceInfo prefFileName: 
     }
 
     override fun setFacebookId(facebookId: String?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        mPrefs.edit().putString(PREF_KEY_FACEBOOK_ID, facebookId).apply();
     }
 
     override fun getFacebookId(): String {
@@ -177,7 +176,7 @@ constructor(@ApplicationContext context: Context, @PreferenceInfo prefFileName: 
     }
 
     override fun setGoogleId(googleId: String?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        mPrefs.edit().putString(PREF_KEY_GOOGLE_ID, googleId).apply();
     }
 
     override fun getGoogleId(): String {
@@ -185,7 +184,7 @@ constructor(@ApplicationContext context: Context, @PreferenceInfo prefFileName: 
     }
 
     override fun setDisplayPicture(displayPicture: String?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        mPrefs.edit().putString(PREF_KEY_DISPLAY_PICTURE, displayPicture).apply();
     }
 
     override fun getDisplayPicture(): String {
@@ -193,7 +192,7 @@ constructor(@ApplicationContext context: Context, @PreferenceInfo prefFileName: 
     }
 
     override fun setPreferenceCode(preferenceCode: String?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        mPrefs.edit().putString(PREF_KEY_PREFERENCE_CODE, preferenceCode).apply();
     }
 
     override fun getPreferenceCode(): String {
@@ -201,7 +200,7 @@ constructor(@ApplicationContext context: Context, @PreferenceInfo prefFileName: 
     }
 
     override fun setDateTime(dateTime: String?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        mPrefs.edit().putString(PREF_KEY_DATE_TIME, dateTime).apply();
     }
 
     override fun getDateTime(): String {
