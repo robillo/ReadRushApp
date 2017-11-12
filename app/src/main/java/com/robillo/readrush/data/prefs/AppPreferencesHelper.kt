@@ -134,6 +134,80 @@ constructor(@ApplicationContext context: Context, @PreferenceInfo prefFileName: 
         return mPrefs.getBoolean(PREF_KEY_IS_ON_BOARDED, false);
     }
 
+    //USER
+
+    override fun setUserId(userId: String?) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun getUserId(): String {
+        return mPrefs.getString(PREF_KEY_USER_ID, null);
+    }
+
+    override fun setRushCount(rushCount: Int) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun getRushCount(): Int {
+        return mPrefs.getInt(PREF_KEY_RUSH_COUNT, 0);
+    }
+
+    override fun setLibrary(library: String?) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun getLibrary(): String {
+        return mPrefs.getString(PREF_KEY_LIBRARY, null);
+    }
+
+    override fun setRead(read: String?) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun getRead(): String {
+        return mPrefs.getString(PREF_KEY_READ, null);
+    }
+
+    override fun setFacebookId(facebookId: String?) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun getFacebookId(): String {
+        return mPrefs.getString(PREF_KEY_FACEBOOK_ID, null);
+    }
+
+    override fun setGoogleId(googleId: String?) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun getGoogleId(): String {
+        return mPrefs.getString(PREF_KEY_GOOGLE_ID, null);
+    }
+
+    override fun setDisplayPicture(displayPicture: String?) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun getDisplayPicture(): String {
+        return mPrefs.getString(PREF_KEY_DISPLAY_PICTURE, null);
+    }
+
+    override fun setPreferenceCode(preferenceCode: String?) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun getPreferenceCode(): String {
+        return mPrefs.getString(PREF_KEY_PREFERENCE_CODE, null);
+    }
+
+    override fun setDateTime(dateTime: String?) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun getDateTime(): String {
+        return mPrefs.getString(PREF_KEY_DATE_TIME, null);
+    }
+
     //LOGIN OR REGISTER MODE
     override fun setUserEnterMode(mode: String?) {
         mPrefs.edit().putString(PREF_KEY_ENTER_MODE, mode).apply();
@@ -159,11 +233,23 @@ constructor(@ApplicationContext context: Context, @PreferenceInfo prefFileName: 
         private val PREF_KEY_IS_LOGGED_IN = "PREF_KEY_IS_LOGGED_IN"
 
         //strings
-        private val PREF_KEY_EMAIL = "PREF_KEY_EMAIL"
+        //USER
+        private val PREF_KEY_USER_ID = "PREF_KEY_USER_ID"
         private val PREF_KEY_USERNAME = "PREF_KEY_USERNAME"
         private val PREF_KEY_PASSWORD = "PREF_KEY_PASSWORD"
         private val PREF_KEY_PREFERENCE_1 = "PREF_KEY_PREFERENCE_1"
         private val PREF_KEY_PREFERENCE_2 = "PREF_KEY_PREFERENCE_2"
+        private val PREF_KEY_RUSH_COUNT = "PREF_KEY_RUSH_COUNT"
+        private val PREF_KEY_EMAIL = "PREF_KEY_EMAIL"
+        private val PREF_KEY_LIBRARY = "PREF_KEY_LIBRARY"
+        private val PREF_KEY_READ = "PREF_KEY_READ"
+        private val PREF_KEY_FACEBOOK_ID = "PREF_KEY_FACEBOOK_ID"
+        private val PREF_KEY_GOOGLE_ID = "PREF_KEY_GOOGLE_ID"
+        private val PREF_KEY_DISPLAY_PICTURE = "PREF_KEY_DISPLAY_PICTURE"
+        private val PREF_KEY_PREFERENCE_CODE = "PREF_KEY_PREFERENCE_CODE"
+        private val PREF_KEY_DATE_TIME = "PREF_KEY_DATE_TIME"
+
+        //APP
         private val PREF_KEY_ENTER_MODE = "PREF_KEY_ENTER_MODE"
     }
 }

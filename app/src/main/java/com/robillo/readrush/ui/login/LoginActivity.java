@@ -290,8 +290,13 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
                                 public void onResponse(Call<List<User>> call, Response<List<User>> response) {
                                     Toast.makeText(LoginActivity.this, "Profile Updated Successfully", Toast.LENGTH_SHORT).show();
                                     Log.e("response", response.message());
-                                    Log.e("response", " " + response.body().get(0).getUser_id());
-                                    startActivity(MainActivity.getStartIntent(LoginActivity.this));
+                                    @SuppressWarnings("ConstantConditions") User user = response.body().get(0);
+                                    if(user!=null){
+                                        mPrefsHelper.setUserName(user.getName());
+                                        mPrefsHelper.setUserEmail(user.getEmail_id());
+                                        mPrefsHelper.setUserPassword(user.getPassword());
+                                        startActivity(MainActivity.getStartIntent(LoginActivity.this));
+                                    }
                                 }
 
                                 @Override

@@ -34,36 +34,59 @@ public interface PreferencesHelper {
 
     //RR
 
-    void setUserEmail(String email);
-
-    String getUserEmail();
+    void setUserId(String userId);
+    String getUserId();
 
     void setUserName(String userName);
-
     String getUserName();
 
     void setUserPassword(String userPassword);
-
     String getUserPassword();
 
     void setUserPreference1(String userPreference1);
-
     String getUserPreference1();
 
     void setUserPreference2(String userPreference2);
-
     String getUserPreference2();
 
-    void setUserIsLoggedIn(boolean isLoggedIn);
+    void setRushCount(int rushCount);
+    int getRushCount();
 
+    void setUserEmail(String email);
+    String getUserEmail();
+
+    void setLibrary(String library);
+    String getLibrary();
+
+    void setRead(String read);
+    String getRead();
+
+    void setFacebookId(String facebookId);
+    String getFacebookId();
+
+    void setGoogleId(String googleId);
+    String getGoogleId();
+
+    void setDisplayPicture(String displayPicture);
+    String getDisplayPicture();
+
+    void setPreferenceCode(String preferenceCode);
+    String getPreferenceCode();
+
+    void setDateTime(String dateTime);
+    String getDateTime();
+
+    //APP
+
+    void setUserIsLoggedIn(boolean isLoggedIn);
     boolean getUserIsLoggedIn();
 
     void setUserIsOnBoarded(@SuppressWarnings("SameParameterValue") boolean isOnBoarded);
-
     boolean getUserIsOnBoarded();
 
     void setUserEnterMode(String mode);
-
     String getUserEnterMode();
+
+
 
 }
