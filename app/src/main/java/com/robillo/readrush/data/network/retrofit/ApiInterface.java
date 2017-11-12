@@ -2,6 +2,8 @@ package com.robillo.readrush.data.network.retrofit;
 
 import com.robillo.readrush.data.network.retrofit.model.User;
 
+import java.util.List;
+
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -26,7 +28,7 @@ public interface ApiInterface {
     );
 
     @GET("new_api/login/{email}/{password}")
-    Call<ResponseBody> validateUser(
+    Call<List<User>> validateUser(
             @Path("email") String email,
             @Path("password") String password
     );

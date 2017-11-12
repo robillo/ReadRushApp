@@ -277,23 +277,25 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
                     if(myChatEditText.getText().length()>8){
                         //save password in prefs
                         mPrefsHelper.setUserPassword(myChatEditText.getText());
-                        nullifyMyChatEditText();
+                        Toast.makeText(this, "Please Wait While We Log You In.", Toast.LENGTH_SHORT).show();
+//                        nullifyMyChatEditText();
 //                        page++;
 //                        setUp();
 
                         mApiService = ApiClient.getClient().create(ApiInterface.class);
-                        Call<ResponseBody> call = mApiService.validateUser(mPrefsHelper.getUserEmail(), mPrefsHelper.getUserPassword());
+                        Call<List<User>> call = mApiService.validateUser(mPrefsHelper.getUserEmail(), mPrefsHelper.getUserPassword());
                         if(call!=null){
-                            call.enqueue(new Callback<ResponseBody>() {
+                            call.enqueue(new Callback<List<User>>() {
                                 @Override
-                                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                public void onResponse(Call<List<User>> call, Response<List<User>> response) {
                                     Toast.makeText(LoginActivity.this, "Profile Updated Successfully", Toast.LENGTH_SHORT).show();
                                     Log.e("response", response.message());
+                                    Log.e("response", " " + response.body().get(0).getUser_id());
                                     startActivity(MainActivity.getStartIntent(LoginActivity.this));
                                 }
 
                                 @Override
-                                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                                public void onFailure(Call<List<User>> call, Throwable t) {
                                     Toast.makeText(LoginActivity.this, "Failed To Update. RETRY LATER", Toast.LENGTH_SHORT).show();
                                     t.printStackTrace();
                                 }
