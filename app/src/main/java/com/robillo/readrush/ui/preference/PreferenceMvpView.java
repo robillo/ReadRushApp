@@ -1,5 +1,7 @@
 package com.robillo.readrush.ui.preference;
 
+import android.content.Intent;
+
 import com.robillo.readrush.ui.base.MvpView;
 
 /**
@@ -14,4 +16,5 @@ public interface PreferenceMvpView extends MvpView {
 
     void setApiInterface();
 
+    void validateUser(Intent intent);
 }

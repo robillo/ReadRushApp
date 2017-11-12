@@ -19,8 +19,10 @@ import com.robillo.readrush.R;
 import com.robillo.readrush.ReadRushApp;
 import com.robillo.readrush.data.network.retrofit.ApiClient;
 import com.robillo.readrush.data.network.retrofit.ApiInterface;
+import com.robillo.readrush.data.network.retrofit.model.User;
 import com.robillo.readrush.data.prefs.AppPreferencesHelper;
 import com.robillo.readrush.ui.base.BaseActivity;
+import com.robillo.readrush.ui.login.LoginActivity;
 import com.robillo.readrush.ui.main.MainActivity;
 
 import java.util.ArrayList;
@@ -76,8 +78,7 @@ public class PreferenceActivity extends BaseActivity implements PreferenceMvpVie
     public void onDone() {
 //        startActivity(MainActivity.getStartIntent(this), mBundle);
         if(mAdapter.mSelectedItems.size()==2){
-            mPrefsHelper.setUserPreference1(mAdapter.mSelectedItems.get(0));
-            mPrefsHelper.setUserPreference2(mAdapter.mSelectedItems.get(1));
+            mPrefsHelper.setUserPreference(mAdapter.mSelectedItems.get(0) + "," + mAdapter.mSelectedItems.get(1));
             Toast.makeText(this, "Please wait while we update your details.", Toast.LENGTH_SHORT).show();
             postUserDetails();
         }
@@ -122,18 +123,55 @@ public class PreferenceActivity extends BaseActivity implements PreferenceMvpVie
     @Override
     public void setApiInterface() {
         mApiService = ApiClient.getClient().create(ApiInterface.class);
-        Call<ResponseBody> call = mApiService.createUser(mPrefsHelper.getUserName(), mPrefsHelper.getUserEmail(), mPrefsHelper.getUserPassword(), mPrefsHelper.getUserPreference1() + "," + mPrefsHelper.getUserPreference2());
+        Call<ResponseBody> call = mApiService.createUser(mPrefsHelper.getUserName(), mPrefsHelper.getUserEmail(), mPrefsHelper.getUserPassword(), mPrefsHelper.getUserPreference());
         if(call!=null){
             call.enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                     Toast.makeText(PreferenceActivity.this, "Profile Updated Successfully", Toast.LENGTH_SHORT).show();
                     Log.e("response", response.message());
-                    startActivity(MainActivity.getStartIntent(PreferenceActivity.this));
+                    validateUser(MainActivity.getStartIntent(PreferenceActivity.this));
                 }
 
                 @Override
                 public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    Toast.makeText(PreferenceActivity.this, "Failed To Update. RETRY LATER", Toast.LENGTH_SHORT).show();
+                    t.printStackTrace();
+                }
+            });
+        }
+    }
+
+    @Override
+    public void validateUser(final Intent intent) {
+        Call<List<User>> call = mApiService.validateUser(mPrefsHelper.getUserEmail(), mPrefsHelper.getUserPassword());
+        if(call!=null){
+            call.enqueue(new Callback<List<User>>() {
+                @Override
+                public void onResponse(Call<List<User>> call, Response<List<User>> response) {
+                    Toast.makeText(PreferenceActivity.this, "Profile Updated Successfully", Toast.LENGTH_SHORT).show();
+                    Log.e("response", response.message());
+                    @SuppressWarnings("ConstantConditions") User user = response.body().get(0);
+                    if(user!=null){
+                        mPrefsHelper.setUserId(user.getUser_id());
+                        mPrefsHelper.setUserName(user.getName());
+                        mPrefsHelper.setUserEmail(user.getEmail_id());
+                        mPrefsHelper.setUserPassword(user.getPassword());
+                        mPrefsHelper.setDateTime(user.getDatetime());
+                        mPrefsHelper.setDisplayPicture(user.getDisplay_picture());
+                        mPrefsHelper.setFacebookId(user.getFacebook_id());
+                        mPrefsHelper.setGoogleId(user.getGoogle_id());
+                        mPrefsHelper.setLibrary(user.getLibrary());
+                        mPrefsHelper.setUserPreference(user.getPreference());
+                        mPrefsHelper.setPreferenceCode(user.getPreference_code());
+                        mPrefsHelper.setRead(user.getRead());
+                        mPrefsHelper.setRushCount(user.getRush_count());
+                        startActivity(intent);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<List<User>> call, Throwable t) {
                     Toast.makeText(PreferenceActivity.this, "Failed To Update. RETRY LATER", Toast.LENGTH_SHORT).show();
                     t.printStackTrace();
                 }

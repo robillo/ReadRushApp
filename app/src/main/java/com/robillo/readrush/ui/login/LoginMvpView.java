@@ -1,5 +1,6 @@
 package com.robillo.readrush.ui.login;
 
+import android.content.Intent;
 import android.support.annotation.ArrayRes;
 import android.support.annotation.StringRes;
 
@@ -24,4 +25,6 @@ public interface LoginMvpView extends MvpView {
     void setIsOnBoarded();
 
     void nullifyMyChatEditText();
+
+    void validateUser(Intent intent);
 }

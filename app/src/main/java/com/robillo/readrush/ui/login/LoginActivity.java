@@ -209,6 +209,44 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
         }
     }
 
+    @Override
+    public void validateUser(final Intent intent) {
+        mApiService = ApiClient.getClient().create(ApiInterface.class);
+        Call<List<User>> call = mApiService.validateUser(mPrefsHelper.getUserEmail(), mPrefsHelper.getUserPassword());
+        if(call!=null){
+            call.enqueue(new Callback<List<User>>() {
+                @Override
+                public void onResponse(Call<List<User>> call, Response<List<User>> response) {
+                    Toast.makeText(LoginActivity.this, "Profile Updated Successfully", Toast.LENGTH_SHORT).show();
+                    Log.e("response", response.message());
+                    @SuppressWarnings("ConstantConditions") User user = response.body().get(0);
+                    if(user!=null){
+                        mPrefsHelper.setUserId(user.getUser_id());
+                        mPrefsHelper.setUserName(user.getName());
+                        mPrefsHelper.setUserEmail(user.getEmail_id());
+                        mPrefsHelper.setUserPassword(user.getPassword());
+                        mPrefsHelper.setDateTime(user.getDatetime());
+                        mPrefsHelper.setDisplayPicture(user.getDisplay_picture());
+                        mPrefsHelper.setFacebookId(user.getFacebook_id());
+                        mPrefsHelper.setGoogleId(user.getGoogle_id());
+                        mPrefsHelper.setLibrary(user.getLibrary());
+                        mPrefsHelper.setUserPreference(user.getPreference());
+                        mPrefsHelper.setPreferenceCode(user.getPreference_code());
+                        mPrefsHelper.setRead(user.getRead());
+                        mPrefsHelper.setRushCount(user.getRush_count());
+                        startActivity(intent);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<List<User>> call, Throwable t) {
+                    Toast.makeText(LoginActivity.this, "Failed To Update. RETRY LATER", Toast.LENGTH_SHORT).show();
+                    t.printStackTrace();
+                }
+            });
+        }
+    }
+
     @OnClick(R.id.prev)
     public void goPrev() {
         if(page!=0){
@@ -278,44 +316,8 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
                         //save password in prefs
                         mPrefsHelper.setUserPassword(myChatEditText.getText());
                         Toast.makeText(this, "Please Wait While We Log You In.", Toast.LENGTH_SHORT).show();
-//                        nullifyMyChatEditText();
-//                        page++;
-//                        setUp();
 
-                        mApiService = ApiClient.getClient().create(ApiInterface.class);
-                        Call<List<User>> call = mApiService.validateUser(mPrefsHelper.getUserEmail(), mPrefsHelper.getUserPassword());
-                        if(call!=null){
-                            call.enqueue(new Callback<List<User>>() {
-                                @Override
-                                public void onResponse(Call<List<User>> call, Response<List<User>> response) {
-                                    Toast.makeText(LoginActivity.this, "Profile Updated Successfully", Toast.LENGTH_SHORT).show();
-                                    Log.e("response", response.message());
-                                    @SuppressWarnings("ConstantConditions") User user = response.body().get(0);
-                                    if(user!=null){
-                                        mPrefsHelper.setUserId(user.getUser_id());
-                                        mPrefsHelper.setUserName(user.getName());
-                                        mPrefsHelper.setUserEmail(user.getEmail_id());
-                                        mPrefsHelper.setUserPassword(user.getPassword());
-                                        mPrefsHelper.setDateTime(user.getDatetime());
-                                        mPrefsHelper.setDisplayPicture(user.getDisplay_picture());
-                                        mPrefsHelper.setFacebookId(user.getFacebook_id());
-                                        mPrefsHelper.setGoogleId(user.getGoogle_id());
-                                        mPrefsHelper.setLibrary(user.getLibrary());
-                                        mPrefsHelper.setUserPreference(user.getPreference());
-                                        mPrefsHelper.setPreferenceCode(user.getPreference_code());
-                                        mPrefsHelper.setRead(user.getRead());
-                                        mPrefsHelper.setRushCount(user.getRush_count());
-                                        startActivity(MainActivity.getStartIntent(LoginActivity.this));
-                                    }
-                                }
-
-                                @Override
-                                public void onFailure(Call<List<User>> call, Throwable t) {
-                                    Toast.makeText(LoginActivity.this, "Failed To Update. RETRY LATER", Toast.LENGTH_SHORT).show();
-                                    t.printStackTrace();
-                                }
-                            });
-                        }
+                        validateUser(MainActivity.getStartIntent(LoginActivity.this));
                     }
                     else {
                         Toast.makeText(this, "Please Enter a Valid Password", Toast.LENGTH_SHORT).show();;
