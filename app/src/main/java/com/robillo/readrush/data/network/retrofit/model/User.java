@@ -26,17 +26,17 @@ public class User {
     private String name;
     private String password;
     private String preference;
-    private String rush_count;
+    private int rush_count;
     private String email_id;
-    private Object library;
-    private Object read;
-    private Object facebook_id;
-    private Object google_id;
+    private String library;
+    private String read;
+    private String facebook_id;
+    private String google_id;
     private String display_picture;
     private String preference_code;
     private String datetime;
 
-    public User(String user_id, String name, String password, String preference, String rush_count, String email_id, Object library, Object read, Object facebook_id, Object google_id, String display_picture, String preference_code, String datetime) {
+    public User(String user_id, String name, String password, String preference, int rush_count, String email_id, String library, String read, String facebook_id, String google_id, String display_picture, String preference_code, String datetime) {
         this.user_id = user_id;
         this.name = name;
         this.password = password;
@@ -84,11 +84,11 @@ public class User {
         this.preference = preference;
     }
 
-    public String getRush_count() {
+    public int getRush_count() {
         return rush_count;
     }
 
-    public void setRush_count(String rush_count) {
+    public void setRush_count(int rush_count) {
         this.rush_count = rush_count;
     }
 
@@ -100,35 +100,35 @@ public class User {
         this.email_id = email_id;
     }
 
-    public Object getLibrary() {
+    public String getLibrary() {
         return library;
     }
 
-    public void setLibrary(Object library) {
+    public void setLibrary(String library) {
         this.library = library;
     }
 
-    public Object getRead() {
+    public String getRead() {
         return read;
     }
 
-    public void setRead(Object read) {
+    public void setRead(String read) {
         this.read = read;
     }
 
-    public Object getFacebook_id() {
+    public String getFacebook_id() {
         return facebook_id;
     }
 
-    public void setFacebook_id(Object facebook_id) {
+    public void setFacebook_id(String facebook_id) {
         this.facebook_id = facebook_id;
     }
 
-    public Object getGoogle_id() {
+    public String getGoogle_id() {
         return google_id;
     }
 
-    public void setGoogle_id(Object google_id) {
+    public void setGoogle_id(String google_id) {
         this.google_id = google_id;
     }
 

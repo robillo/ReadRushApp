@@ -292,9 +292,19 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
                                     Log.e("response", response.message());
                                     @SuppressWarnings("ConstantConditions") User user = response.body().get(0);
                                     if(user!=null){
+                                        mPrefsHelper.setUserId(user.getUser_id());
                                         mPrefsHelper.setUserName(user.getName());
                                         mPrefsHelper.setUserEmail(user.getEmail_id());
                                         mPrefsHelper.setUserPassword(user.getPassword());
+                                        mPrefsHelper.setDateTime(user.getDatetime());
+                                        mPrefsHelper.setDisplayPicture(user.getDisplay_picture());
+                                        mPrefsHelper.setFacebookId(user.getFacebook_id());
+                                        mPrefsHelper.setGoogleId(user.getGoogle_id());
+                                        mPrefsHelper.setLibrary(user.getLibrary());
+                                        mPrefsHelper.setUserPreference(user.getPreference());
+                                        mPrefsHelper.setPreferenceCode(user.getPreference_code());
+                                        mPrefsHelper.setRead(user.getRead());
+                                        mPrefsHelper.setRushCount(user.getRush_count());
                                         startActivity(MainActivity.getStartIntent(LoginActivity.this));
                                     }
                                 }

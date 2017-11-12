@@ -43,11 +43,8 @@ public interface PreferencesHelper {
     void setUserPassword(String userPassword);
     String getUserPassword();
 
-    void setUserPreference1(String userPreference1);
-    String getUserPreference1();
-
-    void setUserPreference2(String userPreference2);
-    String getUserPreference2();
+    void setUserPreference(String userPreference);
+    String getUserPreference();
 
     void setRushCount(int rushCount);
     int getRushCount();

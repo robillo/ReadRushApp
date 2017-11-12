@@ -119,20 +119,12 @@ constructor(@ApplicationContext context: Context, @PreferenceInfo prefFileName: 
         return mPrefs.getString(PREF_KEY_PASSWORD, null);
     }
 
-    override fun setUserPreference1(userPreference1: String?) {
-        mPrefs.edit().putString(PREF_KEY_PREFERENCE_1, userPreference1).apply();
+    override fun setUserPreference(userPreference: String?) {
+        mPrefs.edit().putString(PREF_KEY_PREFERENCE, userPreference).apply();
     }
 
-    override fun getUserPreference1(): String {
-        return mPrefs.getString(PREF_KEY_PREFERENCE_1, null);
-    }
-
-    override fun setUserPreference2(userPreference2: String?) {
-        mPrefs.edit().putString(PREF_KEY_PREFERENCE_2, userPreference2).apply();
-    }
-
-    override fun getUserPreference2(): String {
-        return mPrefs.getString(PREF_KEY_PREFERENCE_2, null);
+    override fun getUserPreference(): String {
+        return mPrefs.getString(PREF_KEY_PREFERENCE, null);
     }
 
     override fun setRushCount(rushCount: Int) {
@@ -236,8 +228,7 @@ constructor(@ApplicationContext context: Context, @PreferenceInfo prefFileName: 
         private val PREF_KEY_USER_ID = "PREF_KEY_USER_ID"
         private val PREF_KEY_USERNAME = "PREF_KEY_USERNAME"
         private val PREF_KEY_PASSWORD = "PREF_KEY_PASSWORD"
-        private val PREF_KEY_PREFERENCE_1 = "PREF_KEY_PREFERENCE_1"
-        private val PREF_KEY_PREFERENCE_2 = "PREF_KEY_PREFERENCE_2"
+        private val PREF_KEY_PREFERENCE = "PREF_KEY_PREFERENCE"
         private val PREF_KEY_RUSH_COUNT = "PREF_KEY_RUSH_COUNT"
         private val PREF_KEY_EMAIL = "PREF_KEY_EMAIL"
         private val PREF_KEY_LIBRARY = "PREF_KEY_LIBRARY"
