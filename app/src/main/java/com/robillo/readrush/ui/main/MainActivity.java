@@ -51,6 +51,8 @@ public class MainActivity extends BaseActivity implements MainMvpView {
     @Inject
     MainMvpPresenter<MainMvpView> mPresenter;
 
+    AppPreferencesHelper mPrefsHelper;
+
     public static Intent getStartIntent(Context context) {
         return new Intent(context, MainActivity.class);
     }
@@ -72,6 +74,8 @@ public class MainActivity extends BaseActivity implements MainMvpView {
 
     @Override
     protected void setUp() {
+        mPrefsHelper = new AppPreferencesHelper(this, ReadRushApp.PREF_FILE_NAME);
+        mPrefsHelper.setUserIsLoggedIn(true);
         setmLibrary();
     }
 
