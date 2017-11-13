@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -18,6 +19,7 @@ import com.bumptech.glide.Glide;
 import com.robillo.readrush.R;
 import com.robillo.readrush.di.component.ActivityComponent;
 import com.robillo.readrush.ui.base.BaseFragment;
+import com.robillo.readrush.ui.main.MainActivity;
 import com.robillo.readrush.ui.onboard.fragment.OnboardFragment;
 import com.robillo.readrush.ui.rushoverview.OverviewActivity;
 
@@ -66,6 +68,9 @@ public class LibraryFragment extends BaseFragment implements LibraryMvpView {
 
     @BindView(R.id.rush6)
     ImageView mRushSix;
+
+    @BindView(R.id.refresh_buttom)
+    Button mRefreshButton;
 
     @Inject
     LibraryMvpPresenter<LibraryMvpView> mPresenter;
@@ -147,5 +152,13 @@ public class LibraryFragment extends BaseFragment implements LibraryMvpView {
     @OnClick(R.id.rush3)
     public void clickmRushThree() {
         startActivity(OverviewActivity.getStartIntent(getActivity()));
+    }
+
+    @OnClick(R.id.refresh_buttom)
+    public void setmRefreshButton(){
+        MainActivity activity = (MainActivity) getActivity();
+        if (activity != null) {
+            activity.refreshLibraryRushes();
+        }
     }
 }
