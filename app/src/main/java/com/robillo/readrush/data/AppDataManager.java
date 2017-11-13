@@ -51,12 +51,92 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
+    public void setUserId(String userId) {
+
+    }
+
+    @Override
+    public String getUserId() {
+        return null;
+    }
+
+    @Override
     public void setUserEmail(String email) {
 
     }
 
     @Override
     public String getUserEmail() {
+        return null;
+    }
+
+    @Override
+    public void setLibrary(String library) {
+
+    }
+
+    @Override
+    public String getLibrary() {
+        return null;
+    }
+
+    @Override
+    public void setRead(String read) {
+
+    }
+
+    @Override
+    public String getRead() {
+        return null;
+    }
+
+    @Override
+    public void setFacebookId(String facebookId) {
+
+    }
+
+    @Override
+    public String getFacebookId() {
+        return null;
+    }
+
+    @Override
+    public void setGoogleId(String googleId) {
+
+    }
+
+    @Override
+    public String getGoogleId() {
+        return null;
+    }
+
+    @Override
+    public void setDisplayPicture(String displayPicture) {
+
+    }
+
+    @Override
+    public String getDisplayPicture() {
+        return null;
+    }
+
+    @Override
+    public void setPreferenceCode(String preferenceCode) {
+
+    }
+
+    @Override
+    public String getPreferenceCode() {
+        return null;
+    }
+
+    @Override
+    public void setDateTime(String dateTime) {
+
+    }
+
+    @Override
+    public String getDateTime() {
         return null;
     }
 
@@ -81,23 +161,23 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
-    public void setUserPreference1(String userPreference1) {
+    public void setUserPreference(String userPreference) {
 
     }
 
     @Override
-    public String getUserPreference1() {
+    public String getUserPreference() {
         return null;
     }
 
     @Override
-    public void setUserPreference2(String userPreference2) {
+    public void setRushCount(int rushCount) {
 
     }
 
     @Override
-    public String getUserPreference2() {
-        return null;
+    public int getRushCount() {
+        return 0;
     }
 
     @Override
