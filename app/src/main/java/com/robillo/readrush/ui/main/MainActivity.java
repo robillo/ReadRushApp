@@ -178,7 +178,8 @@ public class MainActivity extends BaseActivity implements MainMvpView {
 
     @OnClick(R.id.add)
     public void setmAdd() {
-        refreshLibraryRushes();
+//        refreshLibraryRushes();
+        setmDiscover();
     }
 
     @OnClick(R.id.search)
