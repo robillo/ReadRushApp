@@ -59,4 +59,6 @@ public class ReadRushApp extends Application{
     public void setComponent(ApplicationComponent applicationComponent) {
         mApplicationComponent = applicationComponent;
     }
+
+    //waiting for explore/discover apis to e made...for over a week...
 }
