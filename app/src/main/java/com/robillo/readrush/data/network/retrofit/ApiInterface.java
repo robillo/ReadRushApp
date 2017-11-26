@@ -53,5 +53,24 @@ public interface ApiInterface {
             @Path("collection_id") int collection_id
     );
 
+    @GET("new_api/library_fetch/{user_id}")
+    Call<ResponseBody> fetchLibrary(
+            @Path("user_id") int user_id
+    );
+
+    @GET("new_api/fetch_rush/{rush_id}")
+    Call<ResponseBody> fetchRush(
+            @Path("rush_id") int rush_id
+    );
+
+    @GET("new_api/fetch_rush_review/{rush_id}")
+    Call<ResponseBody> fetchRushReview(
+            @Path("rush_id") int rush_id
+    );
+
+    @GET("new_api/rush_content/{rush_id}")
+    Call<ResponseBody> getRushContent(
+            @Path("rush_id") int rush_id
+    );
 
 }
