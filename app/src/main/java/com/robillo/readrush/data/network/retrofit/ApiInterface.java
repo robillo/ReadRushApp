@@ -37,4 +37,21 @@ public interface ApiInterface {
     Call<ResponseBody> getCollections(
             @Path("user_id") int user_id
     );
+
+    @GET("new_api/fetch_cover/{user_id}")
+    Call<ResponseBody> getTopCovers(
+            @Path("user_id") int user_id
+    );
+
+    @GET("new_api/fetch_featured/{user_id}")
+    Call<ResponseBody> getFeaturedBooks(
+            @Path("user_id") int user_id
+    );
+
+    @GET("new_api/fetch_collection/{collection_id}")
+    Call<ResponseBody> getCollectionFromCid(
+            @Path("collection_id") int collection_id
+    );
+
+
 }
