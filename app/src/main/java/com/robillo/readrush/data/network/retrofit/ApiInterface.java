@@ -33,4 +33,8 @@ public interface ApiInterface {
             @Path("password") String password
     );
 
+    @GET("new_api/fetch_collection_cover/{user_id}")
+    Call<ResponseBody> getCollections(
+            @Path("user_id") int user_id
+    );
 }
