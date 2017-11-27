@@ -145,6 +145,7 @@ public class DiscoverFragment extends BaseFragment implements DiscoverMvpView {
             call.enqueue(new Callback<FeaturedSuper>() {
                 @Override
                 public void onResponse(retrofit2.Call<FeaturedSuper> call, Response<FeaturedSuper> response) {
+                    //noinspection ConstantConditions
                     if(response.body().getMessage()!=null){
                         //noinspection ConstantConditions
                         mFeatureList = response.body().getMessage();
