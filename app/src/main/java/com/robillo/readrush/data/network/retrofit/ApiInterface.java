@@ -3,6 +3,7 @@ package com.robillo.readrush.data.network.retrofit;
 import com.robillo.readrush.data.network.retrofit.model.CollectionsSuper;
 import com.robillo.readrush.data.network.retrofit.model.CoverSuper;
 import com.robillo.readrush.data.network.retrofit.model.FeaturedSuper;
+import com.robillo.readrush.data.network.retrofit.model.LibraryItem;
 import com.robillo.readrush.data.network.retrofit.model.User;
 
 import java.util.List;
@@ -57,7 +58,7 @@ public interface ApiInterface {
     );
 
     @GET("new_api/library_fetch/{user_id}")
-    Call<ResponseBody> fetchLibrary(
+    Call<List<LibraryItem>> fetchLibrary(
             @Path("user_id") String user_id
     );
 

@@ -13,21 +13,33 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.androidnetworking.model.Progress;
 import com.bumptech.glide.Glide;
 import com.robillo.readrush.R;
+import com.robillo.readrush.ReadRushApp;
+import com.robillo.readrush.data.network.retrofit.ApiClient;
+import com.robillo.readrush.data.network.retrofit.ApiInterface;
+import com.robillo.readrush.data.network.retrofit.model.LibraryItem;
+import com.robillo.readrush.data.prefs.AppPreferencesHelper;
 import com.robillo.readrush.di.component.ActivityComponent;
 import com.robillo.readrush.ui.base.BaseFragment;
 import com.robillo.readrush.ui.main.MainActivity;
 import com.robillo.readrush.ui.onboard.fragment.OnboardFragment;
 import com.robillo.readrush.ui.rushoverview.OverviewActivity;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -35,6 +47,10 @@ import butterknife.OnClick;
 public class LibraryFragment extends BaseFragment implements LibraryMvpView {
 
     public static int RUSH_COUNT = 0;
+
+    private AppPreferencesHelper mPrefsHelper;
+    @SuppressWarnings("FieldCanBeLocal")
+    private ApiInterface mApiService;
 
     @BindView(R.id.error_layout)
     LinearLayout mErrorLayout;
@@ -72,6 +88,9 @@ public class LibraryFragment extends BaseFragment implements LibraryMvpView {
     @BindView(R.id.refresh_buttom)
     Button mRefreshButton;
 
+    @BindView(R.id.progress_bar_library)
+    ProgressBar mProgressLibrary;
+
     @Inject
     LibraryMvpPresenter<LibraryMvpView> mPresenter;
 
@@ -106,6 +125,9 @@ public class LibraryFragment extends BaseFragment implements LibraryMvpView {
 
     @Override
     protected void setUp(View view) {
+        //noinspection ConstantConditions
+        mPrefsHelper = new AppPreferencesHelper(getActivity(), ReadRushApp.PREF_FILE_NAME);
+        mApiService = ApiClient.getClient().create(ApiInterface.class);
         checkForExistingRushes();
     }
 
@@ -123,18 +145,34 @@ public class LibraryFragment extends BaseFragment implements LibraryMvpView {
 
     @Override
     public void checkForExistingRushes() {
-        if(RUSH_COUNT == 0){
-            if(mMainLayout.getVisibility()==View.VISIBLE){
-                mMainLayout.setVisibility(View.GONE);
-            }
-            showNoRushes();
+
+        Call<List<LibraryItem>> call = mApiService.fetchLibrary(mPrefsHelper.getUserId());
+        if(call!=null){
+            call.enqueue(new Callback<List<LibraryItem>>() {
+                @Override
+                public void onResponse(Call<List<LibraryItem>> call, Response<List<LibraryItem>> response) {
+
+                }
+
+                @Override
+                public void onFailure(Call<List<LibraryItem>> call, Throwable t) {
+
+                }
+            });
         }
-        else {
-            if(mErrorLayout.getVisibility()==View.VISIBLE){
-                mErrorLayout.setVisibility(View.GONE);
-            }
-            loadRushes();
-        }
+
+//        if(RUSH_COUNT == 0){
+//            if(mMainLayout.getVisibility()==View.VISIBLE){
+//                mMainLayout.setVisibility(View.GONE);
+//            }
+//            showNoRushes();
+//        }
+//        else {
+//            if(mErrorLayout.getVisibility()==View.VISIBLE){
+//                mErrorLayout.setVisibility(View.GONE);
+//            }
+//            loadRushes();
+//        }
     }
 
     @Override

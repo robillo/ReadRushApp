@@ -5,6 +5,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.robillo.readrush.ui.main.library.LibraryFragment">
 
+    <ProgressBar
+        android:id="@+id/progress_bar_library"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="30sp"
+        android:layout_height="30sp"
+        android:layout_gravity="center"
+        android:indeterminateTint="@color/colorTextOne"
+        tools:targetApi="lollipop"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -85,7 +94,7 @@
         android:orientation="vertical"
         android:visibility="gone"
         android:id="@+id/main_layout"
-        tools:visibility="visible">
+        tools:visibility="invisible">
 
         <LinearLayout
             android:layout_width="match_parent"
