@@ -113,7 +113,7 @@
                         android:paddingBottom="10sp"
                         android:paddingLeft="20sp"
                         android:paddingRight="20sp"
-                        android:id="@+id/short_description"/>
+                        android:id="@+id/description"/>
 
                 </android.support.v7.widget.CardView>
 
@@ -174,7 +174,7 @@
                             android:paddingBottom="10sp"
                             android:paddingLeft="20sp"
                             android:paddingRight="20sp"
-                            android:id="@+id/add_rush"/>
+                            android:id="@+id/add_read_rush"/>
 
                     </android.support.v7.widget.CardView>
 

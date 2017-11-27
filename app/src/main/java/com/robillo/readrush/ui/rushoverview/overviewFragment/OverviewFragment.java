@@ -8,6 +8,9 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.robillo.readrush.R;
@@ -34,6 +37,24 @@ public class OverviewFragment extends BaseFragment implements OverviewFragmentMv
 
     @BindView(R.id.shimmer)
     ShimmerLayout mShimmerLayout;
+
+    @BindView(R.id.cover)
+    ImageView mCover;
+
+    @BindView(R.id.name)
+    TextView mName;
+
+    @BindView(R.id.author)
+    TextView mAuthor;
+
+    @BindView(R.id.description)
+    TextView mDescription;
+
+    @BindView(R.id.reviews)
+    Button mReviews;
+
+    @BindView(R.id.add_read_rush)
+    Button mAddReadRush;
 
     static String mRushId;
 
