@@ -56,6 +56,7 @@ ext {
     htextviewVersion = '0.1.1'
     spruceVersion = '1.0.1'
     navTabBarVersion = '1.2.5'
+    shimmerLayoutVersion = '1.0.2'
 
     rx2FastAndroidNetworking = '1.0.0'
 

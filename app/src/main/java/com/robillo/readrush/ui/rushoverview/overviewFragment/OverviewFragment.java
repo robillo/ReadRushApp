@@ -19,8 +19,10 @@ import com.robillo.readrush.ui.rushoverview.reviewsFragment.ReviewsFragment;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.supercharge.shimmerlayout.ShimmerLayout;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,6 +31,9 @@ public class OverviewFragment extends BaseFragment implements OverviewFragmentMv
 
     @Inject
     OverviewFragmentMvpPresenter<OverviewFragmentMvpView> mPresenter;
+
+    @BindView(R.id.shimmer)
+    ShimmerLayout mShimmerLayout;
 
     static String mRushId;
 
@@ -67,7 +72,7 @@ public class OverviewFragment extends BaseFragment implements OverviewFragmentMv
     protected void setUp(View view) {
         //noinspection ConstantConditions
         mRushId = getArguments().getString("rush_id");
-        Toast.makeText(getActivity(), " " + mRushId, Toast.LENGTH_SHORT).show();
+        mShimmerLayout.startShimmerAnimation();
     }
 
     @Override
