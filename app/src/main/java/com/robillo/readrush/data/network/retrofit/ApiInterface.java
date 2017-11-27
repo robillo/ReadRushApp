@@ -1,6 +1,7 @@
 package com.robillo.readrush.data.network.retrofit;
 
 import com.robillo.readrush.data.network.retrofit.model.CollectionsSuper;
+import com.robillo.readrush.data.network.retrofit.model.CoverSuper;
 import com.robillo.readrush.data.network.retrofit.model.FeaturedSuper;
 import com.robillo.readrush.data.network.retrofit.model.User;
 
@@ -41,7 +42,7 @@ public interface ApiInterface {
     );
 
     @GET("new_api/fetch_cover/{user_id}")
-    Call<ResponseBody> getTopCovers(
+    Call<CoverSuper> getTopCovers(
             @Path("user_id") String user_id
     );
 

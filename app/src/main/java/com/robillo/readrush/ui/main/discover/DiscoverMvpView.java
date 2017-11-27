@@ -12,4 +12,6 @@ public interface DiscoverMvpView extends MvpView {
 
     void fetchCollectionNames();
 
+    void fetchTopCoverBooks();
+
 }

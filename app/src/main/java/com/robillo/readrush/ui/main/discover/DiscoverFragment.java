@@ -2,6 +2,7 @@ package com.robillo.readrush.ui.main.discover;
 
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -23,6 +24,8 @@ import com.robillo.readrush.data.network.retrofit.ApiClient;
 import com.robillo.readrush.data.network.retrofit.ApiInterface;
 import com.robillo.readrush.data.network.retrofit.model.CollectionUnit;
 import com.robillo.readrush.data.network.retrofit.model.CollectionsSuper;
+import com.robillo.readrush.data.network.retrofit.model.Cover;
+import com.robillo.readrush.data.network.retrofit.model.CoverSuper;
 import com.robillo.readrush.data.network.retrofit.model.Featured;
 import com.robillo.readrush.data.network.retrofit.model.FeaturedSuper;
 import com.robillo.readrush.data.prefs.AppPreferencesHelper;
@@ -51,7 +54,6 @@ import retrofit2.Response;
  */
 public class DiscoverFragment extends BaseFragment implements DiscoverMvpView {
 
-    static int NUM_PAGES = 3;
     List<Featured> mFeatureList = new ArrayList<>();
     List<CollectionUnit> mCollectionList = new ArrayList<>();
     CollectionsAdapter mCollectionAdapter;
@@ -122,12 +124,10 @@ public class DiscoverFragment extends BaseFragment implements DiscoverMvpView {
         mApiService = ApiClient.getClient().create(ApiInterface.class);
 
         //SETTING PAGER
-        //noinspection ConstantConditions
-        PagerAdapter adapter = new ScreenSlidePagerAdapter(getActivity().getSupportFragmentManager());
-        mPager.setAdapter(adapter);
         mPager.setClipToPadding(false);
         mPager.setPageTransformer(true, new ZoomOutPageTransformer());
         mPager.addOnPageChangeListener(viewPagerPageChangeListener);
+        fetchTopCoverBooks();
 
         //SETTING FEATURE RV
         mFeatureRv.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
@@ -145,7 +145,7 @@ public class DiscoverFragment extends BaseFragment implements DiscoverMvpView {
         if(call!=null){
             call.enqueue(new Callback<FeaturedSuper>() {
                 @Override
-                public void onResponse(retrofit2.Call<FeaturedSuper> call, Response<FeaturedSuper> response) {
+                public void onResponse(@NonNull retrofit2.Call<FeaturedSuper> call, @NonNull Response<FeaturedSuper> response) {
                     //noinspection ConstantConditions
                     if(response.body().getMessage()!=null){
                         //noinspection ConstantConditions
@@ -160,7 +160,7 @@ public class DiscoverFragment extends BaseFragment implements DiscoverMvpView {
                 }
 
                 @Override
-                public void onFailure(retrofit2.Call<FeaturedSuper> call, Throwable t) {
+                public void onFailure(@NonNull retrofit2.Call<FeaturedSuper> call, @NonNull Throwable t) {
                     Toast.makeText(getActivity(), "Failed to fetch Featured Books", Toast.LENGTH_SHORT).show();
                 }
             });
@@ -174,7 +174,7 @@ public class DiscoverFragment extends BaseFragment implements DiscoverMvpView {
         if(call!=null){
             call.enqueue(new Callback<CollectionsSuper>() {
                 @Override
-                public void onResponse(retrofit2.Call<CollectionsSuper> call, Response<CollectionsSuper> response) {
+                public void onResponse(@NonNull retrofit2.Call<CollectionsSuper> call, @NonNull Response<CollectionsSuper> response) {
                     //noinspection ConstantConditions
                     if(response.body().getMessage()!=null){
                         //noinspection ConstantConditions
@@ -189,49 +189,65 @@ public class DiscoverFragment extends BaseFragment implements DiscoverMvpView {
                 }
 
                 @Override
-                public void onFailure(retrofit2.Call<CollectionsSuper> call, Throwable t) {
+                public void onFailure(@NonNull retrofit2.Call<CollectionsSuper> call, @NonNull Throwable t) {
                     Toast.makeText(getActivity(), "Failed to fetch Collections", Toast.LENGTH_SHORT).show();
                 }
             });
         }
     }
 
+    @Override
+    public void fetchTopCoverBooks() {
+
+        retrofit2.Call<CoverSuper> call = mApiService.getTopCovers(mPrefsHelper.getUserId());
+        if(call!=null){
+            call.enqueue(new Callback<CoverSuper>() {
+                @Override
+                public void onResponse(@NonNull retrofit2.Call<CoverSuper> call, @NonNull Response<CoverSuper> response) {
+                    mProgressCovers.setVisibility(View.GONE);
+                    mPager.setVisibility(View.VISIBLE);
+                    //noinspection ConstantConditions
+                    PagerAdapter adapter = new ScreenSlidePagerAdapter(getActivity().getSupportFragmentManager(), response.body().getMessage());
+                    mPager.setAdapter(adapter);
+                }
+
+                @Override
+                public void onFailure(@NonNull retrofit2.Call<CoverSuper> call, @NonNull Throwable t) {
+                    Toast.makeText(getActivity(), "Failed to fetch Top Covers", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+    }
+
     private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
-        ScreenSlidePagerAdapter(FragmentManager fm) {
+
+        List<Cover> mList = new ArrayList<>();
+        private int mNumPages = 0;
+
+        ScreenSlidePagerAdapter(FragmentManager fm, @SuppressWarnings("ConstantConditions") List<Cover> mList) {
             super(fm);
+            this.mList = mList;
+            mNumPages = mList.size();
         }
 
         @Override
         public Fragment getItem(int position) {
+
+            //POSITION STARTING FROM INDEX 0
             Bundle args = new Bundle();
-            switch (position){
-                case 0:{
-                    args.putInt("drawable_id", R.drawable.larry_page_quote);
-                    return PagerFragment.newInstance(args);
-                }
-                case 1:{
-                    args.putInt("drawable_id", R.drawable.larry_page);
-                    return PagerFragment.newInstance(args);
-                }
-                case 2:{
-                    args.putInt("drawable_id", R.drawable.steve_jobs_quote);
-                    return PagerFragment.newInstance(args);
-                }
-                case 3:{
-                    args.putInt("drawable_id", R.drawable.larry_page_quote);
-                    return PagerFragment.newInstance(args);
-                }
-                default:{
-                    return PagerFragment.newInstance(args);
-                }
-            }
+            args.putInt("drawable_id", R.drawable.larry_page_quote);
+            args.putString("cover_image", mList.get(position).getCover_image());
+            args.putString("rush_id", mList.get(position).getRush_id());
+            return PagerFragment.newInstance(args);
+
         }
 
         @Override
         public int getCount() {
-            return NUM_PAGES;
+            return mNumPages;
         }
 
+        @NonNull
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
             return super.instantiateItem(container, position);

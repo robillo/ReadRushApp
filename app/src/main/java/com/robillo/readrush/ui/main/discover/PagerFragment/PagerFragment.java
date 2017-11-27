@@ -3,6 +3,7 @@ package com.robillo.readrush.ui.main.discover.PagerFragment;
 
 import android.os.Bundle;
 import android.support.annotation.DrawableRes;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,8 +23,6 @@ import butterknife.ButterKnife;
  */
 public class PagerFragment extends BaseFragment {
 
-    int mDrawableId;
-
     @BindView(R.id.pager_image)
     ImageView mPagerImage;
 
@@ -38,7 +37,7 @@ public class PagerFragment extends BaseFragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_pager, container, false);
@@ -49,6 +48,7 @@ public class PagerFragment extends BaseFragment {
 
     @Override
     protected void setUp(View view) {
-        Glide.with(getActivity()).load(getArguments().getInt("drawable_id")).centerCrop().crossFade().into(mPagerImage);
+        //noinspection ConstantConditions
+        Glide.with(getActivity()).load(getArguments().getString("cover_image")).centerCrop().crossFade().into(mPagerImage);
     }
 }
