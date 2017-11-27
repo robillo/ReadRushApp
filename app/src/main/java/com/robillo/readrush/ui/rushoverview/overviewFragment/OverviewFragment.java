@@ -2,11 +2,13 @@ package com.robillo.readrush.ui.rushoverview.overviewFragment;
 
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.robillo.readrush.R;
 import com.robillo.readrush.di.component.ActivityComponent;
@@ -28,17 +30,20 @@ public class OverviewFragment extends BaseFragment implements OverviewFragmentMv
     @Inject
     OverviewFragmentMvpPresenter<OverviewFragmentMvpView> mPresenter;
 
+    static String mRushId;
+
     public OverviewFragment() {
         // Required empty public constructor
     }
 
     public static OverviewFragment newInstance(Bundle bundle) {
-        //        fragment.setArguments(bundle);
-        return new OverviewFragment();
+        OverviewFragment fragment = new OverviewFragment();
+        fragment.setArguments(bundle);
+        return fragment;
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_overview, container, false);
@@ -60,11 +65,14 @@ public class OverviewFragment extends BaseFragment implements OverviewFragmentMv
 
     @Override
     protected void setUp(View view) {
-
+        //noinspection ConstantConditions
+        mRushId = getArguments().getString("rush_id");
+        Toast.makeText(getActivity(), " " + mRushId, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void setReviewsFragment() {
+        //noinspection ConstantConditions
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
         transaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
         transaction.add(R.id.container, ReviewsFragment.newInstance(null)).commit();

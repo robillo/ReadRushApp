@@ -8,6 +8,6 @@ import com.robillo.readrush.ui.base.MvpView;
 
 public interface OverviewMvpView extends MvpView {
 
-    void setOverviewFragment();
+    void setOverviewFragment(String rushId);
 
 }

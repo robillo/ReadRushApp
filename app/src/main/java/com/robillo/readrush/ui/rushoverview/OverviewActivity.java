@@ -50,12 +50,13 @@ public class OverviewActivity extends BaseActivity implements OverviewMvpView {
     @Override
     protected void setUp() {
         mRushId = getIntent().getStringExtra("rush_id");
-        Toast.makeText(this, " " + mRushId, Toast.LENGTH_SHORT).show();
-        setOverviewFragment();
+        setOverviewFragment(mRushId);
     }
 
     @Override
-    public void setOverviewFragment() {
-        getSupportFragmentManager().beginTransaction().replace(R.id.container, OverviewFragment.newInstance(null)).commit();
+    public void setOverviewFragment(String rushId) {
+        Bundle args = new Bundle();
+        args.putString("rush_id", rushId);
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, OverviewFragment.newInstance(args)).commit();
     }
 }
