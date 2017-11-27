@@ -1,5 +1,6 @@
 package com.robillo.readrush.data.network.retrofit;
 
+import com.robillo.readrush.data.network.retrofit.model.FeaturedSuper;
 import com.robillo.readrush.data.network.retrofit.model.User;
 
 import java.util.List;
@@ -35,17 +36,17 @@ public interface ApiInterface {
 
     @GET("new_api/fetch_collection_cover/{user_id}")
     Call<ResponseBody> getCollections(
-            @Path("user_id") int user_id
+            @Path("user_id") String user_id
     );
 
     @GET("new_api/fetch_cover/{user_id}")
     Call<ResponseBody> getTopCovers(
-            @Path("user_id") int user_id
+            @Path("user_id") String user_id
     );
 
     @GET("new_api/fetch_featured/{user_id}")
-    Call<ResponseBody> getFeaturedBooks(
-            @Path("user_id") int user_id
+    Call<FeaturedSuper> getFeaturedBooks(
+            @Path("user_id") String user_id
     );
 
     @GET("new_api/fetch_collection/{collection_id}")
@@ -55,27 +56,27 @@ public interface ApiInterface {
 
     @GET("new_api/library_fetch/{user_id}")
     Call<ResponseBody> fetchLibrary(
-            @Path("user_id") int user_id
+            @Path("user_id") String user_id
     );
 
     @GET("new_api/fetch_rush/{rush_id}")
     Call<ResponseBody> fetchRush(
-            @Path("rush_id") int rush_id
+            @Path("rush_id") String rush_id
     );
 
     @GET("new_api/fetch_rush_review/{rush_id}")
     Call<ResponseBody> fetchRushReview(
-            @Path("rush_id") int rush_id
+            @Path("rush_id") String rush_id
     );
 
     @GET("new_api/rush_content/{rush_id}")
     Call<ResponseBody> getRushContent(
-            @Path("rush_id") int rush_id
+            @Path("rush_id") String rush_id
     );
 
     @GET("new_api/add_to_library/{user_id}/{rush_id}")
     Call<ResponseBody> addToUserLibrary(
-            @Path("user_id") int user_id,
-            @Path("rush_id") int rush_id
+            @Path("user_id") String user_id,
+            @Path("rush_id") String rush_id
     );
 }

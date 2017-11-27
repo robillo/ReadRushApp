@@ -11,7 +11,7 @@
         android:layout_weight="1">
 
         <ProgressBar
-            android:id="@+id/progressBarCovers"
+            android:id="@+id/progress_bar_covers"
             style="?android:attr/progressBarStyleLarge"
             android:layout_width="30sp"
             android:layout_height="30sp"
@@ -50,7 +50,7 @@
             android:layout_height="match_parent">
 
             <ProgressBar
-                android:id="@+id/progressBarFeatured"
+                android:id="@+id/progress_bar_featured"
                 style="?android:attr/progressBarStyleLarge"
                 android:layout_width="30sp"
                 android:layout_height="30sp"
@@ -94,7 +94,7 @@
             android:layout_height="match_parent">
 
             <ProgressBar
-                android:id="@+id/progressBarCollections"
+                android:id="@+id/progress_bar_collections"
                 style="?android:attr/progressBarStyleLarge"
                 android:layout_width="30sp"
                 android:layout_height="30sp"

@@ -9,6 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
 
+    @SuppressWarnings("WeakerAccess")
     public static final String BASE_URL = "http://readrush.in/index.php/";
     private static Retrofit mRetrofitInstance;
 

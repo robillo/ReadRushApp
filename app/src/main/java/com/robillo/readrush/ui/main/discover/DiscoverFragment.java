@@ -10,13 +10,21 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SnapHelper;
+import android.telecom.Call;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.robillo.readrush.R;
+import com.robillo.readrush.ReadRushApp;
+import com.robillo.readrush.data.network.retrofit.ApiClient;
+import com.robillo.readrush.data.network.retrofit.ApiInterface;
+import com.robillo.readrush.data.network.retrofit.model.Featured;
+import com.robillo.readrush.data.network.retrofit.model.FeaturedSuper;
 import com.robillo.readrush.data.others.Collection;
-import com.robillo.readrush.data.others.Feature;
+import com.robillo.readrush.data.prefs.AppPreferencesHelper;
 import com.robillo.readrush.di.component.ActivityComponent;
 import com.robillo.readrush.ui.base.BaseFragment;
 import com.robillo.readrush.ui.main.discover.PagerFragment.PagerFragment;
@@ -25,6 +33,7 @@ import com.robillo.readrush.ui.main.discover.adapters.FeaturedAdapter;
 import com.robillo.readrush.utils.other_helper.StartSnapHelper;
 import com.robillo.readrush.utils.page_transforms.ZoomOutPageTransformer;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +41,9 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import okhttp3.ResponseBody;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -39,11 +51,14 @@ import butterknife.ButterKnife;
 public class DiscoverFragment extends BaseFragment implements DiscoverMvpView {
 
     static int NUM_PAGES = 3;
-    List<Feature> mFeatureList = new ArrayList<>();
+    List<Featured> mFeatureList = new ArrayList<>();
     List<Collection> mCollectionList = new ArrayList<>();
     CollectionsAdapter mCollectionAdapter;
     FeaturedAdapter mFeatureAdapter;
     SnapHelper featureSnapHelper, collectionsSnapHelper;
+    private AppPreferencesHelper mPrefsHelper;
+    @SuppressWarnings("FieldCanBeLocal")
+    private ApiInterface mApiService;
 
     @BindView(R.id.pager)
     ViewPager mPager;
@@ -53,6 +68,15 @@ public class DiscoverFragment extends BaseFragment implements DiscoverMvpView {
 
     @BindView(R.id.collections)
     RecyclerView mCollectionRv;
+
+    @BindView(R.id.progress_bar_covers)
+    ProgressBar mProgressCovers;
+
+    @BindView(R.id.progress_bar_featured)
+    ProgressBar mProgressFeatured;
+
+    @BindView(R.id.progress_bar_collections)
+    ProgressBar mProgressCollections;
 
     @Inject
     DiscoverMvpPresenter<DiscoverMvpView> mPresenter;
@@ -92,6 +116,10 @@ public class DiscoverFragment extends BaseFragment implements DiscoverMvpView {
         featureSnapHelper = new StartSnapHelper();
         collectionsSnapHelper = new StartSnapHelper();
 
+        //noinspection ConstantConditions
+        mPrefsHelper = new AppPreferencesHelper(getActivity(), ReadRushApp.PREF_FILE_NAME);
+        mApiService = ApiClient.getClient().create(ApiInterface.class);
+
         //SETTING PAGER
         //noinspection ConstantConditions
         PagerAdapter adapter = new ScreenSlidePagerAdapter(getActivity().getSupportFragmentManager());
@@ -111,16 +139,30 @@ public class DiscoverFragment extends BaseFragment implements DiscoverMvpView {
 
     @Override
     public void fetchFeaturedBooks() {
-        mFeatureList.add(new Feature(R.drawable.cover1, "ROBILLO"));
-        mFeatureList.add(new Feature(R.drawable.cover2, "ROBILLO"));
-        mFeatureList.add(new Feature(R.drawable.cover3, "ROBILLO"));
-        mFeatureList.add(new Feature(R.drawable.cover4, "ROBILLO"));
-        mFeatureList.add(new Feature(R.drawable.cover5, "ROBILLO"));
-        mFeatureList.add(new Feature(R.drawable.cover6, "ROBILLO"));
-        mFeatureAdapter = new FeaturedAdapter(mFeatureList, getActivity());
-        mFeatureRv.setAdapter(mFeatureAdapter);
-        mFeatureRv.setOnFlingListener(null);
-        featureSnapHelper.attachToRecyclerView(mFeatureRv);
+
+        retrofit2.Call<FeaturedSuper> call = mApiService.getFeaturedBooks(mPrefsHelper.getUserId());
+        if(call!=null){
+            call.enqueue(new Callback<FeaturedSuper>() {
+                @Override
+                public void onResponse(retrofit2.Call<FeaturedSuper> call, Response<FeaturedSuper> response) {
+                    if(response.body().getMessage()!=null){
+                        //noinspection ConstantConditions
+                        mFeatureList = response.body().getMessage();
+                        mFeatureRv.setVisibility(View.VISIBLE);
+                        mFeatureAdapter = new FeaturedAdapter(mFeatureList, getActivity());
+                        mFeatureRv.setAdapter(mFeatureAdapter);
+                        mFeatureRv.setOnFlingListener(null);
+                        featureSnapHelper.attachToRecyclerView(mFeatureRv);
+                        mProgressFeatured.setVisibility(View.GONE);
+                    }
+                }
+
+                @Override
+                public void onFailure(retrofit2.Call<FeaturedSuper> call, Throwable t) {
+                    Toast.makeText(getActivity(), "Failed to fetch Featured Books", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
     }
 
     @Override

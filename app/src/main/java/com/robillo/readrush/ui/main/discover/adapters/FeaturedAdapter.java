@@ -9,7 +9,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.robillo.readrush.R;
-import com.robillo.readrush.data.others.Feature;
+import com.robillo.readrush.data.network.retrofit.model.Featured;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,10 +23,10 @@ import butterknife.ButterKnife;
 
 public class FeaturedAdapter extends RecyclerView.Adapter<FeaturedAdapter.FeaturedHolder> {
 
-    List<Feature> mList = new ArrayList<>();
+    List<Featured> mList = new ArrayList<>();
     Context mContext;
 
-    public FeaturedAdapter(List<Feature> mList, Context mContext) {
+    public FeaturedAdapter(List<Featured> mList, Context mContext) {
         this.mList = mList;
         this.mContext = mContext;
     }
@@ -39,7 +39,7 @@ public class FeaturedAdapter extends RecyclerView.Adapter<FeaturedAdapter.Featur
 
     @Override
     public void onBindViewHolder(FeaturedHolder holder, int position) {
-        Glide.with(mContext).load(mList.get(position).getDrawableId()).centerCrop().crossFade().into(holder.cover);
+        Glide.with(mContext).load(mList.get(position).getCover_image()).centerCrop().crossFade().into(holder.cover);
     }
 
     @Override
