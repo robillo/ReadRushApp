@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.robillo.readrush.R;
-import com.robillo.readrush.data.others.Collection;
+import com.robillo.readrush.data.network.retrofit.model.CollectionUnit;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +18,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import jp.wasabeef.glide.transformations.gpu.BrightnessFilterTransformation;
-//import jp.wasabeef.glide.transformations.gpu.BrightnessFilterTransformation;
 
 /**
  * Created by robinkamboj on 20/10/17.
@@ -26,10 +25,10 @@ import jp.wasabeef.glide.transformations.gpu.BrightnessFilterTransformation;
 
 public class CollectionsAdapter extends RecyclerView.Adapter<CollectionsAdapter.CollectionsHolder> {
 
-    List<Collection> mList = new ArrayList<>();
+    List<CollectionUnit> mList = new ArrayList<>();
     Context mContext;
 
-    public CollectionsAdapter(List<Collection> mList, Context mContext) {
+    public CollectionsAdapter(List<CollectionUnit> mList, Context mContext) {
         this.mList = mList;
         this.mContext = mContext;
     }
@@ -42,11 +41,12 @@ public class CollectionsAdapter extends RecyclerView.Adapter<CollectionsAdapter.
 
     @Override
     public void onBindViewHolder(CollectionsHolder holder, int position) {
-        holder.mHeader.setText(mList.get(position).getHeader());
-        Glide.with(mContext).load(mList.get(position).getDrawableId())
-                .bitmapTransform(new BrightnessFilterTransformation(mContext, -0.5f))
-                .centerCrop()
-                .into(holder.mCover);
+//        holder.mHeader.setText(mList.get(position).getId());
+        Glide.with(mContext).load(mList.get(position).getCover_image()).centerCrop().into(holder.mCover);
+
+//                .bitmapTransform(new BrightnessFilterTransformation(mContext, -0.5f))
+//                .centerCrop()
+//                .into(holder.mCover);
     }
 
     @Override
@@ -57,8 +57,8 @@ public class CollectionsAdapter extends RecyclerView.Adapter<CollectionsAdapter.
 
     class CollectionsHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.text)
-        public TextView mHeader;
+//        @BindView(R.id.text)
+//        public TextView mHeader;
 
         @BindView(R.id.cover)
         public ImageView mCover;

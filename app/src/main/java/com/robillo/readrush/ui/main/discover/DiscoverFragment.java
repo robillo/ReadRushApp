@@ -21,9 +21,10 @@ import com.robillo.readrush.R;
 import com.robillo.readrush.ReadRushApp;
 import com.robillo.readrush.data.network.retrofit.ApiClient;
 import com.robillo.readrush.data.network.retrofit.ApiInterface;
+import com.robillo.readrush.data.network.retrofit.model.CollectionUnit;
+import com.robillo.readrush.data.network.retrofit.model.CollectionsSuper;
 import com.robillo.readrush.data.network.retrofit.model.Featured;
 import com.robillo.readrush.data.network.retrofit.model.FeaturedSuper;
-import com.robillo.readrush.data.others.Collection;
 import com.robillo.readrush.data.prefs.AppPreferencesHelper;
 import com.robillo.readrush.di.component.ActivityComponent;
 import com.robillo.readrush.ui.base.BaseFragment;
@@ -52,7 +53,7 @@ public class DiscoverFragment extends BaseFragment implements DiscoverMvpView {
 
     static int NUM_PAGES = 3;
     List<Featured> mFeatureList = new ArrayList<>();
-    List<Collection> mCollectionList = new ArrayList<>();
+    List<CollectionUnit> mCollectionList = new ArrayList<>();
     CollectionsAdapter mCollectionAdapter;
     FeaturedAdapter mFeatureAdapter;
     SnapHelper featureSnapHelper, collectionsSnapHelper;
@@ -168,13 +169,31 @@ public class DiscoverFragment extends BaseFragment implements DiscoverMvpView {
 
     @Override
     public void fetchCollectionNames() {
-        mCollectionList.add(new Collection(R.drawable.coll1, "Best Of 2016", "ROBILLO"));
-        mCollectionList.add(new Collection(R.drawable.coll2, "Best Horror Books", "ROBILLO"));
-        mCollectionList.add(new Collection(R.drawable.coll3, "Best Fiction", "ROBILLO"));
-        mCollectionAdapter = new CollectionsAdapter(mCollectionList, getActivity());
-        mCollectionRv.setAdapter(mCollectionAdapter);
-        mCollectionRv.setOnFlingListener(null);
-        collectionsSnapHelper.attachToRecyclerView(mCollectionRv);
+
+        retrofit2.Call<CollectionsSuper> call = mApiService.getCollections(mPrefsHelper.getUserId());
+        if(call!=null){
+            call.enqueue(new Callback<CollectionsSuper>() {
+                @Override
+                public void onResponse(retrofit2.Call<CollectionsSuper> call, Response<CollectionsSuper> response) {
+                    //noinspection ConstantConditions
+                    if(response.body().getMessage()!=null){
+                        //noinspection ConstantConditions
+                        mCollectionList = response.body().getMessage();
+                        mCollectionRv.setVisibility(View.VISIBLE);
+                        mCollectionAdapter = new CollectionsAdapter(mCollectionList, getActivity());
+                        mCollectionRv.setAdapter(mCollectionAdapter);
+                        mCollectionRv.setOnFlingListener(null);
+                        collectionsSnapHelper.attachToRecyclerView(mCollectionRv);
+                        mProgressCollections.setVisibility(View.GONE);
+                    }
+                }
+
+                @Override
+                public void onFailure(retrofit2.Call<CollectionsSuper> call, Throwable t) {
+                    Toast.makeText(getActivity(), "Failed to fetch Collections", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
     }
 
     private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
