@@ -73,4 +73,9 @@ public interface ApiInterface {
             @Path("rush_id") int rush_id
     );
 
+    @GET("new_api/add_to_library/{user_id}/{rush_id}")
+    Call<ResponseBody> addToUserLibrary(
+            @Path("user_id") int user_id,
+            @Path("rush_id") int rush_id
+    );
 }
