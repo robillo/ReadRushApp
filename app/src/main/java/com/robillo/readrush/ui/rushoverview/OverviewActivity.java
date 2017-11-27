@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.robillo.readrush.R;
 import com.robillo.readrush.ui.base.BaseActivity;
@@ -21,11 +22,15 @@ import butterknife.OnClick;
 
 public class OverviewActivity extends BaseActivity implements OverviewMvpView {
 
+    private static String mRushId;
+
     @Inject
     OverviewMvpPresenter<OverviewMvpView> mPresenter;
 
-    public static Intent getStartIntent(Context context) {
-        return new Intent(context, OverviewActivity.class);
+    public static Intent getStartIntent(Context context, String rush_id) {
+        Intent intent = new Intent(context, OverviewActivity.class);
+        intent.putExtra("rush_id", rush_id);
+        return intent;
     }
 
     @Override
@@ -44,6 +49,8 @@ public class OverviewActivity extends BaseActivity implements OverviewMvpView {
 
     @Override
     protected void setUp() {
+        mRushId = getIntent().getStringExtra("rush_id");
+        Toast.makeText(this, " " + mRushId, Toast.LENGTH_SHORT).show();
         setOverviewFragment();
     }
 

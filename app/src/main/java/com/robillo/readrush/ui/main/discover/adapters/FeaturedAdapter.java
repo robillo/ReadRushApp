@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.robillo.readrush.R;
 import com.robillo.readrush.data.network.retrofit.model.Featured;
+import com.robillo.readrush.ui.rushoverview.OverviewActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,8 +24,8 @@ import butterknife.ButterKnife;
 
 public class FeaturedAdapter extends RecyclerView.Adapter<FeaturedAdapter.FeaturedHolder> {
 
-    List<Featured> mList = new ArrayList<>();
-    Context mContext;
+    private List<Featured> mList = new ArrayList<>();
+    private Context mContext;
 
     public FeaturedAdapter(List<Featured> mList, Context mContext) {
         this.mList = mList;
@@ -38,8 +39,16 @@ public class FeaturedAdapter extends RecyclerView.Adapter<FeaturedAdapter.Featur
     }
 
     @Override
-    public void onBindViewHolder(FeaturedHolder holder, int position) {
+    public void onBindViewHolder(FeaturedHolder holder, final int position) {
+        //noinspection UnnecessaryLocalVariable
+        final int pos = position;
         Glide.with(mContext).load(mList.get(position).getCover_image()).centerCrop().crossFade().into(holder.cover);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mContext.startActivity(OverviewActivity.getStartIntent(mContext, mList.get(pos).getRush_id()));
+            }
+        });
     }
 
     @Override

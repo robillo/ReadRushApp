@@ -189,7 +189,7 @@ public class LibraryFragment extends BaseFragment implements LibraryMvpView {
 
     @OnClick(R.id.rush3)
     public void clickmRushThree() {
-        startActivity(OverviewActivity.getStartIntent(getActivity()));
+        startActivity(OverviewActivity.getStartIntent(getActivity(), "3"));
     }
 
     @OnClick(R.id.refresh_buttom)
