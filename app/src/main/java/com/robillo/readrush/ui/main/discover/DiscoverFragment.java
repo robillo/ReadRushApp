@@ -93,6 +93,7 @@ public class DiscoverFragment extends BaseFragment implements DiscoverMvpView {
         collectionsSnapHelper = new StartSnapHelper();
 
         //SETTING PAGER
+        //noinspection ConstantConditions
         PagerAdapter adapter = new ScreenSlidePagerAdapter(getActivity().getSupportFragmentManager());
         mPager.setAdapter(adapter);
         mPager.setClipToPadding(false);
