@@ -13,6 +13,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.robillo.readrush.R;
 import com.robillo.readrush.ReadRushApp;
@@ -33,12 +34,14 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class SearchActivity extends BaseActivity implements SearchMvpView {
 
+    private String mSearchTags;
     FeaturedAdapter mFeatureAdapter;
     List<Featured> mFeatureList = new ArrayList<>();
     @SuppressWarnings("FieldCanBeLocal")
@@ -94,6 +97,7 @@ public class SearchActivity extends BaseActivity implements SearchMvpView {
         mSuggestionsRv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         mLayoutSuggestions.setAnimation(AnimationUtils.loadAnimation(this, R.anim.slide_in_left));
 
+        loadDefaultFeaturedBooks();
     }
 
     @Override
@@ -115,9 +119,9 @@ public class SearchActivity extends BaseActivity implements SearchMvpView {
     }
 
     @Override
-    public void loadSuggestions() {
+    public void loadSuggestions(String search_tag) {
 
-        Call<SearchResultSuper> call = mApiService.searchResultsFetch("robin");
+        Call<SearchResultSuper> call = mApiService.searchResultsFetch(search_tag);
         if(call!=null){
             call.enqueue(new Callback<SearchResultSuper>() {
                 @Override
@@ -139,5 +143,16 @@ public class SearchActivity extends BaseActivity implements SearchMvpView {
     @Override
     public void showSearchHistory() {
 
+    }
+
+    @OnClick(R.id.search_buttom)
+    public void searchForResults(){
+        if(mSearchEditText.getText().length()>0){
+            loadSuggestions(mSearchEditText.getText().toString());
+            mSearchEditText.setText("");
+        }
+        else {
+            Toast.makeText(this, "Please Enter A Search Query", Toast.LENGTH_SHORT).show();
+        }
     }
 }

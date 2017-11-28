@@ -10,7 +10,7 @@ public interface SearchMvpView extends MvpView {
 
     void loadDefaultFeaturedBooks();
 
-    void loadSuggestions();
+    void loadSuggestions(String search_tag);
 
     void showSearchHistory();
 
