@@ -4,11 +4,13 @@ package com.robillo.readrush.ui.rushoverview.reviewsFragment;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.robillo.readrush.R;
 import com.robillo.readrush.data.others.Review;
@@ -23,6 +25,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -34,6 +37,9 @@ public class ReviewsFragment extends BaseFragment implements ReviewsMvpView {
 
     @BindView(R.id.reviews)
     RecyclerView mReviewRv;
+
+    @BindView(R.id.exit)
+    ImageView mExit;
 
     @Inject
     ReviewsMvpPresenter<ReviewsMvpView> mPresenter;
@@ -76,5 +82,13 @@ public class ReviewsFragment extends BaseFragment implements ReviewsMvpView {
         mAdapter = new ReviewsAdapter(getActivity(), mReviewList);
         mReviewRv.setAdapter(mAdapter);
         mReviewRv.setLayoutManager(new LinearLayoutManager(getActivity()));
+    }
+
+    @OnClick(R.id.exit)
+    public void setmExit(){
+        //noinspection ConstantConditions
+        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+        transaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+        transaction.remove(getActivity().getSupportFragmentManager().findFragmentByTag("review")).commit();
     }
 }

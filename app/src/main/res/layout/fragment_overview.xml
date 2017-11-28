@@ -97,7 +97,7 @@
                     android:layout_weight="3"
                     android:layout_margin="5sp"
                     app:cardCornerRadius="3sp"
-                    app:cardElevation="4sp">
+                    app:cardElevation="2sp">
 
                     <ScrollView
                         android:layout_width="match_parent"
