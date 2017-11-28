@@ -133,7 +133,7 @@ public class OverviewFragment extends BaseFragment implements OverviewFragmentMv
         //noinspection ConstantConditions
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
         transaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
-        transaction.add(R.id.container, ReviewsFragment.newInstance(null)).commit();
+        transaction.add(R.id.container, ReviewsFragment.newInstance(null), "review").commit();
     }
 
     @Override
@@ -175,5 +175,4 @@ public class OverviewFragment extends BaseFragment implements OverviewFragmentMv
             getActivity().onBackPressed();
         }
     }
-
 }
