@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -130,6 +131,7 @@ public class SearchActivity extends BaseActivity implements SearchMvpView {
                 @Override
                 public void onResponse(@NonNull Call<SearchResultSuper> call, @NonNull Response<SearchResultSuper> response) {
                     if(response.body().getMessage()!=null){
+                        Log.e("SEARCH SUGGESTIONS " , response.body().getMessage().get(0).getCover());
                         mFeatureList = response.body().getMessage();
                         mFeatureAdapter = new FeaturedAdapter(SearchActivity.this, mFeatureList);
                         mSuggestionsRv.setAdapter(mFeatureAdapter);
@@ -153,6 +155,7 @@ public class SearchActivity extends BaseActivity implements SearchMvpView {
     public void searchForResults(){
         if(mSearchEditText.getText().length()>0){
             loadSuggestions(mSearchEditText.getText().toString());
+            hideKeyboard();
             mSearchEditText.setText("");
         }
         else {

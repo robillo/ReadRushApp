@@ -25,8 +25,8 @@ import butterknife.ButterKnife;
 
 public class FeaturedAdapter extends RecyclerView.Adapter<FeaturedAdapter.FeaturedHolder> {
 
-    private List<Featured> mList = new ArrayList<>();
-    private List<SearchResultItem> mSearchList = new ArrayList<>();
+    private List<Featured> mList = null;
+    private List<SearchResultItem> mSearchList = null;
     private Context mContext;
 
     public FeaturedAdapter(List<Featured> mList, Context mContext) {
@@ -50,7 +50,7 @@ public class FeaturedAdapter extends RecyclerView.Adapter<FeaturedAdapter.Featur
         //noinspection UnnecessaryLocalVariable
         final int pos = position;
 
-        if(mSearchList.size()>0){
+        if(mSearchList!=null){
             Glide.with(mContext).load(mSearchList.get(0).getCover()).centerCrop().crossFade().into(holder.cover);
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -59,7 +59,7 @@ public class FeaturedAdapter extends RecyclerView.Adapter<FeaturedAdapter.Featur
                 }
             });
         }
-        else {
+        else if(mList!=null){
             Glide.with(mContext).load(mList.get(position).getCover_image()).centerCrop().crossFade().into(holder.cover);
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -72,7 +72,8 @@ public class FeaturedAdapter extends RecyclerView.Adapter<FeaturedAdapter.Featur
 
     @Override
     public int getItemCount() {
-        return mList.size();
+        if(mList!=null) return mList.size();
+        else return mSearchList.size();
     }
 
     class FeaturedHolder extends RecyclerView.ViewHolder {
