@@ -10,4 +10,6 @@ public interface OverviewFragmentMvpView extends MvpView {
 
     void setReviewsFragment();
 
+    void fetchRushDetails();
+
 }
