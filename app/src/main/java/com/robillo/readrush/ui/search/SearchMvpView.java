@@ -8,6 +8,8 @@ import com.robillo.readrush.ui.base.MvpView;
 
 public interface SearchMvpView extends MvpView {
 
+    void loadDefaultFeaturedBooks();
+
     void loadSuggestions();
 
     void showSearchHistory();
