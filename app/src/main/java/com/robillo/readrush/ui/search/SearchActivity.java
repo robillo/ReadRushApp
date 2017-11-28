@@ -73,16 +73,15 @@ public class SearchActivity extends BaseActivity implements SearchMvpView {
 
     @Override
     protected void setUp() {
-        showSuggestions();
+        mSuggestionsRv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        mLayoutSuggestions.setAnimation(AnimationUtils.loadAnimation(this, R.anim.slide_in_left));
+        loadSuggestions();
     }
 
     @Override
-    public void showSuggestions() {
-        mSuggestionsRv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+    public void loadSuggestions() {
         mFeatureAdapter = new FeaturedAdapter(mFeatureList, this);
-        Animation animation = AnimationUtils.loadAnimation(this, R.anim.slide_in_left);
         mSuggestionsRv.setAdapter(mFeatureAdapter);
-        mLayoutSuggestions.setAnimation(animation);
     }
 
     @Override

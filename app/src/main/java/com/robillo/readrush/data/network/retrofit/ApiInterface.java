@@ -6,6 +6,7 @@ import com.robillo.readrush.data.network.retrofit.model.FeaturedSuper;
 import com.robillo.readrush.data.network.retrofit.model.LibraryItem;
 import com.robillo.readrush.data.network.retrofit.model.Review;
 import com.robillo.readrush.data.network.retrofit.model.RushInfo;
+import com.robillo.readrush.data.network.retrofit.model.SearchResultSuper;
 import com.robillo.readrush.data.network.retrofit.model.User;
 
 import java.util.List;
@@ -83,5 +84,10 @@ public interface ApiInterface {
     Call<ResponseBody> addToUserLibrary(
             @Path("user_id") String user_id,
             @Path("rush_id") String rush_id
+    );
+
+    @GET("new_api/search/{search_tag}")
+    Call<SearchResultSuper> searchResultsFetch(
+            @Path("search_tag") String search_tag
     );
 }
