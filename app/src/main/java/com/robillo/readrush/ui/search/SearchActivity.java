@@ -21,12 +21,14 @@ import com.robillo.readrush.data.network.retrofit.ApiClient;
 import com.robillo.readrush.data.network.retrofit.ApiInterface;
 import com.robillo.readrush.data.network.retrofit.model.Featured;
 import com.robillo.readrush.data.network.retrofit.model.FeaturedSuper;
+import com.robillo.readrush.data.network.retrofit.model.SearchResultItem;
 import com.robillo.readrush.data.network.retrofit.model.SearchResultSuper;
 import com.robillo.readrush.data.prefs.AppPreferencesHelper;
 import com.robillo.readrush.ui.base.BaseActivity;
 import com.robillo.readrush.ui.main.MainActivity;
 import com.robillo.readrush.ui.main.discover.adapters.FeaturedAdapter;
 
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,7 +45,7 @@ public class SearchActivity extends BaseActivity implements SearchMvpView {
 
     private String mSearchTags;
     FeaturedAdapter mFeatureAdapter;
-    List<Featured> mFeatureList = new ArrayList<>();
+    List<SearchResultItem> mFeatureList = new ArrayList<>();
     @SuppressWarnings("FieldCanBeLocal")
     private AppPreferencesHelper mPrefsHelper;
     @SuppressWarnings("FieldCanBeLocal")
@@ -124,9 +126,14 @@ public class SearchActivity extends BaseActivity implements SearchMvpView {
         Call<SearchResultSuper> call = mApiService.searchResultsFetch(search_tag);
         if(call!=null){
             call.enqueue(new Callback<SearchResultSuper>() {
+                @SuppressWarnings("ConstantConditions")
                 @Override
                 public void onResponse(@NonNull Call<SearchResultSuper> call, @NonNull Response<SearchResultSuper> response) {
-
+                    if(response.body().getMessage()!=null){
+                        mFeatureList = response.body().getMessage();
+                        mFeatureAdapter = new FeaturedAdapter(SearchActivity.this, mFeatureList);
+                        mSuggestionsRv.setAdapter(mFeatureAdapter);
+                    }
                 }
 
                 @Override
@@ -135,9 +142,6 @@ public class SearchActivity extends BaseActivity implements SearchMvpView {
                 }
             });
         }
-
-//        mFeatureAdapter = new FeaturedAdapter(mFeatureList, this);
-//        mSuggestionsRv.setAdapter(mFeatureAdapter);
     }
 
     @Override

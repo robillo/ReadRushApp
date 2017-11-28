@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.robillo.readrush.R;
 import com.robillo.readrush.data.network.retrofit.model.Featured;
+import com.robillo.readrush.data.network.retrofit.model.SearchResultItem;
 import com.robillo.readrush.ui.rushoverview.OverviewActivity;
 
 import java.util.ArrayList;
@@ -25,10 +26,16 @@ import butterknife.ButterKnife;
 public class FeaturedAdapter extends RecyclerView.Adapter<FeaturedAdapter.FeaturedHolder> {
 
     private List<Featured> mList = new ArrayList<>();
+    private List<SearchResultItem> mSearchList = new ArrayList<>();
     private Context mContext;
 
     public FeaturedAdapter(List<Featured> mList, Context mContext) {
         this.mList = mList;
+        this.mContext = mContext;
+    }
+
+    public FeaturedAdapter(Context mContext, List<SearchResultItem> mList) {
+        this.mSearchList = mList;
         this.mContext = mContext;
     }
 
@@ -42,13 +49,25 @@ public class FeaturedAdapter extends RecyclerView.Adapter<FeaturedAdapter.Featur
     public void onBindViewHolder(FeaturedHolder holder, final int position) {
         //noinspection UnnecessaryLocalVariable
         final int pos = position;
-        Glide.with(mContext).load(mList.get(position).getCover_image()).centerCrop().crossFade().into(holder.cover);
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mContext.startActivity(OverviewActivity.getStartIntent(mContext, mList.get(pos).getRush_id()));
-            }
-        });
+
+        if(mSearchList.size()>0){
+            Glide.with(mContext).load(mSearchList.get(0).getCover()).centerCrop().crossFade().into(holder.cover);
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mContext.startActivity(OverviewActivity.getStartIntent(mContext, mSearchList.get(pos).getRush_id()));
+                }
+            });
+        }
+        else {
+            Glide.with(mContext).load(mList.get(position).getCover_image()).centerCrop().crossFade().into(holder.cover);
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mContext.startActivity(OverviewActivity.getStartIntent(mContext, mList.get(pos).getRush_id()));
+                }
+            });
+        }
     }
 
     @Override
