@@ -4,6 +4,7 @@ import com.robillo.readrush.data.network.retrofit.model.CollectionsSuper;
 import com.robillo.readrush.data.network.retrofit.model.CoverSuper;
 import com.robillo.readrush.data.network.retrofit.model.FeaturedSuper;
 import com.robillo.readrush.data.network.retrofit.model.LibraryItem;
+import com.robillo.readrush.data.network.retrofit.model.Review;
 import com.robillo.readrush.data.network.retrofit.model.RushInfo;
 import com.robillo.readrush.data.network.retrofit.model.User;
 
@@ -69,7 +70,7 @@ public interface ApiInterface {
     );
 
     @GET("new_api/fetch_rush_review/{rush_id}")
-    Call<ResponseBody> fetchRushReview(
+    Call<List<Review>> fetchRushReview(
             @Path("rush_id") String rush_id
     );
 

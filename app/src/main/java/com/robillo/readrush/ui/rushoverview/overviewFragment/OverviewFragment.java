@@ -133,7 +133,9 @@ public class OverviewFragment extends BaseFragment implements OverviewFragmentMv
         //noinspection ConstantConditions
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
         transaction.setCustomAnimations(R.anim.review_enter_anim, R.anim.review_exit_anim);
-        transaction.add(R.id.container, ReviewsFragment.newInstance(null), "review").commit();
+        Bundle args = new Bundle();
+        args.putString("rush_id", mRushId);
+        transaction.add(R.id.container, ReviewsFragment.newInstance(args), "review").commit();
     }
 
     @Override

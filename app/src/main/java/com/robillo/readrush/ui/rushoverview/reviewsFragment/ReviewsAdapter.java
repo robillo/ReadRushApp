@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.robillo.readrush.R;
-import com.robillo.readrush.data.others.Review;
+import com.robillo.readrush.data.network.retrofit.model.Review;
 
 import java.util.List;
 

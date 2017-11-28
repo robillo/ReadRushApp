@@ -7,4 +7,7 @@ import com.robillo.readrush.ui.base.MvpView;
  */
 
 public interface ReviewsMvpView extends MvpView {
+
+    void fetchReviews(String rushId);
+
 }
