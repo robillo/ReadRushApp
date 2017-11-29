@@ -45,6 +45,7 @@ ext {
     targetSdkVersion = 26
     compileSdkVersion = 26
     buildToolsVersion = '26.0.2'
+    constraintLayoutVersion = '1.0.2'
 
     // App dependencies
     supportLibraryVersion = '27.0.1'
@@ -69,7 +70,8 @@ ext {
     debugDBVersion = '1.0.0'
     timberVersion = '4.5.1'
     retrofitVersion = '2.3.0'
-    constraintLayoutVersion = '1.0.2'
+    archLifecycleVersion = '1.0.0'
+    roomLifecycleVersion = '1.0.0'
 
     //Test dependencies
     junitVersion = '4.12'

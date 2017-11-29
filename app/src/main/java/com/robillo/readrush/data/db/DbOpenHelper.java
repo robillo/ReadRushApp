@@ -15,6 +15,7 @@ import javax.inject.Singleton;
 @Singleton
 public class DbOpenHelper{
 
+    @SuppressWarnings("WeakerAccess")
     @Inject
     public DbOpenHelper(@ApplicationContext Context context, @DatabaseInfo String name) {
 

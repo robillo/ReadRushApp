@@ -10,6 +10,7 @@ import javax.inject.Singleton;
 @Singleton
 public class AppDbHelper implements DbHelper {
 
+    @SuppressWarnings("WeakerAccess")
     @Inject
     public AppDbHelper(DbOpenHelper dbOpenHelper) {
 
