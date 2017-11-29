@@ -2,6 +2,7 @@ package com.robillo.readrush.ui.search;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,6 +16,8 @@ import android.widget.Toast;
 
 import com.robillo.readrush.R;
 import com.robillo.readrush.ReadRushApp;
+import com.robillo.readrush.data.db.model.SearchName;
+import com.robillo.readrush.data.db.model.SearchNameRepository;
 import com.robillo.readrush.data.network.retrofit.ApiClient;
 import com.robillo.readrush.data.network.retrofit.ApiInterface;
 import com.robillo.readrush.data.network.retrofit.model.Featured;
@@ -24,7 +27,6 @@ import com.robillo.readrush.data.network.retrofit.model.SearchResultSuper;
 import com.robillo.readrush.data.prefs.AppPreferencesHelper;
 import com.robillo.readrush.ui.base.BaseActivity;
 import com.robillo.readrush.ui.main.discover.adapters.FeaturedAdapter;
-import com.robillo.readrush.utils.KeyboardUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +45,7 @@ public class SearchActivity extends BaseActivity implements SearchMvpView {
     private String mSearchTags;
     FeaturedAdapter mFeatureAdapter;
     FeaturedAdapter mSearchAdapter;
+    List<SearchName> mSearchNameList;
     List<Featured> mFeatureList = new ArrayList<>();
     List<SearchResultItem> mSearchList = new ArrayList<>();
     @SuppressWarnings("FieldCanBeLocal")
@@ -71,6 +74,9 @@ public class SearchActivity extends BaseActivity implements SearchMvpView {
     @Inject
     SearchMvpPresenter<SearchMvpView> mPresenter;
 
+    @Inject
+    SearchNameRepository mSearchNameRepository;
+
     public static Intent getStartIntent(Context context) {
         return new Intent(context, SearchActivity.class);
     }
@@ -91,6 +97,8 @@ public class SearchActivity extends BaseActivity implements SearchMvpView {
 
     @Override
     protected void setUp() {
+
+        loadSearchNameList();
 
         //noinspection ConstantConditions
         mPrefsHelper = new AppPreferencesHelper(this, ReadRushApp.PREF_FILE_NAME);
@@ -150,7 +158,18 @@ public class SearchActivity extends BaseActivity implements SearchMvpView {
 
     @Override
     public void showSearchHistory() {
+        loadSearchNameList();
+    }
 
+    @Override
+    public void loadSearchNameList() {
+        mSearchNameList = mSearchNameRepository.getAllSearches().getValue();
+        Log.e("SEARCH NAMES LIST ", " " + (mSearchNameList != null ? mSearchNameList.size() : 0));
+        if (mSearchNameList != null) {
+            for(int i=0; i<mSearchNameList.size(); i++){
+                Toast.makeText(SearchActivity.this, " " + mSearchNameList.get(0).mSearchName, Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     @OnClick(R.id.search_buttom)
@@ -158,7 +177,9 @@ public class SearchActivity extends BaseActivity implements SearchMvpView {
         if(mSearchEditText.getText().length()>0){
             loadSuggestions(mSearchEditText.getText().toString());
             hideKeyboard();
+            mSearchNameRepository.insertSearchItem(new SearchName(mSearchEditText.getText().toString()));
             mSearchEditText.setText("");
+            showSearchHistory();
         }
         else {
             Toast.makeText(this, "Please Enter A Search Query", Toast.LENGTH_SHORT).show();

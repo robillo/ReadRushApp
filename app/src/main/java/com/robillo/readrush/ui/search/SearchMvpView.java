@@ -14,4 +14,6 @@ public interface SearchMvpView extends MvpView {
 
     void showSearchHistory();
 
+    void loadSearchNameList();
+
 }

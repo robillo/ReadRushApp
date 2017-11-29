@@ -11,9 +11,13 @@ import android.support.annotation.NonNull;
 @Entity
 public class SearchName {
 
+    public SearchName(@NonNull String mSearchName) {
+        this.mSearchName = mSearchName;
+    }
+
     @SuppressWarnings("NullableProblems")
     @NonNull
     @PrimaryKey
-    String mSearchName;
+    public String mSearchName;
 
 }

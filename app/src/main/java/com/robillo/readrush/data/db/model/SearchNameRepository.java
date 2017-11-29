@@ -1,8 +1,12 @@
 package com.robillo.readrush.data.db.model;
 
+import android.annotation.SuppressLint;
 import android.arch.lifecycle.LiveData;
+import android.os.AsyncTask;
+import android.widget.Toast;
 
 import java.util.List;
+import java.util.logging.Handler;
 
 import javax.inject.Inject;
 
@@ -24,8 +28,15 @@ public class SearchNameRepository {
         return searchNameDao.getAllSearchNames();
     }
 
-    public void insertSearchItem(SearchName item) {
-        searchNameDao.insertSearchItem(item);
+    @SuppressLint("StaticFieldLeak")
+    public void insertSearchItem(final SearchName item) {
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... voids) {
+                searchNameDao.insertSearchItem(item);
+                return null;
+            }
+        }.execute();
     }
 
     public void deleteAllSearchItems() {
