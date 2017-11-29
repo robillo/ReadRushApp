@@ -20,19 +20,24 @@ import android.content.Context;
 
 import com.robillo.readrush.ReadRushApp;
 import com.robillo.readrush.data.DataManager;
+import com.robillo.readrush.data.db.RoomAppDatabase;
+import com.robillo.readrush.data.db.model.SearchNameDao;
+import com.robillo.readrush.data.db.model.SearchNameRepository;
 import com.robillo.readrush.di.ApplicationContext;
 import com.robillo.readrush.di.module.ApplicationModule;
+import com.robillo.readrush.di.module.RoomModule;
 
 import javax.inject.Singleton;
 
 import dagger.Component;
+import dagger.Provides;
 
 /**
  * Created by janisharali on 27/01/17.
  */
 
 @Singleton
-@Component(modules = ApplicationModule.class)
+@Component(dependencies = {}, modules = {ApplicationModule.class, RoomModule.class})
 public interface ApplicationComponent {
 
     void inject(ReadRushApp app);
@@ -43,4 +48,10 @@ public interface ApplicationComponent {
     Application application();
 
     DataManager getDataManager();
+
+    SearchNameDao searchNameDao();
+
+    RoomAppDatabase roomAppDatabase();
+
+    SearchNameRepository searchNameRepository();
 }

@@ -1,5 +1,6 @@
 package com.robillo.readrush.data.db.model;
 
+import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
@@ -14,10 +15,10 @@ import java.util.List;
 @Dao
 public interface SearchNameDao {
 
-    @Query("SELECT * FROM usertable")
-    List<SearchName> getAllSearchNames();
+    @Query("SELECT * FROM searchname")
+    LiveData<List<SearchName>> getAllSearchNames();
 
-    @Query("DELETE FROM usertable")
+    @Query("DELETE FROM searchname")
     void deleteAllSearchNames();
 
     @Insert(onConflict = REPLACE)

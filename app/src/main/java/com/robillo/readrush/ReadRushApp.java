@@ -8,6 +8,7 @@ import com.robillo.readrush.data.DataManager;
 import com.robillo.readrush.di.component.ApplicationComponent;
 import com.robillo.readrush.di.component.DaggerApplicationComponent;
 import com.robillo.readrush.di.module.ApplicationModule;
+import com.robillo.readrush.di.module.RoomModule;
 import com.robillo.readrush.utils.AppLogger;
 
 import javax.inject.Inject;
@@ -34,7 +35,7 @@ public class ReadRushApp extends Application{
         super.onCreate();
         mApplicationComponent = DaggerApplicationComponent.builder()
                 .applicationModule(new ApplicationModule(this))
-                .newModule(new RoomModule(this))
+                .roomModule(new RoomModule(this))
                 .build();
 
         mApplicationComponent.inject(this);
@@ -62,5 +63,4 @@ public class ReadRushApp extends Application{
         mApplicationComponent = applicationComponent;
     }
 
-    //waiting for explore/discover apis to e made...for over a week...
 }
