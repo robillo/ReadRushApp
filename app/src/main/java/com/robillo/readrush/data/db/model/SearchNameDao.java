@@ -16,7 +16,8 @@ import java.util.List;
 public interface SearchNameDao {
 
     @Query("SELECT * FROM searchname")
-    LiveData<List<SearchName>> getAllSearchNames();
+//    LiveData<List<SearchName>> getAllSearchNames();
+    List<SearchName> getAllSearchNames();
 
     @Query("DELETE FROM searchname")
     void deleteAllSearchNames();

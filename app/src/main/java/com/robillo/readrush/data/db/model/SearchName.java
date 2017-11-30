@@ -20,4 +20,12 @@ public class SearchName {
     @PrimaryKey
     public String mSearchName;
 
+    @NonNull
+    public String getmSearchName() {
+        return mSearchName;
+    }
+
+    public void setmSearchName(@NonNull String mSearchName) {
+        this.mSearchName = mSearchName;
+    }
 }

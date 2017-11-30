@@ -3,8 +3,10 @@ package com.robillo.readrush.data.db.model;
 import android.annotation.SuppressLint;
 import android.arch.lifecycle.LiveData;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Handler;
 
@@ -24,8 +26,22 @@ public class SearchNameRepository {
         this.searchNameDao = searchNameDao;
     }
 
-    public LiveData<List<SearchName>> getAllSearches() {
-        return searchNameDao.getAllSearchNames();
+    @SuppressLint("StaticFieldLeak")
+    public List<SearchName> getAllSearches() {
+//        LiveData<List<SearchName>> mList = searchNameDao.getAllSearchNames();
+        new AsyncTask<Void, Void, List<SearchName>>() {
+            @Override
+            protected List<SearchName> doInBackground(Void... voids) {
+                List<SearchName> mList = searchNameDao.getAllSearchNames();
+                Log.e("SEARCH NAMES LIST ", " " + (mList != null ? mList.size() + mList.get(0).getmSearchName() : 1000));
+                return  mList;
+            }
+        }.execute();
+        List<SearchName> msearch = new ArrayList<>();
+        msearch.add(new SearchName("test1"));
+        msearch.add(new SearchName("test2"));
+        msearch.add(new SearchName("test3"));
+        return msearch;
     }
 
     @SuppressLint("StaticFieldLeak")

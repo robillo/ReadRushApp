@@ -163,12 +163,11 @@ public class SearchActivity extends BaseActivity implements SearchMvpView {
 
     @Override
     public void loadSearchNameList() {
-        mSearchNameList = mSearchNameRepository.getAllSearches().getValue();
-        Log.e("SEARCH NAMES LIST ", " " + (mSearchNameList != null ? mSearchNameList.size() : 0));
+        mSearchNameList = mSearchNameRepository.getAllSearches();
+        Log.e("SEARCH NAMES LIST ", " " + (mSearchNameList != null ? mSearchNameList.size() : 0) + mSearchNameRepository);
         if (mSearchNameList != null) {
-            for(int i=0; i<mSearchNameList.size(); i++){
-                Toast.makeText(SearchActivity.this, " " + mSearchNameList.get(0).mSearchName, Toast.LENGTH_SHORT).show();
-            }
+            //INFLATE SEARCH RECYCLER VIEW
+
         }
     }
 
@@ -177,7 +176,8 @@ public class SearchActivity extends BaseActivity implements SearchMvpView {
         if(mSearchEditText.getText().length()>0){
             loadSuggestions(mSearchEditText.getText().toString());
             hideKeyboard();
-            mSearchNameRepository.insertSearchItem(new SearchName(mSearchEditText.getText().toString()));
+            SearchName searchName = new SearchName(" " + mSearchEditText.getText().toString());
+            mSearchNameRepository.insertSearchItem(searchName);
             mSearchEditText.setText("");
             showSearchHistory();
         }
