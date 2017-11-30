@@ -45,7 +45,6 @@ import retrofit2.Response;
 
 public class SearchActivity extends BaseActivity implements SearchMvpView {
 
-    private String mSearchTags;
     FeaturedAdapter mFeatureAdapter;
     FeaturedAdapter mSearchAdapter;
     LiveData<List<SearchName>> mSearchNameList;
@@ -107,6 +106,7 @@ public class SearchActivity extends BaseActivity implements SearchMvpView {
         mPrefsHelper = new AppPreferencesHelper(this, ReadRushApp.PREF_FILE_NAME);
         mApiService = ApiClient.getClient().create(ApiInterface.class);
         mSuggestionsRv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        mSearchHistory.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         mLayoutSuggestions.setAnimation(AnimationUtils.loadAnimation(this, R.anim.slide_in_left));
 
         loadDefaultFeaturedBooks();
@@ -173,6 +173,7 @@ public class SearchActivity extends BaseActivity implements SearchMvpView {
                 if(searchNames!=null){
                     for(int i=0; i<searchNames.size(); i++){
                         Toast.makeText(SearchActivity.this, " " + searchNames.get(i).getmSearchName(), Toast.LENGTH_SHORT).show();
+                        //INFLATE SEARCHES RECYCLER VIEW
                     }
                 }
             }
