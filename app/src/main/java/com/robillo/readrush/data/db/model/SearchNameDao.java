@@ -17,12 +17,12 @@ public interface SearchNameDao {
 
     @Query("SELECT * FROM searchname")
 //    LiveData<List<SearchName>> getAllSearchNames();
-    List<SearchName> getAllSearchNames();
+    LiveData<List<SearchName>> getAllSearchNames();
 
     @Query("DELETE FROM searchname")
     void deleteAllSearchNames();
 
     @Insert(onConflict = REPLACE)
-    void insertSearchItem(SearchName item);
+    void insertSearchItem(SearchName... item);
 
 }

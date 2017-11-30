@@ -15,11 +15,12 @@ public class SearchName {
         this.mSearchName = mSearchName;
     }
 
-    @SuppressWarnings("NullableProblems")
+    @SuppressWarnings({"NullableProblems", "WeakerAccess"})
     @NonNull
     @PrimaryKey
     public String mSearchName;
 
+    @SuppressWarnings("WeakerAccess")
     @NonNull
     public String getmSearchName() {
         return mSearchName;

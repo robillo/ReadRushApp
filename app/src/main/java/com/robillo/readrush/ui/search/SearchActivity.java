@@ -1,10 +1,13 @@
 package com.robillo.readrush.ui.search;
 
+import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.Observer;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -45,7 +48,7 @@ public class SearchActivity extends BaseActivity implements SearchMvpView {
     private String mSearchTags;
     FeaturedAdapter mFeatureAdapter;
     FeaturedAdapter mSearchAdapter;
-    List<SearchName> mSearchNameList;
+    LiveData<List<SearchName>> mSearchNameList;
     List<Featured> mFeatureList = new ArrayList<>();
     List<SearchResultItem> mSearchList = new ArrayList<>();
     @SuppressWarnings("FieldCanBeLocal")
@@ -164,11 +167,21 @@ public class SearchActivity extends BaseActivity implements SearchMvpView {
     @Override
     public void loadSearchNameList() {
         mSearchNameList = mSearchNameRepository.getAllSearches();
-        Log.e("SEARCH NAMES LIST ", " " + (mSearchNameList != null ? mSearchNameList.size() : 0) + mSearchNameRepository);
-        if (mSearchNameList != null) {
-            //INFLATE SEARCH RECYCLER VIEW
+        mSearchNameList.observe(this, new Observer<List<SearchName>>() {
+            @Override
+            public void onChanged(@Nullable List<SearchName> searchNames) {
+                if(searchNames!=null){
+                    for(int i=0; i<searchNames.size(); i++){
+                        Toast.makeText(SearchActivity.this, " " + searchNames.get(i).getmSearchName(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        });
 
-        }
+//        if (mSearchNameList != null) {
+//            //INFLATE SEARCH RECYCLER VIEW
+//
+//        }
     }
 
     @OnClick(R.id.search_buttom)
