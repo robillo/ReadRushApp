@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.animation.AnimationUtils;
 import android.widget.EditText;
@@ -30,6 +31,7 @@ import com.robillo.readrush.data.network.retrofit.model.SearchResultSuper;
 import com.robillo.readrush.data.prefs.AppPreferencesHelper;
 import com.robillo.readrush.ui.base.BaseActivity;
 import com.robillo.readrush.ui.main.discover.adapters.FeaturedAdapter;
+import com.robillo.readrush.ui.search.adapters.SearchNamesAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,7 +49,9 @@ public class SearchActivity extends BaseActivity implements SearchMvpView {
 
     FeaturedAdapter mFeatureAdapter;
     FeaturedAdapter mSearchAdapter;
+    SearchNamesAdapter mSearchNamesAdapter;
     LiveData<List<SearchName>> mSearchNameList;
+    List<SearchName> mSearches;
     List<Featured> mFeatureList = new ArrayList<>();
     List<SearchResultItem> mSearchList = new ArrayList<>();
     @SuppressWarnings("FieldCanBeLocal")
@@ -106,7 +110,7 @@ public class SearchActivity extends BaseActivity implements SearchMvpView {
         mPrefsHelper = new AppPreferencesHelper(this, ReadRushApp.PREF_FILE_NAME);
         mApiService = ApiClient.getClient().create(ApiInterface.class);
         mSuggestionsRv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        mSearchHistory.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        mSearchHistory.setLayoutManager(new StaggeredGridLayoutManager(5, StaggeredGridLayoutManager.HORIZONTAL));
         mLayoutSuggestions.setAnimation(AnimationUtils.loadAnimation(this, R.anim.slide_in_left));
 
         loadDefaultFeaturedBooks();
@@ -170,19 +174,14 @@ public class SearchActivity extends BaseActivity implements SearchMvpView {
         mSearchNameList.observe(this, new Observer<List<SearchName>>() {
             @Override
             public void onChanged(@Nullable List<SearchName> searchNames) {
-                if(searchNames!=null){
-                    for(int i=0; i<searchNames.size(); i++){
-                        Toast.makeText(SearchActivity.this, " " + searchNames.get(i).getmSearchName(), Toast.LENGTH_SHORT).show();
-                        //INFLATE SEARCHES RECYCLER VIEW
-                    }
-                }
+                mSearches = searchNames;
+                //INFLATE SEARCHES RECYCLER VIEW
+
+                mSearchNamesAdapter = new SearchNamesAdapter(mSearches, SearchActivity.this);
+                mSearchHistory.setAdapter(mSearchNamesAdapter);
+
             }
         });
-
-//        if (mSearchNameList != null) {
-//            //INFLATE SEARCH RECYCLER VIEW
-//
-//        }
     }
 
     @OnClick(R.id.search_buttom)
