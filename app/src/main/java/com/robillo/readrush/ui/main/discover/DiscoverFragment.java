@@ -287,7 +287,9 @@ public class DiscoverFragment extends BaseFragment implements DiscoverMvpView {
 
     @OnClick(R.id.collections_back_drawable)
     public void setmCollectionsBackDrawable() {
-
+        mCollectionRv.setVisibility(View.VISIBLE);
+        mProgressCollections.setVisibility(View.VISIBLE);
+        mCollectionsBackDrawable.setVisibility(View.GONE);
     }
 
     @Override
