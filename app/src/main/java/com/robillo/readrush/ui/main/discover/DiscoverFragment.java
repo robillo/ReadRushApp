@@ -36,6 +36,7 @@ import com.robillo.readrush.data.prefs.AppPreferencesHelper;
 import com.robillo.readrush.di.component.ActivityComponent;
 import com.robillo.readrush.ui.base.BaseFragment;
 import com.robillo.readrush.ui.main.discover.PagerFragment.PagerFragment;
+import com.robillo.readrush.ui.main.discover.adapters.CollectionListAdapter;
 import com.robillo.readrush.ui.main.discover.adapters.CollectionsAdapter;
 import com.robillo.readrush.ui.main.discover.adapters.FeaturedAdapter;
 import com.robillo.readrush.utils.other_helper.StartSnapHelper;
@@ -64,6 +65,7 @@ public class DiscoverFragment extends BaseFragment implements DiscoverMvpView {
     List<CollectionListItem> mCollectionListItems = new ArrayList<>();
     CollectionsAdapter mCollectionAdapter;
     FeaturedAdapter mFeatureAdapter;
+    CollectionListAdapter mCollectionListAdapter;
     SnapHelper featureSnapHelper, collectionsSnapHelper;
     private AppPreferencesHelper mPrefsHelper;
     @SuppressWarnings("FieldCanBeLocal")
@@ -74,6 +76,9 @@ public class DiscoverFragment extends BaseFragment implements DiscoverMvpView {
 
     @BindView(R.id.featured)
     RecyclerView mFeatureRv;
+
+    @BindView(R.id.collections_list)
+    RecyclerView mCollectionListRv;
 
     @BindView(R.id.collections)
     RecyclerView mCollectionRv;
@@ -102,7 +107,7 @@ public class DiscoverFragment extends BaseFragment implements DiscoverMvpView {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_discover, container, false);
@@ -291,7 +296,7 @@ public class DiscoverFragment extends BaseFragment implements DiscoverMvpView {
     @OnClick(R.id.collections_back_drawable)
     public void setmCollectionsBackDrawable() {
         mCollectionRv.setVisibility(View.VISIBLE);
-        mProgressCollections.setVisibility(View.VISIBLE);
+        mCollectionListRv.setVisibility(View.GONE);
         mCollectionsBackDrawable.setVisibility(View.GONE);
     }
 
@@ -308,15 +313,17 @@ public class DiscoverFragment extends BaseFragment implements DiscoverMvpView {
                 public void onResponse(@NonNull retrofit2.Call<CollectionListItemSuper> call, @NonNull Response<CollectionListItemSuper> response) {
                     if(response.body().getMessage()!=null){
                         mCollectionListItems = response.body().getMessage();
-                        for(int i=0; i<mCollectionListItems.size(); i++){
-                            Toast.makeText(getActivity(), mCollectionListItems.get(i).getCover_image(), Toast.LENGTH_SHORT).show();
-                        }
+                        mCollectionListAdapter = new CollectionListAdapter(mCollectionListItems, getActivity());
+                        mCollectionListRv.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+                        mCollectionListRv.setAdapter(mCollectionListAdapter);
+                        mCollectionListRv.setVisibility(View.VISIBLE);
+                        mProgressCollections.setVisibility(View.GONE);
                     }
                 }
 
                 @Override
                 public void onFailure(@NonNull retrofit2.Call<CollectionListItemSuper> call, @NonNull Throwable t) {
-
+                    Toast.makeText(getActivity(), "Network Error", Toast.LENGTH_SHORT).show();
                 }
             });
         }

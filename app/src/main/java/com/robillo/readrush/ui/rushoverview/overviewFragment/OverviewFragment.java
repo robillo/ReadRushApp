@@ -159,7 +159,7 @@ public class OverviewFragment extends BaseFragment implements OverviewFragmentMv
                 }
 
                 @Override
-                public void onFailure(Call<List<RushInfo>> call, Throwable t) {
+                public void onFailure(@NonNull Call<List<RushInfo>> call, @NonNull Throwable t) {
                     Toast.makeText(getActivity(), "Network Error", Toast.LENGTH_SHORT).show();
                 }
             });

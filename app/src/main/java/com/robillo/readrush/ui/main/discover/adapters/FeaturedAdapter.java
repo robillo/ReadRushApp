@@ -18,6 +18,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import retrofit2.http.POST;
 
 /**
  * Created by robinkamboj on 20/10/17.
@@ -51,7 +52,7 @@ public class FeaturedAdapter extends RecyclerView.Adapter<FeaturedAdapter.Featur
         final int pos = position;
 
         if(mSearchList!=null){
-            Glide.with(mContext).load(mSearchList.get(0).getCover()).centerCrop().crossFade().into(holder.cover);
+            Glide.with(mContext).load(mSearchList.get(pos).getCover()).centerCrop().crossFade().into(holder.cover);
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -81,7 +82,7 @@ public class FeaturedAdapter extends RecyclerView.Adapter<FeaturedAdapter.Featur
         @BindView(R.id.cover)
         ImageView cover;
 
-        public FeaturedHolder(View itemView) {
+        FeaturedHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }

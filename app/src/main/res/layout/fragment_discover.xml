@@ -128,7 +128,18 @@
                 android:id="@+id/collections"
                 android:paddingTop="10sp"
                 android:paddingBottom="10sp"
-                android:visibility="invisible">
+                android:visibility="gone">
+
+            </android.support.v7.widget.RecyclerView>
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/collections_list"
+                android:paddingTop="10sp"
+                android:paddingBottom="10sp"
+                android:visibility="gone"
+                android:background="@color/colorTextFour">
 
             </android.support.v7.widget.RecyclerView>
 

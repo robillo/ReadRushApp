@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide;
 import com.robillo.readrush.R;
 import com.robillo.readrush.data.network.retrofit.model.CollectionListItem;
 import com.robillo.readrush.ui.main.discover.DiscoverFragment;
+import com.robillo.readrush.ui.rushoverview.OverviewActivity;
 
 import java.util.List;
 
@@ -42,7 +43,13 @@ public class CollectionListAdapter extends RecyclerView.Adapter<CollectionListAd
     public void onBindViewHolder(CollectionListHolder holder, final int position) {
         //noinspection UnnecessaryLocalVariable
         final int pos = position;
-        Glide.with(mContext).load(mList.get(pos).getCover_image()).centerCrop().into(holder.mCover);
+        Glide.with(mContext).load(mList.get(pos).getCover_image()).centerCrop().crossFade().into(holder.mCover);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mContext.startActivity(OverviewActivity.getStartIntent(mContext, mList.get(pos).getRush_id()));
+            }
+        });
     }
 
     @Override
