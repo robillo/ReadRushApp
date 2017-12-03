@@ -175,7 +175,9 @@ public class DiscoverFragment extends BaseFragment implements DiscoverMvpView {
 
                 @Override
                 public void onFailure(@NonNull retrofit2.Call<FeaturedSuper> call, @NonNull Throwable t) {
-                    Toast.makeText(getActivity(), "Failed to fetch Featured Books", Toast.LENGTH_SHORT).show();
+                    if(getActivity()!=null){
+                        Toast.makeText(getActivity(), "Failed to fetch Featured Books", Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
         }
@@ -204,7 +206,9 @@ public class DiscoverFragment extends BaseFragment implements DiscoverMvpView {
 
                 @Override
                 public void onFailure(@NonNull retrofit2.Call<CollectionsSuper> call, @NonNull Throwable t) {
-                    Toast.makeText(getActivity(), "Failed to fetch Collections", Toast.LENGTH_SHORT).show();
+                    if(getActivity()!=null){
+                        Toast.makeText(getActivity(), "Failed to fetch Collections", Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
         }
@@ -227,7 +231,9 @@ public class DiscoverFragment extends BaseFragment implements DiscoverMvpView {
 
                 @Override
                 public void onFailure(@NonNull retrofit2.Call<CoverSuper> call, @NonNull Throwable t) {
-                    Toast.makeText(getActivity(), "Failed to fetch Top Covers", Toast.LENGTH_SHORT).show();
+                    if(getActivity()!=null){
+                        Toast.makeText(getActivity(), "Failed to fetch Top Covers", Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
         }
@@ -249,7 +255,6 @@ public class DiscoverFragment extends BaseFragment implements DiscoverMvpView {
 
             //POSITION STARTING FROM INDEX 0
             Bundle args = new Bundle();
-            args.putInt("drawable_id", R.drawable.larry_page_quote);
             args.putString("cover_image", mList.get(position).getCover_image());
             args.putString("rush_id", mList.get(position).getRush_id());
             return PagerFragment.newInstance(args);

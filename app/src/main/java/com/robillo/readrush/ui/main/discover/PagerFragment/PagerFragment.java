@@ -15,9 +15,11 @@ import com.bumptech.glide.Glide;
 import com.robillo.readrush.R;
 import com.robillo.readrush.ui.base.BaseFragment;
 import com.robillo.readrush.ui.main.discover.DiscoverFragment;
+import com.robillo.readrush.ui.rushoverview.OverviewActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -51,5 +53,11 @@ public class PagerFragment extends BaseFragment {
     protected void setUp(View view) {
         //noinspection ConstantConditions
         Glide.with(getActivity()).load(getArguments().getString("cover_image")).centerCrop().crossFade().into(mPagerImage);
+    }
+
+    @OnClick(R.id.pager_image)
+    public void setmPagerImage() {
+        //noinspection ConstantConditions
+        startActivity(OverviewActivity.getStartIntent(getActivity(), getArguments().getString("rush_id")));
     }
 }
