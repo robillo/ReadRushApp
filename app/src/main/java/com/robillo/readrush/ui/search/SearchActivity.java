@@ -59,6 +59,9 @@ public class SearchActivity extends BaseActivity implements SearchMvpView {
     @SuppressWarnings("FieldCanBeLocal")
     private ApiInterface mApiService;
 
+    @BindView(R.id.delete)
+    ImageView mDeleteSearchNames;
+
     @BindView(R.id.search)
     EditText mSearchEditText;
 
@@ -196,5 +199,10 @@ public class SearchActivity extends BaseActivity implements SearchMvpView {
         else {
             Toast.makeText(this, "Please Enter A Search Query", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @OnClick(R.id.delete)
+    public void setmDeleteSearchNames() {
+
     }
 }
