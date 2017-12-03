@@ -15,6 +15,7 @@ import android.telecom.Call;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -84,7 +85,7 @@ public class DiscoverFragment extends BaseFragment implements DiscoverMvpView {
     ProgressBar mProgressCollections;
 
     @BindView(R.id.collections_back_drawable)
-    TextView mCollectionsBackDrawable;
+    ImageView mCollectionsBackDrawable;
 
     @Inject
     DiscoverMvpPresenter<DiscoverMvpView> mPresenter;
@@ -291,7 +292,9 @@ public class DiscoverFragment extends BaseFragment implements DiscoverMvpView {
 
     @Override
     public void fetchCollectionFromCid(String coll_id) {
-
+        mCollectionRv.setVisibility(View.GONE);
+        mProgressCollections.setVisibility(View.VISIBLE);
+        mCollectionsBackDrawable.setVisibility(View.VISIBLE);
     }
 
 }
