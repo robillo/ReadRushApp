@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.robillo.readrush.R;
 import com.robillo.readrush.data.network.retrofit.model.CollectionUnit;
+import com.robillo.readrush.ui.main.discover.DiscoverFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,10 +28,12 @@ public class CollectionsAdapter extends RecyclerView.Adapter<CollectionsAdapter.
 
     private List<CollectionUnit> mList = new ArrayList<>();
     private Context mContext;
+    private DiscoverFragment mDiscoverFragment;
 
-    public CollectionsAdapter(List<CollectionUnit> mList, Context mContext) {
+    public CollectionsAdapter(List<CollectionUnit> mList, Context mContext, DiscoverFragment mDiscoverFragment) {
         this.mList = mList;
         this.mContext = mContext;
+        this.mDiscoverFragment = mDiscoverFragment;
     }
 
     @Override
@@ -41,7 +44,14 @@ public class CollectionsAdapter extends RecyclerView.Adapter<CollectionsAdapter.
 
     @Override
     public void onBindViewHolder(CollectionsHolder holder, int position) {
-        Glide.with(mContext).load(mList.get(position).getCover_image()).centerCrop().into(holder.mCover);
+        final int pos = position;
+        Glide.with(mContext).load(mList.get(pos).getCover_image()).centerCrop().into(holder.mCover);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mDiscoverFragment.fetchCollectionFromCid(mList.get(pos).getCollection_id());
+            }
+        });
     }
 
     @Override

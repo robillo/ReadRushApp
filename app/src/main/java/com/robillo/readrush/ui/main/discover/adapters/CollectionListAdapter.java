@@ -26,12 +26,10 @@ public class CollectionListAdapter extends RecyclerView.Adapter<CollectionListAd
     @SuppressWarnings("FieldCanBeLocal")
     private List<CollectionListItem> mList;
     private Context mContext;
-    private DiscoverFragment mDiscoverFragment;
 
-    public CollectionListAdapter(List<CollectionListItem> mList, Context mContext, DiscoverFragment mDiscoverFragment) {
+    public CollectionListAdapter(List<CollectionListItem> mList, Context mContext) {
         this.mList = mList;
         this.mContext = mContext;
-        this.mDiscoverFragment = mDiscoverFragment;
     }
 
     @Override
@@ -45,12 +43,6 @@ public class CollectionListAdapter extends RecyclerView.Adapter<CollectionListAd
         //noinspection UnnecessaryLocalVariable
         final int pos = position;
         Glide.with(mContext).load(mList.get(pos).getCover_image()).centerCrop().into(holder.mCover);
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mDiscoverFragment.fetchCollectionFromCid(mList.get(pos).getCollection_id());
-            }
-        });
     }
 
     @Override

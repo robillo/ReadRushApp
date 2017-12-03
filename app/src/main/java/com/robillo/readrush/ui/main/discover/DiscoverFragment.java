@@ -186,7 +186,7 @@ public class DiscoverFragment extends BaseFragment implements DiscoverMvpView {
                         //noinspection ConstantConditions
                         mCollectionList = response.body().getMessage();
                         mCollectionRv.setVisibility(View.VISIBLE);
-                        mCollectionAdapter = new CollectionsAdapter(mCollectionList, getActivity());
+                        mCollectionAdapter = new CollectionsAdapter(mCollectionList, getActivity(), DiscoverFragment.this);
                         mCollectionRv.setAdapter(mCollectionAdapter);
                         mCollectionRv.setOnFlingListener(null);
                         collectionsSnapHelper.attachToRecyclerView(mCollectionRv);
