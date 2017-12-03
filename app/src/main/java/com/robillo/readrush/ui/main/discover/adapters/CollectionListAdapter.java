@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.robillo.readrush.R;
 import com.robillo.readrush.data.network.retrofit.model.CollectionListItem;
+import com.robillo.readrush.ui.main.discover.DiscoverFragment;
 
 import java.util.List;
 
@@ -25,10 +26,12 @@ public class CollectionListAdapter extends RecyclerView.Adapter<CollectionListAd
     @SuppressWarnings("FieldCanBeLocal")
     private List<CollectionListItem> mList;
     private Context mContext;
+    private DiscoverFragment mDiscoverFragment;
 
-    public CollectionListAdapter(List<CollectionListItem> mList, Context mContext) {
+    public CollectionListAdapter(List<CollectionListItem> mList, Context mContext, DiscoverFragment mDiscoverFragment) {
         this.mList = mList;
         this.mContext = mContext;
+        this.mDiscoverFragment = mDiscoverFragment;
     }
 
     @Override
@@ -38,8 +41,16 @@ public class CollectionListAdapter extends RecyclerView.Adapter<CollectionListAd
     }
 
     @Override
-    public void onBindViewHolder(CollectionListHolder holder, int position) {
-        Glide.with(mContext).load(mList.get(position).getCover_image()).centerCrop().into(holder.mCover);
+    public void onBindViewHolder(CollectionListHolder holder, final int position) {
+        //noinspection UnnecessaryLocalVariable
+        final int pos = position;
+        Glide.with(mContext).load(mList.get(pos).getCover_image()).centerCrop().into(holder.mCover);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mDiscoverFragment.fetchCollectionFromCid(mList.get(pos).getCollection_id());
+            }
+        });
     }
 
     @Override

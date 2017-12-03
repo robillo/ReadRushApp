@@ -14,4 +14,5 @@ public interface DiscoverMvpView extends MvpView {
 
     void fetchTopCoverBooks();
 
+    void fetchCollectionFromCid(String coll_id);
 }

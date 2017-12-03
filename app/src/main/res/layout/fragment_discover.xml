@@ -84,10 +84,15 @@
             android:textSize="20sp"
             android:gravity="center_vertical"
             android:paddingLeft="15sp"
+            android:paddingRight="5sp"
             android:textColor="@color/colorTextOne"
             tools:ignore="MissingPrefix"
             fontPath="fonts/three.ttf"
-            android:text="Collections"/>
+            android:text="Collections"
+            android:drawableRight="@drawable/ic_chevron_left_black_24dp"
+            android:drawableTint="@color/colorTextTwo"
+            tools:targetApi="m"
+            android:id="@+id/collections_back_drawable"/>
 
         <FrameLayout
             android:layout_width="match_parent"

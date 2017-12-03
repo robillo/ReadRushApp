@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.robillo.readrush.R;
@@ -45,6 +46,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import okhttp3.ResponseBody;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -80,6 +82,9 @@ public class DiscoverFragment extends BaseFragment implements DiscoverMvpView {
 
     @BindView(R.id.progress_bar_collections)
     ProgressBar mProgressCollections;
+
+    @BindView(R.id.collections_back_drawable)
+    TextView mCollectionsBackDrawable;
 
     @Inject
     DiscoverMvpPresenter<DiscoverMvpView> mPresenter;
@@ -278,5 +283,15 @@ public class DiscoverFragment extends BaseFragment implements DiscoverMvpView {
 
         }
     };
+
+    @OnClick(R.id.collections_back_drawable)
+    public void setmCollectionsBackDrawable() {
+
+    }
+
+    @Override
+    public void fetchCollectionFromCid(String coll_id) {
+
+    }
 
 }
