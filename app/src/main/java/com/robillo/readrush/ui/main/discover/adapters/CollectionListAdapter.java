@@ -6,41 +6,39 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.robillo.readrush.R;
-import com.robillo.readrush.data.network.retrofit.model.CollectionUnit;
+import com.robillo.readrush.data.network.retrofit.model.CollectionListItem;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import jp.wasabeef.glide.transformations.gpu.BrightnessFilterTransformation;
 
 /**
- * Created by robinkamboj on 20/10/17.
+ * Created by robinkamboj on 03/12/17.
  */
 
-public class CollectionsAdapter extends RecyclerView.Adapter<CollectionsAdapter.CollectionsHolder> {
+public class CollectionListAdapter extends RecyclerView.Adapter<CollectionListAdapter.CollectionListHolder> {
 
-    private List<CollectionUnit> mList = new ArrayList<>();
+    @SuppressWarnings("FieldCanBeLocal")
+    private List<CollectionListItem> mList;
     private Context mContext;
 
-    public CollectionsAdapter(List<CollectionUnit> mList, Context mContext) {
+    public CollectionListAdapter(List<CollectionListItem> mList, Context mContext) {
         this.mList = mList;
         this.mContext = mContext;
     }
 
     @Override
-    public CollectionsHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public CollectionListHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         mContext = parent.getContext();
-        return new CollectionsHolder(LayoutInflater.from(mContext).inflate(R.layout.row_collections, parent, false));
+        return new CollectionListHolder(LayoutInflater.from(mContext).inflate(R.layout.row_featured, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(CollectionsHolder holder, int position) {
+    public void onBindViewHolder(CollectionListHolder holder, int position) {
         Glide.with(mContext).load(mList.get(position).getCover_image()).centerCrop().into(holder.mCover);
     }
 
@@ -49,15 +47,13 @@ public class CollectionsAdapter extends RecyclerView.Adapter<CollectionsAdapter.
         return mList.size();
     }
 
-
-    class CollectionsHolder extends RecyclerView.ViewHolder {
+    class CollectionListHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.cover)
         ImageView mCover;
 
-        CollectionsHolder(View itemView) {
+        CollectionListHolder(View itemView) {
             super(itemView);
-
             ButterKnife.bind(this, itemView);
         }
     }
