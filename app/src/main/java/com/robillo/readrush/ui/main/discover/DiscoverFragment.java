@@ -24,6 +24,8 @@ import com.robillo.readrush.R;
 import com.robillo.readrush.ReadRushApp;
 import com.robillo.readrush.data.network.retrofit.ApiClient;
 import com.robillo.readrush.data.network.retrofit.ApiInterface;
+import com.robillo.readrush.data.network.retrofit.model.CollectionListItem;
+import com.robillo.readrush.data.network.retrofit.model.CollectionListItemSuper;
 import com.robillo.readrush.data.network.retrofit.model.CollectionUnit;
 import com.robillo.readrush.data.network.retrofit.model.CollectionsSuper;
 import com.robillo.readrush.data.network.retrofit.model.Cover;
@@ -59,6 +61,7 @@ public class DiscoverFragment extends BaseFragment implements DiscoverMvpView {
 
     List<Featured> mFeatureList = new ArrayList<>();
     List<CollectionUnit> mCollectionList = new ArrayList<>();
+    List<CollectionListItem> mCollectionListItems = new ArrayList<>();
     CollectionsAdapter mCollectionAdapter;
     FeaturedAdapter mFeatureAdapter;
     SnapHelper featureSnapHelper, collectionsSnapHelper;
@@ -297,6 +300,26 @@ public class DiscoverFragment extends BaseFragment implements DiscoverMvpView {
         mCollectionRv.setVisibility(View.GONE);
         mProgressCollections.setVisibility(View.VISIBLE);
         mCollectionsBackDrawable.setVisibility(View.VISIBLE);
+        retrofit2.Call<CollectionListItemSuper> call = mApiService.getCollectionFromCid(coll_id);
+        if(call!=null){
+            call.enqueue(new Callback<CollectionListItemSuper>() {
+                @SuppressWarnings("ConstantConditions")
+                @Override
+                public void onResponse(@NonNull retrofit2.Call<CollectionListItemSuper> call, @NonNull Response<CollectionListItemSuper> response) {
+                    if(response.body().getMessage()!=null){
+                        mCollectionListItems = response.body().getMessage();
+                        for(int i=0; i<mCollectionListItems.size(); i++){
+                            Toast.makeText(getActivity(), mCollectionListItems.get(i).getCover_image(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+
+                @Override
+                public void onFailure(@NonNull retrofit2.Call<CollectionListItemSuper> call, @NonNull Throwable t) {
+
+                }
+            });
+        }
     }
 
 }

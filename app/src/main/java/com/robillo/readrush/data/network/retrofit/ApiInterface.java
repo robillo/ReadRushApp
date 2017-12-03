@@ -1,5 +1,6 @@
 package com.robillo.readrush.data.network.retrofit;
 
+import com.robillo.readrush.data.network.retrofit.model.CollectionListItemSuper;
 import com.robillo.readrush.data.network.retrofit.model.CollectionsSuper;
 import com.robillo.readrush.data.network.retrofit.model.CoverSuper;
 import com.robillo.readrush.data.network.retrofit.model.FeaturedSuper;
@@ -56,8 +57,8 @@ public interface ApiInterface {
     );
 
     @GET("new_api/fetch_collection/{collection_id}")
-    Call<ResponseBody> getCollectionFromCid(
-            @Path("collection_id") int collection_id
+    Call<CollectionListItemSuper> getCollectionFromCid(
+            @Path("collection_id") String collection_id
     );
 
     @GET("new_api/library_fetch/{user_id}")
