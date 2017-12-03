@@ -179,7 +179,6 @@ public class SearchActivity extends BaseActivity implements SearchMvpView {
 
                 mSearchNamesAdapter = new SearchNamesAdapter(mSearches, SearchActivity.this);
                 mSearchHistory.setAdapter(mSearchNamesAdapter);
-
             }
         });
     }
