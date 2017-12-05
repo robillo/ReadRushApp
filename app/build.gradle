@@ -108,7 +108,6 @@ dependencies {
     compile 'de.hdodenhof:circleimageview:2.2.0'
     compile 'javax.inject:javax.inject:1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.android.support:support-v4:27.0.1'
     provided 'javax.annotation:jsr250-api:1.0'
     compile "com.squareup.retrofit2:converter-gson:2.3.0"
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"

@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -111,7 +112,7 @@ public class SearchActivity extends BaseActivity implements SearchMvpView {
         mPrefsHelper = new AppPreferencesHelper(this, ReadRushApp.PREF_FILE_NAME);
         mApiService = ApiClient.getClient().create(ApiInterface.class);
         mSuggestionsRv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        mSearchHistory.setLayoutManager(new StaggeredGridLayoutManager(5, StaggeredGridLayoutManager.HORIZONTAL));
+        mSearchHistory.setLayoutManager(new GridLayoutManager(this, 5, LinearLayoutManager.HORIZONTAL, false));
         mLayoutSuggestions.setAnimation(AnimationUtils.loadAnimation(this, R.anim.slide_in_left));
         mSearchNameList = mSearchNameRepository.getAllSearches();
         loadSearchNameList();
@@ -178,15 +179,9 @@ public class SearchActivity extends BaseActivity implements SearchMvpView {
                 mSearches = searchNames;
 //                //INFLATE SEARCHES RECYCLER VIEW
 
-                if (searchNames != null) {
-                    for(int i=0; i<searchNames.size(); i++){
-                        Toast.makeText(SearchActivity.this, " " + searchNames.get(i).getmSearchName(), Toast.LENGTH_SHORT).show();
-                    }
-                }
-
                 mSearchNamesAdapter = new SearchNamesAdapter(mSearches, SearchActivity.this);
-                mSearchNamesAdapter.notifyDataSetChanged();
                 mSearchHistory.setAdapter(mSearchNamesAdapter);
+//                mSearchHistory.invalidateItemDecorations();
             }
         });
     }
