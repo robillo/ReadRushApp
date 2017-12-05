@@ -4,7 +4,9 @@ package com.robillo.readrush.ui.main.library;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.DrawableRes;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.androidnetworking.model.Progress;
 import com.bumptech.glide.Glide;
@@ -48,6 +51,9 @@ public class LibraryFragment extends BaseFragment implements LibraryMvpView {
 
     public static int RUSH_COUNT = 0;
 
+    private List<LibraryItem> mLibraryItemList;
+
+    @SuppressWarnings("FieldCanBeLocal")
     private AppPreferencesHelper mPrefsHelper;
     @SuppressWarnings("FieldCanBeLocal")
     private ApiInterface mApiService;
@@ -103,7 +109,7 @@ public class LibraryFragment extends BaseFragment implements LibraryMvpView {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_library, container, false);
@@ -136,27 +142,44 @@ public class LibraryFragment extends BaseFragment implements LibraryMvpView {
         if(mMainLayout.getVisibility()==View.GONE){
             mMainLayout.setVisibility(View.VISIBLE);
         }
-        Glide.with(this).load(R.drawable.cover1).crossFade(400).centerCrop().into(mRushOne);
-        Glide.with(this).load(R.drawable.cover2).crossFade(400).centerCrop().into(mRushTwo);
-        Glide.with(this).load(R.drawable.cover3).crossFade(400).centerCrop().into(mRushThree);
-        Glide.with(this).load(R.drawable.cover4).crossFade(400).centerCrop().into(mRushFour);
-        Glide.with(this).load(R.drawable.cover6).crossFade(400).centerCrop().into(mRushFive);
+//        Glide.with(this).load(R.drawable.cover1).crossFade(400).centerCrop().into(mRushOne);
+//        Glide.with(this).load(R.drawable.cover2).crossFade(400).centerCrop().into(mRushTwo);
+//        Glide.with(this).load(R.drawable.cover3).crossFade(400).centerCrop().into(mRushThree);
+//        Glide.with(this).load(R.drawable.cover4).crossFade(400).centerCrop().into(mRushFour);
+//        Glide.with(this).load(R.drawable.cover6).crossFade(400).centerCrop().into(mRushFive);
     }
 
     @Override
     public void checkForExistingRushes() {
 
-        Call<List<LibraryItem>> call = mApiService.fetchLibrary(mPrefsHelper.getUserId());
+//        Call<LibraryItem> call = mApiService.fetchLibrary(mPrefsHelper.getUserId());
+        Call<List<LibraryItem>> call = mApiService.fetchLibrary("1");
         if(call!=null){
             call.enqueue(new Callback<List<LibraryItem>>() {
                 @Override
-                public void onResponse(Call<List<LibraryItem>> call, Response<List<LibraryItem>> response) {
-
+                public void onResponse(@NonNull Call<List<LibraryItem>> call, @NonNull Response<List<LibraryItem>> response) {
+                    mLibraryItemList = response.body();
+                    if(mLibraryItemList!=null){
+                        for(int i=0; i<mLibraryItemList.size(); i++){
+                            Toast.makeText(getActivity(), mLibraryItemList.get(i).getTitle(), Toast.LENGTH_SHORT).show();
+                            mProgressLibrary.setVisibility(View.GONE);
+                            mMainLayout.setVisibility(View.VISIBLE);
+                            mErrorLayout.setVisibility(View.GONE);
+                        }
+                    }
+                    else {
+                        mMainLayout.setVisibility(View.INVISIBLE);
+                        mProgressLibrary.setVisibility(View.GONE);
+                        mErrorLayout.setVisibility(View.VISIBLE);
+                    }
                 }
 
                 @Override
-                public void onFailure(Call<List<LibraryItem>> call, Throwable t) {
-
+                public void onFailure(@NonNull Call<List<LibraryItem>> call, @NonNull Throwable t) {
+                    mProgressLibrary.setVisibility(View.GONE);
+                    mErrorLayout.setVisibility(View.VISIBLE);
+                    mMainLayout.setVisibility(View.GONE);
+                    Toast.makeText(getActivity(), "Network Error" + t, Toast.LENGTH_SHORT).show();
                 }
             });
         }
