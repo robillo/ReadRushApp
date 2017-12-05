@@ -112,7 +112,9 @@ public class SearchActivity extends BaseActivity implements SearchMvpView {
         mPrefsHelper = new AppPreferencesHelper(this, ReadRushApp.PREF_FILE_NAME);
         mApiService = ApiClient.getClient().create(ApiInterface.class);
         mSuggestionsRv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        mSearchHistory.setLayoutManager(new GridLayoutManager(this, 5, LinearLayoutManager.HORIZONTAL, false));
+        GridLayoutManager manager = new GridLayoutManager(this, 5, LinearLayoutManager.HORIZONTAL, false);
+        mSearchHistory.setLayoutManager(manager);
+
         mLayoutSuggestions.setAnimation(AnimationUtils.loadAnimation(this, R.anim.slide_in_left));
         mSearchNameList = mSearchNameRepository.getAllSearches();
         loadSearchNameList();

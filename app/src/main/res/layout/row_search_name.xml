@@ -5,18 +5,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     app:cardCornerRadius="5sp"
-    android:layout_margin="5sp">
+    android:layout_margin="5sp"
+    app:cardBackgroundColor="@color/colorTextFour">
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="10sp"
         android:paddingBottom="10sp"
         android:paddingLeft="15sp"
         android:paddingRight="15sp"
         tools:text="Robin"
-        android:background="@drawable/search_history_item"
-        android:gravity="center"
+        android:layout_gravity="center"
         android:textSize="15sp"
         android:textColor="@color/colorTextTwo"
         android:id="@+id/search_name"/>
