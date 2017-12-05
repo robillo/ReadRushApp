@@ -107,15 +107,14 @@ public class SearchActivity extends BaseActivity implements SearchMvpView {
     @Override
     protected void setUp() {
 
-        loadSearchNameList();
-
         //noinspection ConstantConditions
         mPrefsHelper = new AppPreferencesHelper(this, ReadRushApp.PREF_FILE_NAME);
         mApiService = ApiClient.getClient().create(ApiInterface.class);
         mSuggestionsRv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         mSearchHistory.setLayoutManager(new StaggeredGridLayoutManager(5, StaggeredGridLayoutManager.HORIZONTAL));
         mLayoutSuggestions.setAnimation(AnimationUtils.loadAnimation(this, R.anim.slide_in_left));
-
+        mSearchNameList = mSearchNameRepository.getAllSearches();
+        loadSearchNameList();
         loadDefaultFeaturedBooks();
     }
 
@@ -160,7 +159,7 @@ public class SearchActivity extends BaseActivity implements SearchMvpView {
 
                 @Override
                 public void onFailure(@NonNull Call<SearchResultSuper> call, @NonNull Throwable t) {
-                    Toast.makeText(SearchActivity.this, "Network Error", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SearchActivity.this, "No Matching Searches", Toast.LENGTH_SHORT).show();
                 }
             });
         }
@@ -173,14 +172,20 @@ public class SearchActivity extends BaseActivity implements SearchMvpView {
 
     @Override
     public void loadSearchNameList() {
-        mSearchNameList = mSearchNameRepository.getAllSearches();
         mSearchNameList.observe(this, new Observer<List<SearchName>>() {
             @Override
             public void onChanged(@Nullable List<SearchName> searchNames) {
                 mSearches = searchNames;
-                //INFLATE SEARCHES RECYCLER VIEW
+//                //INFLATE SEARCHES RECYCLER VIEW
+
+                if (searchNames != null) {
+                    for(int i=0; i<searchNames.size(); i++){
+                        Toast.makeText(SearchActivity.this, " " + searchNames.get(i).getmSearchName(), Toast.LENGTH_SHORT).show();
+                    }
+                }
 
                 mSearchNamesAdapter = new SearchNamesAdapter(mSearches, SearchActivity.this);
+                mSearchNamesAdapter.notifyDataSetChanged();
                 mSearchHistory.setAdapter(mSearchNamesAdapter);
             }
         });
@@ -203,6 +208,6 @@ public class SearchActivity extends BaseActivity implements SearchMvpView {
 
     @OnClick(R.id.delete)
     public void setmDeleteSearchNames() {
-
+        Toast.makeText(this, "deleted", Toast.LENGTH_SHORT).show();
     }
 }

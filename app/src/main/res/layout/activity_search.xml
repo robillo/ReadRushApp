@@ -96,6 +96,7 @@
                 android:layout_width="30sp"
                 android:layout_height="30sp"
                 android:padding="3sp"
+                android:tint="@color/colorTextTwo"
                 android:src="@drawable/ic_delete_black_24dp"
                 android:contentDescription="Delete Search Names"
                 android:id="@+id/delete"
