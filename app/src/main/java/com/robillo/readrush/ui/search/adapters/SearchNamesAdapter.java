@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.robillo.readrush.R;
 import com.robillo.readrush.data.db.model.SearchName;
+import com.robillo.readrush.ui.search.SearchActivity;
 
 import java.util.List;
 
@@ -36,8 +37,14 @@ public class SearchNamesAdapter extends RecyclerView.Adapter<SearchNamesAdapter.
     }
 
     @Override
-    public void onBindViewHolder(SearchesHolder holder, int position) {
+    public void onBindViewHolder(final SearchesHolder holder, int position) {
         holder.mSearchName.setText(mList.get(position).getmSearchName());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((SearchActivity) context).loadSuggestions(holder.mSearchName.getText().toString());
+            }
+        });
     }
 
     @Override
