@@ -3,6 +3,7 @@ package com.robillo.readrush.data.db;
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.RoomDatabase;
 
+import com.robillo.readrush.data.db.model.library.LibraryCoverDao;
 import com.robillo.readrush.data.db.model.search.SearchName;
 import com.robillo.readrush.data.db.model.search.SearchNameDao;
 
@@ -14,5 +15,7 @@ import com.robillo.readrush.data.db.model.search.SearchNameDao;
 public abstract class RoomAppDatabase extends RoomDatabase {
 
     public abstract SearchNameDao mSearchNameDao();
+
+    public abstract LibraryCoverDao mLibraryCoverDao();
 
 }

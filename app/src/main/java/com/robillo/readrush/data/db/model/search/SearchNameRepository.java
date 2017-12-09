@@ -4,9 +4,6 @@ import android.annotation.SuppressLint;
 import android.arch.lifecycle.LiveData;
 import android.os.AsyncTask;
 
-import com.robillo.readrush.data.db.model.search.SearchName;
-import com.robillo.readrush.data.db.model.search.SearchNameDao;
-
 import java.util.List;
 
 import javax.inject.Inject;
