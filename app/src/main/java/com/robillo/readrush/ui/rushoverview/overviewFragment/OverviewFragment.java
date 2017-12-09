@@ -50,7 +50,7 @@ public class OverviewFragment extends BaseFragment implements OverviewFragmentMv
     static String mRushId;
     private RushInfo mRushInfo;
 
-    @SuppressWarnings("FieldCanBeLocal")
+    @SuppressWarnings({"FieldCanBeLocal", "unused"})
     private AppPreferencesHelper mPrefsHelper;
     @SuppressWarnings("FieldCanBeLocal")
     private ApiInterface mApiService;

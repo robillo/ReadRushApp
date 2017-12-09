@@ -22,6 +22,7 @@ import butterknife.OnClick;
 
 public class OverviewActivity extends BaseActivity implements OverviewMvpView {
 
+    @SuppressWarnings("FieldCanBeLocal")
     private static String mRushId;
 
     @Inject

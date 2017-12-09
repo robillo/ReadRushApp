@@ -33,13 +33,17 @@ public class LibraryCover {
     @ColumnInfo(name = "pages")
     private String pages;
 
-    public LibraryCover(@NonNull String rushId, String title, String author, String rating, String estTime, String pages) {
+    @ColumnInfo(name = "cover")
+    private String cover;
+
+    public LibraryCover(@NonNull String rushId, String title, String author, String rating, String estTime, String pages, String cover) {
         this.rushId = rushId;
         this.title = title;
         this.author = author;
         this.rating = rating;
         this.estTime = estTime;
         this.pages = pages;
+        this.cover = cover;
     }
 
     @NonNull
@@ -89,5 +93,13 @@ public class LibraryCover {
 
     public void setPages(String pages) {
         this.pages = pages;
+    }
+
+    public String getCover() {
+        return cover;
+    }
+
+    public void setCover(String cover) {
+        this.cover = cover;
     }
 }
