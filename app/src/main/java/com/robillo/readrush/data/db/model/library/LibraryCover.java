@@ -36,7 +36,10 @@ public class LibraryCover {
     @ColumnInfo(name = "cover")
     private String cover;
 
-    public LibraryCover(@NonNull String rushId, String title, String author, String rating, String estTime, String pages, String cover) {
+    @ColumnInfo(name = "rush_content")
+    private String rush_content;
+
+    public LibraryCover(@NonNull String rushId, String title, String author, String rating, String estTime, String pages, String cover, String rush_content) {
         this.rushId = rushId;
         this.title = title;
         this.author = author;
@@ -44,8 +47,10 @@ public class LibraryCover {
         this.estTime = estTime;
         this.pages = pages;
         this.cover = cover;
+        this.rush_content = rush_content;
     }
 
+    @SuppressWarnings("WeakerAccess")
     @NonNull
     public String getRushId() {
         return rushId;
@@ -71,6 +76,7 @@ public class LibraryCover {
         this.author = author;
     }
 
+    @SuppressWarnings("WeakerAccess")
     public String getRating() {
         return rating;
     }
@@ -79,6 +85,7 @@ public class LibraryCover {
         this.rating = rating;
     }
 
+    @SuppressWarnings("WeakerAccess")
     public String getEstTime() {
         return estTime;
     }
@@ -87,6 +94,7 @@ public class LibraryCover {
         this.estTime = estTime;
     }
 
+    @SuppressWarnings("WeakerAccess")
     public String getPages() {
         return pages;
     }
@@ -101,5 +109,13 @@ public class LibraryCover {
 
     public void setCover(String cover) {
         this.cover = cover;
+    }
+
+    public String getRush_content() {
+        return rush_content;
+    }
+
+    public void setRush_content(String rush_content) {
+        this.rush_content = rush_content;
     }
 }

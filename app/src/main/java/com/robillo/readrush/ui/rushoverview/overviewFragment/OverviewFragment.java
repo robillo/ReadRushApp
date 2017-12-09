@@ -165,7 +165,7 @@ public class OverviewFragment extends BaseFragment implements OverviewFragmentMv
                     mRushInfo = response.body().get(0);
 
                     if(mRushInfo.getRush_id()!=null){
-                        mRoomCover = new LibraryCover(mRushInfo.getRush_id(), mRushInfo.getTitle(), mRushInfo.getAuthor(), mRushInfo.getRating(), mRushInfo.getEst_time(), mRushInfo.getPages(), mRushInfo.getCover());
+                        mRoomCover = new LibraryCover(mRushInfo.getRush_id(), mRushInfo.getTitle(), mRushInfo.getAuthor(), mRushInfo.getRating(), mRushInfo.getEst_time(), mRushInfo.getPages(), mRushInfo.getCover(), null);
                     }
 
                     mShimmerLayout.stopShimmerAnimation();
@@ -229,7 +229,12 @@ public class OverviewFragment extends BaseFragment implements OverviewFragmentMv
             mAddReadRush.setText(R.string.read_rush);
         }
         else if(mAddReadRush.getText().equals(getString(R.string.read_rush))){
+            if(mRoomCover.getRush_content()==null){
 
+            }
+            else {
+
+            }
         }
     }
 }
