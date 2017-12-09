@@ -4,6 +4,8 @@ import android.app.Application;
 import android.arch.persistence.room.Room;
 
 import com.robillo.readrush.data.db.RoomAppDatabase;
+import com.robillo.readrush.data.db.model.library.LibraryCoverDao;
+import com.robillo.readrush.data.db.model.library.LibraryCoverRepository;
 import com.robillo.readrush.data.db.model.search.SearchNameDao;
 import com.robillo.readrush.data.db.model.search.SearchNameRepository;
 
@@ -37,14 +39,26 @@ public class RoomModule {
 
     @Singleton
     @Provides
-    SearchNameDao providesProductDao(RoomAppDatabase database) {
+    SearchNameDao providesProductDaoSearch(RoomAppDatabase database) {
         return database.mSearchNameDao();
     }
 
     @Provides
     @Singleton
-    SearchNameRepository provideListItemRepository(SearchNameDao searchNameDao){
+    SearchNameRepository provideListItemRepositorySearch(SearchNameDao searchNameDao){
         return new SearchNameRepository(searchNameDao);
+    }
+
+    @Singleton
+    @Provides
+    LibraryCoverDao providesProductDaoLibrary(RoomAppDatabase database) {
+        return database.mLibraryCoverDao();
+    }
+
+    @Provides
+    @Singleton
+    LibraryCoverRepository provideListItemRepositoryLibrary(LibraryCoverDao libraryCoverDao){
+        return new LibraryCoverRepository(libraryCoverDao);
     }
 
 }

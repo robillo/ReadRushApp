@@ -153,9 +153,11 @@ public class OverviewFragment extends BaseFragment implements OverviewFragmentMv
 
                     if(verifyRushExistsInMyLib()){
                         mAddReadRush.setText(R.string.add_rush);
+                        Toast.makeText(getActivity(), R.string.add_rush, Toast.LENGTH_SHORT).show();
                     }
                     else {
                         mAddReadRush.setText(R.string.read_rush);
+                        Toast.makeText(getActivity(), R.string.read_rush, Toast.LENGTH_SHORT).show();
                     }
 
                     //noinspection ConstantConditions

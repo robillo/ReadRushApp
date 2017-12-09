@@ -20,7 +20,7 @@ public class LibraryCoverRepository {
     private final LibraryCoverDao mLibraryCoverDao;
 
     @Inject
-    LibraryCoverRepository(LibraryCoverDao mLibraryCoverDao) {
+    public LibraryCoverRepository(LibraryCoverDao mLibraryCoverDao) {
         this.mLibraryCoverDao = mLibraryCoverDao;
     }
 
