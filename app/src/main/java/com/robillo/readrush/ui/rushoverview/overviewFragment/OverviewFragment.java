@@ -214,6 +214,28 @@ public class OverviewFragment extends BaseFragment implements OverviewFragmentMv
         return verified;
     }
 
+    @Override
+    public void addRushToOnlineLibrary() {
+        Call<ResponseBody> call = mApiService.addToUserLibrary(mPrefsHelper.getUserId(), mRushId);
+        if(call!=null){
+            call.enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
+                    Toast.makeText(getActivity(), "Successfully Added To Cloud Library", Toast.LENGTH_SHORT).show();
+
+                    //Add to user offline library
+                    mLibraryCoverRepository.insertCoverItem(mRoomCover);
+                    mAddReadRush.setText(R.string.read_rush);
+                }
+
+                @Override
+                public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
+                    Toast.makeText(getActivity(), "Network Error", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+    }
+
     @OnClick(R.id.reviews)
     public void seeReviews() {
         setReviewsFragment();
@@ -229,9 +251,7 @@ public class OverviewFragment extends BaseFragment implements OverviewFragmentMv
     @OnClick(R.id.add_read_rush)
     public void setmAddReadRush() {
         if(mAddReadRush.getText().equals(getString(R.string.add_rush))){
-            mLibraryCoverRepository.insertCoverItem(mRoomCover);
-            //Add to user library
-            mAddReadRush.setText(R.string.read_rush);
+            addRushToOnlineLibrary();
         }
         else if(mAddReadRush.getText().equals(getString(R.string.read_rush))){
             startActivity(ReadRushActivity.getStartIntent(getActivity(), mRushId));
