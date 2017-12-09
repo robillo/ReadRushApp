@@ -30,6 +30,7 @@ import com.robillo.readrush.data.prefs.AppPreferencesHelper;
 import com.robillo.readrush.di.component.ActivityComponent;
 import com.robillo.readrush.ui.base.BaseFragment;
 import com.robillo.readrush.ui.rushoverview.reviewsFragment.ReviewsFragment;
+import com.robillo.readrush.ui.rushread.ReadRushActivity;
 
 import java.util.List;
 
@@ -233,7 +234,7 @@ public class OverviewFragment extends BaseFragment implements OverviewFragmentMv
             mAddReadRush.setText(R.string.read_rush);
         }
         else if(mAddReadRush.getText().equals(getString(R.string.read_rush))){
-
+            startActivity(ReadRushActivity.getStartIntent(getActivity(), mRushId));
         }
     }
 }
