@@ -49,6 +49,7 @@ public class OverviewFragment extends BaseFragment implements OverviewFragmentMv
     static String mRushId;
     private RushInfo mRushInfo;
     LiveData<List<String>> mLibraryCoversRushIds;
+    LibraryCover mRoomCover = null;
     List<String> mRushIds;
 
     @SuppressWarnings({"FieldCanBeLocal", "unused"})
@@ -162,6 +163,11 @@ public class OverviewFragment extends BaseFragment implements OverviewFragmentMv
 
                     //noinspection ConstantConditions
                     mRushInfo = response.body().get(0);
+
+                    if(mRushInfo.getRush_id()!=null){
+                        mRoomCover = new LibraryCover(mRushInfo.getRush_id(), mRushInfo.getTitle(), mRushInfo.getAuthor(), mRushInfo.getRating(), mRushInfo.getEst_time(), mRushInfo.getPages(), mRushInfo.getCover());
+                    }
+
                     mShimmerLayout.stopShimmerAnimation();
                     Glide.with(getActivity()).load(mRushInfo.getCover()).centerCrop().into(mCover);
                     mName.setText(mRushInfo.getTitle());
@@ -213,6 +219,17 @@ public class OverviewFragment extends BaseFragment implements OverviewFragmentMv
     public void setmExit(){
         if(getActivity()!=null){
             getActivity().onBackPressed();
+        }
+    }
+
+    @OnClick(R.id.add_read_rush)
+    public void setmAddReadRush() {
+        if(mAddReadRush.getText().equals(getString(R.string.add_rush))){
+            mLibraryCoverRepository.insertCoverItem(mRoomCover);
+            mAddReadRush.setText(R.string.read_rush);
+        }
+        else if(mAddReadRush.getText().equals(getString(R.string.read_rush))){
+
         }
     }
 }
