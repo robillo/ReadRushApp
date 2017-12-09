@@ -12,7 +12,7 @@ import com.robillo.readrush.data.db.model.search.SearchNameDao;
  * Created by robinkamboj on 29/11/17.
  */
 
-@Database(entities = {SearchName.class, LibraryCover.class}, version = 1, exportSchema = false)
+@Database(entities = {SearchName.class, LibraryCover.class}, version = 2, exportSchema = false)
 public abstract class RoomAppDatabase extends RoomDatabase {
 
     public abstract SearchNameDao mSearchNameDao();

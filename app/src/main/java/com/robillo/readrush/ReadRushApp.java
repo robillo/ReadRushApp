@@ -19,7 +19,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
  * Created by robinkamboj on 10/10/17.
  */
 
-public class ReadRushApp extends Application{
+public class ReadRushApp extends Application {
 
     @Inject
     public DataManager mDataManager;

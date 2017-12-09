@@ -2,6 +2,7 @@ package com.robillo.readrush.data.network.retrofit;
 
 import com.robillo.readrush.data.network.retrofit.model.CollectionListItemSuper;
 import com.robillo.readrush.data.network.retrofit.model.CollectionsSuper;
+import com.robillo.readrush.data.network.retrofit.model.Content;
 import com.robillo.readrush.data.network.retrofit.model.CoverSuper;
 import com.robillo.readrush.data.network.retrofit.model.FeaturedSuper;
 import com.robillo.readrush.data.network.retrofit.model.LibraryItem;
@@ -77,7 +78,7 @@ public interface ApiInterface {
     );
 
     @GET("new_api/rush_content/{rush_id}")
-    Call<ResponseBody> getRushContent(
+    Call<List<Content>> getRushContent(
             @Path("rush_id") String rush_id
     );
 

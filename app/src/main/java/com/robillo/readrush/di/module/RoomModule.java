@@ -28,7 +28,7 @@ public class RoomModule {
                 application,
                 RoomAppDatabase.class,
                 "apptable.db"
-        ).build();
+        ).fallbackToDestructiveMigration().build();
     }
 
     @Singleton

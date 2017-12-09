@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,7 @@ import com.robillo.readrush.data.db.model.library.LibraryCover;
 import com.robillo.readrush.data.db.model.library.LibraryCoverRepository;
 import com.robillo.readrush.data.network.retrofit.ApiClient;
 import com.robillo.readrush.data.network.retrofit.ApiInterface;
+import com.robillo.readrush.data.network.retrofit.model.Content;
 import com.robillo.readrush.data.network.retrofit.model.RushInfo;
 import com.robillo.readrush.data.prefs.AppPreferencesHelper;
 import com.robillo.readrush.di.component.ActivityComponent;
@@ -37,6 +39,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.supercharge.shimmerlayout.ShimmerLayout;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -226,17 +229,11 @@ public class OverviewFragment extends BaseFragment implements OverviewFragmentMv
     public void setmAddReadRush() {
         if(mAddReadRush.getText().equals(getString(R.string.add_rush))){
             mLibraryCoverRepository.insertCoverItem(mRoomCover);
+            //Add to user library
             mAddReadRush.setText(R.string.read_rush);
         }
         else if(mAddReadRush.getText().equals(getString(R.string.read_rush))){
-            if(mRoomCover.getRush_content()==null){
-                Toast.makeText(getActivity(), "Downloading Your Rush", Toast.LENGTH_SHORT).show();
-                //Download Rush Content, Launch Read Rush Screen and Pass Rush Content as an extra
-            }
-            else {
-                Toast.makeText(getActivity(), "Rush Already Downloaded", Toast.LENGTH_SHORT).show();
-                //Launch Read Rush Screen and Pass Rush Content as an extra
-            }
+
         }
     }
 }
