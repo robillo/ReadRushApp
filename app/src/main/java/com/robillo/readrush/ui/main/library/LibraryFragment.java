@@ -152,8 +152,8 @@ public class LibraryFragment extends BaseFragment implements LibraryMvpView {
     @Override
     public void checkForExistingRushes() {
 
-//        Call<LibraryItem> call = mApiService.fetchLibrary(mPrefsHelper.getUserId());
-        Call<List<LibraryItem>> call = mApiService.fetchLibrary("1");
+        Call<List<LibraryItem>> call = mApiService.fetchLibrary(mPrefsHelper.getUserId());
+//        Call<List<LibraryItem>> call = mApiService.fetchLibrary("1");
         if(call!=null){
             call.enqueue(new Callback<List<LibraryItem>>() {
                 @Override
@@ -161,7 +161,7 @@ public class LibraryFragment extends BaseFragment implements LibraryMvpView {
                     mLibraryItemList = response.body();
                     if(mLibraryItemList!=null){
                         for(int i=0; i<mLibraryItemList.size(); i++){
-                            Toast.makeText(getActivity(), mLibraryItemList.get(i).getTitle(), Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(getActivity(), mLibraryItemList.get(i).getTitle(), Toast.LENGTH_SHORT).show();
                             mProgressLibrary.setVisibility(View.GONE);
                             mMainLayout.setVisibility(View.VISIBLE);
                             mErrorLayout.setVisibility(View.GONE);
@@ -179,7 +179,7 @@ public class LibraryFragment extends BaseFragment implements LibraryMvpView {
                     mProgressLibrary.setVisibility(View.GONE);
                     mErrorLayout.setVisibility(View.VISIBLE);
                     mMainLayout.setVisibility(View.GONE);
-                    Toast.makeText(getActivity(), "Network Error" + t, Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getActivity(), "Network Error" + t, Toast.LENGTH_SHORT).show();
                 }
             });
         }

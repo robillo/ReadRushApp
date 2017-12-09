@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.robillo.readrush.R;
-import com.robillo.readrush.data.db.model.SearchName;
+import com.robillo.readrush.data.db.model.search.SearchName;
 import com.robillo.readrush.ui.search.SearchActivity;
 
 import java.util.List;

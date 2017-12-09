@@ -1,4 +1,4 @@
-package com.robillo.readrush.data.db.model;
+package com.robillo.readrush.data.db.model.search;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
@@ -16,7 +16,6 @@ import java.util.List;
 public interface SearchNameDao {
 
     @Query("SELECT * FROM searchname")
-//    LiveData<List<SearchName>> getAllSearchNames();
     LiveData<List<SearchName>> getAllSearchNames();
 
     @Query("DELETE FROM searchname")

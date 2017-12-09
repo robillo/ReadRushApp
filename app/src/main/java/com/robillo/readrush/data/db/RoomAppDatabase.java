@@ -3,8 +3,8 @@ package com.robillo.readrush.data.db;
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.RoomDatabase;
 
-import com.robillo.readrush.data.db.model.SearchName;
-import com.robillo.readrush.data.db.model.SearchNameDao;
+import com.robillo.readrush.data.db.model.search.SearchName;
+import com.robillo.readrush.data.db.model.search.SearchNameDao;
 
 /**
  * Created by robinkamboj on 29/11/17.

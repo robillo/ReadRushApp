@@ -21,8 +21,8 @@ import android.content.Context;
 import com.robillo.readrush.ReadRushApp;
 import com.robillo.readrush.data.DataManager;
 import com.robillo.readrush.data.db.RoomAppDatabase;
-import com.robillo.readrush.data.db.model.SearchNameDao;
-import com.robillo.readrush.data.db.model.SearchNameRepository;
+import com.robillo.readrush.data.db.model.search.SearchNameDao;
+import com.robillo.readrush.data.db.model.search.SearchNameRepository;
 import com.robillo.readrush.di.ApplicationContext;
 import com.robillo.readrush.di.module.ApplicationModule;
 import com.robillo.readrush.di.module.RoomModule;
@@ -30,7 +30,6 @@ import com.robillo.readrush.di.module.RoomModule;
 import javax.inject.Singleton;
 
 import dagger.Component;
-import dagger.Provides;
 
 /**
  * Created by janisharali on 27/01/17.

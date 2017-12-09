@@ -4,8 +4,8 @@ import android.app.Application;
 import android.arch.persistence.room.Room;
 
 import com.robillo.readrush.data.db.RoomAppDatabase;
-import com.robillo.readrush.data.db.model.SearchNameDao;
-import com.robillo.readrush.data.db.model.SearchNameRepository;
+import com.robillo.readrush.data.db.model.search.SearchNameDao;
+import com.robillo.readrush.data.db.model.search.SearchNameRepository;
 
 import javax.inject.Singleton;
 
