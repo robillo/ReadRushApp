@@ -230,10 +230,12 @@ public class OverviewFragment extends BaseFragment implements OverviewFragmentMv
         }
         else if(mAddReadRush.getText().equals(getString(R.string.read_rush))){
             if(mRoomCover.getRush_content()==null){
-
+                Toast.makeText(getActivity(), "Downloading Your Rush", Toast.LENGTH_SHORT).show();
+                //Download Rush Content, Launch Read Rush Screen and Pass Rush Content as an extra
             }
             else {
-
+                Toast.makeText(getActivity(), "Rush Already Downloaded", Toast.LENGTH_SHORT).show();
+                //Launch Read Rush Screen and Pass Rush Content as an extra
             }
         }
     }
