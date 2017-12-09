@@ -128,6 +128,7 @@ public class OverviewFragment extends BaseFragment implements OverviewFragmentMv
         //noinspection ConstantConditions
         mPrefsHelper = new AppPreferencesHelper(getActivity(), ReadRushApp.PREF_FILE_NAME);
         mLibraryCoversRushIds = mLibraryCoverRepository.getAllRushIds();
+        fetchListMyLibRushIds();
         mApiService = ApiClient.getClient().create(ApiInterface.class);
 
         //noinspection ConstantConditions
@@ -210,6 +211,9 @@ public class OverviewFragment extends BaseFragment implements OverviewFragmentMv
                     verified = true;
                 }
             }
+        }
+        else {
+            Toast.makeText(getActivity(), "NULL RUSH IDS", Toast.LENGTH_SHORT).show();
         }
         return verified;
     }
