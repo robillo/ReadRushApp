@@ -151,7 +151,7 @@ public class OverviewFragment extends BaseFragment implements OverviewFragmentMv
                 @Override
                 public void onResponse(@NonNull Call<List<RushInfo>> call, @NonNull Response<List<RushInfo>> response) {
 
-                    if(verifyRushExistsInMyLib()){
+                    if(!verifyRushExistsInMyLib()){
                         mAddReadRush.setText(R.string.add_rush);
                         Toast.makeText(getActivity(), R.string.add_rush, Toast.LENGTH_SHORT).show();
                     }
