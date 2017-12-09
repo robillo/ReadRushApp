@@ -49,7 +49,8 @@
             android:name=".ui.rushoverview.OverviewActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ui.rushread.ReadRushActivity"></activity>
+        <activity android:name=".ui.rushread.ReadRushActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

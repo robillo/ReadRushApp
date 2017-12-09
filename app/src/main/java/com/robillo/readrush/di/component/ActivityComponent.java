@@ -26,6 +26,7 @@ import com.robillo.readrush.ui.onboard.fragment.OnboardFragment;
 import com.robillo.readrush.ui.rushoverview.OverviewActivity;
 import com.robillo.readrush.ui.rushoverview.overviewFragment.OverviewFragment;
 import com.robillo.readrush.ui.rushoverview.reviewsFragment.ReviewsFragment;
+import com.robillo.readrush.ui.rushread.ReadRushActivity;
 import com.robillo.readrush.ui.search.SearchActivity;
 import com.robillo.readrush.ui.splash.SplashActivity;
 import com.robillo.readrush.di.PerActivity;
@@ -54,6 +55,8 @@ public interface ActivityComponent {
     void inject(SearchActivity activity);
 
     void inject(OverviewActivity activity);
+
+    void inject(ReadRushActivity activity);
 
     void inject(OnboardFragment fragment);
 
