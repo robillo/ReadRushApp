@@ -1,12 +1,13 @@
 package com.robillo.readrush.ui.rushoverview.overviewFragment;
 
 
+import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.Observer;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,17 +19,16 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.robillo.readrush.R;
 import com.robillo.readrush.ReadRushApp;
+import com.robillo.readrush.data.db.model.library.LibraryCover;
+import com.robillo.readrush.data.db.model.library.LibraryCoverRepository;
 import com.robillo.readrush.data.network.retrofit.ApiClient;
 import com.robillo.readrush.data.network.retrofit.ApiInterface;
 import com.robillo.readrush.data.network.retrofit.model.RushInfo;
 import com.robillo.readrush.data.prefs.AppPreferencesHelper;
 import com.robillo.readrush.di.component.ActivityComponent;
 import com.robillo.readrush.ui.base.BaseFragment;
-import com.robillo.readrush.ui.main.discover.DiscoverFragment;
-import com.robillo.readrush.ui.main.discover.PagerFragment.PagerFragment;
 import com.robillo.readrush.ui.rushoverview.reviewsFragment.ReviewsFragment;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -37,7 +37,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.supercharge.shimmerlayout.ShimmerLayout;
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -49,12 +48,16 @@ public class OverviewFragment extends BaseFragment implements OverviewFragmentMv
 
     static String mRushId;
     private RushInfo mRushInfo;
+    LiveData<List<String>> mLibraryCoversRushIds;
+    List<String> mRushIds;
 
     @SuppressWarnings({"FieldCanBeLocal", "unused"})
     private AppPreferencesHelper mPrefsHelper;
     @SuppressWarnings("FieldCanBeLocal")
     private ApiInterface mApiService;
 
+    @Inject
+    LibraryCoverRepository mLibraryCoverRepository;
 
     @Inject
     OverviewFragmentMvpPresenter<OverviewFragmentMvpView> mPresenter;
@@ -119,11 +122,13 @@ public class OverviewFragment extends BaseFragment implements OverviewFragmentMv
 
         //noinspection ConstantConditions
         mPrefsHelper = new AppPreferencesHelper(getActivity(), ReadRushApp.PREF_FILE_NAME);
+        mLibraryCoversRushIds = mLibraryCoverRepository.getAllRushIds();
         mApiService = ApiClient.getClient().create(ApiInterface.class);
 
         //noinspection ConstantConditions
         mRushId = getArguments().getString("rush_id");
         mShimmerLayout.startShimmerAnimation();
+
 
         fetchRushDetails();
     }
@@ -145,6 +150,14 @@ public class OverviewFragment extends BaseFragment implements OverviewFragmentMv
             call.enqueue(new Callback<List<RushInfo>>() {
                 @Override
                 public void onResponse(@NonNull Call<List<RushInfo>> call, @NonNull Response<List<RushInfo>> response) {
+
+                    if(verifyRushExistsInMyLib()){
+                        mAddReadRush.setText(R.string.add_rush);
+                    }
+                    else {
+                        mAddReadRush.setText(R.string.read_rush);
+                    }
+
                     //noinspection ConstantConditions
                     mRushInfo = response.body().get(0);
                     mShimmerLayout.stopShimmerAnimation();
@@ -164,6 +177,29 @@ public class OverviewFragment extends BaseFragment implements OverviewFragmentMv
                 }
             });
         }
+    }
+
+    @Override
+    public void fetchListMyLibRushIds() {
+        mLibraryCoversRushIds.observe(this, new Observer<List<String>>() {
+            @Override
+            public void onChanged(@Nullable List<String> strings) {
+                mRushIds = strings;
+            }
+        });
+    }
+
+    @Override
+    public boolean verifyRushExistsInMyLib() {
+        boolean verified = false;
+        if(!(mRushIds ==null)){
+            for(int i=0; i<mRushIds.size(); i++) {
+                if(mRushIds.get(i).equals(mRushId)){
+                    verified = true;
+                }
+            }
+        }
+        return verified;
     }
 
     @OnClick(R.id.reviews)

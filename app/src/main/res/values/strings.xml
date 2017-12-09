@@ -143,5 +143,7 @@
     <string name="discover">DISCOVER</string>
     <string name="profile">PROFILE</string>
     <string name="search">Search</string>
+    <string name="add_rush">Add Rush</string>
+    <string name="read_rush">Read Rush</string>
 
 </resources>

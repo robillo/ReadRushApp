@@ -20,6 +20,9 @@ public interface LibraryCoverDao {
     @Query("SELECT * FROM library_cover")
     LiveData<List<LibraryCover>> getAllCoverItems();
 
+    @Query("SELECT rush_id from library_cover")
+    LiveData<List<String>> getAllRushIds();
+
     @Query("DELETE FROM library_cover")
     void deleteAllCoverNames();
 

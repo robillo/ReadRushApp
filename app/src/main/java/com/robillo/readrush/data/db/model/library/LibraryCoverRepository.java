@@ -24,7 +24,7 @@ public class LibraryCoverRepository {
         this.mLibraryCoverDao = mLibraryCoverDao;
     }
 
-    public LiveData<List<LibraryCover>> getAllSearches() {
+    public LiveData<List<LibraryCover>> getAllCovers() {
         return mLibraryCoverDao.getAllCoverItems();
     }
 
@@ -48,5 +48,10 @@ public class LibraryCoverRepository {
     @SuppressWarnings("unused")
     public void deleteSearchItem(LibraryCover cover) {
         mLibraryCoverDao.deleteLibraryCoverItem(cover);
+    }
+
+    @SuppressWarnings("unused")
+    public LiveData<List<String>> getAllRushIds() {
+        return mLibraryCoverDao.getAllRushIds();
     }
 }

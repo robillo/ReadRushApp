@@ -12,4 +12,7 @@ public interface OverviewFragmentMvpView extends MvpView {
 
     void fetchRushDetails();
 
+    void fetchListMyLibRushIds();
+
+    boolean verifyRushExistsInMyLib();
 }
