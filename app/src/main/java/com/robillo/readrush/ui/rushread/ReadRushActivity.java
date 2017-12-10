@@ -112,12 +112,11 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
         mPreferences = getPreferences(MODE_PRIVATE);
         mScreenSlidePagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
 
-        setLightTheme();
+        changeTheme();
     }
 
     @Override
     public void setLightTheme() {
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -128,7 +127,12 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
 
     @Override
     public void setDarkTheme() {
-
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(ContextCompat.getColor(this, R.color.readBlack));
+        }
     }
 
     @Override
@@ -230,10 +234,12 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
         if(mPreferences.getString("theme", "day").equals("night")){
             mPreferences.edit().putString("theme", "day").apply();
             mCustomizeLinearLayout.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+            setLightTheme();
         }
         else {
             mPreferences.edit().putString("theme", "night").apply();
             mCustomizeLinearLayout.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+            setDarkTheme();
         }
         refreshFragments();
     }
