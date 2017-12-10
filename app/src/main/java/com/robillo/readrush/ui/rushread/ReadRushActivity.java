@@ -14,6 +14,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -66,17 +67,17 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
     @BindView(R.id.customize_content_layout)
     LinearLayout mCustomizeLinearLayout;
     @BindView(R.id.text_plus)
-    private ImageButton mTextviewIncrease;
+    ImageButton mTextviewIncrease;
     @BindView(R.id.text_minus)
-    private ImageButton mTextviewDecrease;
+    ImageButton mTextviewDecrease;
     @BindView(R.id.text_font)
-    private ImageButton mTextviewFont;
+    ImageButton mTextviewFont;
     @BindView(R.id.content_theme)
-    private ImageButton mContentTheme;
+    ImageButton mContentTheme;
     @BindView(R.id.line_spacing)
-    private ImageButton mLineSpacing;
+    ImageButton mLineSpacing;
     @BindView(R.id.content_padding)
-    private ImageButton mContentPadding;
+    ImageButton mContentPadding;
 
     @SuppressWarnings("FieldCanBeLocal")
     private ApiInterface mApiService;
@@ -144,11 +145,12 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
                 @Override
                 public void onResponse(@NonNull Call<List<Content>> call, @NonNull Response<List<Content>> response) {
                     mContents = response.body();
-                    //noinspection ConstantConditions
-                    mContentProgress.setMax(response.body().size());
-                    mContentProgress.setProgress(1);
-                    //noinspection ConstantConditions
-                    setFragmentsForContents(mContents);
+                    if(mContents!=null && mContents.size()>0){
+                        //noinspection ConstantConditions
+                        mContentProgress.setMax(response.body().size());
+                        mContentProgress.setProgress(1);
+                        setFragmentsForContents(mContents);
+                    }
                 }
 
                 @Override
@@ -162,10 +164,12 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
 
     @Override
     public void setFragmentsForContents(List<Content> contents) {
-        NUM_PAGES = contents.size();
-        mContentPager.addOnPageChangeListener(viewPagerPageChangeListener);
-        mContentPager.setAdapter(mScreenSlidePagerAdapter);
-        mContentPager.setCurrentItem(mCurrentPage);
+        if(contents!=null){
+            NUM_PAGES = contents.size();
+            mContentPager.addOnPageChangeListener(viewPagerPageChangeListener);
+            mContentPager.setAdapter(mScreenSlidePagerAdapter);
+            mContentPager.setCurrentItem(mCurrentPage);
+        }
     }
 
     @Override

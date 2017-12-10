@@ -168,9 +168,9 @@ public class LibraryFragment extends BaseFragment implements LibraryMvpView {
                         }
                     }
                     else {
-                        mMainLayout.setVisibility(View.INVISIBLE);
-                        mProgressLibrary.setVisibility(View.GONE);
-                        mErrorLayout.setVisibility(View.VISIBLE);
+                        if(mMainLayout!=null) mMainLayout.setVisibility(View.INVISIBLE);
+                        if(mProgressLibrary!=null) mProgressLibrary.setVisibility(View.GONE);
+                        if(mErrorLayout!=null) mErrorLayout.setVisibility(View.VISIBLE);
                     }
                 }
 
