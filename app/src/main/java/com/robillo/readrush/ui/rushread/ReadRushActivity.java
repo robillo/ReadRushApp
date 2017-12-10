@@ -32,11 +32,16 @@ import com.robillo.readrush.data.network.retrofit.model.Content;
 import com.robillo.readrush.ui.base.BaseActivity;
 import com.robillo.readrush.ui.main.MainActivity;
 import com.robillo.readrush.ui.rushoverview.OverviewActivity;
+import com.robillo.readrush.ui.rushoverview.OverviewMvpPresenter;
+import com.robillo.readrush.ui.rushoverview.OverviewMvpView;
 import com.robillo.readrush.ui.rushread.content.ContentFragment;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -50,6 +55,9 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
 
     private int NUM_PAGES = 0;
     private static int mCurrentPage = 0;
+
+    @Inject
+    ReadRushMvpPresenter<ReadRushMvpView> mPresenter;
 
     @BindView(R.id.content_pager)
     ViewPager mContentPager;
@@ -70,6 +78,7 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
     @BindView(R.id.content_padding)
     private ImageButton mContentPadding;
 
+    @SuppressWarnings("FieldCanBeLocal")
     private ApiInterface mApiService;
     private List<Content> mContents;
     private SharedPreferences mPreferences;
@@ -87,6 +96,12 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_read_rush);
+
+        getActivityComponent().inject(ReadRushActivity.this);
+
+        setUnBinder(ButterKnife.bind(this));
+
+        mPresenter.onAttach(ReadRushActivity.this);
 
         setUp();
     }
