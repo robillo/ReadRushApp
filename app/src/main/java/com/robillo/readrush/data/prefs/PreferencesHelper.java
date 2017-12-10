@@ -75,7 +75,7 @@ public interface PreferencesHelper {
 
     //APP
 
-    void setUserIsLoggedIn(boolean isLoggedIn);
+    void setUserIsLoggedIn(@SuppressWarnings("SameParameterValue") boolean isLoggedIn);
     boolean getUserIsLoggedIn();
 
     void setUserIsOnBoarded(@SuppressWarnings("SameParameterValue") boolean isOnBoarded);
@@ -84,6 +84,12 @@ public interface PreferencesHelper {
     void setUserEnterMode(String mode);
     String getUserEnterMode();
 
+    void setAppTheme(String theme);
+    String getAppTheme();
 
+    void setContentPadding(int padding);
+    int getContentPadding();
 
+    void setLineSpacing(float spacing);
+    float getLineSpacing();
 }

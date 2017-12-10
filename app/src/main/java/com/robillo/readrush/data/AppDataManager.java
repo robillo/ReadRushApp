@@ -211,6 +211,36 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
+    public void setAppTheme(String theme) {
+
+    }
+
+    @Override
+    public String getAppTheme() {
+        return null;
+    }
+
+    @Override
+    public void setContentPadding(int padding) {
+
+    }
+
+    @Override
+    public int getContentPadding() {
+        return 0;
+    }
+
+    @Override
+    public void setLineSpacing(float spacing) {
+
+    }
+
+    @Override
+    public float getLineSpacing() {
+        return 0;
+    }
+
+    @Override
     public int getCurrentUserLoggedInMode() {
         return mPreferencesHelper.getCurrentUserLoggedInMode();
     }

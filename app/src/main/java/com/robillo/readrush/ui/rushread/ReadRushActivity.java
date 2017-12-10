@@ -27,9 +27,11 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.robillo.readrush.R;
+import com.robillo.readrush.ReadRushApp;
 import com.robillo.readrush.data.network.retrofit.ApiClient;
 import com.robillo.readrush.data.network.retrofit.ApiInterface;
 import com.robillo.readrush.data.network.retrofit.model.Content;
+import com.robillo.readrush.data.prefs.AppPreferencesHelper;
 import com.robillo.readrush.ui.base.BaseActivity;
 import com.robillo.readrush.ui.main.MainActivity;
 import com.robillo.readrush.ui.rushread.content.ContentFragment;
@@ -78,8 +80,9 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
 
     @SuppressWarnings("FieldCanBeLocal")
     private ApiInterface mApiService;
+    @SuppressWarnings("FieldCanBeLocal")
+    private AppPreferencesHelper mPrefsHelper;
     private List<Content> mContents;
-    private SharedPreferences mPreferences;
     private ScreenSlidePagerAdapter mScreenSlidePagerAdapter;
 
     String mRushId = null;
@@ -107,7 +110,8 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
     public void setUp() {
         mRushId = getIntent().getStringExtra("rush_id");
 
-        mPreferences = getPreferences(MODE_PRIVATE);
+        //noinspection ConstantConditions
+        mPrefsHelper = new AppPreferencesHelper(this, ReadRushApp.PREF_FILE_NAME);
         mScreenSlidePagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
 
         setInitialTheme();
@@ -216,13 +220,13 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
 
     @OnClick(R.id.text_plus)
     public void increaseTextSize() {
-        mPreferences.edit().putInt("text_size", mPreferences.getInt("text_size", 20) + 2).apply();
+//        mPreferences.edit().putInt("text_size", mPreferences.getInt("text_size", 20) + 2).apply();
         refreshFragments();
     }
 
     @OnClick(R.id.text_minus)
     public void decreaseTextSize() {
-        mPreferences.edit().putInt("text_size", mPreferences.getInt("text_size", 20) - 2).apply();
+//        mPreferences.edit().putInt("text_size", mPreferences.getInt("text_size", 20) - 2).apply();
         refreshFragments();
     }
 
@@ -239,22 +243,22 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
 
     @OnClick(R.id.line_spacing)
     public void changeLineSpacing() {
-        if(mPreferences.getFloat("line_spacing", (float) 1.5) == 1.5){
-            mPreferences.edit().putFloat("line_spacing", (float) 2.0).apply();
+        if(mPrefsHelper.getLineSpacing() == 1.5F){
+            mPrefsHelper.setLineSpacing(2.0F);
         }
         else {
-            mPreferences.edit().putFloat("line_spacing", (float) 1.5).apply();
+            mPrefsHelper.setLineSpacing(1.5F);
         }
         refreshFragments();
     }
 
     @OnClick(R.id.content_padding)
     public void changeContentPadding() {
-        if(mPreferences.getInt("content_padding", 60) == 60){
-            mPreferences.edit().putInt("content_padding", 90).apply();
+        if(mPrefsHelper.getContentPadding() == 60){
+            mPrefsHelper.setContentPadding(90);
         }
         else {
-            mPreferences.edit().putInt("content_padding", 60).apply();
+            mPrefsHelper.setContentPadding(60);
         }
         refreshFragments();
     }
@@ -266,14 +270,14 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
 
     @Override
     public void setInitialTheme() {
-        if(mPreferences.getString("theme", "day").equals("night")){
-            mPreferences.edit().putString("theme", "day").apply();
+        if(mPrefsHelper.getAppTheme().equals("NIGHT")){
+            mPrefsHelper.setAppTheme("DAY");
             mCustomizeLinearLayout.setBackgroundColor(getResources().getColor(R.color.rushRed));
             mContentProgress.setBackgroundColor(getResources().getColor(R.color.rushRed));
             setLightTheme();
         }
         else {
-            mPreferences.edit().putString("theme", "night").apply();
+            mPrefsHelper.setAppTheme("NIGHT");
             mCustomizeLinearLayout.setBackgroundColor(getResources().getColor(R.color.readBlack));
             mContentProgress.setBackgroundColor(getResources().getColor(R.color.readBlack));
             setDarkTheme();

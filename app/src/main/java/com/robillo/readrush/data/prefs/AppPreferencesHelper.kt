@@ -208,6 +208,31 @@ constructor(@ApplicationContext context: Context, @PreferenceInfo prefFileName: 
         return  mPrefs.getString(PREF_KEY_ENTER_MODE, ReadRushApp.REGISTER_MODE);
     }
 
+    //APP THEME DAY OR NIGHT
+    override fun setAppTheme(theme: String?) {
+        mPrefs.edit().putString(PREF_KEY_ENTER_MODE, theme).apply();
+    }
+
+    override fun getAppTheme(): String {
+        return  mPrefs.getString(PREF_KEY_APP_THEME, "DAY");
+    }
+
+    override fun setContentPadding(padding: Int) {
+        mPrefs.edit().putInt(PREF_KEY_CONTENT_PADDING, padding).apply();
+    }
+
+    override fun getContentPadding(): Int {
+        return mPrefs.getInt(PREF_KEY_CONTENT_PADDING, 60);
+    }
+
+    override fun setLineSpacing(spacing: Float) {
+        mPrefs.edit().putFloat(PREF_KEY_LINE_SPACING, spacing).apply();
+    }
+
+    override fun getLineSpacing(): Float {
+        return mPrefs.getFloat(PREF_KEY_LINE_SPACING, 1.5F);
+    }
+
     companion object {
 
         private val PREF_KEY_USER_LOGGED_IN_MODE = "PREF_KEY_USER_LOGGED_IN_MODE"
@@ -241,5 +266,8 @@ constructor(@ApplicationContext context: Context, @PreferenceInfo prefFileName: 
 
         //APP
         private val PREF_KEY_ENTER_MODE = "PREF_KEY_ENTER_MODE"
+        private val PREF_KEY_APP_THEME = "PREF_KEY_APP_THEME"
+        private val PREF_KEY_CONTENT_PADDING = "PREF_KEY_CONTENT_PADDING"
+        private val PREF_KEY_LINE_SPACING = "PREF_KEY_LINE_SPACING"
     }
 }
