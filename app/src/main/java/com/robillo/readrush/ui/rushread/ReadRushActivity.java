@@ -237,8 +237,15 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
 
     @OnClick(R.id.content_theme)
     public void changeTheme() {
+        if((mPrefsHelper.getAppTheme()).equals("NIGHT")){
+            mPrefsHelper.setAppTheme("DAY");
+        }
+        else {
+            mPrefsHelper.setAppTheme("NIGHT");
+        }
         setInitialTheme();
         refreshFragments();
+        Toast.makeText(this, "CHANGE CONTENT THEME", Toast.LENGTH_SHORT).show();
     }
 
     @OnClick(R.id.line_spacing)
@@ -270,17 +277,15 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
 
     @Override
     public void setInitialTheme() {
-        if(mPrefsHelper.getAppTheme().equals("NIGHT")){
-            mPrefsHelper.setAppTheme("DAY");
-            mCustomizeLinearLayout.setBackgroundColor(getResources().getColor(R.color.rushRed));
-            mContentProgress.setBackgroundColor(getResources().getColor(R.color.rushRed));
-            setLightTheme();
-        }
-        else {
-            mPrefsHelper.setAppTheme("NIGHT");
+        if((mPrefsHelper.getAppTheme()).equals("NIGHT")){
             mCustomizeLinearLayout.setBackgroundColor(getResources().getColor(R.color.readBlack));
             mContentProgress.setBackgroundColor(getResources().getColor(R.color.readBlack));
             setDarkTheme();
+        }
+        else {
+            mCustomizeLinearLayout.setBackgroundColor(getResources().getColor(R.color.rushRed));
+            mContentProgress.setBackgroundColor(getResources().getColor(R.color.rushRed));
+            setLightTheme();
         }
     }
 

@@ -69,7 +69,7 @@ public class ContentFragment extends Fragment implements ContentMvpView, View.On
         mContentTextView.setLineSpacing(0, mPrefsHelper.getLineSpacing());
         int pad = mPrefsHelper.getContentPadding();
         mContentTextView.setPadding(pad, 10, pad, 10);
-        if(mPrefsHelper.getAppTheme().equals("NIGHT")){
+        if((mPrefsHelper.getAppTheme()).equals("NIGHT")){
             mContentTextView.setTextColor(Color.WHITE);
             mScrollContent.setBackgroundColor(Color.BLACK);
         }
