@@ -92,4 +92,7 @@ public interface PreferencesHelper {
 
     void setLineSpacing(float spacing);
     float getLineSpacing();
+
+    void setTextSize(int size);
+    int getTextSize();
 }

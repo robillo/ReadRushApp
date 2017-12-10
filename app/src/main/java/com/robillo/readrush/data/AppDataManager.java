@@ -241,6 +241,16 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
+    public void setTextSize(int size) {
+
+    }
+
+    @Override
+    public int getTextSize() {
+        return 0;
+    }
+
+    @Override
     public int getCurrentUserLoggedInMode() {
         return mPreferencesHelper.getCurrentUserLoggedInMode();
     }

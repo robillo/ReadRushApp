@@ -233,6 +233,14 @@ constructor(@ApplicationContext context: Context, @PreferenceInfo prefFileName: 
         return mPrefs.getFloat(PREF_KEY_LINE_SPACING, 1.5F);
     }
 
+    override fun setTextSize(size: Int) {
+        mPrefs.edit().putInt(PREF_KEY_TEXT_SIZE, size).apply();
+    }
+
+    override fun getTextSize(): Int {
+        return mPrefs.getInt(PREF_KEY_TEXT_SIZE, 20);
+    }
+
     companion object {
 
         private val PREF_KEY_USER_LOGGED_IN_MODE = "PREF_KEY_USER_LOGGED_IN_MODE"
@@ -269,5 +277,6 @@ constructor(@ApplicationContext context: Context, @PreferenceInfo prefFileName: 
         private val PREF_KEY_APP_THEME = "PREF_KEY_APP_THEME"
         private val PREF_KEY_CONTENT_PADDING = "PREF_KEY_CONTENT_PADDING"
         private val PREF_KEY_LINE_SPACING = "PREF_KEY_LINE_SPACING"
+        private val PREF_KEY_TEXT_SIZE = "PREF_KEY_TEXT_SIZE"
     }
 }

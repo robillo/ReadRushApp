@@ -220,13 +220,13 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
 
     @OnClick(R.id.text_plus)
     public void increaseTextSize() {
-//        mPreferences.edit().putInt("text_size", mPreferences.getInt("text_size", 20) + 2).apply();
+        mPrefsHelper.setTextSize(mPrefsHelper.getTextSize() + 2);
         refreshFragments();
     }
 
     @OnClick(R.id.text_minus)
     public void decreaseTextSize() {
-//        mPreferences.edit().putInt("text_size", mPreferences.getInt("text_size", 20) - 2).apply();
+        mPrefsHelper.setTextSize(mPrefsHelper.getTextSize() - 2);
         refreshFragments();
     }
 

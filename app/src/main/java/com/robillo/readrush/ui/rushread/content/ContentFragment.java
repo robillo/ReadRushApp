@@ -3,6 +3,7 @@ package com.robillo.readrush.ui.rushread.content;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -12,6 +13,8 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.robillo.readrush.R;
+import com.robillo.readrush.ReadRushApp;
+import com.robillo.readrush.data.prefs.AppPreferencesHelper;
 import com.robillo.readrush.ui.rushread.ReadRushActivity;
 
 /**
@@ -23,6 +26,8 @@ public class ContentFragment extends Fragment implements ContentMvpView, View.On
     TextView mContentTextView;
     String content;
     ScrollView mScrollContent;
+    @SuppressWarnings("FieldCanBeLocal")
+    private AppPreferencesHelper mPrefsHelper;
 
     public static ContentFragment newInstance(String content) {
         Bundle bundle = new Bundle();
@@ -33,7 +38,7 @@ public class ContentFragment extends Fragment implements ContentMvpView, View.On
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_content, container, false);
@@ -47,8 +52,11 @@ public class ContentFragment extends Fragment implements ContentMvpView, View.On
     public void setUp(View v) {
         mContentTextView = v.findViewById(R.id.content_text);
         mScrollContent = v.findViewById(R.id.scroll_content);
+        //noinspection ConstantConditions
+        mPrefsHelper = new AppPreferencesHelper(getActivity(), ReadRushApp.PREF_FILE_NAME);
 
         mContentTextView.setOnClickListener(this);
+        //noinspection ConstantConditions
         content = getArguments().getString("content");
         mContentTextView.setText(Html.fromHtml(content));
 
@@ -57,11 +65,11 @@ public class ContentFragment extends Fragment implements ContentMvpView, View.On
 
     @Override
     public void refreshAttributes() {
-        mContentTextView.setTextSize(getActivity().getPreferences(Context.MODE_PRIVATE).getInt("text_size", 20));
-        mContentTextView.setLineSpacing(0, getActivity().getPreferences(Context.MODE_PRIVATE).getFloat("line_spacing", (float) 1.5));
-        int pad = getActivity().getPreferences(Context.MODE_PRIVATE).getInt("content_padding", 10);
+        mContentTextView.setTextSize(mPrefsHelper.getTextSize());
+        mContentTextView.setLineSpacing(0, mPrefsHelper.getLineSpacing());
+        int pad = mPrefsHelper.getContentPadding();
         mContentTextView.setPadding(pad, 10, pad, 10);
-        if(getActivity().getPreferences(Context.MODE_PRIVATE).getString("theme", "day").equals("night")){
+        if(mPrefsHelper.getAppTheme().equals("NIGHT")){
             mContentTextView.setTextColor(Color.WHITE);
             mScrollContent.setBackgroundColor(Color.BLACK);
         }
@@ -76,7 +84,9 @@ public class ContentFragment extends Fragment implements ContentMvpView, View.On
         switch (v.getId()){
             case R.id.content_text:{
                 ReadRushActivity activity = (ReadRushActivity) getActivity();
-                activity.hideShowCustomizeLayout();
+                if (activity != null) {
+                    activity.hideShowCustomizeLayout();
+                }
                 break;
             }
         }
