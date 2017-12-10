@@ -84,7 +84,7 @@
         android:layout_height="20sp"
         style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
         android:indeterminate="false"
-        android:background="@color/colorTextThree"
+        android:background="@color/rushRed"
         android:id="@+id/content_progress"/>
 
 </LinearLayout>

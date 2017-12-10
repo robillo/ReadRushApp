@@ -32,9 +32,6 @@ import com.robillo.readrush.data.network.retrofit.ApiInterface;
 import com.robillo.readrush.data.network.retrofit.model.Content;
 import com.robillo.readrush.ui.base.BaseActivity;
 import com.robillo.readrush.ui.main.MainActivity;
-import com.robillo.readrush.ui.rushoverview.OverviewActivity;
-import com.robillo.readrush.ui.rushoverview.OverviewMvpPresenter;
-import com.robillo.readrush.ui.rushoverview.OverviewMvpView;
 import com.robillo.readrush.ui.rushread.content.ContentFragment;
 
 import java.util.List;
@@ -113,7 +110,8 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
         mPreferences = getPreferences(MODE_PRIVATE);
         mScreenSlidePagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
 
-        changeTheme();
+        setInitialTheme();
+        getContent();
     }
 
     @Override
@@ -155,7 +153,7 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
 
                 @Override
                 public void onFailure(@NonNull Call<List<Content>> call, @NonNull Throwable t) {
-                    Toast.makeText(ReadRushActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(ReadRushActivity.this, "Network Error", Toast.LENGTH_LONG).show();
                 }
             });
         }
@@ -175,7 +173,7 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
     @Override
     public void hideShowCustomizeLayout() {
         if(mCustomizeLinearLayout.getVisibility()== View.VISIBLE){
-            Animation animation = AnimationUtils.loadAnimation(this, R.anim.bottom_up);
+            Animation animation = AnimationUtils.loadAnimation(this, R.anim.customize_bottom_up);
             animation.setAnimationListener(new Animation.AnimationListener() {
                 @Override
                 public void onAnimationStart(Animation animation) {
@@ -195,7 +193,7 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
             mCustomizeLinearLayout.startAnimation(animation);
         }
         else {
-            Animation animation = AnimationUtils.loadAnimation(this, R.anim.top_down);
+            Animation animation = AnimationUtils.loadAnimation(this, R.anim.customize_top_down);
             animation.setAnimationListener(new Animation.AnimationListener() {
                 @Override
                 public void onAnimationStart(Animation animation) {
@@ -235,16 +233,7 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
 
     @OnClick(R.id.content_theme)
     public void changeTheme() {
-        if(mPreferences.getString("theme", "day").equals("night")){
-            mPreferences.edit().putString("theme", "day").apply();
-            mCustomizeLinearLayout.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-            setLightTheme();
-        }
-        else {
-            mPreferences.edit().putString("theme", "night").apply();
-            mCustomizeLinearLayout.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
-            setDarkTheme();
-        }
+        setInitialTheme();
         refreshFragments();
     }
 
@@ -273,6 +262,22 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
     @Override
     public void refreshFragments() {
         setFragmentsForContents(mContents);
+    }
+
+    @Override
+    public void setInitialTheme() {
+        if(mPreferences.getString("theme", "day").equals("night")){
+            mPreferences.edit().putString("theme", "day").apply();
+            mCustomizeLinearLayout.setBackgroundColor(getResources().getColor(R.color.rushRed));
+            mContentProgress.setBackgroundColor(getResources().getColor(R.color.rushRed));
+            setLightTheme();
+        }
+        else {
+            mPreferences.edit().putString("theme", "night").apply();
+            mCustomizeLinearLayout.setBackgroundColor(getResources().getColor(R.color.readBlack));
+            mContentProgress.setBackgroundColor(getResources().getColor(R.color.readBlack));
+            setDarkTheme();
+        }
     }
 
     private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
