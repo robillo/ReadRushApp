@@ -19,6 +19,14 @@
     <string name="dummy_header">The Dummy Header</string>
     <string name="dummy_sentence">The Dummy Header has a dummy sentence that comes with it.</string>
 
+    <!-- READ RUSH ACTIVITY -->
+    <string name="increase_text_size">Increase Text Size</string>
+    <string name="decrease_text_size">Decrease Text Size</string>
+    <string name="change_font">Change Font</string>
+    <string name="change_theme">Change Theme</string>
+    <string name="text_line_spacing">Text Line Spacing</string>
+    <string name="change_content_padding">Change Content Padding</string>
+
     <!-- APP TEXT -->
     <string name="line">line</string>
     <string name="previous">Previous</string>

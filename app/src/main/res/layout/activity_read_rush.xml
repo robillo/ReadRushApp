@@ -1,9 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ffffff"
     tools:context="com.robillo.readrush.ui.rushread.ReadRushActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:orientation="horizontal"
+        android:background="@color/rushRed"
+        android:id="@+id/customize_content_layout">
+
+        <ImageButton
+            android:layout_width="0sp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/ic_zoom_in_white_24dp"
+            android:background="?attr/selectableItemBackground"
+            android:contentDescription="@string/increase_text_size"
+            android:id="@+id/text_plus"/>
+
+        <ImageButton
+            android:layout_width="0sp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/ic_zoom_out_white_24dp"
+            android:background="?attr/selectableItemBackground"
+            android:contentDescription="@string/decrease_text_size"
+            android:id="@+id/text_minus"/>
+
+        <ImageButton
+            android:layout_width="0sp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/ic_change_history_white_24dp"
+            android:background="?attr/selectableItemBackground"
+            android:contentDescription="@string/change_font"
+            android:id="@+id/text_font"/>
+
+        <ImageButton
+            android:layout_width="0sp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/ic_swap_vertical_circle_white_24dp"
+            android:background="?attr/selectableItemBackground"
+            android:contentDescription="@string/change_theme"
+            android:id="@+id/content_theme"/>
+
+        <ImageButton
+            android:layout_width="0sp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/ic_format_line_spacing_white_24dp"
+            android:background="?attr/selectableItemBackground"
+            android:contentDescription="@string/text_line_spacing"
+            android:id="@+id/line_spacing"/>
+
+        <ImageButton
+            android:layout_width="0sp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/ic_border_outer_white_24dp"
+            android:background="?attr/selectableItemBackground"
+            android:contentDescription="@string/change_content_padding"
+            android:id="@+id/content_padding"/>
+
+    </LinearLayout>
+
+    <android.support.v4.view.ViewPager
+        android:layout_width="match_parent"
+        android:layout_height="0sp"
+        android:id="@+id/content_pager"
+        android:layout_weight="1">
+
+    </android.support.v4.view.ViewPager>
+
+    <ProgressBar
+        android:layout_width="match_parent"
+        android:layout_height="20sp"
+        style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
+        android:indeterminate="false"
+        android:background="@color/colorTextThree"
+        android:id="@+id/content_progress"/>
+
+</LinearLayout>
