@@ -210,7 +210,7 @@ constructor(@ApplicationContext context: Context, @PreferenceInfo prefFileName: 
 
     //APP THEME DAY OR NIGHT
     override fun setAppTheme(theme: String?) {
-        mPrefs.edit().putString(PREF_KEY_ENTER_MODE, theme).apply();
+        mPrefs.edit().putString(PREF_KEY_APP_THEME, theme).apply();
     }
 
     override fun getAppTheme(): String {
