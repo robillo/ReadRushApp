@@ -24,4 +24,6 @@ public interface LibraryMvpView extends MvpView {
 
     void loadSingleCoverIntoSingleRush(String cover_url, ImageView rush);
 
+    void openReadRushScreen(int index);
+
 }

@@ -257,48 +257,55 @@ public class LibraryFragment extends BaseFragment implements LibraryMvpView {
         Glide.with(getActivity()).load(cover_url).diskCacheStrategy(DiskCacheStrategy.ALL).crossFade().centerCrop().into(rush);
     }
 
+    @Override
+    public void openReadRushScreen(int index) {
+        int count = mCoversList.size();
+        if(count > index) startActivity(OverviewActivity.getStartIntent(getActivity(), mCoversList.get(index).getRushId()));
+        else Toast.makeText(getActivity(), "Empty Cover", Toast.LENGTH_SHORT).show();
+    }
+
     @OnClick(R.id.rush1)
     public void clickmRushOne() {
-        startActivity(OverviewActivity.getStartIntent(getActivity(), "3"));
+        openReadRushScreen(0);
     }
 
     @OnClick(R.id.rush2)
     public void clickmRushTwo() {
-        startActivity(OverviewActivity.getStartIntent(getActivity(), "3"));
+        openReadRushScreen(1);
     }
 
     @OnClick(R.id.rush3)
     public void clickmRushThree() {
-        startActivity(OverviewActivity.getStartIntent(getActivity(), "3"));
+        openReadRushScreen(2);
     }
     @OnClick(R.id.rush4)
     public void clickmRushFour() {
-        startActivity(OverviewActivity.getStartIntent(getActivity(), "3"));
+        openReadRushScreen(3);
     }
 
     @OnClick(R.id.rush5)
     public void clickmRushFive() {
-        startActivity(OverviewActivity.getStartIntent(getActivity(), "3"));
+        openReadRushScreen(4);
     }
 
     @OnClick(R.id.rush6)
     public void clickmRushSix() {
-        startActivity(OverviewActivity.getStartIntent(getActivity(), "3"));
+        openReadRushScreen(5);
     }
 
     @OnClick(R.id.rush7)
     public void clickmRushSeven() {
-        startActivity(OverviewActivity.getStartIntent(getActivity(), "3"));
+        openReadRushScreen(6);
     }
 
     @OnClick(R.id.rush8)
     public void clickmRushEight() {
-        startActivity(OverviewActivity.getStartIntent(getActivity(), "3"));
+        openReadRushScreen(7);
     }
 
     @OnClick(R.id.rush9)
     public void clickmRushNine() {
-        startActivity(OverviewActivity.getStartIntent(getActivity(), "3"));
+        openReadRushScreen(8);
     }
 
     @OnClick(R.id.refresh_buttom)
