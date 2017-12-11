@@ -1,5 +1,7 @@
 package com.robillo.readrush.ui.main.library;
 
+import android.widget.ImageView;
+
 import com.robillo.readrush.ui.base.MvpView;
 
 /**
@@ -17,5 +19,9 @@ public interface LibraryMvpView extends MvpView {
     boolean verifyOfflineRushesExist();
 
     void showNoRushes();
+
+    void loadCoversIntoRushes();
+
+    void loadSingleCoverIntoSingleRush(String cover_url, ImageView rush);
 
 }

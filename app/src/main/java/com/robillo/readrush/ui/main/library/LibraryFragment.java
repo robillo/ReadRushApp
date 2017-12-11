@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import com.androidnetworking.model.Progress;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.robillo.readrush.R;
 import com.robillo.readrush.ReadRushApp;
 import com.robillo.readrush.data.db.model.library.LibraryCover;
@@ -101,6 +102,15 @@ public class LibraryFragment extends BaseFragment implements LibraryMvpView {
     @BindView(R.id.rush6)
     ImageView mRushSix;
 
+    @BindView(R.id.rush7)
+    ImageView mRushSeven;
+
+    @BindView(R.id.rush8)
+    ImageView mRushEight;
+
+    @BindView(R.id.rush9)
+    ImageView mRushNine;
+
     @BindView(R.id.refresh_buttom)
     Button mRefreshButton;
 
@@ -159,11 +169,7 @@ public class LibraryFragment extends BaseFragment implements LibraryMvpView {
         if(mErrorLayout.getVisibility()==View.VISIBLE) mErrorLayout.setVisibility(View.GONE);
         if(mProgressLibrary.getVisibility()==View.VISIBLE) mProgressLibrary.setVisibility(View.GONE);
 
-//        Glide.with(this).load(R.drawable.cover1).crossFade(400).centerCrop().into(mRushOne);
-//        Glide.with(this).load(R.drawable.cover2).crossFade(400).centerCrop().into(mRushTwo);
-//        Glide.with(this).load(R.drawable.cover3).crossFade(400).centerCrop().into(mRushThree);
-//        Glide.with(this).load(R.drawable.cover4).crossFade(400).centerCrop().into(mRushFour);
-//        Glide.with(this).load(R.drawable.cover6).crossFade(400).centerCrop().into(mRushFive);
+        loadCoversIntoRushes();
     }
 
     @Override
@@ -230,6 +236,25 @@ public class LibraryFragment extends BaseFragment implements LibraryMvpView {
         mErrorDescription.setAnimation(animation);
         animation = AnimationUtils.loadAnimation(getActivity(), R.anim.slide_in_left);
         mErrorHeader.setAnimation(animation);
+    }
+
+    @Override
+    public void loadCoversIntoRushes() {
+        int count = mCoversList.size();
+        if(count>0 && mCoversList.get(0).getCover()!=null) loadSingleCoverIntoSingleRush(mCoversList.get(0).getCover(), mRushOne);
+        if(count>1 && mCoversList.get(1).getCover()!=null) loadSingleCoverIntoSingleRush(mCoversList.get(1).getCover(), mRushTwo);
+        if(count>2 && mCoversList.get(2).getCover()!=null) loadSingleCoverIntoSingleRush(mCoversList.get(2).getCover(), mRushThree);
+        if(count>3 && mCoversList.get(3).getCover()!=null) loadSingleCoverIntoSingleRush(mCoversList.get(3).getCover(), mRushFour);
+        if(count>4 && mCoversList.get(4).getCover()!=null) loadSingleCoverIntoSingleRush(mCoversList.get(4).getCover(), mRushFive);
+        if(count>5 && mCoversList.get(5).getCover()!=null) loadSingleCoverIntoSingleRush(mCoversList.get(5).getCover(), mRushSix);
+        if(count>6 && mCoversList.get(6).getCover()!=null) loadSingleCoverIntoSingleRush(mCoversList.get(6).getCover(), mRushSeven);
+        if(count>7 && mCoversList.get(7).getCover()!=null) loadSingleCoverIntoSingleRush(mCoversList.get(7).getCover(), mRushEight);
+        if(count>8 && mCoversList.get(8).getCover()!=null) loadSingleCoverIntoSingleRush(mCoversList.get(8).getCover(), mRushNine);
+    }
+
+    @Override
+    public void loadSingleCoverIntoSingleRush(String cover_url, ImageView rush) {
+        Glide.with(getActivity()).load(cover_url).diskCacheStrategy(DiskCacheStrategy.ALL).crossFade().centerCrop().into(rush);
     }
 
     @OnClick(R.id.rush3)
