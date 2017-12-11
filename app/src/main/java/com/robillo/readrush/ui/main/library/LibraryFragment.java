@@ -177,12 +177,9 @@ public class LibraryFragment extends BaseFragment implements LibraryMvpView {
                 public void onResponse(@NonNull Call<List<LibraryItem>> call, @NonNull Response<List<LibraryItem>> response) {
                     mLibraryItemList = response.body();
                     if(mLibraryItemList!=null){
-                        for(int i=0; i<mLibraryItemList.size(); i++){
-//                            Toast.makeText(getActivity(), mLibraryItemList.get(i).getTitle(), Toast.LENGTH_SHORT).show();
-                            mProgressLibrary.setVisibility(View.GONE);
-                            mMainLayout.setVisibility(View.VISIBLE);
-                            mErrorLayout.setVisibility(View.GONE);
-                        }
+                        if(mProgressLibrary!=null) mProgressLibrary.setVisibility(View.GONE);
+                        if(mMainLayout!=null) mMainLayout.setVisibility(View.VISIBLE);
+                        if(mErrorLayout!=null) mErrorLayout.setVisibility(View.GONE);
                     }
                     else {
                         if(mMainLayout!=null) mMainLayout.setVisibility(View.INVISIBLE);
@@ -193,26 +190,12 @@ public class LibraryFragment extends BaseFragment implements LibraryMvpView {
 
                 @Override
                 public void onFailure(@NonNull Call<List<LibraryItem>> call, @NonNull Throwable t) {
-                    mProgressLibrary.setVisibility(View.GONE);
-                    mErrorLayout.setVisibility(View.VISIBLE);
-                    mMainLayout.setVisibility(View.GONE);
-//                    Toast.makeText(getActivity(), "Network Error" + t, Toast.LENGTH_SHORT).show();
+                    if(mProgressLibrary!=null) mProgressLibrary.setVisibility(View.GONE);
+                    if(mErrorLayout!=null) mErrorLayout.setVisibility(View.VISIBLE);
+                    if(mMainLayout!=null) mMainLayout.setVisibility(View.GONE);
                 }
             });
         }
-
-//        if(RUSH_COUNT == 0){
-//            if(mMainLayout.getVisibility()==View.VISIBLE){
-//                mMainLayout.setVisibility(View.GONE);
-//            }
-//            showNoRushes();
-//        }
-//        else {
-//            if(mErrorLayout.getVisibility()==View.VISIBLE){
-//                mErrorLayout.setVisibility(View.GONE);
-//            }
-//            loadRushes();
-//        }
     }
 
     @Override
