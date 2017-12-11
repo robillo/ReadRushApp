@@ -257,8 +257,47 @@ public class LibraryFragment extends BaseFragment implements LibraryMvpView {
         Glide.with(getActivity()).load(cover_url).diskCacheStrategy(DiskCacheStrategy.ALL).crossFade().centerCrop().into(rush);
     }
 
+    @OnClick(R.id.rush1)
+    public void clickmRushOne() {
+        startActivity(OverviewActivity.getStartIntent(getActivity(), "3"));
+    }
+
+    @OnClick(R.id.rush2)
+    public void clickmRushTwo() {
+        startActivity(OverviewActivity.getStartIntent(getActivity(), "3"));
+    }
+
     @OnClick(R.id.rush3)
     public void clickmRushThree() {
+        startActivity(OverviewActivity.getStartIntent(getActivity(), "3"));
+    }
+    @OnClick(R.id.rush4)
+    public void clickmRushFour() {
+        startActivity(OverviewActivity.getStartIntent(getActivity(), "3"));
+    }
+
+    @OnClick(R.id.rush5)
+    public void clickmRushFive() {
+        startActivity(OverviewActivity.getStartIntent(getActivity(), "3"));
+    }
+
+    @OnClick(R.id.rush6)
+    public void clickmRushSix() {
+        startActivity(OverviewActivity.getStartIntent(getActivity(), "3"));
+    }
+
+    @OnClick(R.id.rush7)
+    public void clickmRushSeven() {
+        startActivity(OverviewActivity.getStartIntent(getActivity(), "3"));
+    }
+
+    @OnClick(R.id.rush8)
+    public void clickmRushEight() {
+        startActivity(OverviewActivity.getStartIntent(getActivity(), "3"));
+    }
+
+    @OnClick(R.id.rush9)
+    public void clickmRushNine() {
         startActivity(OverviewActivity.getStartIntent(getActivity(), "3"));
     }
 
