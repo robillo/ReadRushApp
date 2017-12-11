@@ -1,10 +1,13 @@
 package com.robillo.readrush.ui.main.library;
 
 
+import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.Observer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,6 +26,8 @@ import com.androidnetworking.model.Progress;
 import com.bumptech.glide.Glide;
 import com.robillo.readrush.R;
 import com.robillo.readrush.ReadRushApp;
+import com.robillo.readrush.data.db.model.library.LibraryCover;
+import com.robillo.readrush.data.db.model.library.LibraryCoverRepository;
 import com.robillo.readrush.data.network.retrofit.ApiClient;
 import com.robillo.readrush.data.network.retrofit.ApiInterface;
 import com.robillo.readrush.data.network.retrofit.model.LibraryItem;
@@ -51,7 +56,12 @@ public class LibraryFragment extends BaseFragment implements LibraryMvpView {
 
     public static int RUSH_COUNT = 0;
 
+    //online
     private List<LibraryItem> mLibraryItemList;
+
+    //offline
+    LiveData<List<LibraryCover>> mListLibraryCovers;
+    List<LibraryCover> mCoversList;
 
     @SuppressWarnings("FieldCanBeLocal")
     private AppPreferencesHelper mPrefsHelper;
@@ -98,6 +108,9 @@ public class LibraryFragment extends BaseFragment implements LibraryMvpView {
     ProgressBar mProgressLibrary;
 
     @Inject
+    LibraryCoverRepository mLibraryCoverRepository;
+
+    @Inject
     LibraryMvpPresenter<LibraryMvpView> mPresenter;
 
     public LibraryFragment() {
@@ -134,14 +147,18 @@ public class LibraryFragment extends BaseFragment implements LibraryMvpView {
         //noinspection ConstantConditions
         mPrefsHelper = new AppPreferencesHelper(getActivity(), ReadRushApp.PREF_FILE_NAME);
         mApiService = ApiClient.getClient().create(ApiInterface.class);
-        checkForExistingRushes();
+
+        mListLibraryCovers = mLibraryCoverRepository.getAllCovers();
+
+        checkForExistingRushesOffline();
     }
 
     @Override
     public void loadRushes() {
-        if(mMainLayout.getVisibility()==View.GONE){
-            mMainLayout.setVisibility(View.VISIBLE);
-        }
+        if(mMainLayout.getVisibility()==View.GONE) mMainLayout.setVisibility(View.VISIBLE);
+        if(mErrorLayout.getVisibility()==View.VISIBLE) mErrorLayout.setVisibility(View.GONE);
+        if(mProgressLibrary.getVisibility()==View.VISIBLE) mProgressLibrary.setVisibility(View.GONE);
+
 //        Glide.with(this).load(R.drawable.cover1).crossFade(400).centerCrop().into(mRushOne);
 //        Glide.with(this).load(R.drawable.cover2).crossFade(400).centerCrop().into(mRushTwo);
 //        Glide.with(this).load(R.drawable.cover3).crossFade(400).centerCrop().into(mRushThree);
@@ -150,7 +167,7 @@ public class LibraryFragment extends BaseFragment implements LibraryMvpView {
     }
 
     @Override
-    public void checkForExistingRushes() {
+    public void checkForExistingRushesOnline() {
 
         Call<List<LibraryItem>> call = mApiService.fetchLibrary(mPrefsHelper.getUserId());
 //        Call<List<LibraryItem>> call = mApiService.fetchLibrary("1");
@@ -196,6 +213,28 @@ public class LibraryFragment extends BaseFragment implements LibraryMvpView {
 //            }
 //            loadRushes();
 //        }
+    }
+
+    @Override
+    public void checkForExistingRushesOffline() {
+        mListLibraryCovers.observe(this, new Observer<List<LibraryCover>>() {
+            @Override
+            public void onChanged(@Nullable List<LibraryCover> libraryCovers) {
+                mCoversList = libraryCovers;
+                if(verifyOfflineRushesExist()){
+                    //SHOW THE LIBRARY AND DONT SHOW THE ERROR MESSAGE
+                    loadRushes();
+                }
+                else {
+                    //SHOW ERROR MESSAGE AND ASK FOR AN ONLINE REFRESH
+                }
+            }
+        });
+    }
+
+    @Override
+    public boolean verifyOfflineRushesExist() {
+        return !(mCoversList == null) && mCoversList.size() > 0;
     }
 
     @Override

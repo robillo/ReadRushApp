@@ -53,8 +53,8 @@ public class OverviewFragment extends BaseFragment implements OverviewFragmentMv
     static String mRushId;
     private RushInfo mRushInfo;
     LiveData<List<String>> mLibraryCoversRushIds;
-    LibraryCover mRoomCover = null;
     List<String> mRushIds;
+    LibraryCover mRoomCover = null;
 
     @SuppressWarnings({"FieldCanBeLocal", "unused"})
     private AppPreferencesHelper mPrefsHelper;

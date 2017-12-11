@@ -130,8 +130,7 @@ public class MainActivity extends BaseActivity implements MainMvpView {
     public void refreshLibraryRushes() {
         LibraryFragment fragment = (LibraryFragment) getSupportFragmentManager().findFragmentByTag(getString(R.string.library));
         if(fragment!=null && fragment.isVisible()){
-            LibraryFragment.RUSH_COUNT++;
-            fragment.checkForExistingRushes();
+            fragment.checkForExistingRushesOnline();
         }
     }
 
