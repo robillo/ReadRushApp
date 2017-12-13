@@ -166,9 +166,9 @@ public class LibraryFragment extends BaseFragment implements LibraryMvpView {
 
     @Override
     public void loadRushes() {
-        if(mMainLayout.getVisibility()==View.GONE) mMainLayout.setVisibility(View.VISIBLE);
-        if(mErrorLayout.getVisibility()==View.VISIBLE) mErrorLayout.setVisibility(View.GONE);
-        if(mProgressLibrary.getVisibility()==View.VISIBLE) mProgressLibrary.setVisibility(View.GONE);
+        if(mMainLayout!=null && mMainLayout.getVisibility()==View.GONE) mMainLayout.setVisibility(View.VISIBLE);
+        if(mErrorLayout!=null && mErrorLayout.getVisibility()==View.VISIBLE) mErrorLayout.setVisibility(View.GONE);
+        if(mProgressLibrary!=null && mProgressLibrary.getVisibility()==View.VISIBLE) mProgressLibrary.setVisibility(View.GONE);
 
         loadCoversIntoRushes();
     }
@@ -215,9 +215,10 @@ public class LibraryFragment extends BaseFragment implements LibraryMvpView {
                     //SHOW THE LIBRARY AND DONT SHOW THE ERROR MESSAGE
                     loadRushes();
                 }
-                else {
-                    //SHOW ERROR MESSAGE AND ASK FOR AN ONLINE REFRESH
-                }
+                //WE ARE DOING THE FOLLOWING MANUALLY ON "REFRESH" BUTTON CLICK
+//                else {
+//                    //SHOW ERROR MESSAGE AND ASK FOR AN ONLINE REFRESH
+//                }
             }
         });
     }
@@ -311,9 +312,10 @@ public class LibraryFragment extends BaseFragment implements LibraryMvpView {
 
     @OnClick(R.id.refresh_buttom)
     public void setmRefreshButton(){
-        MainActivity activity = (MainActivity) getActivity();
-        if (activity != null) {
-            activity.refreshLibraryRushes();
-        }
+//        MainActivity activity = (MainActivity) getActivity();
+//        if (activity != null) {
+//            activity.refreshLibraryRushes();
+//        }
+        checkForExistingRushesOnline();
     }
 }
