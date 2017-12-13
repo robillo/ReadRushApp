@@ -35,6 +35,7 @@ import com.robillo.readrush.data.prefs.AppPreferencesHelper;
 import com.robillo.readrush.ui.base.BaseActivity;
 import com.robillo.readrush.ui.main.MainActivity;
 import com.robillo.readrush.ui.rushread.content.ContentFragment;
+import com.robillo.readrush.ui.rushread.rating.BlankFragment;
 
 import java.util.List;
 
@@ -149,7 +150,7 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
                     mContents = response.body();
                     if(mContents!=null && mContents.size()>0){
                         //noinspection ConstantConditions
-                        mContentProgress.setMax(response.body().size());
+                        mContentProgress.setMax(response.body().size()+1);
                         mContentProgress.setProgress(1);
                         setFragmentsForContents(mContents);
                     }
@@ -167,7 +168,7 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
     @Override
     public void setFragmentsForContents(List<Content> contents) {
         if(contents!=null){
-            NUM_PAGES = contents.size();
+            NUM_PAGES = contents.size()+1;
             mContentPager.addOnPageChangeListener(viewPagerPageChangeListener);
             mContentPager.setAdapter(mScreenSlidePagerAdapter);
             mContentPager.setCurrentItem(mCurrentPage);
@@ -296,7 +297,13 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
 
         @Override
         public Fragment getItem(int position) {
-            return ContentFragment.newInstance(mContents.get(position).getContent());
+            if(mContents.size()>position){
+                return ContentFragment.newInstance(mContents.get(position).getContent());
+            }
+            else {
+                //null pointer
+                return new BlankFragment();
+            }
         }
 
         @Override
