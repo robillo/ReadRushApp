@@ -12,7 +12,8 @@
         android:layout_height="30sp"
         android:layout_gravity="center"
         android:indeterminateTint="@color/colorTextOne"
-        tools:targetApi="lollipop"/>
+        tools:targetApi="lollipop"
+        tools:visibility="gone"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,7 +21,8 @@
         android:orientation="vertical"
         android:gravity="center"
         android:id="@+id/error_layout"
-        android:visibility="gone">
+        android:visibility="gone"
+        tools:visibility="visible">
 
         <ImageView
             android:layout_width="100sp"
@@ -44,19 +46,16 @@
             android:id="@+id/error_header"/>
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15sp"
-            android:paddingLeft="25sp"
-            android:paddingRight="25sp"
-            android:gravity="center_horizontal"
             tools:ignore="MissingPrefix"
-            android:text="It seems like you haven't added any rushes to your library yet. \n Click on the \'+\' button above to discover some rushes."
-            android:textColor="@color/readBlack"
-            android:textSize="25sp"
-            android:layout_gravity="center_horizontal"
+            android:textSize="20sp"
+            android:id="@+id/error_description"
             fontPath="fonts/three.ttf"
-            android:id="@+id/error_description"/>
+            android:textColor="@color/readBlack"
+            android:layout_height="wrap_content"
+            android:layout_margin="15sp"
+            android:layout_gravity="center_horizontal"
+            android:text="It seems like you don\'t have any rushes offline. \n Click on the \'+\' button above to discover some rushes."
+            android:layout_width="wrap_content" />
 
         <TextView
             android:layout_width="match_parent"
@@ -66,9 +65,9 @@
             android:paddingRight="25sp"
             android:gravity="center_horizontal"
             tools:ignore="MissingPrefix"
-            android:text="OR"
+            android:text="If this is your previous account, check for rushes online:"
             android:textColor="@color/readBlack"
-            android:textSize="25sp"
+            android:textSize="18sp"
             android:layout_gravity="center_horizontal"
             fontPath="fonts/three.ttf"/>
 
@@ -79,7 +78,7 @@
             android:text="REFRESH"
             android:layout_marginTop="5sp"
             android:textColor="@color/rushRed"
-            android:textSize="30sp"
+            android:textSize="28sp"
             android:background="?android:attr/selectableItemBackground"
             android:layout_gravity="center_horizontal"
             fontPath="fonts/four.ttf"

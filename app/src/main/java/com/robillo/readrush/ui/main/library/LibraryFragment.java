@@ -38,6 +38,7 @@ import com.robillo.readrush.ui.base.BaseFragment;
 import com.robillo.readrush.ui.main.MainActivity;
 import com.robillo.readrush.ui.onboard.fragment.OnboardFragment;
 import com.robillo.readrush.ui.rushoverview.OverviewActivity;
+import com.robillo.readrush.ui.rushread.ReadRushActivity;
 
 import java.util.List;
 
@@ -260,7 +261,7 @@ public class LibraryFragment extends BaseFragment implements LibraryMvpView {
     @Override
     public void openReadRushScreen(int index) {
         int count = mCoversList.size();
-        if(count > index) startActivity(OverviewActivity.getStartIntent(getActivity(), mCoversList.get(index).getRushId()));
+        if(count > index) startActivity(ReadRushActivity.getStartIntent(getActivity(), mCoversList.get(index).getRushId()));
         else Toast.makeText(getActivity(), "Empty Cover", Toast.LENGTH_SHORT).show();
     }
 
