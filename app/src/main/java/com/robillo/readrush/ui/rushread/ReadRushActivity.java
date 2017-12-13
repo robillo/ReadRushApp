@@ -2,10 +2,8 @@ package com.robillo.readrush.ui.rushread;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,8 +11,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -33,9 +29,8 @@ import com.robillo.readrush.data.network.retrofit.ApiInterface;
 import com.robillo.readrush.data.network.retrofit.model.Content;
 import com.robillo.readrush.data.prefs.AppPreferencesHelper;
 import com.robillo.readrush.ui.base.BaseActivity;
-import com.robillo.readrush.ui.main.MainActivity;
 import com.robillo.readrush.ui.rushread.content.ContentFragment;
-import com.robillo.readrush.ui.rushread.rating.BlankFragment;
+import com.robillo.readrush.ui.rushread.rating.RatingFragment;
 
 import java.util.List;
 
@@ -219,6 +214,54 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
         }
     }
 
+    @Override
+    public void hideCustomizeLayout() {
+        if(mCustomizeLinearLayout.getVisibility()== View.VISIBLE){
+            Animation animation = AnimationUtils.loadAnimation(this, R.anim.customize_bottom_up);
+            animation.setAnimationListener(new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {
+
+                }
+
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    mCustomizeLinearLayout.setVisibility(View.GONE);
+                }
+
+                @Override
+                public void onAnimationRepeat(Animation animation) {
+
+                }
+            });
+            mCustomizeLinearLayout.startAnimation(animation);
+        }
+    }
+
+    @Override
+    public void showCustomizeLayout() {
+        if(mCustomizeLinearLayout.getVisibility()!=View.VISIBLE){
+            Animation animation = AnimationUtils.loadAnimation(this, R.anim.customize_top_down);
+            animation.setAnimationListener(new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {
+                    mCustomizeLinearLayout.setVisibility(View.VISIBLE);
+                }
+
+                @Override
+                public void onAnimationEnd(Animation animation) {
+
+                }
+
+                @Override
+                public void onAnimationRepeat(Animation animation) {
+
+                }
+            });
+            mCustomizeLinearLayout.startAnimation(animation);
+        }
+    }
+
     @OnClick(R.id.text_plus)
     public void increaseTextSize() {
         mPrefsHelper.setTextSize(mPrefsHelper.getTextSize() + 2);
@@ -302,7 +345,7 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
             }
             else {
                 //null pointer
-                return new BlankFragment();
+                return new RatingFragment();
             }
         }
 

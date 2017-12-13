@@ -21,7 +21,12 @@ public interface ReadRushMvpView extends MvpView {
 
     void hideShowCustomizeLayout();
 
+    void hideCustomizeLayout();
+
+    void showCustomizeLayout();
+
     void refreshFragments();
 
     void setInitialTheme();
+
 }
