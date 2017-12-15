@@ -6,13 +6,20 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.robillo.readrush.R;
 import com.robillo.readrush.di.component.ActivityComponent;
 import com.robillo.readrush.ui.base.BaseFragment;
 import com.robillo.readrush.ui.main.library.LibraryFragment;
 import com.robillo.readrush.ui.rushread.ReadRushActivity;
+import com.willy.ratingbar.ScaleRatingBar;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -21,6 +28,26 @@ import butterknife.ButterKnife;
 
 public class RatingFragment extends BaseFragment {
 
+    @BindView(R.id.name)
+    TextView mName;
+
+    @BindView(R.id.author)
+    TextView mAuthor;
+
+    @BindView(R.id.progress_bar_rating)
+    ProgressBar mRatingProgressBar;
+
+    @BindView(R.id.loading_ll)
+    LinearLayout mLoadingLayout;
+
+    @BindView(R.id.rating)
+    ScaleRatingBar mScaleRatingBar;
+
+    @BindView(R.id.review)
+    EditText mReview;
+
+    @BindView(R.id.submit_review)
+    Button mSubmitReview;
 
     public RatingFragment() {
         // Required empty public constructor
