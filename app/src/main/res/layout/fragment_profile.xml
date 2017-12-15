@@ -6,4 +6,58 @@
     android:orientation="vertical"
     tools:context="com.robillo.readrush.ui.main.profile.ProfileFragment">
 
+    <!-- Here goes the name text view -->
+
+    <!-- Here goes the membership type text view -->
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1sp"
+        android:background="@color/readBlack"
+        android:contentDescription="null"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="20sp"
+            android:textColor="@color/rushRed"
+            tools:ignore="MissingPrefix"
+            fontPath="fonts/four.ttf"
+            android:gravity="center"
+            android:text="Profile"
+            android:background="?attr/selectableItemBackground"/>
+
+        <ImageView
+            android:layout_width="1sp"
+            android:layout_height="match_parent"
+            android:background="@color/readBlack"
+            android:contentDescription="null"/>
+
+        <Button
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="20sp"
+            android:textColor="@color/readBlack"
+            tools:ignore="MissingPrefix"
+            fontPath="fonts/four.ttf"
+            android:gravity="center"
+            android:text="Highlights"
+            android:background="?attr/selectableItemBackground"/>
+
+    </LinearLayout>
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1sp"
+        android:background="@color/readBlack"
+        android:contentDescription="null"/>
+
 </LinearLayout>
