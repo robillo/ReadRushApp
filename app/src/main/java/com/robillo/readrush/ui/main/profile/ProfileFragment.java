@@ -2,6 +2,7 @@ package com.robillo.readrush.ui.main.profile;
 
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,12 +28,6 @@ import de.hdodenhof.circleimageview.CircleImageView;
  */
 public class ProfileFragment extends BaseFragment implements ProfileMvpView {
 
-    @BindView(R.id.dp)
-    CircleImageView mDp;
-
-    @BindView(R.id.name)
-    TextView mName;
-
     @Inject
     ProfileMvpPresenter<ProfileMvpView> mPresenter;
 
@@ -45,7 +40,7 @@ public class ProfileFragment extends BaseFragment implements ProfileMvpView {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_profile, container, false);
@@ -67,8 +62,6 @@ public class ProfileFragment extends BaseFragment implements ProfileMvpView {
 
     @Override
     protected void setUp(View view) {
-        Glide.with(this).load(R.drawable.robin).centerCrop().crossFade().into(mDp);
-        Animation animation = AnimationUtils.loadAnimation(getContext(), R.anim.fade_in);
-        mName.setAnimation(animation);
+
     }
 }
