@@ -26,7 +26,7 @@ import butterknife.ButterKnife;
  * Created by robinkamboj on 14/12/17.
  */
 
-public class RatingFragment extends BaseFragment {
+public class RatingFragment extends BaseFragment implements RatingMvpView {
 
     @BindView(R.id.name)
     TextView mName;
