@@ -8,6 +8,32 @@
 
     <!-- Here goes the name text view -->
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Robin Kamboj"
+        android:text="Robin Kamboj"
+        android:textColor="@color/readBlack"
+        tools:ignore="MissingPrefix"
+        fontPath="fonts/four.ttf"
+        android:textSize="27sp"
+        android:layout_margin="7sp"
+        android:gravity="center"
+        android:id="@+id/name"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Member: Normal"
+        android:text="Member: Normal"
+        android:textColor="@color/rushRed"
+        tools:ignore="MissingPrefix"
+        fontPath="fonts/four.ttf"
+        android:textSize="20sp"
+        android:layout_marginBottom="15sp"
+        android:gravity="center"
+        android:id="@+id/membership_type"/>
+
     <!-- Here goes the membership type text view -->
 
     <ImageView
@@ -59,5 +85,14 @@
         android:layout_height="1sp"
         android:background="@color/readBlack"
         android:contentDescription="null"/>
+
+    <!-- This Is The Fragment Container -->
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/container">
+
+    </FrameLayout>
 
 </LinearLayout>
