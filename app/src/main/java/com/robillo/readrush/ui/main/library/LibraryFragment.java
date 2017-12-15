@@ -215,10 +215,11 @@ public class LibraryFragment extends BaseFragment implements LibraryMvpView {
                     //SHOW THE LIBRARY AND DONT SHOW THE ERROR MESSAGE
                     loadRushes();
                 }
-                //WE ARE DOING THE FOLLOWING MANUALLY ON "REFRESH" BUTTON CLICK
-//                else {
-//                    //SHOW ERROR MESSAGE AND ASK FOR AN ONLINE REFRESH
-//                }
+                else {
+                    if(mProgressLibrary!=null) mProgressLibrary.setVisibility(View.GONE);
+                    if(mErrorLayout!=null) mErrorLayout.setVisibility(View.VISIBLE);
+                    if(mMainLayout!=null) mMainLayout.setVisibility(View.GONE);
+                }
             }
         });
     }

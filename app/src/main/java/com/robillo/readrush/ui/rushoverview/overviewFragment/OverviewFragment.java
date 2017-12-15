@@ -224,6 +224,7 @@ public class OverviewFragment extends BaseFragment implements OverviewFragmentMv
 
                     //Add to user offline library
                     mLibraryCoverRepository.insertCoverItem(mRoomCover);
+                    mAddReadRush.setText(getString(R.string.read_rush));
                 }
 
                 @Override

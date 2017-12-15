@@ -56,14 +56,6 @@ public class RatingFragment extends BaseFragment {
 
     }
 
-//    @Override
-//    public void setMenuVisibility(boolean menuVisible) {
-//        super.setMenuVisibility(menuVisible);
-//        if(menuVisible && (getActivity()) != null){
-//
-//        }
-//    }
-
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
