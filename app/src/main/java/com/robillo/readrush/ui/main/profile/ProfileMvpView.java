@@ -7,4 +7,8 @@ import com.robillo.readrush.ui.base.MvpView;
  */
 
 public interface ProfileMvpView extends MvpView {
+
+    void setProfileListFragment();
+
+    void setHighlightsListFragment();
 }

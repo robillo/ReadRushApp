@@ -33,14 +33,14 @@
             android:contentDescription="@string/decrease_text_size"
             android:id="@+id/text_minus"/>
 
-        <ImageButton
-            android:layout_width="0sp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:src="@drawable/ic_change_history_white_24dp"
-            android:background="?attr/selectableItemBackground"
-            android:contentDescription="@string/change_font"
-            android:id="@+id/text_font"/>
+        <!--<ImageButton-->
+            <!--android:layout_width="0sp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="1"-->
+            <!--android:src="@drawable/ic_change_history_white_24dp"-->
+            <!--android:background="?attr/selectableItemBackground"-->
+            <!--android:contentDescription="@string/change_font"-->
+            <!--android:id="@+id/text_font"/>-->
 
         <ImageButton
             android:layout_width="0sp"

@@ -19,12 +19,14 @@ import com.robillo.readrush.R;
 import com.robillo.readrush.di.component.ActivityComponent;
 import com.robillo.readrush.ui.base.BaseFragment;
 import com.robillo.readrush.ui.main.discover.DiscoverFragment;
+import com.robillo.readrush.ui.main.profile.highlights_list.HighlightsListFragment;
 import com.robillo.readrush.ui.main.profile.profile_list.ProfileListFragment;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
@@ -81,7 +83,32 @@ public class ProfileFragment extends BaseFragment implements ProfileMvpView {
 
     @Override
     protected void setUp(View view) {
-        //noinspection ConstantConditions
-        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.profile_container, new ProfileListFragment()).commit();
+        setProfileListFragment();
+    }
+
+    @OnClick(R.id.profile)
+    public void setmProfileTab() {
+        setProfileListFragment();
+    }
+
+    @OnClick(R.id.highlights)
+    public void setmHighlightsTab() {
+        setHighlightsListFragment();
+    }
+
+    @Override
+    public void setProfileListFragment() {
+        if(getActivity()!=null)
+            getActivity().getSupportFragmentManager()
+                    .beginTransaction().replace(R.id.profile_container, new ProfileListFragment(), "profile_list")
+                    .commit();
+    }
+
+    @Override
+    public void setHighlightsListFragment() {
+        if(getActivity()!=null)
+            getActivity().getSupportFragmentManager()
+                    .beginTransaction().replace(R.id.profile_container, new HighlightsListFragment(), "highlights_list")
+                    .commit();
     }
 }

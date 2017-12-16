@@ -95,24 +95,6 @@
         android:layout_height="match_parent"
         android:id="@+id/profile_container">
 
-        <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:id="@+id/profile_list"-->
-            <!--android:orientation="vertical">-->
-
-
-        <!--</LinearLayout>-->
-
-        <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:id="@+id/highlights_list"-->
-            <!--android:orientation="vertical">-->
-
-
-        <!--</LinearLayout>-->
-
     </FrameLayout>
 
 </LinearLayout>

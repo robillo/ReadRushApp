@@ -65,8 +65,8 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
     ImageButton mTextviewIncrease;
     @BindView(R.id.text_minus)
     ImageButton mTextviewDecrease;
-    @BindView(R.id.text_font)
-    ImageButton mTextviewFont;
+//    @BindView(R.id.text_font)
+//    ImageButton mTextviewFont;
     @BindView(R.id.content_theme)
     ImageButton mContentTheme;
     @BindView(R.id.line_spacing)
@@ -274,10 +274,10 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
         refreshFragments();
     }
 
-    @OnClick(R.id.text_font)
-    public void changeFont() {
-
-    }
+//    @OnClick(R.id.text_font)
+//    public void changeFont() {
+//
+//    }
 
     @OnClick(R.id.content_theme)
     public void changeTheme() {
