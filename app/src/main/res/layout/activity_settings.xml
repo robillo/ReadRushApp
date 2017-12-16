@@ -1,9 +1,187 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.robillo.readrush.ui.settings.SettingsActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="SETTINGS"
+        android:padding="5sp"
+        android:textColor="@color/colorTextOne"
+        tools:ignore="MissingPrefix"
+        fontPath="fonts/four.ttf"
+        android:textSize="30sp"
+        android:gravity="center"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1sp"
+        android:background="@color/readBlack"
+        android:contentDescription="null"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="5sp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    tools:text="Notifications"
+                    android:paddingLeft="10sp"
+                    android:textColor="@color/colorTextOne"
+                    tools:ignore="MissingPrefix"
+                    fontPath="fonts/four.ttf"
+                    android:textSize="22sp"
+                    android:gravity="start"/>
+
+                <Switch
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="10sp"
+                    android:paddingLeft="5sp"/>
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1sp"
+                android:background="@color/colorTextFour"
+                android:contentDescription="null"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="Membership Type"
+                android:paddingTop="10sp"
+                android:paddingLeft="15sp"
+                android:paddingRight="10sp"
+                android:textColor="@color/rushRed"
+                tools:ignore="MissingPrefix"
+                fontPath="fonts/four.ttf"
+                android:textSize="22sp"
+                android:gravity="start"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1sp"
+                android:background="@color/colorTextFour"
+                android:contentDescription="null"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="Update Preferences"
+                android:paddingTop="10sp"
+                android:paddingLeft="15sp"
+                android:paddingRight="10sp"
+                android:textColor="@color/colorTextOne"
+                tools:ignore="MissingPrefix"
+                fontPath="fonts/four.ttf"
+                android:textSize="22sp"
+                android:gravity="start"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1sp"
+                android:background="@color/colorTextFour"
+                android:contentDescription="null"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="About"
+                android:paddingTop="10sp"
+                android:paddingLeft="15sp"
+                android:paddingRight="10sp"
+                android:textColor="@color/colorTextOne"
+                tools:ignore="MissingPrefix"
+                fontPath="fonts/four.ttf"
+                android:textSize="22sp"
+                android:gravity="start"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1sp"
+                android:background="@color/colorTextFour"
+                android:contentDescription="null"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="Facebook"
+                android:paddingTop="10sp"
+                android:paddingLeft="15sp"
+                android:paddingRight="10sp"
+                android:textColor="@color/colorFacebook"
+                tools:ignore="MissingPrefix"
+                fontPath="fonts/four.ttf"
+                android:textSize="22sp"
+                android:gravity="start"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1sp"
+                android:background="@color/colorTextFour"
+                android:contentDescription="null"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="Twitter"
+                android:paddingTop="10sp"
+                android:paddingLeft="15sp"
+                android:paddingRight="10sp"
+                android:textColor="@color/colorTwitter"
+                tools:ignore="MissingPrefix"
+                fontPath="fonts/four.ttf"
+                android:textSize="22sp"
+                android:gravity="start"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1sp"
+                android:background="@color/colorTextFour"
+                android:contentDescription="null"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="Logout"
+                android:paddingTop="10sp"
+                android:paddingLeft="15sp"
+                android:paddingRight="10sp"
+                android:textColor="@color/colorTextOne"
+                tools:ignore="MissingPrefix"
+                fontPath="fonts/four.ttf"
+                android:textSize="22sp"
+                android:gravity="start"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1sp"
+                android:background="@color/colorTextFour"
+                android:contentDescription="null"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

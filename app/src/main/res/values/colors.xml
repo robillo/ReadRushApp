@@ -27,6 +27,9 @@
     <color name="red4">#ffe5e5</color>
     <color name="readBlack">#323232</color>
 
+    <color name="colorFacebook">#3b5998</color>
+    <color name="colorTwitter">#0084b4</color>
+
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
     <color name="transparent">#00000000</color>
