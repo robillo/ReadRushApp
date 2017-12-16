@@ -57,7 +57,8 @@
             fontPath="fonts/four.ttf"
             android:gravity="center"
             android:text="Profile"
-            android:background="?attr/selectableItemBackground"/>
+            android:background="?attr/selectableItemBackground"
+            android:id="@+id/profile"/>
 
         <ImageView
             android:layout_width="1sp"
@@ -75,7 +76,8 @@
             fontPath="fonts/four.ttf"
             android:gravity="center"
             android:text="Highlights"
-            android:background="?attr/selectableItemBackground"/>
+            android:background="?attr/selectableItemBackground"
+            android:id="@+id/highlights"/>
 
     </LinearLayout>
 
@@ -91,7 +93,25 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/container">
+        android:id="@+id/profile_container">
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:id="@+id/profile_list"-->
+            <!--android:orientation="vertical">-->
+
+
+        <!--</LinearLayout>-->
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:id="@+id/highlights_list"-->
+            <!--android:orientation="vertical">-->
+
+
+        <!--</LinearLayout>-->
 
     </FrameLayout>
 
