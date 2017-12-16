@@ -4,22 +4,25 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import com.robillo.readrush.R;
 import com.robillo.readrush.ui.base.BaseActivity;
 import com.robillo.readrush.ui.preference.PreferenceActivity;
+import com.robillo.readrush.ui.webview.WebViewActivity;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class SettingsActivity extends BaseActivity implements SettingsMvpView {
 
     @BindView(R.id.notification_toggle)
-    ToggleButton mNotificationsToggle;
+    Switch mNotificationsToggle;
 
     @BindView(R.id.membership_type)
     TextView mMembershipType;
@@ -64,5 +67,10 @@ public class SettingsActivity extends BaseActivity implements SettingsMvpView {
     @Override
     protected void setUp() {
 
+    }
+
+    @OnClick(R.id.about)
+    public void setmAbout() {
+        startActivity(new Intent(this, WebViewActivity.class));
     }
 }

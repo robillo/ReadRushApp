@@ -10,7 +10,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="SETTINGS"
+        android:text="SETTINGS"
         android:padding="5sp"
         android:textColor="@color/colorTextOne"
         tools:ignore="MissingPrefix"
@@ -44,12 +44,12 @@
                     android:layout_width="0sp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    tools:text="Notifications"
+                    android:text="Notifications"
                     android:paddingLeft="10sp"
                     android:textColor="@color/colorTextOne"
                     tools:ignore="MissingPrefix"
                     fontPath="fonts/four.ttf"
-                    android:textSize="22sp"
+                    android:textSize="24sp"
                     android:gravity="start"/>
 
                 <Switch
@@ -70,14 +70,14 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:text="Membership Type"
+                android:text="Membership Type"
                 android:paddingTop="10sp"
                 android:paddingLeft="15sp"
                 android:paddingRight="10sp"
                 android:textColor="@color/rushRed"
                 tools:ignore="MissingPrefix"
                 fontPath="fonts/four.ttf"
-                android:textSize="22sp"
+                android:textSize="24sp"
                 android:gravity="start"
                 android:id="@+id/membership_type"/>
 
@@ -90,14 +90,14 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:text="Update Preferences"
+                android:text="Update Preferences"
                 android:paddingTop="10sp"
                 android:paddingLeft="15sp"
                 android:paddingRight="10sp"
                 android:textColor="@color/colorTextOne"
                 tools:ignore="MissingPrefix"
                 fontPath="fonts/four.ttf"
-                android:textSize="22sp"
+                android:textSize="24sp"
                 android:gravity="start"
                 android:id="@+id/update_preferences"/>
 
@@ -110,14 +110,14 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:text="About"
+                android:text="About"
                 android:paddingTop="10sp"
                 android:paddingLeft="15sp"
                 android:paddingRight="10sp"
                 android:textColor="@color/colorTextOne"
                 tools:ignore="MissingPrefix"
                 fontPath="fonts/four.ttf"
-                android:textSize="22sp"
+                android:textSize="24sp"
                 android:gravity="start"
                 android:id="@+id/about"/>
 
@@ -130,14 +130,14 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:text="Facebook"
+                android:text="Facebook"
                 android:paddingTop="10sp"
                 android:paddingLeft="15sp"
                 android:paddingRight="10sp"
                 android:textColor="@color/colorFacebook"
                 tools:ignore="MissingPrefix"
                 fontPath="fonts/four.ttf"
-                android:textSize="22sp"
+                android:textSize="24sp"
                 android:gravity="start"
                 android:id="@+id/facebook"/>
 
@@ -150,14 +150,14 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:text="Twitter"
+                android:text="Twitter"
                 android:paddingTop="10sp"
                 android:paddingLeft="15sp"
                 android:paddingRight="10sp"
                 android:textColor="@color/colorTwitter"
                 tools:ignore="MissingPrefix"
                 fontPath="fonts/four.ttf"
-                android:textSize="22sp"
+                android:textSize="24sp"
                 android:gravity="start"
                 android:id="@+id/twitter"/>
 
@@ -170,14 +170,14 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:text="Email Help"
+                android:text="Email Help"
                 android:paddingTop="10sp"
                 android:paddingLeft="15sp"
                 android:paddingRight="10sp"
                 android:textColor="@color/colorTextOne"
                 tools:ignore="MissingPrefix"
                 fontPath="fonts/four.ttf"
-                android:textSize="22sp"
+                android:textSize="24sp"
                 android:gravity="start"
                 android:id="@+id/email_help"/>
 
@@ -190,14 +190,14 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:text="Logout"
+                android:text="Logout"
                 android:paddingTop="10sp"
                 android:paddingLeft="15sp"
                 android:paddingRight="10sp"
                 android:textColor="@color/colorTextOne"
                 tools:ignore="MissingPrefix"
                 fontPath="fonts/four.ttf"
-                android:textSize="22sp"
+                android:textSize="24sp"
                 android:gravity="start"
                 android:id="@+id/logout"/>
 

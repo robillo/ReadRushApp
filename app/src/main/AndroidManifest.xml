@@ -53,9 +53,11 @@
             android:name=".ui.rushread.ReadRushActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ui.settings.SettingsActivity"
+        <activity
+            android:name=".ui.settings.SettingsActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ui.webview.WebViewActivity"></activity>
     </application>
 
 </manifest>
