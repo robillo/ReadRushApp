@@ -60,6 +60,9 @@ import com.robillo.readrush.ui.rushread.ReadRushPresenter;
 import com.robillo.readrush.ui.search.SearchMvpPresenter;
 import com.robillo.readrush.ui.search.SearchMvpView;
 import com.robillo.readrush.ui.search.SearchPresenter;
+import com.robillo.readrush.ui.settings.SettingsMvpPresenter;
+import com.robillo.readrush.ui.settings.SettingsMvpView;
+import com.robillo.readrush.ui.settings.SettingsPresenter;
 import com.robillo.readrush.ui.splash.SplashMvpPresenter;
 import com.robillo.readrush.ui.splash.SplashMvpView;
 import com.robillo.readrush.ui.splash.SplashPresenter;
@@ -139,6 +142,13 @@ public class ActivityModule {
     @PerActivity
     ReadRushMvpPresenter<ReadRushMvpView> provideReadRushPresenter(
             ReadRushPresenter<ReadRushMvpView> presenter) {
+        return presenter;
+    }
+
+    @Provides
+    @PerActivity
+    SettingsMvpPresenter<SettingsMvpView> provideSettingsPresenter(
+            SettingsPresenter<SettingsMvpView> presenter) {
         return presenter;
     }
 

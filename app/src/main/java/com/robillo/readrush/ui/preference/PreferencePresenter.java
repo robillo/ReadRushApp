@@ -14,6 +14,7 @@ import io.reactivex.disposables.CompositeDisposable;
 
 public class PreferencePresenter<V extends PreferenceMvpView> extends BasePresenter<V> implements PreferenceMvpPresenter<V> {
 
+    @SuppressWarnings("WeakerAccess")
     @Inject
     public PreferencePresenter(DataManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable) {
         super(dataManager, schedulerProvider, compositeDisposable);
