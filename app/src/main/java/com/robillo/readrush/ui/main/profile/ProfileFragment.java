@@ -12,6 +12,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -21,6 +22,7 @@ import com.robillo.readrush.ui.base.BaseFragment;
 import com.robillo.readrush.ui.main.discover.DiscoverFragment;
 import com.robillo.readrush.ui.main.profile.highlights_list.HighlightsListFragment;
 import com.robillo.readrush.ui.main.profile.profile_list.ProfileListFragment;
+import com.robillo.readrush.ui.settings.SettingsActivity;
 
 import javax.inject.Inject;
 
@@ -48,6 +50,9 @@ public class ProfileFragment extends BaseFragment implements ProfileMvpView {
 
     @BindView(R.id.profile_container)
     FrameLayout mFragmentContainer;
+
+    @BindView(R.id.settings)
+    ImageView mSettings;
 
     @Inject
     ProfileMvpPresenter<ProfileMvpView> mPresenter;
@@ -94,6 +99,11 @@ public class ProfileFragment extends BaseFragment implements ProfileMvpView {
     @OnClick(R.id.highlights)
     public void setmHighlightsTab() {
         setHighlightsListFragment();
+    }
+
+    @OnClick(R.id.settings)
+    public void setmSettings() {
+        startActivity(SettingsActivity.getStartIntent(getActivity()));
     }
 
     @Override

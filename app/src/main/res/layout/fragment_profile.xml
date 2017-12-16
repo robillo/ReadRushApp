@@ -43,7 +43,8 @@
             android:contentDescription="Settings"
             android:layout_margin="10sp"
             android:src="@drawable/ic_settings_black_24dp"
-            android:tint="@color/colorTextOne"/>
+            android:tint="@color/colorTextOne"
+            android:id="@+id/settings"/>
 
     </LinearLayout>
 
