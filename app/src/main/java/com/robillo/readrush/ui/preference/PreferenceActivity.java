@@ -65,6 +65,7 @@ public class PreferenceActivity extends BaseActivity implements PreferenceMvpVie
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_preferences);
+
         getActivityComponent().inject(PreferenceActivity.this);
 
         ButterKnife.bind(this);
