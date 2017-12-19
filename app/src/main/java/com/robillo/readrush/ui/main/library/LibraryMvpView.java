@@ -32,4 +32,8 @@ public interface LibraryMvpView extends MvpView {
 
     void saveLibraryCoversOffline(List<LibraryItem> mItemsList);
 
+    void showDeleteAlertDialog(String bookName, int rushIndex);
+
+    void setLongClickListenersRushes(ImageView imageView, int coverIndex);
+
 }

@@ -47,6 +47,8 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cn.pedant.SweetAlert.SweetAlertDialog;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -54,7 +56,7 @@ import retrofit2.Response;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class LibraryFragment extends BaseFragment implements LibraryMvpView {
+public class LibraryFragment extends BaseFragment implements LibraryMvpView, View.OnLongClickListener {
 
     public static int RUSH_COUNT = 0;
 
@@ -159,6 +161,18 @@ public class LibraryFragment extends BaseFragment implements LibraryMvpView {
         mPrefsHelper = new AppPreferencesHelper(getActivity(), ReadRushApp.PREF_FILE_NAME);
         mApiService = ApiClient.getClient().create(ApiInterface.class);
 
+        mRushOne.setOnLongClickListener(this);
+        mRushTwo.setOnLongClickListener(this);
+        mRushThree.setOnLongClickListener(this);
+        mRushFour.setOnLongClickListener(this);
+        mRushFive.setOnLongClickListener(this);
+        mRushSix.setOnLongClickListener(this);
+        mRushSeven.setOnLongClickListener(this);
+        mRushEight.setOnLongClickListener(this);
+        mRushNine.setOnLongClickListener(this);
+
+
+
         mListLibraryCovers = mLibraryCoverRepository.getAllCovers();
 
         checkForExistingRushesOffline();
@@ -256,19 +270,28 @@ public class LibraryFragment extends BaseFragment implements LibraryMvpView {
     public void loadCoversIntoRushes() {
         int count = mCoversList.size();
         if(count>0 && mCoversList.get(0).getCover()!=null) loadSingleCoverIntoSingleRush(mCoversList.get(0).getCover(), mRushOne);
+        else loadSingleCoverIntoSingleRush(null, mRushOne);
         if(count>1 && mCoversList.get(1).getCover()!=null) loadSingleCoverIntoSingleRush(mCoversList.get(1).getCover(), mRushTwo);
+        else loadSingleCoverIntoSingleRush(null, mRushTwo);
         if(count>2 && mCoversList.get(2).getCover()!=null) loadSingleCoverIntoSingleRush(mCoversList.get(2).getCover(), mRushThree);
+        else loadSingleCoverIntoSingleRush(null, mRushThree);
         if(count>3 && mCoversList.get(3).getCover()!=null) loadSingleCoverIntoSingleRush(mCoversList.get(3).getCover(), mRushFour);
+        else loadSingleCoverIntoSingleRush(null, mRushFour);
         if(count>4 && mCoversList.get(4).getCover()!=null) loadSingleCoverIntoSingleRush(mCoversList.get(4).getCover(), mRushFive);
+        else loadSingleCoverIntoSingleRush(null, mRushFive);
         if(count>5 && mCoversList.get(5).getCover()!=null) loadSingleCoverIntoSingleRush(mCoversList.get(5).getCover(), mRushSix);
+        else loadSingleCoverIntoSingleRush(null, mRushSix);
         if(count>6 && mCoversList.get(6).getCover()!=null) loadSingleCoverIntoSingleRush(mCoversList.get(6).getCover(), mRushSeven);
+        else loadSingleCoverIntoSingleRush(null, mRushSeven);
         if(count>7 && mCoversList.get(7).getCover()!=null) loadSingleCoverIntoSingleRush(mCoversList.get(7).getCover(), mRushEight);
+        else loadSingleCoverIntoSingleRush(null, mRushEight);
         if(count>8 && mCoversList.get(8).getCover()!=null) loadSingleCoverIntoSingleRush(mCoversList.get(8).getCover(), mRushNine);
+        else loadSingleCoverIntoSingleRush(null, mRushNine);
     }
 
     @Override
     public void loadSingleCoverIntoSingleRush(String cover_url, ImageView rush) {
-        Glide.with(getActivity()).load(cover_url).diskCacheStrategy(DiskCacheStrategy.ALL).crossFade().centerCrop().into(rush);
+        Glide.with(getActivity()).load(cover_url).placeholder(R.color.white).crossFade().centerCrop().into(rush);
     }
 
     @Override
@@ -288,6 +311,62 @@ public class LibraryFragment extends BaseFragment implements LibraryMvpView {
             }
         }
         checkForExistingRushesOffline();
+    }
+
+    @Override
+    public void showDeleteAlertDialog(final String bookName, final int coverIndex) {
+        if(getActivity()!=null)
+            new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
+                    .setTitleText("Are you sure?")
+                    .setContentText(bookName + " will be removed from your library!")
+                    .setConfirmText("Yes,delete it!")
+                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                        @Override
+                        public void onClick(SweetAlertDialog sDialog) {
+
+                            Log.e("status", "success " + mPrefsHelper.getUserId() + " " + mCoversList.get(coverIndex).getRushId());
+
+                            Call<ResponseBody> call = mApiService.deleteRushFromLibrary(mPrefsHelper.getUserId(), mCoversList.get(coverIndex).getRushId());
+                            if(call!=null){
+                                call.enqueue(new Callback<ResponseBody>() {
+                                    @Override
+                                    public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
+                                        Log.e("status", "success " + response.raw().message() + response.body());
+                                    }
+
+                                    @Override
+                                    public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
+                                        Log.e("status", "failure");
+                                    }
+                                });
+                            }
+
+                            mLibraryCoverRepository.deleteSearchItem(mCoversList.get(coverIndex));
+                            loadRushes();
+                            sDialog
+                                    .setTitleText("Deleted!")
+                                    .setContentText(bookName + " has been deleted from your library!")
+                                    .setConfirmText("OK")
+                                    .setConfirmClickListener(null)
+                                    .showCancelButton(false)
+                                    .changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
+                        }
+                    })
+                    .setCancelButton("Cancel", new SweetAlertDialog.OnSweetClickListener() {
+                        @Override
+                        public void onClick(SweetAlertDialog sDialog) {
+                            sDialog.dismissWithAnimation();
+                        }
+                    })
+                    .show();
+    }
+
+    @Override
+    public void setLongClickListenersRushes(ImageView imageView, final int index) {
+        int count = mCoversList.size();
+        if(count > index){
+            showDeleteAlertDialog(mCoversList.get(index).getTitle(), index);
+        }
     }
 
     @OnClick(R.id.rush1)
@@ -337,5 +416,50 @@ public class LibraryFragment extends BaseFragment implements LibraryMvpView {
     @OnClick(R.id.refresh_buttom)
     public void setmRefreshButton(){
         checkForExistingRushesOnline();
+    }
+
+    @Override
+    public boolean onLongClick(View v) {
+        switch (v.getId()){
+            case R.id.rush1:{
+                setLongClickListenersRushes(mRushOne, 0);
+                return true;
+            }
+            case R.id.rush2:{
+                setLongClickListenersRushes(mRushTwo, 1);
+                return true;
+            }
+            case R.id.rush3:{
+                setLongClickListenersRushes(mRushThree, 2);
+                return true;
+            }
+            case R.id.rush4:{
+                setLongClickListenersRushes(mRushFour, 3);
+                return true;
+            }
+            case R.id.rush5:{
+                setLongClickListenersRushes(mRushFive, 4);
+                return true;
+            }
+            case R.id.rush6:{
+                setLongClickListenersRushes(mRushSix, 5);
+                return true;
+            }
+            case R.id.rush7:{
+                setLongClickListenersRushes(mRushSeven, 6);
+
+                return true;
+            }
+            case R.id.rush8:{
+                setLongClickListenersRushes(mRushEight, 7);
+                return true;
+            }
+            case R.id.rush9:{
+                setLongClickListenersRushes(mRushNine, 8);
+                return true;
+            }
+            default:
+                return true;
+        }
     }
 }

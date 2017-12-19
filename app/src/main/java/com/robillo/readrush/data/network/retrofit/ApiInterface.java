@@ -92,4 +92,17 @@ public interface ApiInterface {
     Call<SearchResultSuper> searchResultsFetch(
             @Path("search_tag") String search_tag
     );
+
+    @GET("new_api/delete_rush/{user_id}/{rush_id}")
+    Call<ResponseBody> deleteRushFromLibrary(
+            @Path("user_id") String user_id,
+            @Path("rush_id") String rush_id
+    );
+
+    @GET("new_api/fetch_user_review/{user_id}/{rush_id}")
+    Call<ResponseBody> fetchUserReview(
+            @Path("user_id") String user_id,
+            @Path("rush_id") String rush_id
+    );
+
 }

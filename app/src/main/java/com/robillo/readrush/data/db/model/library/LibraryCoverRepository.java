@@ -45,9 +45,16 @@ public class LibraryCoverRepository {
         mLibraryCoverDao.deleteAllCoverNames();
     }
 
+    @SuppressLint("StaticFieldLeak")
     @SuppressWarnings("unused")
-    public void deleteSearchItem(LibraryCover cover) {
-        mLibraryCoverDao.deleteLibraryCoverItem(cover);
+    public void deleteSearchItem(final LibraryCover cover) {
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... voids) {
+                mLibraryCoverDao.deleteLibraryCoverItem(cover);
+                return null;
+            }
+        }.execute();
     }
 
     @SuppressWarnings("unused")
