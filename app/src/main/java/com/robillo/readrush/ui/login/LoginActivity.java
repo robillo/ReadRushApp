@@ -7,6 +7,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.ArrayRes;
+import android.support.annotation.NonNull;
 import android.transition.Explode;
 import android.transition.Fade;
 import android.util.Log;
@@ -216,13 +217,14 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
         if(call!=null){
             call.enqueue(new Callback<List<User>>() {
                 @Override
-                public void onResponse(Call<List<User>> call, Response<List<User>> response) {
+                public void onResponse(@NonNull Call<List<User>> call, @NonNull Response<List<User>> response) {
                     Toast.makeText(LoginActivity.this, "Profile Updated Successfully", Toast.LENGTH_SHORT).show();
                     Log.e("response", response.message());
                     @SuppressWarnings("ConstantConditions") User user = response.body().get(0);
                     if(user!=null){
                         mPrefsHelper.setUserId(user.getUser_id());
                         mPrefsHelper.setUserName(user.getName());
+                        //noinspection ConstantConditions
                         mPrefsHelper.setUserEmail(user.getEmail_id());
                         mPrefsHelper.setUserPassword(user.getPassword());
                         mPrefsHelper.setDateTime(user.getDatetime());
@@ -239,7 +241,7 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
                 }
 
                 @Override
-                public void onFailure(Call<List<User>> call, Throwable t) {
+                public void onFailure(@NonNull Call<List<User>> call, @NonNull Throwable t) {
                     Toast.makeText(LoginActivity.this, "Failed To Update. RETRY LATER", Toast.LENGTH_SHORT).show();
                     t.printStackTrace();
                 }
@@ -249,6 +251,9 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
 
     @OnClick(R.id.prev)
     public void goPrev() {
+
+        hideKeyboard();
+
         if(page!=0){
             page-=1;
             setUp();
@@ -269,6 +274,8 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
 
     @OnClick(R.id.chat_primary)
     public void goNextCP() {
+
+        hideKeyboard();
 
         switch (page) {
             case 0:{ // I AM KEN
@@ -338,6 +345,8 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
 
     @OnClick(R.id.chat_secondary)
     public void goNextCS() {
+
+        hideKeyboard();
 
         switch (page) {
             case 0:{ // I AM KEN

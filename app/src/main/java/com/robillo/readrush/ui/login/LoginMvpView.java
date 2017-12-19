@@ -27,4 +27,5 @@ public interface LoginMvpView extends MvpView {
     void nullifyMyChatEditText();
 
     void validateUser(Intent intent);
+
 }
