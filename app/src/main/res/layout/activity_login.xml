@@ -8,8 +8,6 @@
     tools:context="com.robillo.readrush.ui.login.LoginActivity">
 
     <TextView
-        tools:ignore="MissingPrefix"
-        fontPath="fonts/three.ttf"
         android:layout_width="match_parent"
         android:layout_height="0sp"
         android:layout_weight="1"
@@ -17,12 +15,15 @@
         android:background="@color/colorPrimaryDark"
         android:textColor="@color/black"
         android:textStyle="bold"
-        android:textSize="30sp"
+        android:textSize="25sp"
         android:gravity="left"
         android:maxLines="3"
         android:padding="20sp"
         android:id="@+id/prev"
         android:alpha="0.5"/>
+
+    <!--tools:ignore="MissingPrefix"-->
+    <!--fontPath="fonts/three.ttf"-->
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -44,18 +45,19 @@
             android:id="@+id/icon"/>
 
         <TextView
-            tools:ignore="MissingPrefix"
-            fontPath="fonts/three.ttf"
             android:layout_marginTop="5sp"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             tools:text="Have we met before?"
             android:textColor="@color/black"
             android:textStyle="bold"
-            android:textSize="35sp"
+            android:textSize="30sp"
             android:gravity="left"
             android:paddingLeft="20sp"
             android:id="@+id/ken_current"/>
+
+        <!--tools:ignore="MissingPrefix"-->
+        <!--fontPath="fonts/three.ttf"-->
 
         <com.robillo.readrush.ui.custom.MyChatEditText
             android:layout_width="match_parent"

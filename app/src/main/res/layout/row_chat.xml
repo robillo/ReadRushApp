@@ -17,14 +17,15 @@
             android:textColor="@color/white"
             android:textStyle="bold"
             android:textSize="18sp"
-            tools:ignore="MissingPrefix"
-            fontPath="fonts/four.ttf"
             tools:text="@string/app_name"
             android:paddingTop="10sp"
             android:paddingBottom="10sp"
             android:paddingLeft="20sp"
             android:paddingRight="20sp"
             android:id="@+id/text"/>
+
+        <!--tools:ignore="MissingPrefix"-->
+        <!--fontPath="fonts/four.ttf"-->
 
     </android.support.v7.widget.CardView>
 
