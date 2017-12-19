@@ -3,6 +3,7 @@ package com.robillo.readrush.ui.onboard;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -115,19 +116,19 @@ public class OnboardActivity extends BaseActivity implements OnboardMvpView {
 
             switch (position){
                 case 0:{
-                    return OnboardFragment.newInstance(R.drawable.one, getString(R.string.dummy_header1), "No two persons ever read the same book.");
+                    return OnboardFragment.newInstance(R.drawable.one, getString(R.string.dummy_header1), getString(R.string.header_one_desc));
                 }
                 case 1:{
-                    return OnboardFragment.newInstance(R.drawable.four, getString(R.string.dummy_header2), "Whenever you read a good book, somewhere in the world a door opens to allow in more light.");
+                    return OnboardFragment.newInstance(R.drawable.four, getString(R.string.dummy_header2), getString(R.string.header_two_desc));
                 }
                 case 2:{
-                    return OnboardFragment.newInstance(R.drawable.three, getString(R.string.dummy_header3), "If we encounter a man of rare intellect, we should ask him what books he reads.");
+                    return OnboardFragment.newInstance(R.drawable.three, getString(R.string.dummy_header3), getString(R.string.header_three_desc));
                 }
                 case 3:{
-                    return OnboardFragment.newInstance(R.drawable.four, getString(R.string.dummy_header4), "I would never read a book if it were possible for me to talk half an hour with the man who wrote it.");
+                    return OnboardFragment.newInstance(R.drawable.four, getString(R.string.dummy_header4), getString(R.string.header_four_desc));
                 }
                 default:{
-                    return OnboardFragment.newInstance(R.drawable.four, getString(R.string.dummy_header5), "I would never read a book if it were possible for me to talk half an hour with the man who wrote it.");
+                    return OnboardFragment.newInstance(R.drawable.four, getString(R.string.dummy_header5), getString(R.string.header_five_desc));
                 }
             }
         }
@@ -137,6 +138,7 @@ public class OnboardActivity extends BaseActivity implements OnboardMvpView {
             return NUM_PAGES;
         }
 
+        @NonNull
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
             return super.instantiateItem(container, position);

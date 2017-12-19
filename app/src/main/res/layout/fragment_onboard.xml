@@ -30,32 +30,32 @@
         android:orientation="vertical"
         android:gravity="center_horizontal">
 
-        <com.hanks.htextview.line.LineTextView
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            tools:ignore="MissingPrefix"
-            fontPath="fonts/four.ttf"
             android:text="@string/dummy_header"
             android:textSize="35sp"
             android:paddingLeft="10sp"
             android:paddingRight="10sp"
-            app:animationDuration="3000"
-            app:lineColor="@color/readBlack"
-            app:lineWidth="4dp"
             android:id="@+id/header"/>
+
+        <!--app:animationDuration="3000"-->
+        <!--app:lineColor="@color/readBlack"-->
+        <!--app:lineWidth="4dp"-->
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/dummy_sentence"
-            tools:ignore="MissingPrefix"
             android:gravity="center_horizontal"
-            fontPath="fonts/four.ttf"
             android:padding="25sp"
             android:textSize="23sp"
             android:textColor="@color/colorTextTwo"
             android:id="@+id/description"/>
+
+        <!--tools:ignore="MissingPrefix"-->
+        <!--fontPath="fonts/four.ttf"-->
 
     </LinearLayout>
 

@@ -11,12 +11,20 @@
     <string name="dummy_text">This Is Dummy Text</string>
     <string name="tag_line">Book Summaries In 25 Minutes</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="dummy_header1">Same Book</string>
-    <string name="dummy_header2">Opening Door</string>
-    <string name="dummy_header3">Intellectual Man</string>
-    <string name="dummy_header4">Half an hour</string>
-    <string name="dummy_header5">Half an hour</string>
+
+    <string name="dummy_header1">Capture</string>
+    <string name="dummy_header2">Revise</string>
+    <string name="dummy_header3">Decide</string>
+    <string name="dummy_header4">Audio-Summary</string>
+
+    <string name="header_one_desc">Get acquainted with the key ideas of the book</string>
+    <string name="header_two_desc">Refresh your learnings of a book you read a long ago</string>
+    <string name="header_three_desc">Helps you decide whether the book is worth buying</string>
+    <string name="header_four_desc">Learning on-the-go</string>
+
+    <string name="header_five_desc">I would never read a book if it were possible for me to talk half an hour with the man who wrote it.</string>
     <string name="dummy_header">The Dummy Header</string>
+    <string name="dummy_header5">Half an hour</string>
     <string name="dummy_sentence">The Dummy Header has a dummy sentence that comes with it.</string>
 
     <!-- READ RUSH ACTIVITY -->

@@ -3,6 +3,7 @@ package com.robillo.readrush.ui.onboard.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.DrawableRes;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,7 +34,7 @@ public class OnboardFragment extends BaseFragment implements OnboardFMvpView {
     ImageView mImageView;
 
     @BindView(R.id.header)
-    LineTextView mLineHeader;
+    TextView mLineHeader;
 
     @BindView(R.id.description)
     TextView mTextDescription;
@@ -55,7 +56,7 @@ public class OnboardFragment extends BaseFragment implements OnboardFMvpView {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_onboard, container, false);
