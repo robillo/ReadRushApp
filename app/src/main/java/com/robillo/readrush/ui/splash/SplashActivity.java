@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.robillo.readrush.R;
 import com.robillo.readrush.ReadRushApp;
 import com.robillo.readrush.data.prefs.AppPreferencesHelper;
@@ -33,6 +35,12 @@ public class SplashActivity extends BaseActivity implements SplashMvpView {
     @BindView(R.id.ll_two)
     View mViewTwo;
 
+    @BindView(R.id.upper)
+    ImageView mUpper;
+
+    @BindView(R.id.lower)
+    ImageView mLower;
+
     public static Intent getStartIntent(Context context) {
         return new Intent(context, SplashActivity.class);
     }
@@ -54,6 +62,8 @@ public class SplashActivity extends BaseActivity implements SplashMvpView {
     @Override
     protected void setUp() {
         mPresenter.startCountDown(1500);
+        Glide.with(this).load(R.drawable.logo).into(mUpper);
+        Glide.with(this).load(R.drawable.demystifying_knowledge).into(mLower);
         topDown = AnimationUtils.loadAnimation(this, R.anim.top_down);
         bottomUp = AnimationUtils.loadAnimation(this, R.anim.bottom_up);
         mViewOne.startAnimation(topDown);
