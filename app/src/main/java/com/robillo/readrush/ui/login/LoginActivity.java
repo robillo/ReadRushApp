@@ -219,7 +219,6 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
                 @Override
                 public void onResponse(@NonNull Call<List<User>> call, @NonNull Response<List<User>> response) {
                     Toast.makeText(LoginActivity.this, "Profile Updated Successfully", Toast.LENGTH_SHORT).show();
-                    Log.e("response", response.message());
                     @SuppressWarnings("ConstantConditions") User user = response.body().get(0);
                     if(user!=null){
                         mPrefsHelper.setUserId(user.getUser_id());
@@ -242,7 +241,7 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
 
                 @Override
                 public void onFailure(@NonNull Call<List<User>> call, @NonNull Throwable t) {
-                    Toast.makeText(LoginActivity.this, "Failed To Update. RETRY LATER", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Network Error. Please try again.", Toast.LENGTH_SHORT).show();
                     t.printStackTrace();
                 }
             });
@@ -305,7 +304,7 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
                         setUp();
                     }
                     else {
-                        Toast.makeText(this, "Please Enter a Valid Email ID", Toast.LENGTH_SHORT).show();;
+                        Toast.makeText(this, "Please Enter a Valid Email address", Toast.LENGTH_SHORT).show();;
                     }
                 }
                 else {
@@ -390,7 +389,7 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
             case 5:{ // ENTER PASSWORD => VALIDATE PASSWORD
 
 //                boolean isPasswordValid = CommonUtils.isValidPassword(myChatEditText.getText());
-                if(myChatEditText.getText().length()>8){
+                if(myChatEditText.getText().length()>8 && myChatEditText.getText().matches(".*\\d+.*")){
                     //save password in prefs
                     mPrefsHelper.setUserPassword(myChatEditText.getText());
                     nullifyMyChatEditText();
@@ -398,7 +397,7 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
                     setUp();
                 }
                 else {
-                    Toast.makeText(this, "Please Enter a Valid Password", Toast.LENGTH_SHORT).show();;
+                    Toast.makeText(this, "Please enter a password with more than 8 characters and atleast one number", Toast.LENGTH_SHORT).show();;
                 }
                 break;
             }
@@ -410,7 +409,7 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
             case 7:{ // WHATS YOUR NAME  => VALIDATE USER NAME
 
 //                boolean isValidUserName = CommonUtils.isValidUserName(myChatEditText.getText());
-                if(myChatEditText.getText().length()>8){
+                if(myChatEditText.getText().length()>5){
                     //save username in prefs
                     mPrefsHelper.setUserName(myChatEditText.getText());
                     nullifyMyChatEditText();
@@ -418,7 +417,7 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
                     setUp();
                 }
                 else {
-                    Toast.makeText(this, "Please Enter a Valid UserName", Toast.LENGTH_SHORT).show();;
+                    Toast.makeText(this, "Please Enter a User name with at least 5 characters", Toast.LENGTH_SHORT).show();;
                 }
                 nullifyMyChatEditText();
 

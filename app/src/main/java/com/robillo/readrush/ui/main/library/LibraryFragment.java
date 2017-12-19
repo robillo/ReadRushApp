@@ -184,6 +184,7 @@ public class LibraryFragment extends BaseFragment implements LibraryMvpView {
                 public void onResponse(@NonNull Call<List<LibraryItem>> call, @NonNull Response<List<LibraryItem>> response) {
                     mLibraryItemList = response.body();
                     if(mLibraryItemList!=null){
+                        saveLibraryCoversOffline();
                         if(mProgressLibrary!=null) mProgressLibrary.setVisibility(View.GONE);
                         if(mMainLayout!=null) mMainLayout.setVisibility(View.VISIBLE);
                         if(mErrorLayout!=null) mErrorLayout.setVisibility(View.GONE);
@@ -267,6 +268,18 @@ public class LibraryFragment extends BaseFragment implements LibraryMvpView {
         else Toast.makeText(getActivity(), "Empty Cover", Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    public void saveLibraryCoversOffline() {
+        if(mLibraryItemList!=null && mLibraryItemList.size()>0){
+            for(int i=0; i<mLibraryItemList.size(); i++){
+                //noinspection ConstantConditions
+                LibraryCover mRoomCover = new LibraryCover(mLibraryItemList.get(i).getRush_id(), mLibraryItemList.get(i).getTitle(), mLibraryItemList.get(i).getAuthor(), mLibraryItemList.get(i).getRating(), mLibraryItemList.get(i).getEst_time(), mLibraryItemList.get(i).getPages(), mLibraryItemList.get(i).getCover(), null);
+                mLibraryCoverRepository.insertCoverItem(mRoomCover);
+            }
+        }
+        checkForExistingRushesOffline();
+    }
+
     @OnClick(R.id.rush1)
     public void clickmRushOne() {
         openReadRushScreen(0);
@@ -313,10 +326,6 @@ public class LibraryFragment extends BaseFragment implements LibraryMvpView {
 
     @OnClick(R.id.refresh_buttom)
     public void setmRefreshButton(){
-//        MainActivity activity = (MainActivity) getActivity();
-//        if (activity != null) {
-//            activity.refreshLibraryRushes();
-//        }
         checkForExistingRushesOnline();
     }
 }

@@ -54,6 +54,7 @@
             android:textSize="30sp"
             android:gravity="left"
             android:paddingLeft="20sp"
+            android:paddingRight="20sp"
             android:id="@+id/ken_current"/>
 
         <!--tools:ignore="MissingPrefix"-->
