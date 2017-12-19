@@ -353,7 +353,7 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
                 setUp();
                 break;
             }
-            case 1:{ // MET BEOFRE
+            case 1:{ // MET BEFORE
                 page++;
                 mConversations = new ArrayList<>();
                 mConversations = mPresenter.loadLists(loadArray(R.array.ken_text_register), loadArray(R.array.chat_edit_text_hint_register), loadArray(R.array.chat_primary_register), loadArray(R.array.chat_secondary_register));

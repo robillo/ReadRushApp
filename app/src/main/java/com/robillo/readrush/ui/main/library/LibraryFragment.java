@@ -176,20 +176,30 @@ public class LibraryFragment extends BaseFragment implements LibraryMvpView {
     @Override
     public void checkForExistingRushesOnline() {
 
+        Log.e("Check", "..for existing rushes online");
+
         Call<List<LibraryItem>> call = mApiService.fetchLibrary(mPrefsHelper.getUserId());
-//        Call<List<LibraryItem>> call = mApiService.fetchLibrary("1");
         if(call!=null){
+
+            Log.e("Check", "..non null call for online fetch");
+
             call.enqueue(new Callback<List<LibraryItem>>() {
                 @Override
                 public void onResponse(@NonNull Call<List<LibraryItem>> call, @NonNull Response<List<LibraryItem>> response) {
                     mLibraryItemList = response.body();
                     if(mLibraryItemList!=null){
-                        saveLibraryCoversOffline();
+
+                        Log.e("Check", "..saving library covers offline");
+
+                        saveLibraryCoversOffline(mLibraryItemList);
                         if(mProgressLibrary!=null) mProgressLibrary.setVisibility(View.GONE);
                         if(mMainLayout!=null) mMainLayout.setVisibility(View.VISIBLE);
                         if(mErrorLayout!=null) mErrorLayout.setVisibility(View.GONE);
                     }
                     else {
+
+                        Log.e("Check", "..zero rushes");
+
                         if(mMainLayout!=null) mMainLayout.setVisibility(View.INVISIBLE);
                         if(mProgressLibrary!=null) mProgressLibrary.setVisibility(View.GONE);
                         if(mErrorLayout!=null) mErrorLayout.setVisibility(View.VISIBLE);
@@ -269,11 +279,11 @@ public class LibraryFragment extends BaseFragment implements LibraryMvpView {
     }
 
     @Override
-    public void saveLibraryCoversOffline() {
-        if(mLibraryItemList!=null && mLibraryItemList.size()>0){
-            for(int i=0; i<mLibraryItemList.size(); i++){
+    public void saveLibraryCoversOffline(List<LibraryItem> mCoversList) {
+        if(mCoversList!=null && mCoversList.size()>0){
+            for(int i=0; i<mCoversList.size(); i++){
                 //noinspection ConstantConditions
-                LibraryCover mRoomCover = new LibraryCover(mLibraryItemList.get(i).getRush_id(), mLibraryItemList.get(i).getTitle(), mLibraryItemList.get(i).getAuthor(), mLibraryItemList.get(i).getRating(), mLibraryItemList.get(i).getEst_time(), mLibraryItemList.get(i).getPages(), mLibraryItemList.get(i).getCover(), null);
+                LibraryCover mRoomCover = new LibraryCover(mCoversList.get(i).getRush_id(), mCoversList.get(i).getTitle(), mCoversList.get(i).getAuthor(), mCoversList.get(i).getRating(), mCoversList.get(i).getEst_time(), mCoversList.get(i).getPages(), mCoversList.get(i).getCover(), null);
                 mLibraryCoverRepository.insertCoverItem(mRoomCover);
             }
         }

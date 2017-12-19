@@ -2,6 +2,7 @@ package com.robillo.readrush.ui.main.library;
 
 import android.widget.ImageView;
 
+import com.robillo.readrush.data.db.model.library.LibraryCover;
 import com.robillo.readrush.data.network.retrofit.model.LibraryItem;
 import com.robillo.readrush.ui.base.MvpView;
 
@@ -29,6 +30,6 @@ public interface LibraryMvpView extends MvpView {
 
     void openReadRushScreen(int index);
 
-    void saveLibraryCoversOffline();
+    void saveLibraryCoversOffline(List<LibraryItem> mItemsList);
 
 }

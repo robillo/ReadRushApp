@@ -164,12 +164,14 @@ public class DiscoverFragment extends BaseFragment implements DiscoverMvpView {
                     if(response.body().getMessage()!=null){
                         //noinspection ConstantConditions
                         mFeatureList = response.body().getMessage();
-                        mFeatureRv.setVisibility(View.VISIBLE);
-                        mFeatureAdapter = new FeaturedAdapter(mFeatureList, getActivity());
-                        mFeatureRv.setAdapter(mFeatureAdapter);
-                        mFeatureRv.setOnFlingListener(null);
-                        featureSnapHelper.attachToRecyclerView(mFeatureRv);
-                        mProgressFeatured.setVisibility(View.GONE);
+                        if(mFeatureRv!=null){
+                            mFeatureRv.setVisibility(View.VISIBLE);
+                            mFeatureAdapter = new FeaturedAdapter(mFeatureList, getActivity());
+                            mFeatureRv.setAdapter(mFeatureAdapter);
+                            mFeatureRv.setOnFlingListener(null);
+                            featureSnapHelper.attachToRecyclerView(mFeatureRv);
+                        }
+                        if(mProgressFeatured!=null) mProgressFeatured.setVisibility(View.GONE);
                     }
                 }
 
