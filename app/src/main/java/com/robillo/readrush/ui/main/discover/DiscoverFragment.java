@@ -226,11 +226,13 @@ public class DiscoverFragment extends BaseFragment implements DiscoverMvpView {
             call.enqueue(new Callback<CoverSuper>() {
                 @Override
                 public void onResponse(@NonNull retrofit2.Call<CoverSuper> call, @NonNull Response<CoverSuper> response) {
-                    mProgressCovers.setVisibility(View.GONE);
-                    mPager.setVisibility(View.VISIBLE);
-                    //noinspection ConstantConditions
-                    PagerAdapter adapter = new ScreenSlidePagerAdapter(getActivity().getSupportFragmentManager(), response.body().getMessage());
-                    mPager.setAdapter(adapter);
+                    if(mProgressCovers!=null) mProgressCovers.setVisibility(View.GONE);
+                    if(mPager!=null){
+                        mPager.setVisibility(View.VISIBLE);
+                        //noinspection ConstantConditions
+                        PagerAdapter adapter = new ScreenSlidePagerAdapter(getActivity().getSupportFragmentManager(), response.body().getMessage());
+                        mPager.setAdapter(adapter);
+                    }
                 }
 
                 @Override
