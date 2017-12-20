@@ -42,7 +42,7 @@
             android:maxLines="1"
             android:textSize="18sp"
             android:gravity="center"
-            android:id="@+id/ken_current"/>
+            android:id="@+id/author"/>
 
         <TextView
             android:layout_marginTop="5sp"
@@ -54,7 +54,8 @@
             android:textStyle="bold"
             android:textSize="22sp"
             android:gravity="center"
-            android:layout_marginBottom="20sp"/>
+            android:layout_marginBottom="20sp"
+            android:id="@+id/title"/>
 
         <ScrollView
             android:layout_width="match_parent"

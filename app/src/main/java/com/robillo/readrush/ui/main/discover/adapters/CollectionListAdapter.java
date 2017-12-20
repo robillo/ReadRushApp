@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.robillo.readrush.R;
@@ -44,6 +45,7 @@ public class CollectionListAdapter extends RecyclerView.Adapter<CollectionListAd
         //noinspection UnnecessaryLocalVariable
         final int pos = position;
         Glide.with(mContext).load(mList.get(pos).getCover_image()).centerCrop().crossFade().into(holder.mCover);
+//        holder.mAuthor.setText(mList.get(pos).getRush_id());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,6 +60,15 @@ public class CollectionListAdapter extends RecyclerView.Adapter<CollectionListAd
     }
 
     class CollectionListHolder extends RecyclerView.ViewHolder {
+
+        @BindView(R.id.author)
+        TextView mAuthor;
+
+        @BindView(R.id.title)
+        TextView mTitle;
+
+        @BindView(R.id.description)
+        TextView mDescription;
 
         @BindView(R.id.cover)
         ImageView mCover;
