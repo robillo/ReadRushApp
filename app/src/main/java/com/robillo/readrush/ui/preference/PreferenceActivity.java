@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -41,7 +42,6 @@ import retrofit2.Response;
 
 public class PreferenceActivity extends BaseActivity implements PreferenceMvpView {
 
-    private Bundle mBundle;
     AppPreferencesHelper mPrefsHelper;
     PreferenceAdapter mAdapter;
     List<String> mList = new ArrayList<>();
@@ -94,8 +94,8 @@ public class PreferenceActivity extends BaseActivity implements PreferenceMvpVie
         setUpWindowAnimations();
         mList = Arrays.asList(getResources().getStringArray(R.array.preferences));
         mAdapter = new PreferenceAdapter(mList, this);
-//        GridLayoutManager manager = new GridLayoutManager(this, 3);
-        LinearLayoutManager manager = new LinearLayoutManager(this);
+        GridLayoutManager manager = new GridLayoutManager(this, 5);
+//        LinearLayoutManager manager = new LinearLayoutManager(this);
         mRecycler.setLayoutManager(manager);
         mRecycler.setAdapter(mAdapter);
     }
@@ -128,14 +128,14 @@ public class PreferenceActivity extends BaseActivity implements PreferenceMvpVie
         if(call!=null){
             call.enqueue(new Callback<ResponseBody>() {
                 @Override
-                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
                     Toast.makeText(PreferenceActivity.this, "Profile Updated Successfully", Toast.LENGTH_SHORT).show();
                     Log.e("response", response.message());
                     validateUser(MainActivity.getStartIntent(PreferenceActivity.this));
                 }
 
                 @Override
-                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
                     Toast.makeText(PreferenceActivity.this, "Failed To Update. RETRY LATER", Toast.LENGTH_SHORT).show();
                     t.printStackTrace();
                 }
@@ -149,13 +149,14 @@ public class PreferenceActivity extends BaseActivity implements PreferenceMvpVie
         if(call!=null){
             call.enqueue(new Callback<List<User>>() {
                 @Override
-                public void onResponse(Call<List<User>> call, Response<List<User>> response) {
+                public void onResponse(@NonNull Call<List<User>> call, @NonNull Response<List<User>> response) {
                     Toast.makeText(PreferenceActivity.this, "Profile Updated Successfully", Toast.LENGTH_SHORT).show();
                     Log.e("response", response.message());
                     @SuppressWarnings("ConstantConditions") User user = response.body().get(0);
                     if(user!=null){
                         mPrefsHelper.setUserId(user.getUser_id());
                         mPrefsHelper.setUserName(user.getName());
+                        //noinspection ConstantConditions
                         mPrefsHelper.setUserEmail(user.getEmail_id());
                         mPrefsHelper.setUserPassword(user.getPassword());
                         mPrefsHelper.setDateTime(user.getDatetime());
@@ -172,7 +173,7 @@ public class PreferenceActivity extends BaseActivity implements PreferenceMvpVie
                 }
 
                 @Override
-                public void onFailure(Call<List<User>> call, Throwable t) {
+                public void onFailure(@NonNull Call<List<User>> call, @NonNull Throwable t) {
                     Toast.makeText(PreferenceActivity.this, "Failed To Update. RETRY LATER", Toast.LENGTH_SHORT).show();
                     t.printStackTrace();
                 }
