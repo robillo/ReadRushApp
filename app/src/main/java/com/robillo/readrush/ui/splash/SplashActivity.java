@@ -26,6 +26,9 @@ public class SplashActivity extends BaseActivity implements SplashMvpView {
 
     Animation topDown, bottomUp;
 
+    @SuppressWarnings("FieldCanBeLocal")
+    private AppPreferencesHelper mPrefsHelper;
+
     @Inject
     SplashMvpPresenter<SplashMvpView> mPresenter;
 
@@ -61,6 +64,7 @@ public class SplashActivity extends BaseActivity implements SplashMvpView {
 
     @Override
     protected void setUp() {
+        mPrefsHelper = new AppPreferencesHelper(this, ReadRushApp.PREF_FILE_NAME);
         mPresenter.startCountDown(1500);
         Glide.with(this).load(R.drawable.logo).into(mUpper);
         Glide.with(this).load(R.drawable.demystifying_knowledge).into(mLower);
@@ -92,11 +96,10 @@ public class SplashActivity extends BaseActivity implements SplashMvpView {
 
     @Override
     public void startNextActivity() {
-        AppPreferencesHelper helper = new AppPreferencesHelper(this, ReadRushApp.PREF_FILE_NAME);
-        if(!helper.getUserIsOnBoarded()){
+        if(!mPrefsHelper.getUserIsOnBoarded()){
             openOnBoardActivity();
         }
-        else if(!helper.getUserIsLoggedIn()){
+        else if(!mPrefsHelper.getUserIsLoggedIn()){
             openLoginActivity();
         }
         else {

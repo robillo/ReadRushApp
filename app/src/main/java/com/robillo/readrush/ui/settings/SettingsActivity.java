@@ -13,8 +13,11 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.robillo.readrush.R;
+import com.robillo.readrush.ReadRushApp;
+import com.robillo.readrush.data.prefs.AppPreferencesHelper;
 import com.robillo.readrush.ui.base.BaseActivity;
 import com.robillo.readrush.ui.preference.PreferenceActivity;
+import com.robillo.readrush.ui.splash.SplashActivity;
 import com.robillo.readrush.ui.webview.WebViewActivity;
 
 import javax.inject.Inject;
@@ -49,6 +52,9 @@ public class SettingsActivity extends BaseActivity implements SettingsMvpView {
     @BindView(R.id.email_help)
     TextView mEmailHelp;
 
+    @SuppressWarnings("FieldCanBeLocal")
+    private AppPreferencesHelper mPrefsHelper;
+
     @Inject
     SettingsMvpPresenter<SettingsMvpView> mPresenter;
 
@@ -70,7 +76,7 @@ public class SettingsActivity extends BaseActivity implements SettingsMvpView {
 
     @Override
     protected void setUp() {
-
+        mPrefsHelper = new AppPreferencesHelper(this, ReadRushApp.PREF_FILE_NAME);
     }
 
     @OnClick(R.id.about)
@@ -107,5 +113,12 @@ public class SettingsActivity extends BaseActivity implements SettingsMvpView {
         } catch (ActivityNotFoundException e) {
             Log.e("EXCEPTION", "ACTIVITY NOT FOUND");
         }
+    }
+
+    @OnClick(R.id.logout)
+    public void setmLogout() {
+        mPrefsHelper.setUserIsOnBoarded(false);
+        mPrefsHelper.setUserIsLoggedIn(false);
+        startActivity(SplashActivity.getStartIntent(this));
     }
 }
