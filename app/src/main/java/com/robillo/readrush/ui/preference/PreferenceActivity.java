@@ -78,6 +78,7 @@ public class PreferenceActivity extends BaseActivity implements PreferenceMvpVie
     @Override
     protected void setUp() {
         mPrefsHelper = new AppPreferencesHelper(this, ReadRushApp.PREF_FILE_NAME);
+        mApiService = ApiClient.getClient().create(ApiInterface.class);
         fromSettings = getIntent().getBooleanExtra("from_settings", false);
         setUpWindowAnimations();
         mList = Arrays.asList(getResources().getStringArray(R.array.preferences));
@@ -125,23 +126,28 @@ public class PreferenceActivity extends BaseActivity implements PreferenceMvpVie
 
     @Override
     public void setApiInterface() {
-        mApiService = ApiClient.getClient().create(ApiInterface.class);
-        Call<ResponseBody> call = mApiService.createUser(mPrefsHelper.getUserName(), mPrefsHelper.getUserEmail(), mPrefsHelper.getUserPassword(), mPrefsHelper.getUserPreference());
-        if(call!=null){
-            call.enqueue(new Callback<ResponseBody>() {
-                @Override
-                public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
-                    Toast.makeText(PreferenceActivity.this, "Profile Updated Successfully", Toast.LENGTH_SHORT).show();
-                    Log.e("response", response.message());
-                    validateUser(MainActivity.getStartIntent(PreferenceActivity.this));
-                }
+        //noinspection StatementWithEmptyBody
+        if(fromSettings){
+            //TODO call for update preferences api for user and then onBackPressed()
+        }
+        else {
+            Call<ResponseBody> call = mApiService.createUser(mPrefsHelper.getUserName(), mPrefsHelper.getUserEmail(), mPrefsHelper.getUserPassword(), mPrefsHelper.getUserPreference());
+            if(call!=null){
+                call.enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
+                        Toast.makeText(PreferenceActivity.this, "Profile Updated Successfully", Toast.LENGTH_SHORT).show();
+                        Log.e("response", response.message());
+                        validateUser(MainActivity.getStartIntent(PreferenceActivity.this));
+                    }
 
-                @Override
-                public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
-                    Toast.makeText(PreferenceActivity.this, "Failed To Update. RETRY LATER", Toast.LENGTH_SHORT).show();
-                    t.printStackTrace();
-                }
-            });
+                    @Override
+                    public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
+                        Toast.makeText(PreferenceActivity.this, "Failed To Update. RETRY LATER", Toast.LENGTH_SHORT).show();
+                        t.printStackTrace();
+                    }
+                });
+            }
         }
     }
 
@@ -152,10 +158,17 @@ public class PreferenceActivity extends BaseActivity implements PreferenceMvpVie
             call.enqueue(new Callback<List<User>>() {
                 @Override
                 public void onResponse(@NonNull Call<List<User>> call, @NonNull Response<List<User>> response) {
-                    Toast.makeText(PreferenceActivity.this, "Profile Updated Successfully", Toast.LENGTH_SHORT).show();
                     Log.e("response", response.message());
-                    @SuppressWarnings("ConstantConditions") User user = response.body().get(0);
+                    User user = null;
+                    try {
+                        //noinspection ConstantConditions
+                        user = response.body().get(0);
+                    }
+                    catch (NullPointerException e){
+                        e.printStackTrace();
+                    }
                     if(user!=null){
+                        Toast.makeText(PreferenceActivity.this, "Profile Updated Successfully", Toast.LENGTH_SHORT).show();
                         mPrefsHelper.setUserId(user.getUser_id());
                         mPrefsHelper.setUserName(user.getName());
                         //noinspection ConstantConditions
@@ -176,6 +189,9 @@ public class PreferenceActivity extends BaseActivity implements PreferenceMvpVie
                         else {
                             startActivity(intent);
                         }
+                    }
+                    else {
+                        Toast.makeText(PreferenceActivity.this, "Incomplete User Credentials", Toast.LENGTH_SHORT).show();
                     }
                 }
 
