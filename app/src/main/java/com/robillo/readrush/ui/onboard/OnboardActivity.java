@@ -11,6 +11,8 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.robillo.readrush.R;
 import com.robillo.readrush.ui.base.BaseActivity;
@@ -32,6 +34,12 @@ public class OnboardActivity extends BaseActivity implements OnboardMvpView {
 
     @Inject
     OnboardMvpPresenter<OnboardMvpView> mPresenter;
+
+    @BindView(R.id.background_layout)
+    LinearLayout mBackgroundLayout;
+
+    @BindView(R.id.skip)
+    TextView mSkip;
 
     @BindView(R.id.prev)
     Button previous;
@@ -65,7 +73,7 @@ public class OnboardActivity extends BaseActivity implements OnboardMvpView {
         PagerAdapter adapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
         mPager.setAdapter(adapter);
         mPager.setClipToPadding(false);
-        mPager.setPageTransformer(true, new CubeOutTransformer());
+        mPager.setPageTransformer(true, new ZoomOutPageTransformer());
         mPager.addOnPageChangeListener(viewPagerPageChangeListener);
         previous.setEnabled(false);
     }
@@ -102,6 +110,12 @@ public class OnboardActivity extends BaseActivity implements OnboardMvpView {
         goPrevious();
     }
 
+    @OnClick(R.id.skip)
+    public void setmSkip() {
+        //start login activity
+        startActivity(LoginActivity.getStartIntent(this));
+    }
+
     /**
      * A simple pager adapter that represents 3 ScreenSlidePageFragment objects, in
      * sequence.
@@ -116,19 +130,19 @@ public class OnboardActivity extends BaseActivity implements OnboardMvpView {
 
             switch (position){
                 case 0:{
-                    return OnboardFragment.newInstance(R.drawable.one, getString(R.string.dummy_header1), getString(R.string.header_one_desc));
+                    return OnboardFragment.newInstance(R.drawable.capture, getString(R.string.dummy_header1), getString(R.string.header_one_desc));
                 }
                 case 1:{
-                    return OnboardFragment.newInstance(R.drawable.four, getString(R.string.dummy_header2), getString(R.string.header_two_desc));
+                    return OnboardFragment.newInstance(R.drawable.revise, getString(R.string.dummy_header2), getString(R.string.header_two_desc));
                 }
                 case 2:{
-                    return OnboardFragment.newInstance(R.drawable.three, getString(R.string.dummy_header3), getString(R.string.header_three_desc));
+                    return OnboardFragment.newInstance(R.drawable.decide, getString(R.string.dummy_header3), getString(R.string.header_three_desc));
                 }
                 case 3:{
-                    return OnboardFragment.newInstance(R.drawable.four, getString(R.string.dummy_header4), getString(R.string.header_four_desc));
+                    return OnboardFragment.newInstance(R.drawable.audio, getString(R.string.dummy_header4), getString(R.string.header_four_desc));
                 }
                 default:{
-                    return OnboardFragment.newInstance(R.drawable.four, getString(R.string.dummy_header5), getString(R.string.header_five_desc));
+                    return OnboardFragment.newInstance(R.drawable.capture, getString(R.string.dummy_header1), getString(R.string.header_one_desc));
                 }
             }
         }
@@ -156,6 +170,25 @@ public class OnboardActivity extends BaseActivity implements OnboardMvpView {
 
         @Override
         public void onPageSelected(int position) {
+
+            switch (position){
+                case 0:{
+                    mBackgroundLayout.setBackgroundColor(getResources().getColor(R.color.on_board_one));
+                    break;
+                }
+                case 1:{
+                    mBackgroundLayout.setBackgroundColor(getResources().getColor(R.color.on_board_two));
+                    break;
+                }
+                case 2:{
+                    mBackgroundLayout.setBackgroundColor(getResources().getColor(R.color.on_board_three));
+                    break;
+                }
+                case 3:{
+                    mBackgroundLayout.setBackgroundColor(getResources().getColor(R.color.on_board_four));
+                    break;
+                }
+            }
 
 //            addBottomDots(position);
 
