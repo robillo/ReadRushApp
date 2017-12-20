@@ -1,6 +1,7 @@
 package com.robillo.readrush.ui.main.discover;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -39,6 +40,7 @@ import com.robillo.readrush.ui.main.discover.PagerFragment.PagerFragment;
 import com.robillo.readrush.ui.main.discover.adapters.CollectionListAdapter;
 import com.robillo.readrush.ui.main.discover.adapters.CollectionsAdapter;
 import com.robillo.readrush.ui.main.discover.adapters.FeaturedAdapter;
+import com.robillo.readrush.ui.main.discover.collections.CollectionsActivity;
 import com.robillo.readrush.utils.other_helper.StartSnapHelper;
 import com.robillo.readrush.utils.page_transforms.ZoomOutPageTransformer;
 
@@ -312,32 +314,38 @@ public class DiscoverFragment extends BaseFragment implements DiscoverMvpView {
     }
 
     @Override
-    public void fetchCollectionFromCid(String coll_id) {
-        mCollectionRv.setVisibility(View.GONE);
-        mProgressCollections.setVisibility(View.VISIBLE);
-        mCollectionsBackDrawable.setVisibility(View.VISIBLE);
-        retrofit2.Call<CollectionListItemSuper> call = mApiService.getCollectionFromCid(coll_id);
-        if(call!=null){
-            call.enqueue(new Callback<CollectionListItemSuper>() {
-                @SuppressWarnings("ConstantConditions")
-                @Override
-                public void onResponse(@NonNull retrofit2.Call<CollectionListItemSuper> call, @NonNull Response<CollectionListItemSuper> response) {
-                    if(response.body().getMessage()!=null){
-                        mCollectionListItems = response.body().getMessage();
-                        mCollectionListAdapter = new CollectionListAdapter(mCollectionListItems, getActivity());
-                        mCollectionListRv.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
-                        mCollectionListRv.setAdapter(mCollectionListAdapter);
-                        mCollectionListRv.setVisibility(View.VISIBLE);
-                        mProgressCollections.setVisibility(View.GONE);
-                    }
-                }
+    public void fetchCollectionFromCid(String coll_id, String coll_name) {
 
-                @Override
-                public void onFailure(@NonNull retrofit2.Call<CollectionListItemSuper> call, @NonNull Throwable t) {
-                    Toast.makeText(getActivity(), "Network Error", Toast.LENGTH_SHORT).show();
-                }
-            });
-        }
+        Toast.makeText(getActivity(), "coll name is " + coll_name, Toast.LENGTH_SHORT).show();
+        startActivity(CollectionsActivity.getStartIntent(getActivity(), coll_id, coll_name));
+
+//        mCollectionRv.setVisibility(View.GONE);
+//        mProgressCollections.setVisibility(View.VISIBLE);
+//        mCollectionsBackDrawable.setVisibility(View.VISIBLE);
+
+        //CALL on CollectionsActivity
+//        retrofit2.Call<CollectionListItemSuper> call = mApiService.getCollectionFromCid1(coll_id);
+//        if(call!=null){
+//            call.enqueue(new Callback<CollectionListItemSuper>() {
+//                @SuppressWarnings("ConstantConditions")
+//                @Override
+//                public void onResponse(@NonNull retrofit2.Call<CollectionListItemSuper> call, @NonNull Response<CollectionListItemSuper> response) {
+//                    if(response.body().getMessage()!=null){
+//                        mCollectionListItems = response.body().getMessage();
+//                        mCollectionListAdapter = new CollectionListAdapter(mCollectionListItems, getActivity());
+//                        mCollectionListRv.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+//                        mCollectionListRv.setAdapter(mCollectionListAdapter);
+//                        mCollectionListRv.setVisibility(View.VISIBLE);
+//                        mProgressCollections.setVisibility(View.GONE);
+//                    }
+//                }
+//
+//                @Override
+//                public void onFailure(@NonNull retrofit2.Call<CollectionListItemSuper> call, @NonNull Throwable t) {
+//                    Toast.makeText(getActivity(), "Network Error", Toast.LENGTH_SHORT).show();
+//                }
+//            });
+//        }
     }
 
 }

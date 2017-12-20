@@ -49,7 +49,7 @@ public class CollectionsAdapter extends RecyclerView.Adapter<CollectionsAdapter.
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mDiscoverFragment.fetchCollectionFromCid(mList.get(pos).getCollection_id());
+                mDiscoverFragment.fetchCollectionFromCid(mList.get(pos).getCollection_id(), mList.get(pos).getCollection_alias());
             }
         });
     }

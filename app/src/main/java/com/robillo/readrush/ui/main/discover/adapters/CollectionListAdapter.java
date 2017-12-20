@@ -36,7 +36,7 @@ public class CollectionListAdapter extends RecyclerView.Adapter<CollectionListAd
     @Override
     public CollectionListHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         mContext = parent.getContext();
-        return new CollectionListHolder(LayoutInflater.from(mContext).inflate(R.layout.row_featured, parent, false));
+        return new CollectionListHolder(LayoutInflater.from(mContext).inflate(R.layout.row_coll_list, parent, false));
     }
 
     @Override
