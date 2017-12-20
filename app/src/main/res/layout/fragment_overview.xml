@@ -94,11 +94,13 @@
 
                 <com.willy.ratingbar.ScaleRatingBar
                     android:layout_width="match_parent"
-                    android:layout_height="0sp"
+                    android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
-                    android:layout_weight="2"
                     android:id="@+id/scale_rating_bar"
-                    android:clickable="false">
+                    app:srb_clickable="false"
+                    app:srb_isIndicator="false"
+                    app:srb_scrollable="false"
+                    app:srb_clearRatingEnabled="false">
 
                 </com.willy.ratingbar.ScaleRatingBar>
 
