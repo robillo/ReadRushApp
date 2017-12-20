@@ -121,4 +121,11 @@ public class SettingsActivity extends BaseActivity implements SettingsMvpView {
         mPrefsHelper.setUserIsLoggedIn(false);
         startActivity(SplashActivity.getStartIntent(this));
     }
+
+    @OnClick(R.id.update_preferences)
+    public void setmUpdatePreferences() {
+        Intent i = PreferenceActivity.getStartIntent(this);
+        i.putExtra("from_settings", true);
+        startActivity(i);
+    }
 }

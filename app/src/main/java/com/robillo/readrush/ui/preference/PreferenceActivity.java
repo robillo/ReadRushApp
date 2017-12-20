@@ -41,6 +41,7 @@ import retrofit2.Response;
 
 public class PreferenceActivity extends BaseActivity implements PreferenceMvpView {
 
+    private Boolean fromSettings;
     AppPreferencesHelper mPrefsHelper;
     PreferenceAdapter mAdapter;
     List<String> mList = new ArrayList<>();
@@ -74,6 +75,20 @@ public class PreferenceActivity extends BaseActivity implements PreferenceMvpVie
         setUp();
     }
 
+    @Override
+    protected void setUp() {
+        mPrefsHelper = new AppPreferencesHelper(this, ReadRushApp.PREF_FILE_NAME);
+        fromSettings = getIntent().getBooleanExtra("from_settings", false);
+        setUpWindowAnimations();
+        mList = Arrays.asList(getResources().getStringArray(R.array.preferences));
+        mAdapter = new PreferenceAdapter(mList, this);
+        StaggeredGridLayoutManager manager = new StaggeredGridLayoutManager(5, StaggeredGridLayoutManager.HORIZONTAL);
+        manager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_MOVE_ITEMS_BETWEEN_SPANS);
+//        LinearLayoutManager manager = new LinearLayoutManager(this);
+        mRecycler.setLayoutManager(manager);
+        mRecycler.setAdapter(mAdapter);
+    }
+
     @OnClick(R.id.done)
     public void onDone() {
 //        startActivity(MainActivity.getStartIntent(this), mBundle);
@@ -85,19 +100,6 @@ public class PreferenceActivity extends BaseActivity implements PreferenceMvpVie
         else {
             Toast.makeText(this, "You Have To Select Two Preferences", Toast.LENGTH_SHORT).show();
         }
-    }
-
-    @Override
-    protected void setUp() {
-        mPrefsHelper = new AppPreferencesHelper(this, ReadRushApp.PREF_FILE_NAME);
-        setUpWindowAnimations();
-        mList = Arrays.asList(getResources().getStringArray(R.array.preferences));
-        mAdapter = new PreferenceAdapter(mList, this);
-        StaggeredGridLayoutManager manager = new StaggeredGridLayoutManager(5, StaggeredGridLayoutManager.HORIZONTAL);
-        manager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_MOVE_ITEMS_BETWEEN_SPANS);
-//        LinearLayoutManager manager = new LinearLayoutManager(this);
-        mRecycler.setLayoutManager(manager);
-        mRecycler.setAdapter(mAdapter);
     }
 
     @Override
@@ -168,7 +170,12 @@ public class PreferenceActivity extends BaseActivity implements PreferenceMvpVie
                         mPrefsHelper.setPreferenceCode(user.getPreference_code());
                         mPrefsHelper.setRead(user.getRead());
                         mPrefsHelper.setRushCount(user.getRush_count());
-                        startActivity(intent);
+                        if(fromSettings){
+                            onBackPressed();
+                        }
+                        else {
+                            startActivity(intent);
+                        }
                     }
                 }
 
