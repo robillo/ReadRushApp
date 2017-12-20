@@ -73,4 +73,14 @@ public class SettingsActivity extends BaseActivity implements SettingsMvpView {
     public void setmAbout() {
         startActivity(WebViewActivity.getStartIntent(this, "About", "http://readrush.in/index.php/home/about_us"));
     }
+
+    @OnClick(R.id.twitter)
+    public void setmTwitter() {
+        startActivity(WebViewActivity.getStartIntent(this, "Twitter", "https://twitter.com/readrush"));
+    }
+
+    @OnClick(R.id.facebook)
+    public void setmFacebook() {
+        startActivity(WebViewActivity.getStartIntent(this, "Facebook", "https://www.facebook.com/readrush"));
+    }
 }

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.TextView;
@@ -27,7 +28,7 @@ public class WebViewActivity extends BaseActivity implements WebViewMvpView {
     TextView mHeader;
 
     public static Intent getStartIntent(Context context, String header, String loadUrl) {
-        Intent i = new Intent(context, SplashActivity.class);
+        Intent i = new Intent(context, WebViewActivity.class);
         i.putExtra("header", header);
         i.putExtra("load_url", loadUrl);
         return i;
@@ -39,6 +40,8 @@ public class WebViewActivity extends BaseActivity implements WebViewMvpView {
         setContentView(R.layout.activity_web_view);
 
         ButterKnife.bind(this);
+
+        setUp();
     }
 
     @SuppressLint("SetJavaScriptEnabled")
