@@ -10,13 +10,13 @@
     <TextView
         tools:ignore="MissingPrefix"
         fontPath="fonts/four.ttf"
-        android:layout_marginTop="5sp"
+        android:layout_marginTop="50sp"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:text="Select Book Preferences"
         android:textColor="@color/black"
         android:textStyle="bold"
-        android:textSize="25sp"
+        android:textSize="30sp"
         android:gravity="center"
         android:paddingLeft="20sp"
         android:id="@+id/ken_current"/>
@@ -30,9 +30,10 @@
         android:text="Tap Once On Your Favourite Genres"
         android:textColor="@color/colorTextTwo"
         android:textStyle="bold"
-        android:textSize="18sp"
+        android:textSize="22sp"
         android:gravity="center"
-        android:paddingLeft="20sp"/>
+        android:paddingLeft="20sp"
+        android:layout_marginBottom="20sp"/>
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
@@ -48,15 +49,15 @@
         app:cardCornerRadius="25sp"
         app:cardBackgroundColor="@color/rushRed"
         android:layout_gravity="center_horizontal"
-        android:layout_margin="5sp">
+        android:layout_margin="10sp">
 
         <Button
             tools:ignore="MissingPrefix"
             fontPath="fonts/four.ttf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingRight="20sp"
-            android:paddingLeft="20sp"
+            android:paddingRight="70sp"
+            android:paddingLeft="70sp"
             android:background="?attr/selectableItemBackground"
             android:text="Done"
             android:textSize="25sp"
