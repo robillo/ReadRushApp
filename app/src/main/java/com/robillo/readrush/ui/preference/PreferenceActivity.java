@@ -8,8 +8,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.transition.Explode;
 import android.transition.Fade;
 import android.util.Log;
@@ -23,7 +23,6 @@ import com.robillo.readrush.data.network.retrofit.ApiInterface;
 import com.robillo.readrush.data.network.retrofit.model.User;
 import com.robillo.readrush.data.prefs.AppPreferencesHelper;
 import com.robillo.readrush.ui.base.BaseActivity;
-import com.robillo.readrush.ui.login.LoginActivity;
 import com.robillo.readrush.ui.main.MainActivity;
 
 import java.util.ArrayList;
@@ -94,7 +93,7 @@ public class PreferenceActivity extends BaseActivity implements PreferenceMvpVie
         setUpWindowAnimations();
         mList = Arrays.asList(getResources().getStringArray(R.array.preferences));
         mAdapter = new PreferenceAdapter(mList, this);
-        GridLayoutManager manager = new GridLayoutManager(this, 5);
+        StaggeredGridLayoutManager manager = new StaggeredGridLayoutManager(5, StaggeredGridLayoutManager.HORIZONTAL);
 //        LinearLayoutManager manager = new LinearLayoutManager(this);
         mRecycler.setLayoutManager(manager);
         mRecycler.setAdapter(mAdapter);

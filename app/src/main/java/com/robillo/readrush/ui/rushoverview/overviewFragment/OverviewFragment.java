@@ -31,6 +31,7 @@ import com.robillo.readrush.di.component.ActivityComponent;
 import com.robillo.readrush.ui.base.BaseFragment;
 import com.robillo.readrush.ui.rushoverview.reviewsFragment.ReviewsFragment;
 import com.robillo.readrush.ui.rushread.ReadRushActivity;
+import com.willy.ratingbar.ScaleRatingBar;
 
 import java.util.List;
 
@@ -66,6 +67,9 @@ public class OverviewFragment extends BaseFragment implements OverviewFragmentMv
 
     @Inject
     OverviewFragmentMvpPresenter<OverviewFragmentMvpView> mPresenter;
+
+    @BindView(R.id.scale_rating_bar)
+    ScaleRatingBar mRatingBar;
 
     @BindView(R.id.exit)
     ImageView mExit;
@@ -135,7 +139,6 @@ public class OverviewFragment extends BaseFragment implements OverviewFragmentMv
         mRushId = getArguments().getString("rush_id");
         mShimmerLayout.startShimmerAnimation();
 
-
         fetchRushDetails();
     }
 
@@ -180,6 +183,7 @@ public class OverviewFragment extends BaseFragment implements OverviewFragmentMv
                     mAddReadRush.setVisibility(View.VISIBLE);
                     mReviews.setClickable(true);
                     mReviews.setVisibility(View.VISIBLE);
+                    mRatingBar.setRating(Float.valueOf(mRoomCover.getRating()));
                 }
 
                 @Override

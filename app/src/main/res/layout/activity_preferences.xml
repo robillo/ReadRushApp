@@ -13,13 +13,26 @@
         android:layout_marginTop="5sp"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:text="Book Preferences"
+        android:text="Select Book Preferences"
         android:textColor="@color/black"
         android:textStyle="bold"
-        android:textSize="35sp"
+        android:textSize="25sp"
         android:gravity="center"
         android:paddingLeft="20sp"
         android:id="@+id/ken_current"/>
+
+    <TextView
+        tools:ignore="MissingPrefix"
+        fontPath="fonts/four.ttf"
+        android:layout_marginTop="5sp"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="Tap Once On Your Favourite Genres"
+        android:textColor="@color/colorTextTwo"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:paddingLeft="20sp"/>
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
