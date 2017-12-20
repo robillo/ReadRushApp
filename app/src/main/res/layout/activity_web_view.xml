@@ -7,6 +7,21 @@
     android:orientation="vertical"
     tools:context="com.robillo.readrush.ui.webview.WebViewActivity">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:textSize="30sp"
+        android:gravity="center"
+        android:textColor="@color/colorTextTwo"
+        tools:text="About"
+        android:id="@+id/header"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="2sp"
+        android:contentDescription="null"
+        android:background="@color/colorTextTwo"/>
+
     <WebView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

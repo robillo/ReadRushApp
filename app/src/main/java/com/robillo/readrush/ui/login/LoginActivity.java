@@ -218,9 +218,17 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
             call.enqueue(new Callback<List<User>>() {
                 @Override
                 public void onResponse(@NonNull Call<List<User>> call, @NonNull Response<List<User>> response) {
-                    Toast.makeText(LoginActivity.this, "Profile Updated Successfully", Toast.LENGTH_SHORT).show();
-                    @SuppressWarnings("ConstantConditions") User user = response.body().get(0);
+                    User user = null;
+                    try {
+                        //noinspection ConstantConditions
+                        user = response.body().get(0);
+                    }
+                    catch (NullPointerException e){
+                        e.printStackTrace();
+                        Toast.makeText(LoginActivity.this, "Invalid credentials", Toast.LENGTH_SHORT).show();
+                    }
                     if(user!=null){
+                        Toast.makeText(LoginActivity.this, "Profile Updated Successfully", Toast.LENGTH_SHORT).show();
                         mPrefsHelper.setUserId(user.getUser_id());
                         mPrefsHelper.setUserName(user.getName());
                         //noinspection ConstantConditions
