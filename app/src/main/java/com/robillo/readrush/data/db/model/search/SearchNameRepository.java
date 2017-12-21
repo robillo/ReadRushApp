@@ -33,9 +33,16 @@ public class SearchNameRepository {
         }.execute();
     }
 
+    @SuppressLint("StaticFieldLeak")
     @SuppressWarnings("unused")
     public void deleteAllSearchItems() {
-        searchNameDao.deleteAllSearchNames();
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... voids) {
+                searchNameDao.deleteAllSearchNames();
+                return null;
+            }
+        }.execute();
     }
 
 }

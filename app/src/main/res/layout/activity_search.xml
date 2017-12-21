@@ -82,21 +82,23 @@
             tools:ignore="UseCompoundDrawables">
 
             <TextView
+                android:id="@+id/search_history_text_view"
+                fontPath="fonts/three.ttf"
                 android:layout_width="0sp"
                 android:layout_height="30sp"
+                android:layout_gravity="center_vertical"
                 android:layout_weight="1"
-                tools:ignore="MissingPrefix"
-                fontPath="fonts/three.ttf"
-                android:text="Search History"
-                android:textSize="20sp"
-                android:textColor="@color/colorTextOne"
                 android:gravity="center_vertical"
-                android:paddingLeft="15sp"/>
+                android:paddingLeft="15sp"
+                android:text="Search History"
+                android:textColor="@color/colorTextOne"
+                android:textSize="20sp"
+                tools:ignore="MissingPrefix" />
 
             <ImageView
-                android:layout_width="30sp"
-                android:layout_height="30sp"
-                android:padding="3sp"
+                android:layout_width="40sp"
+                android:layout_height="40sp"
+                android:padding="5sp"
                 android:tint="@color/colorTextTwo"
                 android:src="@drawable/ic_delete_black_24dp"
                 android:contentDescription="Delete Search Names"
@@ -107,11 +109,11 @@
         </LinearLayout>
 
         <android.support.v7.widget.RecyclerView
+            android:id="@+id/search_history"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/search_history"
-            android:paddingTop="10sp"
-            android:paddingBottom="10sp"/>
+            android:paddingBottom="10sp"
+            android:paddingTop="10sp" />
 
     </LinearLayout>
 

@@ -66,6 +66,9 @@ public class SearchActivity extends BaseActivity implements SearchMvpView {
     @SuppressWarnings("FieldCanBeLocal")
     private ApiInterface mApiService;
 
+    @BindView(R.id.search_history_text_view)
+    TextView mSearchHistoryTextView;
+
     @BindView(R.id.suggestions_or_results)
     TextView mSuggestionsOrResults;
 
@@ -132,8 +135,8 @@ public class SearchActivity extends BaseActivity implements SearchMvpView {
         mPrefsHelper = new AppPreferencesHelper(this, ReadRushApp.PREF_FILE_NAME);
         mApiService = ApiClient.getClient().create(ApiInterface.class);
         mSuggestionsRv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-//        new GridLayoutManager(this, 5, LinearLayoutManager.VERTICAL, false)
-        StaggeredGridLayoutManager manager = new StaggeredGridLayoutManager(5, StaggeredGridLayoutManager.HORIZONTAL);
+        GridLayoutManager manager = new GridLayoutManager(this, 4, LinearLayoutManager.VERTICAL, false);
+//        StaggeredGridLayoutManager manager = new StaggeredGridLayoutManager(5, StaggeredGridLayoutManager.HORIZONTAL);
         mSearchHistory.setLayoutManager(manager);
 
         mLayoutSuggestions.setAnimation(AnimationUtils.loadAnimation(this, R.anim.slide_in_left));
@@ -201,11 +204,18 @@ public class SearchActivity extends BaseActivity implements SearchMvpView {
             @Override
             public void onChanged(@Nullable List<SearchName> searchNames) {
                 mSearches = searchNames;
-//                //INFLATE SEARCHES RECYCLER VIEW
-
                 mSearchNamesAdapter = new SearchNamesAdapter(mSearches, SearchActivity.this);
                 mSearchHistory.setAdapter(mSearchNamesAdapter);
-//                mSearchHistory.invalidateItemDecorations();
+                if(mSearches.size()>0){
+                    mSearchHistoryTextView.setVisibility(View.VISIBLE);
+                    mDeleteSearchNames.setVisibility(View.VISIBLE);
+                    mDeleteSearchNames.setClickable(true);
+                }
+                else {
+                    mSearchHistoryTextView.setVisibility(View.GONE);
+                    mDeleteSearchNames.setVisibility(View.GONE);
+                    mDeleteSearchNames.setClickable(false);
+                }
             }
         });
     }
@@ -227,6 +237,8 @@ public class SearchActivity extends BaseActivity implements SearchMvpView {
 
     @OnClick(R.id.delete)
     public void setmDeleteSearchNames() {
-        Toast.makeText(this, "deleted", Toast.LENGTH_SHORT).show();
+        mSearchNameRepository.deleteAllSearchItems();
+        mSearchNamesAdapter.notifyDataSetChanged();
+        Toast.makeText(this, "Search History Deleted", Toast.LENGTH_SHORT).show();
     }
 }
