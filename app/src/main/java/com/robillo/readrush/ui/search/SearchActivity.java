@@ -1,5 +1,6 @@
 package com.robillo.readrush.ui.search;
 
+import android.app.Activity;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.Observer;
 import android.content.Context;
@@ -10,10 +11,16 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.KeyEvent;
+import android.view.View;
 import android.view.animation.AnimationUtils;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.robillo.readrush.R;
@@ -30,6 +37,7 @@ import com.robillo.readrush.data.prefs.AppPreferencesHelper;
 import com.robillo.readrush.ui.base.BaseActivity;
 import com.robillo.readrush.ui.main.discover.adapters.FeaturedAdapter;
 import com.robillo.readrush.ui.search.adapters.SearchNamesAdapter;
+import com.robillo.readrush.utils.KeyboardUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -104,6 +112,17 @@ public class SearchActivity extends BaseActivity implements SearchMvpView {
 
     @Override
     protected void setUp() {
+
+        mSearchEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if ((event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) || (actionId == EditorInfo.IME_ACTION_DONE)) {
+                    searchForResults();
+                    KeyboardUtils.INSTANCE.hideSoftInput(SearchActivity.this);
+                }
+                return false;
+            }
+        });
 
         //noinspection ConstantConditions
         mPrefsHelper = new AppPreferencesHelper(this, ReadRushApp.PREF_FILE_NAME);
