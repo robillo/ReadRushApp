@@ -44,8 +44,10 @@ public class CollectionListAdapter extends RecyclerView.Adapter<CollectionListAd
     public void onBindViewHolder(CollectionListHolder holder, final int position) {
         //noinspection UnnecessaryLocalVariable
         final int pos = position;
-        Glide.with(mContext).load(mList.get(pos).getCover_image()).centerCrop().crossFade().into(holder.mCover);
-//        holder.mAuthor.setText(mList.get(pos).getRush_id());
+        Glide.with(mContext).load(mList.get(pos).getCover()).centerCrop().crossFade().into(holder.mCover);
+        holder.mAuthor.setText(mList.get(pos).getAuthor());
+        holder.mTitle.setText(mList.get(pos).getTitle());
+        holder.mDescription.setText(mList.get(pos).getOne_line_description());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
