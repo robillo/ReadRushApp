@@ -9,10 +9,13 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_height="wrap_content"
+        android:padding="5sp"
+        android:textColor="@color/colorTextOne"
+        tools:ignore="MissingPrefix"
+        fontPath="fonts/four.ttf"
         android:textSize="30sp"
         android:gravity="center"
-        android:textColor="@color/colorTextTwo"
         tools:text="About"
         android:id="@+id/header"/>
 

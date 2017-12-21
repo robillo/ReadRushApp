@@ -316,7 +316,6 @@ public class DiscoverFragment extends BaseFragment implements DiscoverMvpView {
     @Override
     public void fetchCollectionFromCid(String coll_id, String coll_name) {
 
-        Toast.makeText(getActivity(), "coll name is " + coll_name, Toast.LENGTH_SHORT).show();
         startActivity(CollectionsActivity.getStartIntent(getActivity(), coll_id, coll_name));
 
 //        mCollectionRv.setVisibility(View.GONE);

@@ -131,7 +131,8 @@ public class ReviewsFragment extends BaseFragment implements ReviewsMvpView {
 
                 @Override
                 public void onFailure(@NonNull Call<List<Review>> call, @NonNull Throwable t) {
-                    Toast.makeText(getActivity(), "Network Error", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "No Reviews To Show", Toast.LENGTH_SHORT).show();
+                    setmExit();
                 }
             });
         }
