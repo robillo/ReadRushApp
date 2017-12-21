@@ -11,6 +11,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -64,6 +65,9 @@ public class SearchActivity extends BaseActivity implements SearchMvpView {
     private AppPreferencesHelper mPrefsHelper;
     @SuppressWarnings("FieldCanBeLocal")
     private ApiInterface mApiService;
+
+    @BindView(R.id.suggestions_or_results)
+    TextView mSuggestionsOrResults;
 
     @BindView(R.id.delete)
     ImageView mDeleteSearchNames;
@@ -128,7 +132,8 @@ public class SearchActivity extends BaseActivity implements SearchMvpView {
         mPrefsHelper = new AppPreferencesHelper(this, ReadRushApp.PREF_FILE_NAME);
         mApiService = ApiClient.getClient().create(ApiInterface.class);
         mSuggestionsRv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        GridLayoutManager manager = new GridLayoutManager(this, 5, LinearLayoutManager.HORIZONTAL, false);
+//        new GridLayoutManager(this, 5, LinearLayoutManager.VERTICAL, false)
+        StaggeredGridLayoutManager manager = new StaggeredGridLayoutManager(5, StaggeredGridLayoutManager.HORIZONTAL);
         mSearchHistory.setLayoutManager(manager);
 
         mLayoutSuggestions.setAnimation(AnimationUtils.loadAnimation(this, R.anim.slide_in_left));
@@ -172,7 +177,8 @@ public class SearchActivity extends BaseActivity implements SearchMvpView {
                     if(response.body().getMessage()!=null){
                         mSearchList = response.body().getMessage();
                         mSearchAdapter = new FeaturedAdapter(SearchActivity.this, mSearchList);
-                        mSuggestionsRv.setAdapter(mSearchAdapter);
+                        if(mSuggestionsRv!=null) mSuggestionsRv.setAdapter(mSearchAdapter);
+                        if(mSuggestionsOrResults!=null) mSuggestionsOrResults.setText(R.string.results);
                     }
                 }
 

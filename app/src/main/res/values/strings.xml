@@ -161,5 +161,6 @@
     <string name="search">Search</string>
     <string name="add_rush">Add Rush</string>
     <string name="read_rush">Read Rush</string>
+    <string name="results">Results</string>
 
 </resources>

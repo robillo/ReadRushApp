@@ -56,7 +56,8 @@
             android:textColor="@color/colorTextOne"
             tools:ignore="MissingPrefix"
             fontPath="fonts/three.ttf"
-            android:text="Suggestions"/>
+            android:text="Suggestions"
+            android:id="@+id/suggestions_or_results"/>
 
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
