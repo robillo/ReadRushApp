@@ -13,6 +13,7 @@ import com.robillo.readrush.R;
 import com.robillo.readrush.data.network.retrofit.model.CollectionListItem;
 import com.robillo.readrush.ui.main.discover.DiscoverFragment;
 import com.robillo.readrush.ui.rushoverview.OverviewActivity;
+import com.willy.ratingbar.ScaleRatingBar;
 
 import java.util.List;
 

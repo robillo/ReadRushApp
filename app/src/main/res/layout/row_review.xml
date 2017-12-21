@@ -35,7 +35,8 @@
                 android:text="Robin Kamboj"
                 android:paddingTop="5sp"
                 android:paddingLeft="5sp"
-                android:paddingBottom="5sp"/>
+                android:paddingBottom="5sp"
+                android:id="@+id/name"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -46,7 +47,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:srb_starHeight="10sp"
-                    app:srb_starWidth="10sp">
+                    app:srb_starWidth="10sp"
+                    android:id="@+id/rating"
+                    app:srb_clickable="false"
+                    app:srb_isIndicator="false"
+                    app:srb_scrollable="false"
+                    app:srb_clearRatingEnabled="false">
 
                 </com.willy.ratingbar.ScaleRatingBar>
 
@@ -57,7 +63,8 @@
                     android:textSize="15sp"
                     android:paddingLeft="10sp"
                     android:layout_gravity="start"
-                    android:text="2.5 Hours Ago"/>
+                    android:text="2.5 Hours Ago"
+                    android:id="@+id/time"/>
 
             </LinearLayout>
 
@@ -72,7 +79,8 @@
         android:textSize="15sp"
         android:layout_gravity="start"
         android:text="This was a really cool book showing some real aspects of life and originality of the writer."
-        android:padding="10sp"/>
+        android:padding="10sp"
+        android:id="@+id/description"/>
 
     <ImageView
         android:layout_width="match_parent"

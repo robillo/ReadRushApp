@@ -97,6 +97,8 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
                     android:id="@+id/scale_rating_bar"
+                    app:srb_starHeight="20sp"
+                    app:srb_starWidth="20sp"
                     app:srb_clickable="false"
                     app:srb_isIndicator="false"
                     app:srb_scrollable="false"

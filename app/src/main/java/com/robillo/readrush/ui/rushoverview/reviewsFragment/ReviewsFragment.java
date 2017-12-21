@@ -2,6 +2,7 @@ package com.robillo.readrush.ui.rushoverview.reviewsFragment;
 
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -97,7 +98,12 @@ public class ReviewsFragment extends BaseFragment implements ReviewsMvpView {
 
         //noinspection ConstantConditions
         mRushId = getArguments().getString("rush_id");
-        fetchReviews(mRushId);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                fetchReviews(mRushId);
+            }
+        }, 300);
     }
 
     @OnClick(R.id.exit)
@@ -117,8 +123,10 @@ public class ReviewsFragment extends BaseFragment implements ReviewsMvpView {
                 public void onResponse(@NonNull Call<List<Review>> call, @NonNull Response<List<Review>> response) {
                     mReviewList = response.body();
                     mAdapter = new ReviewsAdapter(getActivity(), mReviewList);
-                    mReviewRv.setAdapter(mAdapter);
-                    mReviewRv.setLayoutManager(new LinearLayoutManager(getActivity()));
+                    if(mReviewRv!=null){
+                        mReviewRv.setAdapter(mAdapter);
+                        mReviewRv.setLayoutManager(new LinearLayoutManager(getActivity()));
+                    }
                 }
 
                 @Override
