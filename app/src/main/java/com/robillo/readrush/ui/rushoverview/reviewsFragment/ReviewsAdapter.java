@@ -17,10 +17,10 @@ import java.util.List;
 
 public class ReviewsAdapter extends RecyclerView.Adapter<ReviewsAdapter.ReviewsHolder> {
 
-    Context mContext;
-    List<Review> mReviews;
+    private Context mContext;
+    private List<Review> mReviews;
 
-    public ReviewsAdapter(Context mContext, List<Review> mReviews) {
+    ReviewsAdapter(Context mContext, List<Review> mReviews) {
         this.mContext = mContext;
         this.mReviews = mReviews;
     }

@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <ImageView
@@ -29,24 +31,35 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorTextOne"
                 android:textSize="18sp"
-                tools:ignore="MissingPrefix"
-                fontPath="fonts/four.ttf"
                 android:layout_gravity="start"
                 android:text="Robin Kamboj"
                 android:paddingTop="5sp"
                 android:paddingLeft="5sp"
                 android:paddingBottom="5sp"/>
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:textSize="15sp"
-                android:paddingLeft="5sp"
-                tools:ignore="MissingPrefix"
-                fontPath="fonts/three.ttf"
-                android:layout_gravity="start"
-                android:text="4.5/5\t\t2.5 Hours Ago"/>
+                android:orientation="horizontal">
+
+                <com.willy.ratingbar.ScaleRatingBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srb_starHeight="10sp"
+                    app:srb_starWidth="10sp">
+
+                </com.willy.ratingbar.ScaleRatingBar>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:paddingLeft="10sp"
+                    android:layout_gravity="start"
+                    android:text="2.5 Hours Ago"/>
+
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -57,10 +70,14 @@
         android:layout_height="wrap_content"
         android:textColor="@color/colorTextTwo"
         android:textSize="15sp"
-        tools:ignore="MissingPrefix"
-        fontPath="fonts/four.ttf"
         android:layout_gravity="start"
         android:text="This was a really cool book showing some real aspects of life and originality of the writer."
         android:padding="10sp"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="2sp"
+        android:background="@color/colorTextThree"
+        android:contentDescription="null" />
 
 </LinearLayout>
