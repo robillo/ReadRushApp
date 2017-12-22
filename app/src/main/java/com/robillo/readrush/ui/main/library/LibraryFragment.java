@@ -297,7 +297,7 @@ public class LibraryFragment extends BaseFragment implements LibraryMvpView, Vie
     @Override
     public void openReadRushScreen(int index) {
         int count = mCoversList.size();
-        if(count > index) startActivity(ReadRushActivity.getStartIntent(getActivity(), mCoversList.get(index).getRushId()));
+        if(count > index) startActivity(ReadRushActivity.getStartIntent(getActivity(), mCoversList.get(index).getRushId(), mCoversList.get(index).isRush_audio()));
         else Toast.makeText(getActivity(), "Empty Cover", Toast.LENGTH_SHORT).show();
     }
 
@@ -306,7 +306,8 @@ public class LibraryFragment extends BaseFragment implements LibraryMvpView, Vie
         if(mCoversList!=null && mCoversList.size()>0){
             for(int i=0; i<mCoversList.size(); i++){
                 //noinspection ConstantConditions
-                LibraryCover mRoomCover = new LibraryCover(mCoversList.get(i).getRush_id(), mCoversList.get(i).getTitle(), mCoversList.get(i).getAuthor(), mCoversList.get(i).getRating(), mCoversList.get(i).getEst_time(), mCoversList.get(i).getPages(), mCoversList.get(i).getCover(), null);
+                LibraryCover mRoomCover = new LibraryCover(mCoversList.get(i).getRush_id(), mCoversList.get(i).getTitle(), mCoversList.get(i).getAuthor(), mCoversList.get(i).getRating(), mCoversList.get(i).getEst_time(), mCoversList.get(i).getPages(), mCoversList.get(i).getCover(), null,
+                         mCoversList.get(i).getAudio()!=null);
                 mLibraryCoverRepository.insertCoverItem(mRoomCover);
             }
         }

@@ -39,7 +39,10 @@ public class LibraryCover {
     @ColumnInfo(name = "rush_content")
     private String rush_content;
 
-    public LibraryCover(@NonNull String rushId, String title, String author, String rating, String estTime, String pages, String cover, String rush_content) {
+    @ColumnInfo(name = "rush_audio")
+    private boolean rush_audio;
+
+    public LibraryCover(@NonNull String rushId, String title, String author, String rating, String estTime, String pages, String cover, String rush_content, boolean rush_audio) {
         this.rushId = rushId;
         this.title = title;
         this.author = author;
@@ -48,6 +51,7 @@ public class LibraryCover {
         this.pages = pages;
         this.cover = cover;
         this.rush_content = rush_content;
+        this.rush_audio = rush_audio;
     }
 
     @SuppressWarnings("WeakerAccess")
@@ -117,5 +121,13 @@ public class LibraryCover {
 
     public void setRush_content(String rush_content) {
         this.rush_content = rush_content;
+    }
+
+    public boolean isRush_audio() {
+        return rush_audio;
+    }
+
+    public void setRush_audio(boolean rush_audio) {
+        this.rush_audio = rush_audio;
     }
 }

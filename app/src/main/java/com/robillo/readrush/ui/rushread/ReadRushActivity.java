@@ -111,6 +111,8 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
         mRushId = getIntent().getStringExtra("rush_id");
         mRushAudio = getIntent().getBooleanExtra("rush_audio", false);
 
+        if(!mRushAudio) mLaunchAudio.setVisibility(View.GONE);
+
         //noinspection ConstantConditions
         mPrefsHelper = new AppPreferencesHelper(this, ReadRushApp.PREF_FILE_NAME);
         mScreenSlidePagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
@@ -125,7 +127,7 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
             Window window = getWindow();
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(ContextCompat.getColor(this, R.color.rushRed));
+            window.setStatusBarColor(ContextCompat.getColor(this, R.color.dardRed));
         }
     }
 
@@ -135,7 +137,7 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
             Window window = getWindow();
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(ContextCompat.getColor(this, R.color.readBlack));
+            window.setStatusBarColor(ContextCompat.getColor(this, R.color.dardReadBlack));
         }
     }
 
