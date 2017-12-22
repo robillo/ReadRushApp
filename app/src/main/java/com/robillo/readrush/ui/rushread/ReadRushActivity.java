@@ -65,8 +65,10 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
     ImageButton mTextviewIncrease;
     @BindView(R.id.text_minus)
     ImageButton mTextviewDecrease;
-//    @BindView(R.id.text_font)
-//    ImageButton mTextviewFont;
+    @BindView(R.id.launch_audio)
+    ImageButton mLaunchAudio;
+    @BindView(R.id.text_format_dialog)
+    ImageButton mTextFormatDialog;
     @BindView(R.id.content_theme)
     ImageButton mContentTheme;
     @BindView(R.id.line_spacing)
@@ -82,10 +84,12 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
     private ScreenSlidePagerAdapter mScreenSlidePagerAdapter;
 
     String mRushId = null;
+    boolean mRushAudio = false;
 
-    public static Intent getStartIntent(Context context, String rush_id) {
+    public static Intent getStartIntent(Context context, String rush_id, boolean rush_audio) {
         Intent intent = new Intent(context, ReadRushActivity.class);
         intent.putExtra("rush_id", rush_id);
+        intent.putExtra("rush_audio", rush_audio);
         return intent;
     }
 
@@ -105,6 +109,7 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
 
     public void setUp() {
         mRushId = getIntent().getStringExtra("rush_id");
+        mRushAudio = getIntent().getBooleanExtra("rush_audio", false);
 
         //noinspection ConstantConditions
         mPrefsHelper = new AppPreferencesHelper(this, ReadRushApp.PREF_FILE_NAME);

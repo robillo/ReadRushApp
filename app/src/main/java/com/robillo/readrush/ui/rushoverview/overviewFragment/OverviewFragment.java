@@ -52,6 +52,7 @@ import retrofit2.Response;
 public class OverviewFragment extends BaseFragment implements OverviewFragmentMvpView {
 
     static String mRushId;
+    static boolean mRushAudio = false;
     private RushInfo mRushInfo;
     LiveData<List<String>> mLibraryCoversRushIds;
     List<String> mRushIds;
@@ -258,7 +259,7 @@ public class OverviewFragment extends BaseFragment implements OverviewFragmentMv
             addRushToOnlineLibrary();
         }
         else if(mAddReadRush.getText().equals(getString(R.string.read_rush))){
-            startActivity(ReadRushActivity.getStartIntent(getActivity(), mRushId));
+            startActivity(ReadRushActivity.getStartIntent(getActivity(), mRushId, mRushAudio));
         }
     }
 }
