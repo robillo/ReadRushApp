@@ -87,7 +87,7 @@
                 android:padding="8sp"
                 android:textColor="@color/colorTextFive"
                 tools:ignore="MissingPrefix"
-                fontPath="fonts/one.ttf"
+                fontPath="fonts/Raleway-Regular.ttf"
                 android:textSize="22sp"
                 android:gravity="center"
                 android:id="@+id/font1"/>
