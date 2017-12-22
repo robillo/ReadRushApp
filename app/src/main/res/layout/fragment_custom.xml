@@ -83,7 +83,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="text"
+                android:text="Raleway"
                 android:padding="8sp"
                 android:textColor="@color/colorTextFive"
                 tools:ignore="MissingPrefix"
@@ -95,11 +95,11 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="text"
+                android:text="Tiempo"
                 android:padding="8sp"
                 android:textColor="@color/colorTextFive"
                 tools:ignore="MissingPrefix"
-                fontPath="fonts/two.ttf"
+                fontPath="fonts/CMTiempo.ttf"
                 android:textSize="22sp"
                 android:gravity="center"
                 android:id="@+id/font2"/>
@@ -107,11 +107,11 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="text"
+                android:text="Comfortaa"
                 android:padding="8sp"
                 android:textColor="@color/colorTextFive"
                 tools:ignore="MissingPrefix"
-                fontPath="fonts/three.ttf"
+                fontPath="fonts/Comfortaa-Regular.ttf"
                 android:textSize="22sp"
                 android:gravity="center"
                 android:id="@+id/font3"/>
@@ -119,11 +119,11 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="text"
+                android:text="Georgia Belle"
                 android:padding="8sp"
                 android:textColor="@color/colorTextFive"
                 tools:ignore="MissingPrefix"
-                fontPath="fonts/four.ttf"
+                fontPath="fonts/GeorgiaBelle.ttf"
                 android:textSize="22sp"
                 android:gravity="center"
                 android:id="@+id/font4"/>
@@ -131,11 +131,11 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="text"
+                android:text="Rounded"
                 android:padding="8sp"
                 android:textColor="@color/colorTextFive"
                 tools:ignore="MissingPrefix"
-                fontPath="fonts/five.ttf"
+                fontPath="fonts/Rounded_Elegance.ttf"
                 android:textSize="22sp"
                 android:gravity="center"
                 android:id="@+id/font5"/>
