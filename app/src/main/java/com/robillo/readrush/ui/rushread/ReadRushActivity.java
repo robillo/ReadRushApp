@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.view.View;
@@ -53,6 +54,8 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
 
     private int NUM_PAGES = 0;
     private static int mCurrentPage = 0;
+    private CustomFragment mCustomFormatFragment;
+
 
     @Inject
     ReadRushMvpPresenter<ReadRushMvpView> mPresenter;
@@ -112,6 +115,8 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
     public void setUp() {
         mRushId = getIntent().getStringExtra("rush_id");
         mRushAudio = getIntent().getBooleanExtra("rush_audio", false);
+
+        mCustomFormatFragment = new CustomFragment();
 
         if(!mRushAudio) mLaunchAudio.setVisibility(View.GONE);
 
@@ -325,10 +330,14 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
 
     @OnClick(R.id.text_format_dialog)
     public void setmTextFormatDialog() {
+
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.setCustomAnimations(R.anim.format_in, R.anim.format_out);
+
         if(getSupportFragmentManager().findFragmentByTag("CUSTOM_DIALOG")==null)
-            getSupportFragmentManager().beginTransaction().add(R.id.pager_container, new CustomFragment(), "CUSTOM_DIALOG").commit();
+            transaction.add(R.id.pager_container, new CustomFragment(), "CUSTOM_DIALOG").commit();
         else
-            getSupportFragmentManager().beginTransaction().remove(getSupportFragmentManager().findFragmentByTag("CUSTOM_DIALOG")).commit();
+            transaction.remove(getSupportFragmentManager().findFragmentByTag("CUSTOM_DIALOG")).commit();
     }
 
     @Override

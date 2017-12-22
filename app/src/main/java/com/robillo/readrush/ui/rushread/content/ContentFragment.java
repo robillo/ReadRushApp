@@ -56,14 +56,13 @@ public class ContentFragment extends Fragment implements ContentMvpView {
         mPrefsHelper = new AppPreferencesHelper(getActivity(), ReadRushApp.PREF_FILE_NAME);
 
 //        mContentTextView.setOnClickListener(this);
+
         //noinspection ConstantConditions
-        if(getArguments()!=null){
-            content = getArguments().getString("content");
+        content = getArguments().getString("content");
 
-            mContentTextView.setText(Html.fromHtml(content));
+        mContentTextView.setText(Html.fromHtml(content));
 
-            refreshAttributes();
-        }
+        refreshAttributes();
     }
 
     @Override
