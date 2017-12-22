@@ -21,7 +21,7 @@ import com.robillo.readrush.ui.rushread.ReadRushActivity;
  * Created by robinkamboj on 15/11/17.
  */
 
-public class ContentFragment extends Fragment implements ContentMvpView, View.OnClickListener {
+public class ContentFragment extends Fragment implements ContentMvpView {
 
     TextView mContentTextView;
     String content;
@@ -55,7 +55,7 @@ public class ContentFragment extends Fragment implements ContentMvpView, View.On
         //noinspection ConstantConditions
         mPrefsHelper = new AppPreferencesHelper(getActivity(), ReadRushApp.PREF_FILE_NAME);
 
-        mContentTextView.setOnClickListener(this);
+//        mContentTextView.setOnClickListener(this);
         //noinspection ConstantConditions
         content = getArguments().getString("content");
         mContentTextView.setText(Html.fromHtml(content));
@@ -79,16 +79,16 @@ public class ContentFragment extends Fragment implements ContentMvpView, View.On
         }
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.content_text:{
-                ReadRushActivity activity = (ReadRushActivity) getActivity();
-                if (activity != null) {
-                    activity.hideShowCustomizeLayout();
-                }
-                break;
-            }
-        }
-    }
+//    @Override
+//    public void onClick(View v) {
+//        switch (v.getId()){
+//            case R.id.content_text:{
+//                ReadRushActivity activity = (ReadRushActivity) getActivity();
+//                if (activity != null) {
+//                    activity.hideShowCustomizeLayout();
+//                }
+//                break;
+//            }
+//        }
+//    }
 }

@@ -12,8 +12,24 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:orientation="horizontal"
+        android:background="@color/rushRed">
+
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="2sp"
+        android:background="@color/readBlack"
+        android:contentDescription="null"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:orientation="horizontal"
         android:background="@color/rushRed"
-        android:id="@+id/customize_content_layout">
+        android:id="@+id/customize_content_layout"
+        android:visibility="gone">
 
         <ImageButton
             android:layout_width="0sp"
@@ -80,11 +96,11 @@
     </android.support.v4.view.ViewPager>
 
     <ProgressBar
-        android:layout_width="match_parent"
-        android:layout_height="20sp"
+        android:id="@+id/content_progress"
         style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:indeterminate="false"
-        android:background="@color/rushRed"
-        android:id="@+id/content_progress"/>
+        tools:progress="4" />
 
 </LinearLayout>

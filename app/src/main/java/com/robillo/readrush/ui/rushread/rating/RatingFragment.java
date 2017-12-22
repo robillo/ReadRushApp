@@ -28,27 +28,6 @@ import butterknife.ButterKnife;
 
 public class RatingFragment extends BaseFragment implements RatingMvpView {
 
-    @BindView(R.id.name)
-    TextView mName;
-
-    @BindView(R.id.author)
-    TextView mAuthor;
-
-    @BindView(R.id.progress_bar_rating)
-    ProgressBar mRatingProgressBar;
-
-    @BindView(R.id.loading_ll)
-    LinearLayout mLoadingLayout;
-
-    @BindView(R.id.rating)
-    ScaleRatingBar mScaleRatingBar;
-
-    @BindView(R.id.review)
-    EditText mReview;
-
-    @BindView(R.id.submit_review)
-    Button mSubmitReview;
-
     public RatingFragment() {
         // Required empty public constructor
     }
@@ -83,9 +62,9 @@ public class RatingFragment extends BaseFragment implements RatingMvpView {
 
     }
 
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        if(isVisibleToUser && getActivity()!=null) ((ReadRushActivity) getActivity()).hideCustomizeLayout();
-    }
+//    @Override
+//    public void setUserVisibleHint(boolean isVisibleToUser) {
+//        super.setUserVisibleHint(isVisibleToUser);
+////        if(isVisibleToUser && getActivity()!=null) ((ReadRushActivity) getActivity()).hideCustomizeLayout();
+//    }
 }
