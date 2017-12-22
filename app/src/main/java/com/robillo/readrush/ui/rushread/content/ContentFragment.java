@@ -57,10 +57,13 @@ public class ContentFragment extends Fragment implements ContentMvpView {
 
 //        mContentTextView.setOnClickListener(this);
         //noinspection ConstantConditions
-        content = getArguments().getString("content");
-        mContentTextView.setText(Html.fromHtml(content));
+        if(getArguments()!=null){
+            content = getArguments().getString("content");
 
-        refreshAttributes();
+            mContentTextView.setText(Html.fromHtml(content));
+
+            refreshAttributes();
+        }
     }
 
     @Override

@@ -30,6 +30,7 @@ import com.robillo.readrush.data.network.retrofit.model.Content;
 import com.robillo.readrush.data.prefs.AppPreferencesHelper;
 import com.robillo.readrush.ui.base.BaseActivity;
 import com.robillo.readrush.ui.rushread.content.ContentFragment;
+import com.robillo.readrush.ui.rushread.custom_dialog_fragment.CustomDialogFragment;
 import com.robillo.readrush.ui.rushread.rating.RatingFragment;
 
 import java.util.List;
@@ -319,6 +320,12 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
             mPrefsHelper.setContentPadding(60);
         }
         refreshFragments();
+    }
+
+    @OnClick(R.id.text_format_dialog)
+    public void setmTextFormatDialog() {
+//        if(getSupportFragmentManager().findFragmentByTag("CUSTOM_DIALOG")==null)
+            getSupportFragmentManager().beginTransaction().add(R.id.pager_container, new ContentFragment(), "CUSTOM_DIALOG").commit();
     }
 
     @Override

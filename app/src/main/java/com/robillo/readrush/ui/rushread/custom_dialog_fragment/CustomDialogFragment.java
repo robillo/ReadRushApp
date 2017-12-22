@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
+import android.view.Window;
 import android.widget.Toast;
 
 import com.robillo.readrush.R;
@@ -39,20 +40,25 @@ public class CustomDialogFragment extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        return new AlertDialog.Builder(getActivity())
-                .setIcon(R.mipmap.ic_launcher_round)
-                .setTitle("Test Dialog")
-                .setMessage("This Is A Test Dialog With Num")
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(getActivity(), "Pressed OK", Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(getActivity(), "Cancel", Toast.LENGTH_SHORT).show();
-                    }
-                }).create();
+        Dialog dialog = new Dialog(getActivity());
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(false);
+        dialog.setContentView(R.layout.custom_dialog_fragment);
+        return dialog;
+//        return new AlertDialog.Builder(getActivity())
+//                .setIcon(R.mipmap.ic_launcher_round)
+//                .setTitle("Test Dialog")
+//                .setMessage("This Is A Test Dialog With Num")
+//                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        Toast.makeText(getActivity(), "Pressed OK", Toast.LENGTH_SHORT).show();
+//                    }
+//                })
+//                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        Toast.makeText(getActivity(), "Cancel", Toast.LENGTH_SHORT).show();
+//                    }
+//                }).create();
 //                .setMessage("This Is A Test Dialog With Num = " + num)
     }
 
