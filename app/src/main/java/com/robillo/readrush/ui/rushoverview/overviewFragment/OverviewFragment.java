@@ -172,7 +172,7 @@ public class OverviewFragment extends BaseFragment implements OverviewFragmentMv
                     mRushInfo = response.body().get(0);
 
                     if(mRushInfo.getRush_id()!=null){
-                        mRoomCover = new LibraryCover(mRushInfo.getRush_id(), mRushInfo.getTitle(), mRushInfo.getAuthor(), mRushInfo.getRating(), mRushInfo.getEst_time(), mRushInfo.getPages(), mRushInfo.getCover(), null);
+                        mRoomCover = new LibraryCover(mRushInfo.getRush_id(), mRushInfo.getTitle(), mRushInfo.getAuthor(), mRushInfo.getRating(), mRushInfo.getEst_time(), mRushInfo.getPages(), mRushInfo.getCover(), null, mRushInfo.getAudio()!=null);
                     }
 
                     mShimmerLayout.stopShimmerAnimation();
