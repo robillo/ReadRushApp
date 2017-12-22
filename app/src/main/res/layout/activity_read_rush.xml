@@ -14,6 +14,24 @@
         android:orientation="horizontal"
         android:background="@color/rushRed">
 
+        <View
+            android:layout_width="0sp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+
+        <ImageButton
+            android:layout_width="?attr/actionBarSize"
+            android:layout_height="?attr/actionBarSize"
+            android:contentDescription="headphones"
+            android:src="@drawable/ic_headset_white_24dp"
+            android:background="?attr/selectableItemBackground"/>
+
+        <ImageButton
+            android:layout_width="?attr/actionBarSize"
+            android:layout_height="?attr/actionBarSize"
+            android:contentDescription="headphones"
+            android:src="@drawable/ic_text_fields_white_24dp"
+            android:background="?attr/selectableItemBackground"/>
 
     </LinearLayout>
 
