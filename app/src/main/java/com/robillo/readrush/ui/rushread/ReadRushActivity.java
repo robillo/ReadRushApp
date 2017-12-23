@@ -54,8 +54,6 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
 
     private int NUM_PAGES = 0;
     private static int mCurrentPage = 0;
-    private CustomFragment mCustomFormatFragment;
-
 
     @Inject
     ReadRushMvpPresenter<ReadRushMvpView> mPresenter;
@@ -82,6 +80,8 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
     ImageButton mContentPadding;
     @BindView(R.id.toolbar)
     LinearLayout mToolBar;
+    @BindView(R.id.done_trigger)
+    LinearLayout mDoneTrigger;
 
     @SuppressWarnings("FieldCanBeLocal")
     private ApiInterface mApiService;
@@ -117,8 +117,6 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
     public void setUp() {
         mRushId = getIntent().getStringExtra("rush_id");
         mRushAudio = getIntent().getBooleanExtra("rush_audio", false);
-
-        mCustomFormatFragment = new CustomFragment();
 
         if(!mRushAudio) mLaunchAudio.setVisibility(View.GONE);
 
@@ -177,7 +175,7 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
                     mContents = response.body();
                     if(mContents!=null && mContents.size()>0){
                         //noinspection ConstantConditions
-                        mContentProgress.setMax(response.body().size()+1);
+                        mContentProgress.setMax(response.body().size());
                         mContentProgress.setProgress(1);
                         setFragmentsForContents(mContents);
                     }
@@ -195,7 +193,7 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
     @Override
     public void setFragmentsForContents(List<Content> contents) {
         if(contents!=null){
-            NUM_PAGES = contents.size()+1;
+            NUM_PAGES = contents.size();
             mContentPager.addOnPageChangeListener(viewPagerPageChangeListener);
             mContentPager.setAdapter(mScreenSlidePagerAdapter);
             mContentPager.setCurrentItem(mCurrentPage);
@@ -403,6 +401,11 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
             transaction.remove(getSupportFragmentManager().findFragmentByTag("CUSTOM_DIALOG")).commit();
     }
 
+    @OnClick(R.id.done_trigger)
+    public void setmDoneTrigger() {
+        Toast.makeText(this, "Done clicked", Toast.LENGTH_SHORT).show();
+    }
+
     @Override
     public void refreshFragments() {
         setFragmentsForContents(mContents);
@@ -425,13 +428,15 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
 
         @Override
         public Fragment getItem(int position) {
-            if(mContents.size()>position){
-                return ContentFragment.newInstance(mContents.get(position).getContent());
-            }
-            else {
-                //null pointer
-                return new RatingFragment();
-            }
+            return ContentFragment.newInstance(mContents.get(position).getContent());
+//            if(mContents.size()>position){
+//                return ContentFragment.newInstance(mContents.get(position).getContent());
+//            }
+            //No More Rating Fragment in the same pager
+//            else {
+//                //null pointer
+//                return new RatingFragment();
+//            }
         }
 
         @Override
@@ -458,6 +463,15 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
         public void onPageSelected(int position) {
             mCurrentPage = position;
             mContentProgress.setProgress(position+1);
+
+            if((mCurrentPage+1) == NUM_PAGES){
+                mDoneTrigger.setVisibility(View.VISIBLE);
+                mContentProgress.setVisibility(View.GONE);
+            }
+            else{
+                mDoneTrigger.setVisibility(View.GONE);
+                mContentProgress.setVisibility(View.VISIBLE);
+            }
         }
 
         @Override
