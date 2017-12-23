@@ -121,4 +121,14 @@ public class CustomFragment extends BaseFragment implements CustomFragmentMvpVie
     public void setmFont5Rounded() {
         if(getActivity()!=null) ((ReadRushActivity) getActivity()).setFontPath("font5");
     }
+
+    @OnClick(R.id.max_brightness)
+    public void setmMaxBrightness() {
+        if(getActivity()!=null) ((ReadRushActivity) getActivity()).setLightTheme();
+    }
+
+    @OnClick(R.id.min_brightness)
+    public void setmMinBrightness() {
+        if(getActivity()!=null) ((ReadRushActivity) getActivity()).setDarkTheme();
+    }
 }

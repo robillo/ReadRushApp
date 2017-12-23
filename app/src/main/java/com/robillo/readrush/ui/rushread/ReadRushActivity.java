@@ -80,6 +80,8 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
     ImageButton mLineSpacing;
     @BindView(R.id.content_padding)
     ImageButton mContentPadding;
+    @BindView(R.id.toolbar)
+    LinearLayout mToolBar;
 
     @SuppressWarnings("FieldCanBeLocal")
     private ApiInterface mApiService;
@@ -130,22 +132,38 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
 
     @Override
     public void setLightTheme() {
+
+        mPrefsHelper.setAppTheme("DAY");
+
+        mToolBar.setBackgroundColor(getResources().getColor(R.color.rushRed));
+        mContentProgress.setBackgroundColor(getResources().getColor(R.color.rushRed));
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(ContextCompat.getColor(this, R.color.dardRed));
         }
+
+        refreshFragments();
     }
 
     @Override
     public void setDarkTheme() {
+
+        mPrefsHelper.setAppTheme("NIGHT");
+
+        mToolBar.setBackgroundColor(getResources().getColor(R.color.readBlack));
+        mContentProgress.setBackgroundColor(getResources().getColor(R.color.readBlack));
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(ContextCompat.getColor(this, R.color.dardReadBlack));
         }
+
+        refreshFragments();
     }
 
     @Override
@@ -393,13 +411,9 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
     @Override
     public void setInitialTheme() {
         if((mPrefsHelper.getAppTheme()).equals("NIGHT")){
-            mCustomizeLinearLayout.setBackgroundColor(getResources().getColor(R.color.readBlack));
-            mContentProgress.setBackgroundColor(getResources().getColor(R.color.readBlack));
             setDarkTheme();
         }
         else {
-            mCustomizeLinearLayout.setBackgroundColor(getResources().getColor(R.color.rushRed));
-            mContentProgress.setBackgroundColor(getResources().getColor(R.color.rushRed));
             setLightTheme();
         }
     }
