@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.text.Html;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,7 +69,8 @@ public class ContentFragment extends Fragment implements ContentMvpView {
 
     @Override
     public void refreshAttributes() {
-        mContentTextView.setTextSize(ViewUtils.convertPixelsToSp(mPrefsHelper.getTextSize(), getActivity()));
+//        mContentTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, ViewUtils.convertPixelsToSp(mPrefsHelper.getTextSize(), getActivity()));
+        mContentTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, mPrefsHelper.getTextSize());
         mContentTextView.setLineSpacing(0, mPrefsHelper.getLineSpacing());
         int pad = mPrefsHelper.getContentPadding();
         mContentTextView.setPadding(pad, 10, pad, 10);

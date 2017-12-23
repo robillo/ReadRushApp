@@ -14,6 +14,7 @@ import com.robillo.readrush.R;
 import com.robillo.readrush.di.component.ActivityComponent;
 import com.robillo.readrush.ui.base.BaseFragment;
 import com.robillo.readrush.ui.main.library.LibraryFragment;
+import com.robillo.readrush.ui.rushread.ReadRushActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -78,22 +79,22 @@ public class CustomFragment extends BaseFragment implements CustomFragmentMvpVie
 
     @OnClick(R.id.size1)
     public void setmSizeOne() {
-
+        if(getActivity()!=null) ((ReadRushActivity) getActivity()).setFontSize(1);
     }
 
     @OnClick(R.id.size2)
     public void setmSizeTwo() {
-
+        if(getActivity()!=null) ((ReadRushActivity) getActivity()).setFontSize(2);
     }
 
     @OnClick(R.id.size3)
     public void setmSizeThree() {
-
+        if(getActivity()!=null) ((ReadRushActivity) getActivity()).setFontSize(3);
     }
 
     @OnClick(R.id.size4)
     public void setmSizeFour() {
-
+        if(getActivity()!=null) ((ReadRushActivity) getActivity()).setFontSize(4);
     }
 
     @OnClick(R.id.font1raleway)
