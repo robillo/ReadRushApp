@@ -11,166 +11,170 @@
         android:layout_weight="3"/>
 
     <LinearLayout
+        android:id="@+id/outer"
         android:layout_width="0sp"
         android:layout_height="wrap_content"
-        android:layout_weight="3"
+        android:layout_margin="5sp"
         android:layout_marginTop="50sp"
-        android:orientation="vertical"
+        android:layout_weight="3"
         android:background="@color/rushRed"
-        android:layout_margin="5sp">
+        android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/inner_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/dardRed"
             android:layout_margin="2sp"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
+            android:background="@color/dardRed"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
             <ImageButton
+                android:id="@+id/size1"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:src="@drawable/ic_text_fields_white_24dp"
+                android:background="?attr/selectableItemBackground"
+                android:contentDescription="high brightness"
+                android:padding="8sp"
                 android:scaleX="0.8"
                 android:scaleY="0.8"
-                android:background="?attr/selectableItemBackground"
-                android:contentDescription="high brightness"
-                android:padding="8sp"
-                android:id="@+id/size1"/>
+                android:src="@drawable/ic_text_fields_white_24dp" />
 
             <ImageButton
+                android:id="@+id/size2"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="?attr/selectableItemBackground"
+                android:contentDescription="low brightness"
+                android:padding="8sp"
                 android:scaleX="1.0"
                 android:scaleY="1.0"
-                android:src="@drawable/ic_text_fields_white_24dp"
-                android:background="?attr/selectableItemBackground"
-                android:contentDescription="low brightness"
-                android:padding="8sp"
-                android:id="@+id/size2"/>
+                android:src="@drawable/ic_text_fields_white_24dp" />
 
             <ImageButton
+                android:id="@+id/size3"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:src="@drawable/ic_text_fields_white_24dp"
+                android:background="?attr/selectableItemBackground"
+                android:contentDescription="high brightness"
+                android:padding="8sp"
                 android:scaleX="1.2"
                 android:scaleY="1.2"
-                android:background="?attr/selectableItemBackground"
-                android:contentDescription="high brightness"
-                android:padding="8sp"
-                android:id="@+id/size3"/>
+                android:src="@drawable/ic_text_fields_white_24dp" />
 
             <ImageButton
+                android:id="@+id/size4"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="?attr/selectableItemBackground"
+                android:contentDescription="low brightness"
+                android:padding="8sp"
                 android:scaleX="1.4"
                 android:scaleY="1.4"
-                android:src="@drawable/ic_text_fields_white_24dp"
-                android:background="?attr/selectableItemBackground"
-                android:contentDescription="low brightness"
-                android:padding="8sp"
-                android:id="@+id/size4"/>
+                android:src="@drawable/ic_text_fields_white_24dp" />
 
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/inner_2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:layout_margin="2sp"
             android:background="@color/dardRed"
-            android:layout_margin="2sp">
+            android:orientation="vertical">
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Raleway"
-                android:padding="8sp"
-                android:textColor="@color/colorTextFive"
-                tools:ignore="MissingPrefix"
+                android:id="@+id/font1raleway"
                 fontPath="fonts/Raleway-Regular.ttf"
-                android:textSize="22sp"
-                android:gravity="center"
-                android:id="@+id/font1raleway"/>
-
-            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Tiempo"
+                android:gravity="center"
                 android:padding="8sp"
+                android:text="Raleway"
                 android:textColor="@color/colorTextFive"
-                tools:ignore="MissingPrefix"
+                android:textSize="22sp"
+                tools:ignore="MissingPrefix" />
+
+            <TextView
+                android:id="@+id/font2tiempo"
                 fontPath="fonts/CMTiempo.ttf"
-                android:textSize="22sp"
-                android:gravity="center"
-                android:id="@+id/font2tiempo"/>
-
-            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Comfortaa"
+                android:gravity="center"
                 android:padding="8sp"
+                android:text="Tiempo"
                 android:textColor="@color/colorTextFive"
-                tools:ignore="MissingPrefix"
+                android:textSize="22sp"
+                tools:ignore="MissingPrefix" />
+
+            <TextView
+                android:id="@+id/font3comfortaa"
                 fontPath="fonts/Comfortaa-Regular.ttf"
-                android:textSize="22sp"
-                android:gravity="center"
-                android:id="@+id/font3comfortaa"/>
-
-            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Georgia Belle"
+                android:gravity="center"
                 android:padding="8sp"
+                android:text="Comfortaa"
                 android:textColor="@color/colorTextFive"
-                tools:ignore="MissingPrefix"
+                android:textSize="22sp"
+                tools:ignore="MissingPrefix" />
+
+            <TextView
+                android:id="@+id/font4georgia"
                 fontPath="fonts/GeorgiaBelle.ttf"
-                android:textSize="22sp"
-                android:gravity="center"
-                android:id="@+id/font4georgia"/>
-
-            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Rounded"
-                android:padding="8sp"
-                android:textColor="@color/colorTextFive"
-                tools:ignore="MissingPrefix"
-                fontPath="fonts/Rounded_Elegance.ttf"
-                android:textSize="22sp"
                 android:gravity="center"
-                android:id="@+id/font5rounded"/>
+                android:padding="8sp"
+                android:text="Georgia Belle"
+                android:textColor="@color/colorTextFive"
+                android:textSize="22sp"
+                tools:ignore="MissingPrefix" />
+
+            <TextView
+                android:id="@+id/font5rounded"
+                fontPath="fonts/Rounded_Elegance.ttf"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="8sp"
+                android:text="Rounded"
+                android:textColor="@color/colorTextFive"
+                android:textSize="22sp"
+                tools:ignore="MissingPrefix" />
 
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/inner_3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/dardRed"
-            android:layout_margin="2sp">
+            android:layout_margin="2sp"
+            android:background="@color/dardRed">
 
             <ImageButton
+                android:id="@+id/max_brightness"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:src="@drawable/ic_brightness_high_white_24dp"
                 android:background="?attr/selectableItemBackground"
                 android:contentDescription="high brightness"
                 android:padding="8sp"
-                android:id="@+id/max_brightness"/>
+                android:src="@drawable/ic_brightness_high_white_24dp" />
 
             <ImageButton
+                android:id="@+id/min_brightness"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:src="@drawable/ic_brightness_low_white_24dp"
                 android:background="?attr/selectableItemBackground"
                 android:contentDescription="low brightness"
                 android:padding="8sp"
-                android:id="@+id/min_brightness"/>
+                android:src="@drawable/ic_brightness_low_white_24dp" />
 
         </LinearLayout>
 

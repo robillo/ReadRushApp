@@ -11,6 +11,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.robillo.readrush.R;
+import com.robillo.readrush.ReadRushApp;
+import com.robillo.readrush.data.prefs.AppPreferencesHelper;
 import com.robillo.readrush.di.component.ActivityComponent;
 import com.robillo.readrush.ui.base.BaseFragment;
 import com.robillo.readrush.ui.main.library.LibraryFragment;
@@ -52,6 +54,20 @@ public class CustomFragment extends BaseFragment implements CustomFragmentMvpVie
     @BindView(R.id.font5rounded)
     TextView mFont5Rounded;
 
+    @BindView(R.id.outer)
+    View mLayoutOuter;
+
+    @BindView(R.id.inner_1)
+    View mLayoutInner1;
+
+    @BindView(R.id.inner_2)
+    View mLayoutInner2;
+
+    @BindView(R.id.inner_3)
+    View mLayoutInner3;
+
+    private AppPreferencesHelper mPrefsHelper;
+
     public CustomFragment() {
         // Required empty public constructor
     }
@@ -74,7 +90,9 @@ public class CustomFragment extends BaseFragment implements CustomFragmentMvpVie
 
     @Override
     protected void setUp(View view) {
-
+        //noinspection ConstantConditions
+        mPrefsHelper = new AppPreferencesHelper(getActivity(), ReadRushApp.PREF_FILE_NAME);
+        setInitialTheme();
     }
 
     @OnClick(R.id.size1)
@@ -124,11 +142,41 @@ public class CustomFragment extends BaseFragment implements CustomFragmentMvpVie
 
     @OnClick(R.id.max_brightness)
     public void setmMaxBrightness() {
-        if(getActivity()!=null) ((ReadRushActivity) getActivity()).setLightTheme();
+        if(getActivity()!=null){
+            ((ReadRushActivity) getActivity()).setLightTheme();
+
+            mLayoutOuter.setBackgroundColor(getResources().getColor(R.color.rushRed));
+            mLayoutInner1.setBackgroundColor(getResources().getColor(R.color.dardRed));
+            mLayoutInner2.setBackgroundColor(getResources().getColor(R.color.dardRed));
+            mLayoutInner3.setBackgroundColor(getResources().getColor(R.color.dardRed));
+        }
     }
 
     @OnClick(R.id.min_brightness)
     public void setmMinBrightness() {
-        if(getActivity()!=null) ((ReadRushActivity) getActivity()).setDarkTheme();
+        if(getActivity()!=null){
+            ((ReadRushActivity) getActivity()).setDarkTheme();
+
+            mLayoutOuter.setBackgroundColor(getResources().getColor(R.color.readBlack));
+            mLayoutInner1.setBackgroundColor(getResources().getColor(R.color.black));
+            mLayoutInner2.setBackgroundColor(getResources().getColor(R.color.black));
+            mLayoutInner3.setBackgroundColor(getResources().getColor(R.color.black));
+        }
+    }
+
+    @Override
+    public void setInitialTheme() {
+        if((mPrefsHelper.getAppTheme()).equals("NIGHT")){
+            mLayoutOuter.setBackgroundColor(getResources().getColor(R.color.readBlack));
+            mLayoutInner1.setBackgroundColor(getResources().getColor(R.color.black));
+            mLayoutInner2.setBackgroundColor(getResources().getColor(R.color.black));
+            mLayoutInner3.setBackgroundColor(getResources().getColor(R.color.black));
+        }
+        else {
+            mLayoutOuter.setBackgroundColor(getResources().getColor(R.color.rushRed));
+            mLayoutInner1.setBackgroundColor(getResources().getColor(R.color.dardRed));
+            mLayoutInner2.setBackgroundColor(getResources().getColor(R.color.dardRed));
+            mLayoutInner3.setBackgroundColor(getResources().getColor(R.color.dardRed));
+        }
     }
 }
