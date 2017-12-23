@@ -2,6 +2,7 @@ package com.robillo.readrush.ui.rushread.content;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -69,9 +70,11 @@ public class ContentFragment extends Fragment implements ContentMvpView {
 
     @Override
     public void refreshAttributes() {
-//        mContentTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, ViewUtils.convertPixelsToSp(mPrefsHelper.getTextSize(), getActivity()));
         mContentTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, mPrefsHelper.getTextSize());
         mContentTextView.setLineSpacing(0, mPrefsHelper.getLineSpacing());
+        Typeface typeface = null;
+        if(getActivity()!=null) typeface = Typeface.createFromAsset(getActivity().getAssets(),"fonts/CMTiempo.ttf");
+        mContentTextView.setTypeface(typeface);
         int pad = mPrefsHelper.getContentPadding();
         mContentTextView.setPadding(pad, 10, pad, 10);
         if((mPrefsHelper.getAppTheme()).equals("NIGHT")){

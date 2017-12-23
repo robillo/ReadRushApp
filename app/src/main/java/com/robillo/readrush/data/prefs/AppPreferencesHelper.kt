@@ -239,19 +239,15 @@ constructor(@ApplicationContext context: Context, @PreferenceInfo prefFileName: 
     override fun setTextSize(size: Int){
         when(size){
             1 -> {
-//                mPrefs.edit().putInt(PREF_KEY_TEXT_SIZE, ViewUtils.convertSpToPixels((20).toFloat(), mContext)).apply()
                 mPrefs.edit().putInt(PREF_KEY_TEXT_SIZE, 20).apply()
             }
             2 -> {
-//                mPrefs.edit().putInt(PREF_KEY_TEXT_SIZE, ViewUtils.convertSpToPixels((25).toFloat(), mContext)).apply()
                 mPrefs.edit().putInt(PREF_KEY_TEXT_SIZE, 25).apply()
             }
             3 -> {
-//                mPrefs.edit().putInt(PREF_KEY_TEXT_SIZE, ViewUtils.convertSpToPixels((30).toFloat(), mContext)).apply()
                 mPrefs.edit().putInt(PREF_KEY_TEXT_SIZE, 30).apply()
             }
             4 -> {
-//                mPrefs.edit().putInt(PREF_KEY_TEXT_SIZE, ViewUtils.convertSpToPixels((40).toFloat(), mContext)).apply()
                 mPrefs.edit().putInt(PREF_KEY_TEXT_SIZE, 35).apply()
             }
         }
