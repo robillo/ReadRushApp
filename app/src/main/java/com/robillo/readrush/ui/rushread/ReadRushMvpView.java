@@ -29,4 +29,6 @@ public interface ReadRushMvpView extends MvpView {
 
     void setInitialTheme();
 
+    void setFontSize(int sizeNumber);
+
 }

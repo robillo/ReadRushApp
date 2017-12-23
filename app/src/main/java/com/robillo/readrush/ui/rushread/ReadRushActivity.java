@@ -288,6 +288,29 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
         refreshFragments();
     }
 
+    @Override
+    public void setFontSize(int sizeNumber) {
+        switch (sizeNumber){
+            case 1:{
+                mPrefsHelper.setTextSize(1);
+                break;
+            }
+            case 2:{
+                mPrefsHelper.setTextSize(2);
+                break;
+            }
+            case 3:{
+                mPrefsHelper.setTextSize(3);
+                break;
+            }
+            case 4:{
+                mPrefsHelper.setTextSize(4);
+                break;
+            }
+        }
+        refreshFragments();
+    }
+
 //    @OnClick(R.id.text_font)
 //    public void changeFont() {
 //

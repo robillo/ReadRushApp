@@ -16,6 +16,7 @@ import com.robillo.readrush.R;
 import com.robillo.readrush.ReadRushApp;
 import com.robillo.readrush.data.prefs.AppPreferencesHelper;
 import com.robillo.readrush.ui.rushread.ReadRushActivity;
+import com.robillo.readrush.utils.ViewUtils;
 
 /**
  * Created by robinkamboj on 15/11/17.
@@ -67,7 +68,7 @@ public class ContentFragment extends Fragment implements ContentMvpView {
 
     @Override
     public void refreshAttributes() {
-        mContentTextView.setTextSize(mPrefsHelper.getTextSize());
+        mContentTextView.setTextSize(ViewUtils.convertPixelsToSp(mPrefsHelper.getTextSize(), getActivity()));
         mContentTextView.setLineSpacing(0, mPrefsHelper.getLineSpacing());
         int pad = mPrefsHelper.getContentPadding();
         mContentTextView.setPadding(pad, 10, pad, 10);

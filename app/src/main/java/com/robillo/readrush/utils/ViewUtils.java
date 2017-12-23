@@ -20,6 +20,7 @@ import android.content.res.Resources;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
+import android.util.TypedValue;
 
 import com.robillo.readrush.R;
 
@@ -38,6 +39,14 @@ public final class ViewUtils {
     public static int dpToPx(float dp) {
         float density = Resources.getSystem().getDisplayMetrics().density;
         return Math.round(dp * density);
+    }
+
+    public static int convertSpToPixels(float sp, Context context) {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sp, context.getResources().getDisplayMetrics());
+    }
+
+    public static float convertPixelsToSp(int px, Context context) {
+        return  px / context.getResources().getDisplayMetrics().scaledDensity;
     }
 
     public static void changeIconDrawableToGray(Context context, Drawable drawable) {

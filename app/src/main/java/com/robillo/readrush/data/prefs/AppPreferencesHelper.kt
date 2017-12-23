@@ -8,6 +8,7 @@ import com.robillo.readrush.data.DataManager
 import com.robillo.readrush.di.ApplicationContext
 import com.robillo.readrush.di.PreferenceInfo
 import com.robillo.readrush.utils.AppConstants
+import com.robillo.readrush.utils.ViewUtils
 
 import javax.inject.Inject
 
@@ -19,9 +20,11 @@ class AppPreferencesHelper @Inject
 constructor(@ApplicationContext context: Context, @PreferenceInfo prefFileName: String) : PreferencesHelper {
 
     private val mPrefs: SharedPreferences
+    private var mContext: Context
 
     init {
         mPrefs = context.getSharedPreferences(prefFileName, Context.MODE_PRIVATE)
+        mContext = context
     }
 
     override fun getCurrentUserId(): Long? {
@@ -233,8 +236,21 @@ constructor(@ApplicationContext context: Context, @PreferenceInfo prefFileName: 
         return mPrefs.getFloat(PREF_KEY_LINE_SPACING, 1.5F);
     }
 
-    override fun setTextSize(size: Int) {
-        mPrefs.edit().putInt(PREF_KEY_TEXT_SIZE, size).apply();
+    override fun setTextSize(size: Int){
+        when(size){
+            1 -> {
+                mPrefs.edit().putInt(PREF_KEY_TEXT_SIZE, ViewUtils.convertSpToPixels((20).toFloat(), mContext)).apply()
+            }
+            2 -> {
+                mPrefs.edit().putInt(PREF_KEY_TEXT_SIZE, ViewUtils.convertSpToPixels((25).toFloat(), mContext)).apply()
+            }
+            4 -> {
+                mPrefs.edit().putInt(PREF_KEY_TEXT_SIZE, ViewUtils.convertSpToPixels((30).toFloat(), mContext)).apply()
+            }
+            4 -> {
+                mPrefs.edit().putInt(PREF_KEY_TEXT_SIZE, ViewUtils.convertSpToPixels((40).toFloat(), mContext)).apply()
+            }
+        }
     }
 
     override fun getTextSize(): Int {
