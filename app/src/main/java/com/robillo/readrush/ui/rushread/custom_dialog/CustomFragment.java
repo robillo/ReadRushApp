@@ -99,26 +99,26 @@ public class CustomFragment extends BaseFragment implements CustomFragmentMvpVie
 
     @OnClick(R.id.font1raleway)
     public void setmFont1Raleway() {
-
+        if(getActivity()!=null) ((ReadRushActivity) getActivity()).setFontPath("font1");
     }
 
     @OnClick(R.id.font2tiempo)
     public void setmFont2Tiempo() {
-
+        if(getActivity()!=null) ((ReadRushActivity) getActivity()).setFontPath("font2");
     }
 
     @OnClick(R.id.font3comfortaa)
     public void setmFont3Comfortaa() {
-
+        if(getActivity()!=null) ((ReadRushActivity) getActivity()).setFontPath("font3");
     }
 
     @OnClick(R.id.font4georgia)
     public void setmFont4Georgia() {
-
+        if(getActivity()!=null) ((ReadRushActivity) getActivity()).setFontPath("font4");
     }
 
     @OnClick(R.id.font5rounded)
     public void setmFont5Rounded() {
-
+        if(getActivity()!=null) ((ReadRushActivity) getActivity()).setFontPath("font5");
     }
 }

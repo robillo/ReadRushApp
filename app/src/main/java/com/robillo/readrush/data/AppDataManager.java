@@ -251,6 +251,16 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
+    public void setFontPath(String path) {
+
+    }
+
+    @Override
+    public String getFontPath() {
+        return null;
+    }
+
+    @Override
     public int getCurrentUserLoggedInMode() {
         return mPreferencesHelper.getCurrentUserLoggedInMode();
     }

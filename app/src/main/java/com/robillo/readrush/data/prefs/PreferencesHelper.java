@@ -95,4 +95,7 @@ public interface PreferencesHelper {
 
     void setTextSize(int size);
     int getTextSize();
+
+    void setFontPath(String path);
+    String getFontPath();
 }

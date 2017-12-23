@@ -257,6 +257,14 @@ constructor(@ApplicationContext context: Context, @PreferenceInfo prefFileName: 
         return mPrefs.getInt(PREF_KEY_TEXT_SIZE, 20);
     }
 
+    override fun setFontPath(path: String?) {
+        mPrefs.edit().putString(PREF_KEY_FONT_PATH, path).apply()
+    }
+
+    override fun getFontPath(): String {
+        return mPrefs.getString(PREF_KEY_FONT_PATH, "fonts/Raleway-Regular.ttf");
+    }
+
     companion object {
 
         private val PREF_KEY_USER_LOGGED_IN_MODE = "PREF_KEY_USER_LOGGED_IN_MODE"
@@ -294,5 +302,6 @@ constructor(@ApplicationContext context: Context, @PreferenceInfo prefFileName: 
         private val PREF_KEY_CONTENT_PADDING = "PREF_KEY_CONTENT_PADDING"
         private val PREF_KEY_LINE_SPACING = "PREF_KEY_LINE_SPACING"
         private val PREF_KEY_TEXT_SIZE = "PREF_KEY_TEXT_SIZE"
+        private val PREF_KEY_FONT_PATH = "PREF_KEY_FONT_PATH"
     }
 }

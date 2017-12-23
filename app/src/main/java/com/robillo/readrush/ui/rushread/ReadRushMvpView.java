@@ -31,4 +31,6 @@ public interface ReadRushMvpView extends MvpView {
 
     void setFontSize(int sizeNumber);
 
+    void setFontPath(String fontPath);
+
 }

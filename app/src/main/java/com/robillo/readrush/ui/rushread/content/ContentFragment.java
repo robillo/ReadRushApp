@@ -73,7 +73,7 @@ public class ContentFragment extends Fragment implements ContentMvpView {
         mContentTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, mPrefsHelper.getTextSize());
         mContentTextView.setLineSpacing(0, mPrefsHelper.getLineSpacing());
         Typeface typeface = null;
-        if(getActivity()!=null) typeface = Typeface.createFromAsset(getActivity().getAssets(),"fonts/CMTiempo.ttf");
+        if(getActivity()!=null) typeface = Typeface.createFromAsset(getActivity().getAssets(), mPrefsHelper.getFontPath());
         mContentTextView.setTypeface(typeface);
         int pad = mPrefsHelper.getContentPadding();
         mContentTextView.setPadding(pad, 10, pad, 10);

@@ -311,10 +311,32 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
         refreshFragments();
     }
 
-//    @OnClick(R.id.text_font)
-//    public void changeFont() {
-//
-//    }
+    @Override
+    public void setFontPath(String fontPath) {
+        switch (fontPath){
+            case "font1":{
+                mPrefsHelper.setFontPath("fonts/Raleway-Regular.ttf");
+                break;
+            }
+            case "font2":{
+                mPrefsHelper.setFontPath("fonts/CMTiempo.ttf");
+                break;
+            }
+            case "font3":{
+                mPrefsHelper.setFontPath("fonts/Comfortaa-Regular.ttf");
+                break;
+            }
+            case "font4":{
+                mPrefsHelper.setFontPath("fonts/GeorgiaBelle.ttf");
+                break;
+            }
+            case "font5":{
+                mPrefsHelper.setFontPath("fonts/Rounded_Elegance.ttf");
+                break;
+            }
+        }
+        refreshFragments();
+    }
 
     @OnClick(R.id.content_theme)
     public void changeTheme() {
