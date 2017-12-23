@@ -36,7 +36,8 @@
                 android:scaleY="0.8"
                 android:background="?attr/selectableItemBackground"
                 android:contentDescription="high brightness"
-                android:padding="8sp"/>
+                android:padding="8sp"
+                android:id="@+id/size1"/>
 
             <ImageButton
                 android:layout_width="0sp"
@@ -47,7 +48,8 @@
                 android:src="@drawable/ic_text_fields_white_24dp"
                 android:background="?attr/selectableItemBackground"
                 android:contentDescription="low brightness"
-                android:padding="8sp"/>
+                android:padding="8sp"
+                android:id="@+id/size2"/>
 
             <ImageButton
                 android:layout_width="0sp"
@@ -58,7 +60,8 @@
                 android:scaleY="1.2"
                 android:background="?attr/selectableItemBackground"
                 android:contentDescription="high brightness"
-                android:padding="8sp"/>
+                android:padding="8sp"
+                android:id="@+id/size3"/>
 
             <ImageButton
                 android:layout_width="0sp"
@@ -69,7 +72,8 @@
                 android:src="@drawable/ic_text_fields_white_24dp"
                 android:background="?attr/selectableItemBackground"
                 android:contentDescription="low brightness"
-                android:padding="8sp"/>
+                android:padding="8sp"
+                android:id="@+id/size4"/>
 
         </LinearLayout>
 
@@ -90,7 +94,7 @@
                 fontPath="fonts/Raleway-Regular.ttf"
                 android:textSize="22sp"
                 android:gravity="center"
-                android:id="@+id/font1"/>
+                android:id="@+id/font1raleway"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -102,7 +106,7 @@
                 fontPath="fonts/CMTiempo.ttf"
                 android:textSize="22sp"
                 android:gravity="center"
-                android:id="@+id/font2"/>
+                android:id="@+id/font2tiempo"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -114,7 +118,7 @@
                 fontPath="fonts/Comfortaa-Regular.ttf"
                 android:textSize="22sp"
                 android:gravity="center"
-                android:id="@+id/font3"/>
+                android:id="@+id/font3comfortaa"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -126,7 +130,7 @@
                 fontPath="fonts/GeorgiaBelle.ttf"
                 android:textSize="22sp"
                 android:gravity="center"
-                android:id="@+id/font4"/>
+                android:id="@+id/font4georgia"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -138,7 +142,7 @@
                 fontPath="fonts/Rounded_Elegance.ttf"
                 android:textSize="22sp"
                 android:gravity="center"
-                android:id="@+id/font5"/>
+                android:id="@+id/font5rounded"/>
 
         </LinearLayout>
 
@@ -155,7 +159,8 @@
                 android:src="@drawable/ic_brightness_high_white_24dp"
                 android:background="?attr/selectableItemBackground"
                 android:contentDescription="high brightness"
-                android:padding="8sp"/>
+                android:padding="8sp"
+                android:id="@+id/max_brightness"/>
 
             <ImageButton
                 android:layout_width="0sp"
@@ -164,7 +169,8 @@
                 android:src="@drawable/ic_brightness_low_white_24dp"
                 android:background="?attr/selectableItemBackground"
                 android:contentDescription="low brightness"
-                android:padding="8sp"/>
+                android:padding="8sp"
+                android:id="@+id/min_brightness"/>
 
         </LinearLayout>
 

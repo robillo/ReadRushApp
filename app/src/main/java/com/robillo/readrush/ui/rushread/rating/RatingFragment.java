@@ -43,16 +43,7 @@ public class RatingFragment extends BaseFragment implements RatingMvpView {
         View v = inflater.inflate(R.layout.fragment_rating, container, false);
 
         ActivityComponent component = getActivityComponent();
-        if(component!=null){
-
-//            component.inject(RatingFragment.this);
-
-            setUnBinder(ButterKnife.bind(this, v));
-
-//            mPresenter.onAttach(RatingFragment.this);
-
-        }
-
+        if(component!=null) setUnBinder(ButterKnife.bind(this, v));
         setUp(v);
         return v;
     }
