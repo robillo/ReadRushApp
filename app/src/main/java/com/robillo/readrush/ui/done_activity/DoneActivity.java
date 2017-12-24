@@ -130,13 +130,13 @@ public class DoneActivity extends BaseActivity implements RatingDialogListener {
     @Override
     public void onPositiveButtonClicked(int rating, String review) {
         //Call to review rush
-        Toast.makeText(this, " " + mPrefsHelper.getUserId() + " " +  mRushId + " " + " " + String.valueOf(rating) + " " + review, Toast.LENGTH_SHORT).show();
+
         Call<ResponseBody> call = mApiService.createReview(mPrefsHelper.getUserId(), mRushId, String.valueOf(rating), review);
         if(call!=null){
             call.enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
-                    Log.e(" " , response.message());
+                    Log.e("response", " " + response.toString() + response.message() + response.isSuccessful());
                     Toast.makeText(DoneActivity.this, "Review posted successfully", Toast.LENGTH_SHORT).show();
                     Toast.makeText(DoneActivity.this, "Your review can now be viewed in rush detail screen", Toast.LENGTH_SHORT).show();
                 }

@@ -37,7 +37,7 @@ public interface ApiInterface {
     );
 
     @FormUrlEncoded
-    @POST("/new_api/create_review")
+    @POST("new_api/create_review")
     Call<ResponseBody> createReview(
             @Field("user_id") String user_id,
             @Field("rush_id") String rush_id,
