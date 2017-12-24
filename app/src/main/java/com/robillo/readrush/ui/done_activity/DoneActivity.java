@@ -70,7 +70,7 @@ public class DoneActivity extends BaseActivity implements RatingDialogListener {
         mRushName = getIntent().getStringExtra("rush_name");
         mName.setText(mRushName);
 
-        showDialog();
+        //check whether has reviewed book for resp. rush_id and accordingly change "rate and review rush" and "update rush review"
     }
 
     @OnClick(R.id.back)
@@ -87,7 +87,7 @@ public class DoneActivity extends BaseActivity implements RatingDialogListener {
                 .setDefaultRating(2)
                 .setTitle("Rate this application")
                 .setDescription("Please select some stars and give your feedback")
-                .setDefaultComment("This book is..")
+                .setDefaultComment("This rush is..")
                 .setStarColor(R.color.dardRed)
                 .setNoteDescriptionTextColor(R.color.colorTextFour)
                 .setTitleTextColor(R.color.colorPrimary)
@@ -101,18 +101,23 @@ public class DoneActivity extends BaseActivity implements RatingDialogListener {
                 .show();
     }
 
-    @Override
-    public void onPositiveButtonClicked(int i, String s) {
+    @OnClick(R.id.rate_review_app)
+    public void setmRateReviewApp() {
+        showDialog();
+    }
 
+    @Override
+    public void onPositiveButtonClicked(int rating, String comment) {
+        //Call to review rush
     }
 
     @Override
     public void onNegativeButtonClicked() {
-
+        //Auto - dismiss ; do nothing
     }
 
     @Override
     public void onNeutralButtonClicked() {
-
+        //Auto - dismiss ; do nothing
     }
 }

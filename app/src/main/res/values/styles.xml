@@ -44,7 +44,6 @@
 
     <dimen name="text_size_medium">18sp</dimen>
 
-
     <style name="MyDialogTitleStyle">
         <item name="android:textColor">@color/colorTextFive</item>
         <item name="android:textSize">20sp</item>
