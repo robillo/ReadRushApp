@@ -106,7 +106,7 @@ public class DoneActivity extends BaseActivity implements RatingDialogListener {
                 .setNeutralButtonText("Later")
                 .setNoteDescriptions(Arrays.asList("Very Bad", "Not good", "Quite ok", "Very Good", "Excellent !!!"))
                 .setDefaultRating(2)
-                .setTitle("Rate this application")
+                .setTitle("Rate This Rush:")
                 .setDescription("Please select some stars and give your feedback")
                 .setDefaultComment("This rush is..")
                 .setStarColor(R.color.dardRed)

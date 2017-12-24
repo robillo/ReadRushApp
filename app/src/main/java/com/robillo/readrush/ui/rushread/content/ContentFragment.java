@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.text.Html;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -63,6 +64,7 @@ public class ContentFragment extends Fragment implements ContentMvpView {
         //noinspection ConstantConditions
         content = getArguments().getString("content");
 
+        Log.e("content", Html.fromHtml(content).toString());
         mContentTextView.setText(Html.fromHtml(content));
 
         refreshAttributes();
