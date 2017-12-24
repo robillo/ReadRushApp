@@ -297,7 +297,7 @@ public class LibraryFragment extends BaseFragment implements LibraryMvpView, Vie
     @Override
     public void openReadRushScreen(int index) {
         int count = mCoversList.size();
-        if(count > index) startActivity(ReadRushActivity.getStartIntent(getActivity(), mCoversList.get(index).getRushId(), mCoversList.get(index).isRush_audio()));
+        if(count > index) startActivity(ReadRushActivity.getStartIntent(getActivity(), mCoversList.get(index).getRushId(), mCoversList.get(index).isRush_audio(), mCoversList.get(index).getTitle()));
         else Toast.makeText(getActivity(), "Empty Cover", Toast.LENGTH_SHORT).show();
     }
 

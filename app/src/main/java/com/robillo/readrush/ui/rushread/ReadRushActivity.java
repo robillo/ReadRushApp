@@ -30,6 +30,7 @@ import com.robillo.readrush.data.network.retrofit.ApiInterface;
 import com.robillo.readrush.data.network.retrofit.model.Content;
 import com.robillo.readrush.data.prefs.AppPreferencesHelper;
 import com.robillo.readrush.ui.base.BaseActivity;
+import com.robillo.readrush.ui.done_activity.DoneActivity;
 import com.robillo.readrush.ui.rushread.content.ContentFragment;
 import com.robillo.readrush.ui.rushread.custom_dialog.CustomFragment;
 import com.robillo.readrush.ui.rushread.custom_dialog_fragment.CustomDialogFragment;
@@ -54,6 +55,7 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
 
     private int NUM_PAGES = 0;
     private static int mCurrentPage = 0;
+    private static String mRushName = null;
 
     @Inject
     ReadRushMvpPresenter<ReadRushMvpView> mPresenter;
@@ -93,10 +95,11 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
     String mRushId = null;
     boolean mRushAudio = false;
 
-    public static Intent getStartIntent(Context context, String rush_id, boolean rush_audio) {
+    public static Intent getStartIntent(Context context, String rush_id, boolean rush_audio, String rush_name) {
         Intent intent = new Intent(context, ReadRushActivity.class);
         intent.putExtra("rush_id", rush_id);
         intent.putExtra("rush_audio", rush_audio);
+        intent.putExtra("rush_name", rush_name);
         return intent;
     }
 
@@ -117,6 +120,7 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
     public void setUp() {
         mRushId = getIntent().getStringExtra("rush_id");
         mRushAudio = getIntent().getBooleanExtra("rush_audio", false);
+        mRushName = getIntent().getStringExtra("rush_name");
 
         if(!mRushAudio) mLaunchAudio.setVisibility(View.GONE);
 
@@ -403,7 +407,7 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
 
     @OnClick(R.id.done_trigger)
     public void setmDoneTrigger() {
-        Toast.makeText(this, "Done clicked", Toast.LENGTH_SHORT).show();
+        startActivity(DoneActivity.getStartIntent(this, mRushId, mRushName));
     }
 
     @Override

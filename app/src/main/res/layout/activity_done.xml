@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.robillo.readrush.ui.done_activity.DoneActivity"
-    android:background="@color/rushRed">
+    android:background="@color/dardRed">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,12 +14,13 @@
         android:layout_weight="3"
         android:orientation="vertical">
 
-        <ImageView
+        <ImageButton
             android:layout_width="60sp"
             android:layout_height="60sp"
-            android:padding="10sp"
+            android:background="?attr/selectableItemBackground"
             android:src="@drawable/ic_arrow_back_white_24dp"
-            android:contentDescription="back"/>
+            android:contentDescription="back"
+            android:id="@+id/back"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -27,8 +28,6 @@
             android:textColor="@color/colorTextFour"
             android:textStyle="bold"
             android:textSize="30sp"
-            tools:ignore="MissingPrefix"
-            fontPath="fonts/four.ttf"
             android:gravity="center"
             android:layout_gravity="center_horizontal"
             tools:text="Perfect Dutch"
@@ -42,14 +41,74 @@
             android:textColor="@color/colorTextFive"
             android:textStyle="bold"
             android:textSize="25sp"
-            tools:ignore="MissingPrefix"
-            fontPath="fonts/four.ttf"
             android:gravity="center"
             android:layout_gravity="center_horizontal"
-            tools:text="Done And Dusted!"
+            android:text="Done And Dusted!"
             android:paddingTop="5sp"
             android:paddingBottom="5sp"
             android:id="@+id/done_and_dusted"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="4sp"
+            android:layout_marginTop="5sp"
+            android:layout_marginBottom="5sp"
+            android:layout_marginRight="20sp"
+            android:layout_marginLeft="20sp"
+            android:background="@color/readBlack"
+            android:contentDescription="null"/>
+
+        <TextView
+            android:id="@+id/rate_review_app"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="20sp"
+            android:layout_gravity="center_horizontal"
+            android:drawableLeft="@drawable/ic_rate_review_white_18dp"
+            android:drawablePadding="15sp"
+            android:paddingBottom="5sp"
+            android:paddingTop="5sp"
+            android:textColor="@color/colorTextFour"
+            android:textSize="20sp"
+            android:text="Rate and Review Book"
+            android:background="?attr/selectableItemBackground"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="4sp"
+            android:layout_marginTop="5sp"
+            android:layout_marginBottom="5sp"
+            android:layout_marginRight="20sp"
+            android:layout_marginLeft="20sp"
+            android:background="@color/readBlack"
+            android:contentDescription="null"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0sp"
+            android:layout_weight="1"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="4sp"
+            android:layout_marginTop="5sp"
+            android:layout_marginBottom="5sp"
+            android:layout_marginRight="20sp"
+            android:layout_marginLeft="20sp"
+            android:background="@color/readBlack"
+            android:contentDescription="null"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="15sp"
+            android:layout_gravity="center_horizontal"
+            android:paddingBottom="5sp"
+            android:paddingTop="5sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorTextFive"
+            android:textSize="20sp"
+            android:text="Try These Next:" />
 
         <ImageView
             android:layout_width="match_parent"

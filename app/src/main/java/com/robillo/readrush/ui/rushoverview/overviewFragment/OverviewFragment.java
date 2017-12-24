@@ -259,7 +259,7 @@ public class OverviewFragment extends BaseFragment implements OverviewFragmentMv
             addRushToOnlineLibrary();
         }
         else if(mAddReadRush.getText().equals(getString(R.string.read_rush))){
-            startActivity(ReadRushActivity.getStartIntent(getActivity(), mRushId, mRushAudio));
+            startActivity(ReadRushActivity.getStartIntent(getActivity(), mRushId, mRushAudio, mName.getText().toString()));
         }
     }
 }
