@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.media.Image;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,8 +12,13 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.robillo.readrush.R;
+import com.robillo.readrush.ReadRushApp;
+import com.robillo.readrush.data.network.retrofit.ApiClient;
+import com.robillo.readrush.data.network.retrofit.ApiInterface;
+import com.robillo.readrush.data.prefs.AppPreferencesHelper;
 import com.robillo.readrush.ui.base.BaseActivity;
 import com.robillo.readrush.ui.rushread.ReadRushActivity;
 import com.stepstone.apprating.AppRatingDialog;
@@ -23,11 +29,19 @@ import java.util.Arrays;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class DoneActivity extends BaseActivity implements RatingDialogListener {
 
     @SuppressWarnings("FieldCanBeLocal")
-    private static String mRushName = null;
+    private static String mRushName = null, mRushId = null;
+
+    @SuppressWarnings("FieldCanBeLocal")
+    private ApiInterface mApiService;
+    private AppPreferencesHelper mPrefsHelper;
 
     @BindView(R.id.name)
     TextView mName;
@@ -60,6 +74,13 @@ public class DoneActivity extends BaseActivity implements RatingDialogListener {
 
     @Override
     protected void setUp() {
+
+        mRushName = getIntent().getStringExtra("rush_name");
+        mRushId = getIntent().getStringExtra("rush_id");
+
+        mApiService = ApiClient.getClient().create(ApiInterface.class);
+        mPrefsHelper = new AppPreferencesHelper(this, ReadRushApp.PREF_FILE_NAME);
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -67,7 +88,6 @@ public class DoneActivity extends BaseActivity implements RatingDialogListener {
             window.setStatusBarColor(ContextCompat.getColor(this, R.color.dardDarkRed));
         }
 
-        mRushName = getIntent().getStringExtra("rush_name");
         mName.setText(mRushName);
 
         //check whether has reviewed book for resp. rush_id and accordingly change "rate and review rush" and "update rush review"
@@ -107,8 +127,23 @@ public class DoneActivity extends BaseActivity implements RatingDialogListener {
     }
 
     @Override
-    public void onPositiveButtonClicked(int rating, String comment) {
+    public void onPositiveButtonClicked(int rating, String review) {
         //Call to review rush
+        Call<ResponseBody> call = mApiService.createReview(mPrefsHelper.getUserId(), mRushId, String.valueOf(rating), review);
+        if(call!=null){
+            call.enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
+                    Toast.makeText(DoneActivity.this, "Review posted successfully", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DoneActivity.this, "Your review can now be viewed in rush detail screen", Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
+                    Toast.makeText(DoneActivity.this, "Failed to post review", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
     }
 
     @Override

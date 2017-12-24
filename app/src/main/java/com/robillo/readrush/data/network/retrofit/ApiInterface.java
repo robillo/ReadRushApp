@@ -36,6 +36,7 @@ public interface ApiInterface {
             @Field("preference") String preference
     );
 
+    @FormUrlEncoded
     @POST
     Call<ResponseBody> createReview(
             @Field("user_id") String user_id,
