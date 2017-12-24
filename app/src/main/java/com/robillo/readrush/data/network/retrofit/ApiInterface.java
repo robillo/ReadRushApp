@@ -36,6 +36,14 @@ public interface ApiInterface {
             @Field("preference") String preference
     );
 
+    @POST
+    Call<ResponseBody> createReview(
+            @Field("user_id") String user_id,
+            @Field("rush_id") String rush_id,
+            @Field("rating") String rating,
+            @Field("review") String review
+    );
+
     @GET("new_api/login/{email}/{password}")
     Call<List<User>> validateUser(
             @Path("email") String email,
