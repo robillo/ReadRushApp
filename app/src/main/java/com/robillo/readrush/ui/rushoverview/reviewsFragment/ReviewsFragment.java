@@ -110,8 +110,10 @@ public class ReviewsFragment extends BaseFragment implements ReviewsMvpView {
     public void setmExit(){
         //noinspection ConstantConditions
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-        transaction.setCustomAnimations(R.anim.review_enter_anim, R.anim.review_exit_anim);
-        transaction.remove(getActivity().getSupportFragmentManager().findFragmentByTag("review")).commit();
+        if(transaction!=null){
+            transaction.setCustomAnimations(R.anim.review_enter_anim, R.anim.review_exit_anim);
+            transaction.remove(getActivity().getSupportFragmentManager().findFragmentByTag("review")).commit();
+        }
     }
 
     @Override
@@ -131,7 +133,8 @@ public class ReviewsFragment extends BaseFragment implements ReviewsMvpView {
 
                 @Override
                 public void onFailure(@NonNull Call<List<Review>> call, @NonNull Throwable t) {
-                    Toast.makeText(getActivity(), "No Reviews To Show", Toast.LENGTH_SHORT).show();
+                    if(getActivity()!=null)
+                        Toast.makeText(getActivity(), "No Reviews To Show", Toast.LENGTH_SHORT).show();
                     setmExit();
                 }
             });

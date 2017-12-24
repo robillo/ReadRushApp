@@ -162,10 +162,10 @@ public class OverviewFragment extends BaseFragment implements OverviewFragmentMv
                 public void onResponse(@NonNull Call<List<RushInfo>> call, @NonNull Response<List<RushInfo>> response) {
 
                     if(!verifyRushExistsInMyLib()){
-                        mAddReadRush.setText(R.string.add_rush);
+                        if(mAddReadRush!=null) mAddReadRush.setText(R.string.add_rush);
                     }
                     else {
-                        mAddReadRush.setText(R.string.read_rush);
+                        if(mAddReadRush!=null) mAddReadRush.setText(R.string.read_rush);
                     }
 
                     //noinspection ConstantConditions
@@ -175,21 +175,23 @@ public class OverviewFragment extends BaseFragment implements OverviewFragmentMv
                         mRoomCover = new LibraryCover(mRushInfo.getRush_id(), mRushInfo.getTitle(), mRushInfo.getAuthor(), mRushInfo.getRating(), mRushInfo.getEst_time(), mRushInfo.getPages(), mRushInfo.getCover(), null, mRushInfo.getAudio()!=null);
                     }
 
-                    mShimmerLayout.stopShimmerAnimation();
-                    Glide.with(getActivity()).load(mRushInfo.getCover()).centerCrop().into(mCover);
-                    mName.setText(mRushInfo.getTitle());
-                    mAuthor.setText(mRushInfo.getAuthor());
-                    mDescription.setText(mRushInfo.getDescription());
-                    mAddReadRush.setClickable(true);
-                    mAddReadRush.setVisibility(View.VISIBLE);
-                    mReviews.setClickable(true);
-                    mReviews.setVisibility(View.VISIBLE);
-                    mRatingBar.setRating(Float.valueOf(mRoomCover.getRating()));
+                    if(mShimmerLayout!=null) mShimmerLayout.stopShimmerAnimation();
+                    if(mName!=null) {
+                        Glide.with(getActivity()).load(mRushInfo.getCover()).centerCrop().into(mCover);
+                        mName.setText(mRushInfo.getTitle());
+                        mAuthor.setText(mRushInfo.getAuthor());
+                        mDescription.setText(mRushInfo.getDescription());
+                        mAddReadRush.setClickable(true);
+                        mAddReadRush.setVisibility(View.VISIBLE);
+                        mReviews.setClickable(true);
+                        mReviews.setVisibility(View.VISIBLE);
+                        mRatingBar.setRating(Float.valueOf(mRoomCover.getRating()));
+                    }
                 }
 
                 @Override
                 public void onFailure(@NonNull Call<List<RushInfo>> call, @NonNull Throwable t) {
-                    Toast.makeText(getActivity(), "Network Error", Toast.LENGTH_SHORT).show();
+                    if(getActivity()!=null) Toast.makeText(getActivity(), "Network Error", Toast.LENGTH_SHORT).show();
                 }
             });
         }
