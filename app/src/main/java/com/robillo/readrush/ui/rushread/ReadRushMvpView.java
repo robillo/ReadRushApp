@@ -33,4 +33,6 @@ public interface ReadRushMvpView extends MvpView {
 
     void setFontPath(String fontPath);
 
+    void checkForExistingRushesOffline();
+
 }

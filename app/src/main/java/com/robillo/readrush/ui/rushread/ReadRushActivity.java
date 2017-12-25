@@ -1,5 +1,7 @@
 package com.robillo.readrush.ui.rushread;
 
+import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.Observer;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -25,6 +27,8 @@ import android.widget.Toast;
 
 import com.robillo.readrush.R;
 import com.robillo.readrush.ReadRushApp;
+import com.robillo.readrush.data.db.model.library.LibraryCover;
+import com.robillo.readrush.data.db.model.library.LibraryCoverRepository;
 import com.robillo.readrush.data.network.retrofit.ApiClient;
 import com.robillo.readrush.data.network.retrofit.ApiInterface;
 import com.robillo.readrush.data.network.retrofit.model.Content;
@@ -57,6 +61,13 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
     private int NUM_PAGES = 0;
     private static int mCurrentPage = 0;
     private static String mRushName = null;
+
+    //offline
+    LiveData<List<LibraryCover>> mListLibraryCovers;
+    List<LibraryCover> mCoversList;
+
+    @Inject
+    LibraryCoverRepository mLibraryCoverRepository;
 
     @Inject
     ReadRushMvpPresenter<ReadRushMvpView> mPresenter;
@@ -124,6 +135,10 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
         mRushName = getIntent().getStringExtra("rush_name");
 
         if(!mRushAudio) mLaunchAudio.setVisibility(View.GONE);
+
+        mListLibraryCovers = mLibraryCoverRepository.getAllCovers();
+
+        checkForExistingRushesOffline();
 
         //noinspection ConstantConditions
         mPrefsHelper = new AppPreferencesHelper(this, ReadRushApp.PREF_FILE_NAME);
@@ -413,6 +428,11 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
             @Override
             public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
                 Toast.makeText(ReadRushActivity.this, "Rush moved from Library to Read rushes", Toast.LENGTH_SHORT).show();
+                for(int i=0; i<mCoversList.size(); i++){
+                    if(mCoversList.get(i).getRushId().equals(mRushId)){
+                        mLibraryCoverRepository.deleteCoverItem(mCoversList.get(i));
+                    }
+                }
                 startActivity(DoneActivity.getStartIntent(ReadRushActivity.this, mRushId, mRushName));
             }
 
@@ -501,4 +521,14 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
 
         }
     };
+
+    @Override
+    public void checkForExistingRushesOffline() {
+        mListLibraryCovers.observe(this, new Observer<List<LibraryCover>>() {
+            @Override
+            public void onChanged(@Nullable List<LibraryCover> libraryCovers) {
+                mCoversList = libraryCovers;
+            }
+        });
+    }
 }

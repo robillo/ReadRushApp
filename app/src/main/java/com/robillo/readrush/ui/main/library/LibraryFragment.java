@@ -342,7 +342,7 @@ public class LibraryFragment extends BaseFragment implements LibraryMvpView, Vie
                                 });
                             }
 
-                            mLibraryCoverRepository.deleteSearchItem(mCoversList.get(coverIndex));
+                            mLibraryCoverRepository.deleteCoverItem(mCoversList.get(coverIndex));
                             loadRushes();
                             sDialog
                                     .setTitleText("Deleted!")

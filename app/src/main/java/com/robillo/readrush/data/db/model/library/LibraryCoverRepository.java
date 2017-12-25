@@ -47,7 +47,7 @@ public class LibraryCoverRepository {
 
     @SuppressLint("StaticFieldLeak")
     @SuppressWarnings("unused")
-    public void deleteSearchItem(final LibraryCover cover) {
+    public void deleteCoverItem(final LibraryCover cover) {
         new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... voids) {
