@@ -64,7 +64,6 @@ public class ContentFragment extends Fragment implements ContentMvpView {
         //noinspection ConstantConditions
         content = getArguments().getString("content");
 
-        Log.e("content", Html.fromHtml(content).toString());
         mContentTextView.setText(Html.fromHtml(content));
 
         refreshAttributes();

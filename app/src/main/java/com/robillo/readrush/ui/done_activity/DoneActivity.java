@@ -99,6 +99,8 @@ public class DoneActivity extends BaseActivity implements DoneMvpView, RatingDia
         mApiService = ApiClient.getClient().create(ApiInterface.class);
         mPrefsHelper = new AppPreferencesHelper(this, ReadRushApp.PREF_FILE_NAME);
 
+        fetchFeaturedBooks();
+
         //SETTING TRY NEXT RV
         mRecyclerTryNext.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
