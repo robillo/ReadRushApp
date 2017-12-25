@@ -70,59 +70,195 @@
         android:background="@color/readBlack"
         android:contentDescription="null"/>
 
-    <LinearLayout
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <Button
-            android:layout_width="0sp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="20sp"
-            android:textColor="@color/rushRed"
-            tools:ignore="MissingPrefix"
-            fontPath="fonts/four.ttf"
-            android:gravity="center"
-            android:text="Profile"
-            android:background="?attr/selectableItemBackground"
-            android:id="@+id/profile"/>
-
-        <ImageView
-            android:layout_width="1sp"
-            android:layout_height="match_parent"
-            android:background="@color/readBlack"
-            android:contentDescription="null"/>
-
-        <Button
-            android:layout_width="0sp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="20sp"
-            android:textColor="@color/colorTextOne"
-            tools:ignore="MissingPrefix"
-            fontPath="fonts/four.ttf"
-            android:gravity="center"
-            android:text="Highlights"
-            android:background="?attr/selectableItemBackground"
-            android:id="@+id/highlights"/>
-
-    </LinearLayout>
-
+        android:layout_marginTop="10sp"
+        tools:text="Profile Highlights:"
+        android:text="Profile Highlights"
+        android:textColor="@color/readBlack"
+        android:textSize="25sp"
+        android:layout_marginBottom="15sp"
+        android:gravity="center"/>
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="1sp"
+        android:layout_height="2sp"
         android:background="@color/readBlack"
+        android:layout_marginRight="15sp"
+        android:layout_marginLeft="15sp"
         android:contentDescription="null"/>
 
-    <!-- This Is The Fragment Container -->
-
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/profile_container">
+        android:orientation="vertical">
 
-    </FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0sp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10sp"
+                tools:text="Reading:"
+                android:text="Reading:"
+                android:textColor="@color/readBlack"
+                android:textSize="20sp"
+                android:layout_marginBottom="10sp"
+                android:layout_marginLeft="20sp"
+                android:id="@+id/reading"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1sp"
+                android:background="@color/readBlack"
+                android:layout_marginRight="20sp"
+                android:layout_marginLeft="20sp"
+                android:contentDescription="null"/>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ProgressBar
+                    android:id="@+id/progress_bar_reading_rv"
+                    style="?android:attr/progressBarStyleLarge"
+                    android:layout_width="30sp"
+                    android:layout_height="30sp"
+                    android:layout_gravity="center"
+                    android:indeterminateTint="@color/colorTextOne"
+                    tools:targetApi="lollipop"/>
+
+                <android.support.v7.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/reading_rv"
+                    android:visibility="invisible">
+
+                </android.support.v7.widget.RecyclerView>
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0sp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1sp"
+                android:background="@color/readBlack"
+                android:layout_marginRight="20sp"
+                android:layout_marginLeft="20sp"
+                android:contentDescription="null"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10sp"
+                tools:text="Read:"
+                android:text="Read:"
+                android:textColor="@color/readBlack"
+                android:textSize="20sp"
+                android:layout_marginBottom="10sp"
+                android:layout_marginLeft="20sp"
+                android:id="@+id/read"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1sp"
+                android:background="@color/readBlack"
+                android:layout_marginRight="20sp"
+                android:layout_marginLeft="20sp"
+                android:contentDescription="null"/>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ProgressBar
+                    android:id="@+id/progress_bar_read_rv"
+                    style="?android:attr/progressBarStyleLarge"
+                    android:layout_width="30sp"
+                    android:layout_height="30sp"
+                    android:layout_gravity="center"
+                    android:indeterminateTint="@color/colorTextOne"
+                    tools:targetApi="lollipop"/>
+
+                <android.support.v7.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/read_rv"
+                    android:visibility="invisible">
+
+                </android.support.v7.widget.RecyclerView>
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<Button-->
+            <!--android:layout_width="0sp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1"-->
+            <!--android:textSize="20sp"-->
+            <!--android:textColor="@color/rushRed"-->
+            <!--tools:ignore="MissingPrefix"-->
+            <!--fontPath="fonts/four.ttf"-->
+            <!--android:gravity="center"-->
+            <!--android:text="Profile"-->
+            <!--android:background="?attr/selectableItemBackground"-->
+            <!--android:id="@+id/profile"/>-->
+
+        <!--<ImageView-->
+            <!--android:layout_width="1sp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:background="@color/readBlack"-->
+            <!--android:contentDescription="null"/>-->
+
+        <!--<Button-->
+            <!--android:layout_width="0sp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1"-->
+            <!--android:textSize="20sp"-->
+            <!--android:textColor="@color/colorTextOne"-->
+            <!--tools:ignore="MissingPrefix"-->
+            <!--fontPath="fonts/four.ttf"-->
+            <!--android:gravity="center"-->
+            <!--android:text="Highlights"-->
+            <!--android:background="?attr/selectableItemBackground"-->
+            <!--android:id="@+id/highlights"/>-->
+
+    <!--</LinearLayout>-->
+
+
+    <!--<ImageView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="1sp"-->
+        <!--android:background="@color/readBlack"-->
+        <!--android:contentDescription="null"/>-->
+
+    <!--&lt;!&ndash; This Is The Fragment Container &ndash;&gt;-->
+
+    <!--<FrameLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:id="@+id/profile_container">-->
+
+    <!--</FrameLayout>-->
 
 </LinearLayout>
