@@ -10,4 +10,6 @@ public interface CustomFragmentMvpView extends MvpView {
 
     void setInitialTheme();
 
+    void highlightFontSize(int sizeNumber);
+
 }

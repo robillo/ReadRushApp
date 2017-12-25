@@ -97,47 +97,69 @@ public class CustomFragment extends BaseFragment implements CustomFragmentMvpVie
 
     @OnClick(R.id.size1)
     public void setmSizeOne() {
-        if(getActivity()!=null) ((ReadRushActivity) getActivity()).setFontSize(1);
+        if(getActivity()!=null){
+            ((ReadRushActivity) getActivity()).setFontSize(1);
+            highlightFontSize(1);
+        }
     }
 
     @OnClick(R.id.size2)
     public void setmSizeTwo() {
-        if(getActivity()!=null) ((ReadRushActivity) getActivity()).setFontSize(2);
+        if(getActivity()!=null){
+            ((ReadRushActivity) getActivity()).setFontSize(2);
+            highlightFontSize(2);
+        }
     }
 
     @OnClick(R.id.size3)
     public void setmSizeThree() {
-        if(getActivity()!=null) ((ReadRushActivity) getActivity()).setFontSize(3);
+        if(getActivity()!=null){
+            ((ReadRushActivity) getActivity()).setFontSize(3);
+            highlightFontSize(3);
+        }
     }
 
     @OnClick(R.id.size4)
     public void setmSizeFour() {
-        if(getActivity()!=null) ((ReadRushActivity) getActivity()).setFontSize(4);
+        if(getActivity()!=null){
+            ((ReadRushActivity) getActivity()).setFontSize(4);
+            highlightFontSize(4);
+        }
     }
 
     @OnClick(R.id.font1raleway)
     public void setmFont1Raleway() {
-        if(getActivity()!=null) ((ReadRushActivity) getActivity()).setFontPath("font1");
+        if(getActivity()!=null){
+            ((ReadRushActivity) getActivity()).setFontPath("font1");
+        }
     }
 
     @OnClick(R.id.font2tiempo)
     public void setmFont2Tiempo() {
-        if(getActivity()!=null) ((ReadRushActivity) getActivity()).setFontPath("font2");
+        if(getActivity()!=null){
+            ((ReadRushActivity) getActivity()).setFontPath("font2");
+        }
     }
 
     @OnClick(R.id.font3comfortaa)
     public void setmFont3Comfortaa() {
-        if(getActivity()!=null) ((ReadRushActivity) getActivity()).setFontPath("font3");
+        if(getActivity()!=null){
+            ((ReadRushActivity) getActivity()).setFontPath("font3");
+        }
     }
 
     @OnClick(R.id.font4georgia)
     public void setmFont4Georgia() {
-        if(getActivity()!=null) ((ReadRushActivity) getActivity()).setFontPath("font4");
+        if(getActivity()!=null){
+            ((ReadRushActivity) getActivity()).setFontPath("font4");
+        }
     }
 
     @OnClick(R.id.font5rounded)
     public void setmFont5Rounded() {
-        if(getActivity()!=null) ((ReadRushActivity) getActivity()).setFontPath("font5");
+        if(getActivity()!=null){
+            ((ReadRushActivity) getActivity()).setFontPath("font5");
+        }
     }
 
     @OnClick(R.id.max_brightness)
@@ -166,6 +188,24 @@ public class CustomFragment extends BaseFragment implements CustomFragmentMvpVie
 
     @Override
     public void setInitialTheme() {
+        switch (mPrefsHelper.getTextSize()){
+            case 20:{
+                highlightFontSize(1);
+                break;
+            }
+            case 25:{
+                highlightFontSize(2);
+                break;
+            }
+            case 30:{
+                highlightFontSize(3);
+                break;
+            }
+            case 35:{
+                highlightFontSize(4);
+                break;
+            }
+        }
         if((mPrefsHelper.getAppTheme()).equals("NIGHT")){
             mLayoutOuter.setBackgroundColor(getResources().getColor(R.color.readBlack));
             mLayoutInner1.setBackgroundColor(getResources().getColor(R.color.black));
@@ -177,6 +217,40 @@ public class CustomFragment extends BaseFragment implements CustomFragmentMvpVie
             mLayoutInner1.setBackgroundColor(getResources().getColor(R.color.dardRed));
             mLayoutInner2.setBackgroundColor(getResources().getColor(R.color.dardRed));
             mLayoutInner3.setBackgroundColor(getResources().getColor(R.color.dardRed));
+        }
+    }
+
+    @Override
+    public void highlightFontSize(int sizeNumber) {
+        switch (sizeNumber){
+            case 1:{
+                mSizeOne.setColorFilter(getResources().getColor(R.color.highlight));
+                mSizeTwo.setColorFilter(getResources().getColor(R.color.white));
+                mSizeThree.setColorFilter(getResources().getColor(R.color.white));
+                mSizeFour.setColorFilter(getResources().getColor(R.color.white));
+                break;
+            }
+            case 2:{
+                mSizeOne.setColorFilter(getResources().getColor(R.color.white));
+                mSizeTwo.setColorFilter(getResources().getColor(R.color.highlight));
+                mSizeThree.setColorFilter(getResources().getColor(R.color.white));
+                mSizeFour.setColorFilter(getResources().getColor(R.color.white));
+                break;
+            }
+            case 3:{
+                mSizeOne.setColorFilter(getResources().getColor(R.color.white));
+                mSizeTwo.setColorFilter(getResources().getColor(R.color.white));
+                mSizeThree.setColorFilter(getResources().getColor(R.color.highlight));
+                mSizeFour.setColorFilter(getResources().getColor(R.color.white));
+                break;
+            }
+            case 4:{
+                mSizeOne.setColorFilter(getResources().getColor(R.color.white));
+                mSizeTwo.setColorFilter(getResources().getColor(R.color.white));
+                mSizeThree.setColorFilter(getResources().getColor(R.color.white));
+                mSizeFour.setColorFilter(getResources().getColor(R.color.highlight));
+                break;
+            }
         }
     }
 }
