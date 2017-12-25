@@ -66,6 +66,12 @@ public class CustomFragment extends BaseFragment implements CustomFragmentMvpVie
     @BindView(R.id.inner_3)
     View mLayoutInner3;
 
+    @BindView(R.id.max_brightness)
+    ImageButton mMaxBrightness;
+
+    @BindView(R.id.min_brightness)
+    ImageButton mMinBrightness;
+
     private AppPreferencesHelper mPrefsHelper;
 
     public CustomFragment() {
@@ -131,6 +137,7 @@ public class CustomFragment extends BaseFragment implements CustomFragmentMvpVie
     public void setmFont1Raleway() {
         if(getActivity()!=null){
             ((ReadRushActivity) getActivity()).setFontPath("font1");
+            highlightText(1);
         }
     }
 
@@ -138,6 +145,7 @@ public class CustomFragment extends BaseFragment implements CustomFragmentMvpVie
     public void setmFont2Tiempo() {
         if(getActivity()!=null){
             ((ReadRushActivity) getActivity()).setFontPath("font2");
+            highlightText(2);
         }
     }
 
@@ -145,6 +153,7 @@ public class CustomFragment extends BaseFragment implements CustomFragmentMvpVie
     public void setmFont3Comfortaa() {
         if(getActivity()!=null){
             ((ReadRushActivity) getActivity()).setFontPath("font3");
+            highlightText(3);
         }
     }
 
@@ -152,6 +161,7 @@ public class CustomFragment extends BaseFragment implements CustomFragmentMvpVie
     public void setmFont4Georgia() {
         if(getActivity()!=null){
             ((ReadRushActivity) getActivity()).setFontPath("font4");
+            highlightText(4);
         }
     }
 
@@ -159,6 +169,7 @@ public class CustomFragment extends BaseFragment implements CustomFragmentMvpVie
     public void setmFont5Rounded() {
         if(getActivity()!=null){
             ((ReadRushActivity) getActivity()).setFontPath("font5");
+            highlightText(5);
         }
     }
 
@@ -166,6 +177,9 @@ public class CustomFragment extends BaseFragment implements CustomFragmentMvpVie
     public void setmMaxBrightness() {
         if(getActivity()!=null){
             ((ReadRushActivity) getActivity()).setLightTheme();
+
+            mMaxBrightness.setColorFilter(getResources().getColor(R.color.highlight));
+            mMinBrightness.setColorFilter(getResources().getColor(R.color.white));
 
             mLayoutOuter.setBackgroundColor(getResources().getColor(R.color.rushRed));
             mLayoutInner1.setBackgroundColor(getResources().getColor(R.color.dardRed));
@@ -178,6 +192,9 @@ public class CustomFragment extends BaseFragment implements CustomFragmentMvpVie
     public void setmMinBrightness() {
         if(getActivity()!=null){
             ((ReadRushActivity) getActivity()).setDarkTheme();
+
+            mMaxBrightness.setColorFilter(getResources().getColor(R.color.white));
+            mMinBrightness.setColorFilter(getResources().getColor(R.color.highlight));
 
             mLayoutOuter.setBackgroundColor(getResources().getColor(R.color.readBlack));
             mLayoutInner1.setBackgroundColor(getResources().getColor(R.color.black));
@@ -249,12 +266,20 @@ public class CustomFragment extends BaseFragment implements CustomFragmentMvpVie
             }
         }
         if((mPrefsHelper.getAppTheme()).equals("NIGHT")){
+
+            mMaxBrightness.setColorFilter(getResources().getColor(R.color.white));
+            mMinBrightness.setColorFilter(getResources().getColor(R.color.highlight));
+
             mLayoutOuter.setBackgroundColor(getResources().getColor(R.color.readBlack));
             mLayoutInner1.setBackgroundColor(getResources().getColor(R.color.black));
             mLayoutInner2.setBackgroundColor(getResources().getColor(R.color.black));
             mLayoutInner3.setBackgroundColor(getResources().getColor(R.color.black));
         }
         else {
+
+            mMaxBrightness.setColorFilter(getResources().getColor(R.color.highlight));
+            mMinBrightness.setColorFilter(getResources().getColor(R.color.white));
+
             mLayoutOuter.setBackgroundColor(getResources().getColor(R.color.rushRed));
             mLayoutInner1.setBackgroundColor(getResources().getColor(R.color.dardRed));
             mLayoutInner2.setBackgroundColor(getResources().getColor(R.color.dardRed));
