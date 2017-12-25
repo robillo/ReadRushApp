@@ -114,4 +114,16 @@ public interface ApiInterface {
             @Path("rush_id") String rush_id
     );
 
+    @GET("new_api/move_to_read/{user_id}/{rush_id}")
+    Call<ResponseBody> moveToRead(
+            @Path("user_id") String user_id,
+            @Path("rush_id") String rush_id
+    );
+
+    @FormUrlEncoded
+    @POST("new_ap/update_preferences/{user_id}")
+    Call<ResponseBody> updatePreferences(
+            @Path("user_id") String user_id,
+            @Field("update_preferences") String updated_preferences
+    );
 }

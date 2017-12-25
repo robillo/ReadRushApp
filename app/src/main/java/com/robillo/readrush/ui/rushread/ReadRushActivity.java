@@ -43,6 +43,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -407,7 +408,19 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
 
     @OnClick(R.id.done_trigger)
     public void setmDoneTrigger() {
-        startActivity(DoneActivity.getStartIntent(this, mRushId, mRushName));
+        Call<ResponseBody> call = mApiService.moveToRead(mPrefsHelper.getUserId(), mRushId);
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
+                Toast.makeText(ReadRushActivity.this, "Rush moved from Library to Read rushes", Toast.LENGTH_SHORT).show();
+                startActivity(DoneActivity.getStartIntent(ReadRushActivity.this, mRushId, mRushName));
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
+                Toast.makeText(ReadRushActivity.this, "Cannot Establish Internet Connection", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override

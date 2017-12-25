@@ -129,6 +129,7 @@ public class PreferenceActivity extends BaseActivity implements PreferenceMvpVie
         //noinspection StatementWithEmptyBody
         if(fromSettings){
             //TODO call for update preferences api for user and then onBackPressed()
+                Call<ResponseBody> call = mApiService.updatePreferences(mPrefsHelper.getUserId(), mPrefsHelper.getUserPreference());
         }
         else {
             Call<ResponseBody> call = mApiService.createUser(mPrefsHelper.getUserName(), mPrefsHelper.getUserEmail(), mPrefsHelper.getUserPassword(), mPrefsHelper.getUserPreference());
