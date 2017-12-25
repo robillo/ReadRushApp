@@ -206,6 +206,48 @@ public class CustomFragment extends BaseFragment implements CustomFragmentMvpVie
                 break;
             }
         }
+        switch (mPrefsHelper.getFontPath()){
+            case "fonts/Raleway-Regular.ttf":{
+                mFont1Raleway.setTextColor(getResources().getColor(R.color.highlight));
+                mFont2Tiempo.setTextColor(getResources().getColor(R.color.white));
+                mFont3Comfortaa.setTextColor(getResources().getColor(R.color.white));
+                mFont4Georgia.setTextColor(getResources().getColor(R.color.white));
+                mFont5Rounded.setTextColor(getResources().getColor(R.color.white));
+                break;
+            }
+            case "fonts/CMTiempo.ttf":{
+                mFont1Raleway.setTextColor(getResources().getColor(R.color.white));
+                mFont2Tiempo.setTextColor(getResources().getColor(R.color.highlight));
+                mFont3Comfortaa.setTextColor(getResources().getColor(R.color.white));
+                mFont4Georgia.setTextColor(getResources().getColor(R.color.white));
+                mFont5Rounded.setTextColor(getResources().getColor(R.color.white));
+                break;
+            }
+            case "fonts/Comfortaa-Regular.ttf":{
+                mFont1Raleway.setTextColor(getResources().getColor(R.color.white));
+                mFont2Tiempo.setTextColor(getResources().getColor(R.color.white));
+                mFont3Comfortaa.setTextColor(getResources().getColor(R.color.highlight));
+                mFont4Georgia.setTextColor(getResources().getColor(R.color.white));
+                mFont5Rounded.setTextColor(getResources().getColor(R.color.white));
+                break;
+            }
+            case "fonts/GeorgiaBelle.ttf":{
+                mFont1Raleway.setTextColor(getResources().getColor(R.color.white));
+                mFont2Tiempo.setTextColor(getResources().getColor(R.color.white));
+                mFont3Comfortaa.setTextColor(getResources().getColor(R.color.white));
+                mFont4Georgia.setTextColor(getResources().getColor(R.color.highlight));
+                mFont5Rounded.setTextColor(getResources().getColor(R.color.white));
+                break;
+            }
+            case "fonts/Rounded_Elegance.ttf":{
+                mFont1Raleway.setTextColor(getResources().getColor(R.color.white));
+                mFont2Tiempo.setTextColor(getResources().getColor(R.color.white));
+                mFont3Comfortaa.setTextColor(getResources().getColor(R.color.white));
+                mFont4Georgia.setTextColor(getResources().getColor(R.color.white));
+                mFont5Rounded.setTextColor(getResources().getColor(R.color.highlight));
+                break;
+            }
+        }
         if((mPrefsHelper.getAppTheme()).equals("NIGHT")){
             mLayoutOuter.setBackgroundColor(getResources().getColor(R.color.readBlack));
             mLayoutInner1.setBackgroundColor(getResources().getColor(R.color.black));
@@ -249,6 +291,27 @@ public class CustomFragment extends BaseFragment implements CustomFragmentMvpVie
                 mSizeTwo.setColorFilter(getResources().getColor(R.color.white));
                 mSizeThree.setColorFilter(getResources().getColor(R.color.white));
                 mSizeFour.setColorFilter(getResources().getColor(R.color.highlight));
+                break;
+            }
+        }
+    }
+
+    @Override
+    public void highlightText(int textCase) {
+        switch (textCase){
+            case 1:{
+                break;
+            }
+            case 2:{
+                break;
+            }
+            case 3:{
+                break;
+            }
+            case 4:{
+                break;
+            }
+            case 5:{
                 break;
             }
         }

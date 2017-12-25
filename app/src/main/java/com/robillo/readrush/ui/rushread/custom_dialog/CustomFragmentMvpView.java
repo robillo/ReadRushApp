@@ -12,4 +12,6 @@ public interface CustomFragmentMvpView extends MvpView {
 
     void highlightFontSize(int sizeNumber);
 
+    void highlightText(int textCase);
+
 }
