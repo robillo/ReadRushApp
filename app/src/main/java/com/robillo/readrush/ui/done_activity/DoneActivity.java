@@ -8,10 +8,14 @@ import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,13 +23,18 @@ import com.robillo.readrush.R;
 import com.robillo.readrush.ReadRushApp;
 import com.robillo.readrush.data.network.retrofit.ApiClient;
 import com.robillo.readrush.data.network.retrofit.ApiInterface;
+import com.robillo.readrush.data.network.retrofit.model.Featured;
+import com.robillo.readrush.data.network.retrofit.model.FeaturedSuper;
 import com.robillo.readrush.data.prefs.AppPreferencesHelper;
 import com.robillo.readrush.ui.base.BaseActivity;
+import com.robillo.readrush.ui.main.discover.adapters.FeaturedAdapter;
 import com.robillo.readrush.ui.rushread.ReadRushActivity;
 import com.stepstone.apprating.AppRatingDialog;
 import com.stepstone.apprating.listener.RatingDialogListener;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -35,10 +44,12 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class DoneActivity extends BaseActivity implements RatingDialogListener {
+public class DoneActivity extends BaseActivity implements DoneMvpView, RatingDialogListener {
 
     @SuppressWarnings("FieldCanBeLocal")
     private static String mRushName = null, mRushId = null;
+    List<Featured> mFeatureList = new ArrayList<>();
+    FeaturedAdapter mFeatureAdapter;
 
     @SuppressWarnings("FieldCanBeLocal")
     private ApiInterface mApiService;
@@ -55,6 +66,12 @@ public class DoneActivity extends BaseActivity implements RatingDialogListener {
 
     @BindView(R.id.back)
     ImageButton mBack;
+
+    @BindView(R.id.try_these_next)
+    RecyclerView mRecyclerTryNext;
+
+    @BindView(R.id.progress_bar_try_these_next)
+    ProgressBar mProgressTryNext;
 
     public static Intent getStartIntent(Context context, String rush_id, String rush_name) {
         Intent intent = new Intent(context, DoneActivity.class);
@@ -81,6 +98,9 @@ public class DoneActivity extends BaseActivity implements RatingDialogListener {
 
         mApiService = ApiClient.getClient().create(ApiInterface.class);
         mPrefsHelper = new AppPreferencesHelper(this, ReadRushApp.PREF_FILE_NAME);
+
+        //SETTING TRY NEXT RV
+        mRecyclerTryNext.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
@@ -125,6 +145,40 @@ public class DoneActivity extends BaseActivity implements RatingDialogListener {
     @OnClick(R.id.rate_review_app)
     public void setmRateReviewApp() {
         showDialog();
+    }
+
+    @Override
+    public void fetchFeaturedBooks() {
+        retrofit2.Call<FeaturedSuper> call = mApiService.getFeaturedBooks(mPrefsHelper.getUserId());
+        if(call!=null){
+            call.enqueue(new Callback<FeaturedSuper>() {
+                @Override
+                public void onResponse(@NonNull retrofit2.Call<FeaturedSuper> call, @NonNull Response<FeaturedSuper> response) {
+                    //noinspection ConstantConditions
+                    if(response.body().getMessage()!=null){
+                        //noinspection ConstantConditions
+                        mFeatureList = response.body().getMessage();
+                        //noinspection ConstantConditions
+                        if(mRecyclerTryNext!=null){
+                            mRecyclerTryNext.setVisibility(View.VISIBLE);
+                            mFeatureAdapter = new FeaturedAdapter(mFeatureList, DoneActivity.this);
+                            mRecyclerTryNext.setAdapter(mFeatureAdapter);
+                            mRecyclerTryNext.setOnFlingListener(null);
+                        }
+                        //noinspection ConstantConditions
+                        if(mProgressTryNext!=null) mProgressTryNext.setVisibility(View.GONE);
+                    }
+                }
+
+                @Override
+                public void onFailure(@NonNull retrofit2.Call<FeaturedSuper> call, @NonNull Throwable t) {
+                    //noinspection ConstantConditions
+                    if(DoneActivity.this!=null){
+                        Toast.makeText(DoneActivity.this, "Failed to fetch Featured Books", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
     }
 
     @Override
