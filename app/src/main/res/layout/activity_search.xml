@@ -19,7 +19,7 @@
             android:layout_margin="5sp"
             android:layout_weight="5"
             android:inputType="text"
-            android:hint="Harry Potter"
+            android:hint="Search Rushes"
             android:textColor="@color/white"
             android:textColorHint="@color/colorTextFour"
             android:background="@color/colorTextThree"
