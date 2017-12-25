@@ -15,6 +15,7 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
@@ -206,14 +207,51 @@ public class SearchActivity extends BaseActivity implements SearchMvpView {
                 mSearches = searchNames;
                 mSearchNamesAdapter = new SearchNamesAdapter(mSearches, SearchActivity.this);
                 mSearchHistory.setAdapter(mSearchNamesAdapter);
+                Animation fade_out = AnimationUtils.loadAnimation(SearchActivity.this, android.R.anim.fade_out);
+                fade_out.setFillAfter(true);
+                fade_out.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+
+                    }
+                });
+                Animation fade_in = AnimationUtils.loadAnimation(SearchActivity.this, android.R.anim.fade_in);
+                fade_in.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+
+                    }
+                });
                 if(mSearches.size()>0){
-                    mSearchHistoryTextView.setVisibility(View.VISIBLE);
-                    mDeleteSearchNames.setVisibility(View.VISIBLE);
+                    mLayoutSearchHistory.setAnimation(fade_in);
+//                    mSearchHistoryTextView.setVisibility(View.VISIBLE);
+//                    mDeleteSearchNames.setVisibility(View.VISIBLE);
                     mDeleteSearchNames.setClickable(true);
                 }
                 else {
-                    mSearchHistoryTextView.setVisibility(View.GONE);
-                    mDeleteSearchNames.setVisibility(View.GONE);
+                    mLayoutSearchHistory.setAnimation(fade_out);
+//                    mSearchHistoryTextView.setVisibility(View.GONE);
+//                    mDeleteSearchNames.setVisibility(View.GONE);
                     mDeleteSearchNames.setClickable(false);
                 }
             }
@@ -239,6 +277,25 @@ public class SearchActivity extends BaseActivity implements SearchMvpView {
     public void setmDeleteSearchNames() {
         mSearchNameRepository.deleteAllSearchItems();
         mSearchNamesAdapter.notifyDataSetChanged();
+        Animation fade_out = AnimationUtils.loadAnimation(SearchActivity.this, android.R.anim.fade_out);
+        fade_out.setFillAfter(true);
+        fade_out.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+        mLayoutSearchHistory.setAnimation(fade_out);
         Toast.makeText(this, "Search History Deleted", Toast.LENGTH_SHORT).show();
     }
 }
