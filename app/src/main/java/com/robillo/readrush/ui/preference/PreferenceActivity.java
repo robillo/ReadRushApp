@@ -130,6 +130,21 @@ public class PreferenceActivity extends BaseActivity implements PreferenceMvpVie
         if(fromSettings){
             //TODO call for update preferences api for user and then onBackPressed()
                 Call<ResponseBody> call = mApiService.updatePreferences(mPrefsHelper.getUserId(), mPrefsHelper.getUserPreference());
+                Log.e("response", mPrefsHelper.getUserId() + mPrefsHelper.getUserPreference());
+                if(call!=null)
+                    call.enqueue(new Callback<ResponseBody>() {
+                        @Override
+                        public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
+                            Log.e("response", response.message() + response.isSuccessful() + response.body());
+                            Toast.makeText(PreferenceActivity.this, "Successfully updated preferences.", Toast.LENGTH_SHORT).show();
+                            PreferenceActivity.super.onBackPressed();
+                        }
+
+                        @Override
+                        public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
+                            Toast.makeText(PreferenceActivity.this, "Failed To Update. Unreliable Network.", Toast.LENGTH_SHORT).show();
+                        }
+                    });
         }
         else {
             Call<ResponseBody> call = mApiService.createUser(mPrefsHelper.getUserName(), mPrefsHelper.getUserEmail(), mPrefsHelper.getUserPassword(), mPrefsHelper.getUserPreference());

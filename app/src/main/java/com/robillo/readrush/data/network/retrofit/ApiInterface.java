@@ -121,9 +121,9 @@ public interface ApiInterface {
     );
 
     @FormUrlEncoded
-    @POST("new_ap/update_preferences/{user_id}")
+    @POST("new_api/update_preferences/{user_id}")
     Call<ResponseBody> updatePreferences(
             @Path("user_id") String user_id,
-            @Field("update_preferences") String updated_preferences
+            @Field("new_preference") String updated_preferences
     );
 }
