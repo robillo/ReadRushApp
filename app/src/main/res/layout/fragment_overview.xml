@@ -62,7 +62,7 @@
                     android:layout_weight="1"
                     android:textColor="@color/colorTextOne"
                     android:textStyle="bold"
-                    android:textSize="25sp"
+                    android:textSize="22sp"
                     tools:ignore="MissingPrefix"
                     fontPath="fonts/four.ttf"
                     android:gravity="center"
@@ -70,8 +70,8 @@
                     tools:text="Perfect Dutch"
                     android:paddingTop="3sp"
                     android:paddingBottom="3sp"
-                    android:paddingLeft="20sp"
-                    android:paddingRight="20sp"
+                    android:paddingLeft="3sp"
+                    android:paddingRight="3sp"
                     android:id="@+id/name"/>
 
                 <TextView
