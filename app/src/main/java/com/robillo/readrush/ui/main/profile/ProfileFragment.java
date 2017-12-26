@@ -52,14 +52,14 @@ public class ProfileFragment extends BaseFragment implements ProfileMvpView {
     @BindView(R.id.membership_type)
     TextView mMembershipType;
 
-    @BindView(R.id.profile)
-    Button mProfileTab;
-
-    @BindView(R.id.highlights)
-    Button mHighlightsTab;
-
-    @BindView(R.id.profile_container)
-    FrameLayout mFragmentContainer;
+//    @BindView(R.id.profile)
+//    Button mProfileTab;
+//
+//    @BindView(R.id.highlights)
+//    Button mHighlightsTab;
+//
+//    @BindView(R.id.profile_container)
+//    FrameLayout mFragmentContainer;
 
     @BindView(R.id.settings)
     ImageView mSettings;
