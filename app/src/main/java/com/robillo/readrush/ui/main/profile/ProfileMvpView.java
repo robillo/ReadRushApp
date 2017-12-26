@@ -14,4 +14,6 @@ public interface ProfileMvpView extends MvpView {
 
     boolean verifyOfflineRushesExist();
 
+    void callForReadRushes();
+
 }

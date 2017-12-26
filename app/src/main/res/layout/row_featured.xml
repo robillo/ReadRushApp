@@ -8,8 +8,8 @@
     app:cardCornerRadius="10sp"
     android:layout_marginLeft="7sp"
     android:layout_marginRight="7sp"
-    android:layout_marginTop="3sp"
-    android:layout_marginBottom="3sp">
+    android:layout_marginTop="5sp"
+    android:layout_marginBottom="5sp">
 
     <ImageView
         android:layout_width="match_parent"

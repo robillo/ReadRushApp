@@ -9,6 +9,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.robillo.readrush.R;
+import com.robillo.readrush.data.network.retrofit.model.ProfileNumbers;
 import com.robillo.readrush.ui.rushoverview.OverviewActivity;
 
 import java.util.List;
@@ -22,10 +23,10 @@ import butterknife.ButterKnife;
 
 public class ProfileCoverAdapter extends RecyclerView.Adapter<ProfileCoverAdapter.ProfileCoverHolder> {
 
-    private List<ProfileCover> mList = null;
+    private List<ProfileNumbers> mList = null;
     private Context mContext = null;
 
-    public ProfileCoverAdapter(List<ProfileCover> mList, Context mContext) {
+    public ProfileCoverAdapter(List<ProfileNumbers> mList, Context mContext) {
         this.mList = mList;
         this.mContext = mContext;
     }

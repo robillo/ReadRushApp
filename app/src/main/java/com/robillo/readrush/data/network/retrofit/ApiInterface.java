@@ -6,6 +6,7 @@ import com.robillo.readrush.data.network.retrofit.model.Content;
 import com.robillo.readrush.data.network.retrofit.model.CoverSuper;
 import com.robillo.readrush.data.network.retrofit.model.FeaturedSuper;
 import com.robillo.readrush.data.network.retrofit.model.LibraryItem;
+import com.robillo.readrush.data.network.retrofit.model.ProfileNumbersSuper;
 import com.robillo.readrush.data.network.retrofit.model.Review;
 import com.robillo.readrush.data.network.retrofit.model.RushInfo;
 import com.robillo.readrush.data.network.retrofit.model.SearchResultSuper;
@@ -125,5 +126,10 @@ public interface ApiInterface {
     Call<ResponseBody> updatePreferences(
             @Path("user_id") String user_id,
             @Field("new_preference") String updated_preferences
+    );
+
+    @GET("new_api/fetch_profile_numbers/{user_id}")
+    Call<ProfileNumbersSuper> fetchProfileNumbers(
+            @Path("user_id") String user_id
     );
 }

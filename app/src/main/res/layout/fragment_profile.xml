@@ -67,8 +67,8 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="1sp"
-        android:background="@color/readBlack"
-        android:contentDescription="null"/>
+        android:background="@color/colorTextThree"
+        android:contentDescription="null" />
 
     <TextView
         android:layout_width="match_parent"
@@ -113,9 +113,7 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="1sp"
-                android:background="@color/readBlack"
-                android:layout_marginRight="20sp"
-                android:layout_marginLeft="20sp"
+                android:background="@color/colorTextThree"
                 android:contentDescription="null"/>
 
             <FrameLayout
@@ -153,9 +151,7 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="1sp"
-                android:background="@color/readBlack"
-                android:layout_marginRight="20sp"
-                android:layout_marginLeft="20sp"
+                android:background="@color/colorTextThree"
                 android:contentDescription="null"/>
 
             <TextView
@@ -173,9 +169,7 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="1sp"
-                android:background="@color/readBlack"
-                android:layout_marginRight="20sp"
-                android:layout_marginLeft="20sp"
+                android:background="@color/colorTextThree"
                 android:contentDescription="null"/>
 
             <FrameLayout

@@ -171,5 +171,6 @@ In diam libero, congue quis elementum at, facilisis sed libero. Mauris justo ex,
 
 Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam luctus eros venenatis felis blandit, id dignissim lectus blandit. Nulla laoreet vehicula diam, sed gravida augue lacinia sed. Sed sed tempus massa, eu ultrices urna. Donec suscipit diam ipsum, sed maximus neque elementum vel. Donec sollicitudin tincidunt ultrices. Praesent eu ullamcorper neque, at accumsan velit. Nam consequat nisl massa, vel dignissim neque tincidunt non. In eu iaculis tortor. Nunc pretium, nulla a consectetur bibendum, elit nisi luctus libero, non sollicitudin lectus nisl eget velit. Mauris ut erat scelerisque, consequat tortor eget, lacinia ipsum. Mauris ut turpis nec nibh tristique ornare ac sit amet sem. Nunc magna eros, tempor id pellentesque nec, vulputate id metus. Quisque et sagittis enim, vitae blandit orci. Aliquam in mi tellus. Aenean fermentum varius erat, nec egestas neque mattis vel.</string>
     <string name="reading_zero">Reading: 0</string>
+    <string name="read_zero">Read: 0</string>
 
 </resources>

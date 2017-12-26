@@ -8,37 +8,29 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.robillo.readrush.R;
 import com.robillo.readrush.ReadRushApp;
 import com.robillo.readrush.data.db.model.library.LibraryCover;
 import com.robillo.readrush.data.db.model.library.LibraryCoverRepository;
 import com.robillo.readrush.data.network.retrofit.ApiClient;
 import com.robillo.readrush.data.network.retrofit.ApiInterface;
+import com.robillo.readrush.data.network.retrofit.model.ProfileNumbers;
+import com.robillo.readrush.data.network.retrofit.model.ProfileNumbersSuper;
 import com.robillo.readrush.data.prefs.AppPreferencesHelper;
 import com.robillo.readrush.di.component.ActivityComponent;
 import com.robillo.readrush.ui.base.BaseFragment;
-import com.robillo.readrush.ui.main.discover.DiscoverFragment;
-import com.robillo.readrush.ui.main.discover.adapters.FeaturedAdapter;
-import com.robillo.readrush.ui.main.profile.highlights_list.HighlightsListFragment;
 import com.robillo.readrush.ui.main.profile.profile_covers_adapter.ProfileCover;
 import com.robillo.readrush.ui.main.profile.profile_covers_adapter.ProfileCoverAdapter;
-import com.robillo.readrush.ui.main.profile.profile_list.ProfileListFragment;
 import com.robillo.readrush.ui.settings.SettingsActivity;
 
 import java.util.ArrayList;
@@ -49,7 +41,9 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import de.hdodenhof.circleimageview.CircleImageView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -63,7 +57,10 @@ public class ProfileFragment extends BaseFragment implements ProfileMvpView {
     //offline
     LiveData<List<LibraryCover>> mListLibraryCovers;
     List<LibraryCover> mCoversList;
-    List<ProfileCover> mProfileCovers;
+    List<ProfileNumbers> mProfileReadingCovers;
+
+    //online
+    List<ProfileNumbers> mProfileReadCovers;
 
     @BindView(R.id.name)
     TextView mUserName;
@@ -148,7 +145,9 @@ public class ProfileFragment extends BaseFragment implements ProfileMvpView {
         mUserName.setText(mPrefsHelper.getUserName());
 
         mReadINGRecycler.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+        mReadRecycler.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         checkForExistingRushesOffline();
+        callForReadRushes();
     }
 
     @OnClick(R.id.settings)
@@ -159,12 +158,11 @@ public class ProfileFragment extends BaseFragment implements ProfileMvpView {
     @Override
     public void loadRushes() {
         //Inflate reading recyclerView with mCoversList covers
-        mReadINGRecycler.setVisibility(View.VISIBLE);
-        mProfileCovers = new ArrayList<>();
+        mProfileReadingCovers = new ArrayList<>();
         for(int i=0; i<mCoversList.size(); i++){
-            mProfileCovers.add(new ProfileCover(mCoversList.get(i).getRushId(), mCoversList.get(i).getTitle(), mCoversList.get(i).getCover()));
+            mProfileReadingCovers.add(new ProfileNumbers(mCoversList.get(i).getRushId(), mCoversList.get(i).getTitle(), mCoversList.get(i).getCover()));
         }
-        ProfileCoverAdapter adapter = new ProfileCoverAdapter(mProfileCovers, getActivity());
+        ProfileCoverAdapter adapter = new ProfileCoverAdapter(mProfileReadingCovers, getActivity());
         mReadINGRecycler.setAdapter(adapter);
     }
 
@@ -195,6 +193,43 @@ public class ProfileFragment extends BaseFragment implements ProfileMvpView {
     @Override
     public boolean verifyOfflineRushesExist() {
         return !(mCoversList == null) && mCoversList.size() > 0;
+    }
+
+    @Override
+    public void callForReadRushes() {
+        Call<ProfileNumbersSuper> call = mApiService.fetchProfileNumbers(mPrefsHelper.getUserId());
+        if(call!=null)
+            call.enqueue(new Callback<ProfileNumbersSuper>() {
+                @SuppressLint("SetTextI18n")
+                @Override
+                public void onResponse(@NonNull Call<ProfileNumbersSuper> call, @NonNull Response<ProfileNumbersSuper> response) {
+                    //noinspection ConstantConditions
+                    if(response.body()!=null && response.body().getRushes_read()!=null){
+                        //noinspection ConstantConditions
+                        mProfileReadCovers = response.body().getRushes_read();
+                        ProfileCoverAdapter adapter = new ProfileCoverAdapter(mProfileReadCovers, getActivity());
+                        mReadRecycler.setAdapter(adapter);
+                        //hide progress, show and inflate rv, and increase count of textView
+                        if(mProgressRead!=null) mProgressRead.setVisibility(View.GONE);
+                        if(mReadRecycler!=null) mReadRecycler.setVisibility(View.VISIBLE);
+                        //noinspection ConstantConditions
+                        mRead.setText("Reading: " + response.body().getRushes_read().size());
+                    }
+                    else {
+                        //hide progress and set count of textView as zero
+                        if(mProgressRead!=null) mProgressRead.setVisibility(View.GONE);
+                        if(mReadRecycler!=null) mReadRecycler.setVisibility(View.GONE);
+                        mRead.setText(R.string.read_zero);
+                    }
+                }
+
+                @Override
+                public void onFailure(@NonNull Call<ProfileNumbersSuper> call, @NonNull Throwable t) {
+                    if(mProgressRead!=null) mProgressRead.setVisibility(View.GONE);
+                    if(mReadRecycler!=null) mReadRecycler.setVisibility(View.GONE);
+                    Toast.makeText(getActivity(), "Failed to establish network connection", Toast.LENGTH_SHORT).show();
+                }
+            });
     }
 
 //    @OnClick(R.id.profile)
