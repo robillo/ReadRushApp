@@ -115,9 +115,13 @@ dependencies {
     compile 'com.github.f0ris.sweetalert:library:1.5.2'
     compile 'com.stepstone.apprating:app-rating:2.2.0'
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+    //firebase cloud messaging (for notifications)
+    compile 'com.google.firebase:firebase-messaging:11.8.0'
 }
 repositories {
     mavenCentral()
 }
 
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.google.gms.google-services'

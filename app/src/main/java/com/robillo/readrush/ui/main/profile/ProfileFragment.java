@@ -203,23 +203,28 @@ public class ProfileFragment extends BaseFragment implements ProfileMvpView {
                 @SuppressLint("SetTextI18n")
                 @Override
                 public void onResponse(@NonNull Call<ProfileNumbersSuper> call, @NonNull Response<ProfileNumbersSuper> response) {
-                    //noinspection ConstantConditions
-                    if(response.body()!=null && response.body().getRushes_read()!=null){
+                    try {
                         //noinspection ConstantConditions
-                        mProfileReadCovers = response.body().getRushes_read();
-                        ProfileCoverAdapter adapter = new ProfileCoverAdapter(mProfileReadCovers, getActivity());
-                        mReadRecycler.setAdapter(adapter);
-                        //hide progress, show and inflate rv, and increase count of textView
-                        if(mProgressRead!=null) mProgressRead.setVisibility(View.GONE);
-                        if(mReadRecycler!=null) mReadRecycler.setVisibility(View.VISIBLE);
-                        //noinspection ConstantConditions
-                        mRead.setText("Reading: " + response.body().getRushes_read().size());
+                        if(response.body()!=null && response.body().getRushes_read()!=null){
+                            //noinspection ConstantConditions
+                            mProfileReadCovers = response.body().getRushes_read();
+                            ProfileCoverAdapter adapter = new ProfileCoverAdapter(mProfileReadCovers, getActivity());
+                            mReadRecycler.setAdapter(adapter);
+                            //hide progress, show and inflate rv, and increase count of textView
+                            if(mProgressRead!=null) mProgressRead.setVisibility(View.GONE);
+                            if(mReadRecycler!=null) mReadRecycler.setVisibility(View.VISIBLE);
+                            //noinspection ConstantConditions
+                            mRead.setText("Reading: " + response.body().getRushes_read().size());
+                        }
+                        else {
+                            //hide progress and set count of textView as zero
+                            if(mProgressRead!=null) mProgressRead.setVisibility(View.GONE);
+                            if(mReadRecycler!=null) mReadRecycler.setVisibility(View.GONE);
+                            mRead.setText(R.string.read_zero);
+                        }
                     }
-                    else {
-                        //hide progress and set count of textView as zero
-                        if(mProgressRead!=null) mProgressRead.setVisibility(View.GONE);
-                        if(mReadRecycler!=null) mReadRecycler.setVisibility(View.GONE);
-                        mRead.setText(R.string.read_zero);
+                    catch (NullPointerException e){
+                        //do nothing
                     }
                 }
 

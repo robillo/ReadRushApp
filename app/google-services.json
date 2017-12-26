@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1078799994471",
+    "firebase_url": "https://readrush1234.firebaseio.com",
+    "project_id": "readrush1234",
+    "storage_bucket": "readrush1234.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1078799994471:android:3990dfb65e2b634c",
+        "android_client_info": {
+          "package_name": "com.robillo.readrush"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1078799994471-nsfijhp5o846oujh13pch6ouru452fsr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYbYRUU4qIEhdiqQ_-Hwg2-1XEIDKOpoY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
