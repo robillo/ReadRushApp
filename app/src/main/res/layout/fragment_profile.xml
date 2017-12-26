@@ -135,7 +135,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:id="@+id/reading_rv"
-                    android:visibility="invisible">
+                    android:visibility="invisible"
+                    android:paddingLeft="15sp">
 
                 </android.support.v7.widget.RecyclerView>
 
@@ -194,7 +195,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:id="@+id/read_rv"
-                    android:visibility="invisible">
+                    android:visibility="invisible"
+                    android:paddingLeft="15sp">
 
                 </android.support.v7.widget.RecyclerView>
 

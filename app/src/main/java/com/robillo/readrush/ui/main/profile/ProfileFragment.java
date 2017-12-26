@@ -36,9 +36,12 @@ import com.robillo.readrush.ui.base.BaseFragment;
 import com.robillo.readrush.ui.main.discover.DiscoverFragment;
 import com.robillo.readrush.ui.main.discover.adapters.FeaturedAdapter;
 import com.robillo.readrush.ui.main.profile.highlights_list.HighlightsListFragment;
+import com.robillo.readrush.ui.main.profile.profile_covers_adapter.ProfileCover;
+import com.robillo.readrush.ui.main.profile.profile_covers_adapter.ProfileCoverAdapter;
 import com.robillo.readrush.ui.main.profile.profile_list.ProfileListFragment;
 import com.robillo.readrush.ui.settings.SettingsActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -60,6 +63,7 @@ public class ProfileFragment extends BaseFragment implements ProfileMvpView {
     //offline
     LiveData<List<LibraryCover>> mListLibraryCovers;
     List<LibraryCover> mCoversList;
+    List<ProfileCover> mProfileCovers;
 
     @BindView(R.id.name)
     TextView mUserName;
@@ -156,8 +160,12 @@ public class ProfileFragment extends BaseFragment implements ProfileMvpView {
     public void loadRushes() {
         //Inflate reading recyclerView with mCoversList covers
         mReadINGRecycler.setVisibility(View.VISIBLE);
-//        mFeatureAdapter = new FeaturedAdapter(mFeatureList, getActivity());
-//        mReadINGRecycler.setAdapter(mFeatureAdapter);
+        mProfileCovers = new ArrayList<>();
+        for(int i=0; i<mCoversList.size(); i++){
+            mProfileCovers.add(new ProfileCover(mCoversList.get(i).getRushId(), mCoversList.get(i).getTitle(), mCoversList.get(i).getCover()));
+        }
+        ProfileCoverAdapter adapter = new ProfileCoverAdapter(mProfileCovers, getActivity());
+        mReadINGRecycler.setAdapter(adapter);
     }
 
     @Override
