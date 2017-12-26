@@ -7,14 +7,17 @@ import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.robillo.readrush.R;
 import com.robillo.readrush.ReadRushApp;
 import com.robillo.readrush.data.prefs.AppPreferencesHelper;
+import com.robillo.readrush.push_notifs.Config;
 import com.robillo.readrush.ui.base.BaseActivity;
 import com.robillo.readrush.ui.preference.PreferenceActivity;
 import com.robillo.readrush.ui.splash.SplashActivity;
@@ -72,11 +75,34 @@ public class SettingsActivity extends BaseActivity implements SettingsMvpView {
         ButterKnife.bind(this);
 
         mPresenter.onAttach(this);
+
+        setUp();
     }
 
     @Override
     protected void setUp() {
         mPrefsHelper = new AppPreferencesHelper(this, ReadRushApp.PREF_FILE_NAME);
+
+        if(mPrefsHelper.getIsNotifsEnabled())
+            mNotificationsToggle.setChecked(true);
+        else
+            mNotificationsToggle.setChecked(false);
+
+        mNotificationsToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    mPrefsHelper.setIsNotifsEnabled(true);
+                    FirebaseMessaging.getInstance().subscribeToTopic(Config.TOPIC_LOCAL);
+                    Toast.makeText(SettingsActivity.this, "Subscribed to personalised notifications", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    mPrefsHelper.setIsNotifsEnabled(false);
+                    FirebaseMessaging.getInstance().unsubscribeFromTopic(Config.TOPIC_LOCAL);
+                    Toast.makeText(SettingsActivity.this, "Unsubscribed from personalised notifications", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     @OnClick(R.id.about)

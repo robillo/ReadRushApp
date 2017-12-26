@@ -265,6 +265,14 @@ constructor(@ApplicationContext context: Context, @PreferenceInfo prefFileName: 
         return mPrefs.getString(PREF_KEY_FONT_PATH, "fonts/Raleway-Regular.ttf");
     }
 
+    override fun setIsNotifsEnabled(yes_or_no: Boolean) {
+        mPrefs.edit().putBoolean(PREF_KEY_IS_CUSTOM_NOTIFS_ENABLED, yes_or_no).apply();
+    }
+
+    override fun getIsNotifsEnabled(): Boolean {
+        return mPrefs.getBoolean(PREF_KEY_IS_CUSTOM_NOTIFS_ENABLED, false);
+    }
+
     companion object {
 
         private val PREF_KEY_USER_LOGGED_IN_MODE = "PREF_KEY_USER_LOGGED_IN_MODE"
@@ -303,5 +311,8 @@ constructor(@ApplicationContext context: Context, @PreferenceInfo prefFileName: 
         private val PREF_KEY_LINE_SPACING = "PREF_KEY_LINE_SPACING"
         private val PREF_KEY_TEXT_SIZE = "PREF_KEY_TEXT_SIZE"
         private val PREF_KEY_FONT_PATH = "PREF_KEY_FONT_PATH"
+
+        //NOTIFICATIONS
+        private val PREF_KEY_IS_CUSTOM_NOTIFS_ENABLED = "PREF_KEY_IS_CUSTOM_NOTIFS_ENABLED";
     }
 }

@@ -98,4 +98,7 @@ public interface PreferencesHelper {
 
     void setFontPath(String path);
     String getFontPath();
+
+    void setIsNotifsEnabled(boolean yes_or_no);
+    boolean getIsNotifsEnabled();
 }

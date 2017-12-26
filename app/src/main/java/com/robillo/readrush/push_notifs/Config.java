@@ -4,10 +4,14 @@ package com.robillo.readrush.push_notifs;
  * Created by robinkamboj on 26/12/17.
  */
 
+@SuppressWarnings("WeakerAccess")
 public class Config {
 
     // global topic to receive app wide push notifications
     public static final String TOPIC_GLOBAL = "global";
+
+    // global topic to receive app wide push notifications
+    public static final String TOPIC_LOCAL = "my_personalised_rushes";
 
     // broadcast receiver intent filters
     public static final String REGISTRATION_COMPLETE = "registrationComplete";

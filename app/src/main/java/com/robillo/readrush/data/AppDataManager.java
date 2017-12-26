@@ -261,6 +261,16 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
+    public void setIsNotifsEnabled(boolean yes_or_no) {
+
+    }
+
+    @Override
+    public boolean getIsNotifsEnabled() {
+        return false;
+    }
+
+    @Override
     public int getCurrentUserLoggedInMode() {
         return mPreferencesHelper.getCurrentUserLoggedInMode();
     }
