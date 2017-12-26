@@ -8,4 +8,10 @@ import com.robillo.readrush.ui.base.MvpView;
 
 public interface ProfileMvpView extends MvpView {
 
+    void loadRushes();
+
+    void checkForExistingRushesOffline();
+
+    boolean verifyOfflineRushesExist();
+
 }

@@ -171,8 +171,6 @@ public class LibraryFragment extends BaseFragment implements LibraryMvpView, Vie
         mRushEight.setOnLongClickListener(this);
         mRushNine.setOnLongClickListener(this);
 
-
-
         mListLibraryCovers = mLibraryCoverRepository.getAllCovers();
 
         checkForExistingRushesOffline();
