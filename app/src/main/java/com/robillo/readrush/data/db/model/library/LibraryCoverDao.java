@@ -33,5 +33,5 @@ public interface LibraryCoverDao {
     void deleteLibraryCoverItem(LibraryCover cover);
 
     @Query("SELECT * FROM LibraryCoverContent WHERE rush_id IS :rush_id")
-    List<LibraryCoverContent> getContentsForRushID(String rush_id);
+    LiveData<List<LibraryCoverContent>> getContentsForRushID(String rush_id);
 }

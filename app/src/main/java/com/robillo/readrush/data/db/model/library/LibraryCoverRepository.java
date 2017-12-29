@@ -59,4 +59,8 @@ public class LibraryCoverRepository {
     public LiveData<List<String>> getAllRushIds() {
         return mLibraryCoverDao.getAllRushIds();
     }
+
+    public LiveData<List<LibraryCoverContent>> getContentsForRushID(String rush_id) {
+        return mLibraryCoverDao.getContentsForRushID(rush_id);
+    }
 }
