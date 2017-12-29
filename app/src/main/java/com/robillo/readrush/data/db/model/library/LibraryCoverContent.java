@@ -4,6 +4,7 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
 
 /**
  * Created by robinkamboj on 29/12/17.
@@ -19,11 +20,13 @@ public class LibraryCoverContent {
         this.attr = attr;
         this.datetime = datetime;
         this.page = page;
+        this.primary = content + rush_id;
     }
 
-    @PrimaryKey(autoGenerate = true)
+    @NonNull
+    @PrimaryKey
     @ColumnInfo(name = "primary")
-    private int primary;
+    private String primary;
 
     @ColumnInfo(name = "content_id")
     private String content_id;
@@ -83,11 +86,11 @@ public class LibraryCoverContent {
         this.datetime = datetime;
     }
 
-    public int getPrimary() {
+    public String getPrimary() {
         return primary;
     }
 
-    public void setPrimary(int primary) {
+    public void setPrimary(String primary) {
         this.primary = primary;
     }
 

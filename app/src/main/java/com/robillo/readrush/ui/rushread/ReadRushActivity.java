@@ -62,6 +62,8 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
     private int NUM_PAGES = 0;
     private static int mCurrentPage = 0;
     private static String mRushName = null;
+    LiveData<List<LibraryCoverContent>> mLibraryCoverContents;
+    List<LibraryCoverContent> mLibraryCoverContentsList = new ArrayList<>();
 
     //offline
     LiveData<List<LibraryCover>> mListLibraryCovers;
@@ -105,7 +107,7 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
     private ApiInterface mApiService;
     @SuppressWarnings("FieldCanBeLocal")
     private AppPreferencesHelper mPrefsHelper;
-    private List<Content> mContents;
+    private List<Content> mContents = new ArrayList<>();
     private ScreenSlidePagerAdapter mScreenSlidePagerAdapter;
 
     String mRushId = null;
@@ -141,15 +143,20 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
         if(!mRushAudio) mLaunchAudio.setVisibility(View.GONE);
 
         mListLibraryCovers = mLibraryCoverRepository.getAllCovers();
+        mLibraryCoverContents = mLibraryCoverRepository.getContentsForRushID(mRushId);
 
         checkForExistingRushesOffline();
+
+        callObserve();
+
+        refreshForOfflineContents();
 
         //noinspection ConstantConditions
         mPrefsHelper = new AppPreferencesHelper(this, ReadRushApp.PREF_FILE_NAME);
         mScreenSlidePagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
 
         setInitialTheme();
-        getContent();
+//        getContent();
     }
 
     @Override
@@ -188,48 +195,39 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
         refreshFragments();
     }
 
-    @Override
-    public void getContent() {
-        mApiService = ApiClient.getClient().create(ApiInterface.class);
-        Call<List<Content>> call = mApiService.getRushContent(mRushId);
-        if(call!=null){
-            call.enqueue(new Callback<List<Content>>() {
-                @Override
-                public void onResponse(@NonNull Call<List<Content>> call, @NonNull Response<List<Content>> response) {
-                    mContents = response.body();
-                    if(mContents!=null && mContents.size()>0){
-                        if(mContentProgress!=null){
-                            try {
-                                //noinspection ConstantConditions
-                                mContentProgress.setMax(response.body().size());
-                            }
-                            catch (NullPointerException e){
-                                //do something
-                            }
-                            mContentProgress.setProgress(1);
-                        }
-                        setFragmentsForContents(mContents);
-
-                        for(int i=0; i<mContents.size(); i++){
-                            LibraryCoverContent coverContent = new LibraryCoverContent
-                                    (mContents.get(i).getContent_id(), mContents.get(i).getRush_id(),
-                                    mContents.get(i).getContent(), mContents.get(i).getAttr(),
-                                    mContents.get(i).getDatetime(), mContents.get(i).getPage_no());
-                            mLibraryContentRepository.insertContentItem(coverContent);
-                        }
+//    @Override
+//    public void getContent() {
+//        mApiService = ApiClient.getClient().create(ApiInterface.class);
+//        Call<List<Content>> call = mApiService.getRushContent(mRushId);
+//        if(call!=null){
+//            call.enqueue(new Callback<List<Content>>() {
+//                @Override
+//                public void onResponse(@NonNull Call<List<Content>> call, @NonNull Response<List<Content>> response) {
+//                    mContents = response.body();
+//                    if(mContents!=null && mContents.size()>0){
+//                        if(mContentProgress!=null){
+//                            try {
+//                                //noinspection ConstantConditions
+//                                mContentProgress.setMax(response.body().size());
+//                            }
+//                            catch (NullPointerException e){
+//                                //do something
+//                            }
+//                            mContentProgress.setProgress(1);
+//                        }
+//                        setFragmentsForContents(mContents);
+////
+//                    }
+//                }
 //
-                    }
-                }
-
-                @Override
-                public void onFailure(@NonNull Call<List<Content>> call, @NonNull Throwable t) {
-                    Toast.makeText(ReadRushActivity.this, "Network Error", Toast.LENGTH_LONG).show();
-                    onBackPressed();
-                }
-            });
-        }
-
-    }
+//                @Override
+//                public void onFailure(@NonNull Call<List<Content>> call, @NonNull Throwable t) {
+//                    Toast.makeText(ReadRushActivity.this, "Network Error", Toast.LENGTH_LONG).show();
+//                    onBackPressed();
+//                }
+//            });
+//        }
+//    }
 
     @Override
     public void setFragmentsForContents(List<Content> contents) {
@@ -551,5 +549,36 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
                 mCoversList = libraryCovers;
             }
         });
+    }
+
+    @Override
+    public void callObserve() {
+        mLibraryCoverContents.observe(this, new Observer<List<LibraryCoverContent>>() {
+            @Override
+            public void onChanged(@Nullable List<LibraryCoverContent> libraryCoverContents) {
+                mLibraryCoverContentsList = libraryCoverContents;
+                refreshForOfflineContents();
+            }
+        });
+    }
+
+    @Override
+    public void refreshForOfflineContents() {
+        mContents = new ArrayList<>();
+        if(mLibraryCoverContentsList!=null){
+            for(int i=0; i<mLibraryCoverContentsList.size(); i++) {
+                mContents.add(new Content(mLibraryCoverContentsList.get(i).getContent_id(),
+                        mLibraryCoverContentsList.get(i).getRush_id(),
+                        mLibraryCoverContentsList.get(i).getContent(),
+                        mLibraryCoverContentsList.get(i).getPage(),
+                        mLibraryCoverContentsList.get(i).getAttr(),
+                        mLibraryCoverContentsList.get(i).getDatetime()));
+            }
+        }
+        if(mContentProgress!=null && mContents!=null  && mContents.size()>0){
+            mContentProgress.setMax(mContents.size());
+            mContentProgress.setProgress(1);
+        }
+        setFragmentsForContents(mContents);
     }
 }

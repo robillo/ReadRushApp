@@ -15,7 +15,7 @@ public interface ReadRushMvpView extends MvpView {
 
     void setDarkTheme();
 
-    void getContent();
+//    void getContent();
 
     void setFragmentsForContents(List<Content> contents);
 
@@ -34,5 +34,9 @@ public interface ReadRushMvpView extends MvpView {
     void setFontPath(String fontPath);
 
     void checkForExistingRushesOffline();
+
+    void callObserve();
+
+    void refreshForOfflineContents();
 
 }

@@ -151,6 +151,13 @@ public class OverviewFragment extends BaseFragment implements OverviewFragmentMv
         mRushId = getArguments().getString("rush_id");
         mShimmerLayout.startShimmerAnimation();
 
+        mLibraryCoverContents.observe(this, new Observer<List<LibraryCoverContent>>() {
+            @Override
+            public void onChanged(@Nullable List<LibraryCoverContent> libraryCoverContents) {
+                mLibraryCoverContentsList = libraryCoverContents;
+            }
+        });
+
         fetchRushDetails();
     }
 
@@ -272,19 +279,11 @@ public class OverviewFragment extends BaseFragment implements OverviewFragmentMv
             addRushToOnlineLibrary();
         }
         else if(mAddReadRush.getText().equals(getString(R.string.read_rush))){
-            mLibraryCoverContents.observe(this, new Observer<List<LibraryCoverContent>>() {
-                @Override
-                public void onChanged(@Nullable List<LibraryCoverContent> libraryCoverContents) {
-                    if(libraryCoverContents!=null && libraryCoverContents.size()>0){
-                        mLibraryCoverContentsList = libraryCoverContents;
-                    }
-                    else {
-                        getContent();
-                    }
-                }
-            });
             if(mLibraryCoverContentsList.size()>0){
                 startActivity(ReadRushActivity.getStartIntent(getActivity(), mRushId, mRushAudio, mName.getText().toString()));
+            }
+            else {
+                getContent();
             }
         }
     }
