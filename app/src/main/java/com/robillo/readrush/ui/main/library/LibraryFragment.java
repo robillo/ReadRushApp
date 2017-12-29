@@ -4,6 +4,7 @@ package com.robillo.readrush.ui.main.library;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.Observer;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -44,6 +45,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.OnLongClick;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -305,18 +307,18 @@ public class LibraryFragment extends BaseFragment implements LibraryMvpView, Vie
                 public void onChanged(@Nullable List<LibraryCoverContent> libraryCoverContents) {
                     if(libraryCoverContents!=null && libraryCoverContents.size()>0){
                         mRushIDContentsList = libraryCoverContents;
+                        if(mRushIDContentsList.size()>0 && mRushIDContentsList.get(0).getRush_id().equals(mCoversList.get(index).getRush_id())){
+                            mRushIDContentsList = new ArrayList<>();
+                            startActivity(ReadRushActivity.getStartIntent(getActivity(), mCoversList.get(index).getRush_id(),
+                                    mCoversList.get(index).isRush_audio(),
+                                    mCoversList.get(index).getTitle()));
+                        }
                     }
                     else {
-                        getContent(mCoversList.get(index).getRush_id());
+                        if(mCoversList!=null && mCoversList.size()>index) getContent(mCoversList.get(index).getRush_id());
                     }
                 }
             });
-            if(mRushIDContentsList.size()>0 && mRushIDContentsList.get(0).getRush_id().equals(mCoversList.get(index).getRush_id())){
-                mRushIDContentsList = new ArrayList<>();
-                startActivity(ReadRushActivity.getStartIntent(getActivity(), mCoversList.get(index).getRush_id(),
-                        mCoversList.get(index).isRush_audio(),
-                        mCoversList.get(index).getTitle()));
-            }
         }
         else Toast.makeText(getActivity(), "Empty Cover", Toast.LENGTH_SHORT).show();
     }
@@ -383,11 +385,12 @@ public class LibraryFragment extends BaseFragment implements LibraryMvpView, Vie
     }
 
     @Override
-    public void setLongClickListenersRushes(ImageView imageView, final int index) {
+    public boolean setLongClickListenersRushes(ImageView imageView, final int index) {
         int count = mCoversList.size();
         if(count > index){
             showDeleteAlertDialog(mCoversList.get(index).getTitle(), index);
         }
+        return true;
     }
 
     @OnClick(R.id.rush1)
@@ -404,6 +407,7 @@ public class LibraryFragment extends BaseFragment implements LibraryMvpView, Vie
     public void clickmRushThree() {
         openReadRushScreen(2);
     }
+
     @OnClick(R.id.rush4)
     public void clickmRushFour() {
         openReadRushScreen(3);
@@ -492,17 +496,16 @@ public class LibraryFragment extends BaseFragment implements LibraryMvpView, Vie
                 @Override
                 public void onResponse(@NonNull Call<List<Content>> call, @NonNull Response<List<Content>> response) {
                     mContents = response.body();
+                    List<LibraryCoverContent> coverContent = new ArrayList<>();
                     if(mContents!=null && mContents.size()>0){
-                        //noinspection ConstantConditions
                         for(int i=0; i<mContents.size(); i++){
-                            LibraryCoverContent coverContent = new LibraryCoverContent
+                            coverContent.add(new LibraryCoverContent
                                     (mContents.get(i).getContent_id(), mContents.get(i).getRush_id(),
                                             mContents.get(i).getContent(), mContents.get(i).getAttr(),
-                                            mContents.get(i).getDatetime(), mContents.get(i).getPage_no());
-                            mLibraryContentRepository.insertContentItem(coverContent);
+                                            mContents.get(i).getDatetime(), mContents.get(i).getPage_no()));
                         }
-//
                     }
+                    mLibraryContentRepository.insertContentItemsList(coverContent);
                 }
 
                 @Override

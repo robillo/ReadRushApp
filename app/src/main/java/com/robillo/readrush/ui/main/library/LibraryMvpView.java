@@ -34,6 +34,6 @@ public interface LibraryMvpView extends MvpView {
 
     void showDeleteAlertDialog(String bookName, int rushIndex);
 
-    void setLongClickListenersRushes(ImageView imageView, int coverIndex);
+    boolean setLongClickListenersRushes(ImageView imageView, int coverIndex);
 
 }

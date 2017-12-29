@@ -40,4 +40,28 @@ public class LibraryContentRepository {
             }
         }.execute();
     }
+
+    @SuppressLint("StaticFieldLeak")
+    public void insertContentItems(final List<LibraryCoverContent> items) {
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... voids) {
+                for(int i=0; i<items.size(); i++){
+                    mLibraryCoverContentDao.insertCoverContents(items.get(i));
+                }
+                return null;
+            }
+        }.execute();
+    }
+
+    @SuppressLint("StaticFieldLeak")
+    public void insertContentItemsList(final List<LibraryCoverContent> items) {
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... voids) {
+                mLibraryCoverContentDao.insertCoverContentsList(items);
+                return null;
+            }
+        }.execute();
+    }
 }

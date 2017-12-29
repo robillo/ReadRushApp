@@ -8,6 +8,7 @@ import android.arch.persistence.room.Query;
 
 import java.util.List;
 
+import static android.arch.persistence.room.OnConflictStrategy.IGNORE;
 import static android.arch.persistence.room.OnConflictStrategy.REPLACE;
 
 /**
@@ -23,7 +24,10 @@ public interface LibraryCoverContentDao {
     @Query("DELETE FROM library_cover where rush_id = :rush_id")
     void deleteContentsFromRushID(String rush_id);
 
-    @Insert(onConflict = REPLACE)
-    void insertCoverContents(LibraryCoverContent... contents);
+    @Insert(onConflict = IGNORE)
+    void insertCoverContents(LibraryCoverContent contents);
+
+    @Insert(onConflict = IGNORE)
+    void insertCoverContentsList(List<LibraryCoverContent> contents);
 
 }
