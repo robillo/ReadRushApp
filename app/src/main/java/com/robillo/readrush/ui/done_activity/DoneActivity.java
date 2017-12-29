@@ -27,6 +27,7 @@ import com.robillo.readrush.data.network.retrofit.model.Featured;
 import com.robillo.readrush.data.network.retrofit.model.FeaturedSuper;
 import com.robillo.readrush.data.prefs.AppPreferencesHelper;
 import com.robillo.readrush.ui.base.BaseActivity;
+import com.robillo.readrush.ui.main.MainActivity;
 import com.robillo.readrush.ui.main.discover.adapters.FeaturedAdapter;
 import com.robillo.readrush.ui.rushread.ReadRushActivity;
 import com.stepstone.apprating.AppRatingDialog;
@@ -213,5 +214,10 @@ public class DoneActivity extends BaseActivity implements DoneMvpView, RatingDia
     @Override
     public void onNeutralButtonClicked() {
         //Auto - dismiss ; do nothing
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(MainActivity.getStartIntent(this));
     }
 }

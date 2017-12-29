@@ -507,7 +507,7 @@ public class LibraryFragment extends BaseFragment implements LibraryMvpView, Vie
 
                 @Override
                 public void onFailure(@NonNull Call<List<Content>> call, @NonNull Throwable t) {
-                    if(getActivity()!=null) Toast.makeText(getActivity(), "Network Error while downloading rush content", Toast.LENGTH_LONG).show();
+//                    if(getActivity()!=null) Toast.makeText(getActivity(), "Network Error while downloading rush content", Toast.LENGTH_LONG).show();
                 }
             });
         }

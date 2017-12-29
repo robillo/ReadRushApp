@@ -154,6 +154,7 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
 
         //noinspection ConstantConditions
         mPrefsHelper = new AppPreferencesHelper(this, ReadRushApp.PREF_FILE_NAME);
+        mApiService = ApiClient.getClient().create(ApiInterface.class);
         mScreenSlidePagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
 
         setInitialTheme();
@@ -453,6 +454,7 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
                         mLibraryCoverRepository.deleteCoverItem(mCoversList.get(i));
                     }
                 }
+                mCurrentPage = 0;
                 startActivity(DoneActivity.getStartIntent(ReadRushActivity.this, mRushId, mRushName));
             }
 

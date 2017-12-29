@@ -140,25 +140,26 @@ public class OverviewFragment extends BaseFragment implements OverviewFragmentMv
     @Override
     protected void setUp(View view) {
 
+        mApiService = ApiClient.getClient().create(ApiInterface.class);
+
         //noinspection ConstantConditions
         mPrefsHelper = new AppPreferencesHelper(getActivity(), ReadRushApp.PREF_FILE_NAME);
         mLibraryCoversRushIds = mLibraryCoverRepository.getAllRushIds();
-        mLibraryCoverContents = mLibraryCoverRepository.getContentsForRushID(mRushId);
         fetchListMyLibRushIds();
-        mApiService = ApiClient.getClient().create(ApiInterface.class);
+        fetchRushDetails();
 
         //noinspection ConstantConditions
         mRushId = getArguments().getString("rush_id");
         mShimmerLayout.startShimmerAnimation();
 
+
+        mLibraryCoverContents = mLibraryCoverRepository.getContentsForRushID(mRushId);
         mLibraryCoverContents.observe(this, new Observer<List<LibraryCoverContent>>() {
             @Override
             public void onChanged(@Nullable List<LibraryCoverContent> libraryCoverContents) {
                 mLibraryCoverContentsList = libraryCoverContents;
             }
         });
-
-        fetchRushDetails();
     }
 
     @Override
@@ -209,7 +210,7 @@ public class OverviewFragment extends BaseFragment implements OverviewFragmentMv
 
                 @Override
                 public void onFailure(@NonNull Call<List<RushInfo>> call, @NonNull Throwable t) {
-                    if(getActivity()!=null) Toast.makeText(getActivity(), "Network Error", Toast.LENGTH_SHORT).show();
+//                    if(getActivity()!=null) Toast.makeText(getActivity(), "Network Error", Toast.LENGTH_SHORT).show();
                 }
             });
         }
@@ -255,7 +256,7 @@ public class OverviewFragment extends BaseFragment implements OverviewFragmentMv
 
                 @Override
                 public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
-                    Toast.makeText(getActivity(), "Network Error", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getActivity(), "Network Error", Toast.LENGTH_SHORT).show();
                 }
             });
         }
@@ -311,8 +312,7 @@ public class OverviewFragment extends BaseFragment implements OverviewFragmentMv
 
                 @Override
                 public void onFailure(@NonNull Call<List<Content>> call, @NonNull Throwable t) {
-                    if(getActivity()!=null) Toast.makeText(getActivity(), "Network Error while downloading rush content", Toast.LENGTH_LONG).show();
-                    getActivity().onBackPressed();
+//                    if(getActivity()!=null) Toast.makeText(getActivity(), "Network Error while downloading rush content", Toast.LENGTH_LONG).show();
                 }
             });
         }
