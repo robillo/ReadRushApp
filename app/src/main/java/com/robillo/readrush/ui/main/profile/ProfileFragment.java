@@ -29,7 +29,6 @@ import com.robillo.readrush.data.network.retrofit.model.ProfileNumbersSuper;
 import com.robillo.readrush.data.prefs.AppPreferencesHelper;
 import com.robillo.readrush.di.component.ActivityComponent;
 import com.robillo.readrush.ui.base.BaseFragment;
-import com.robillo.readrush.ui.main.profile.profile_covers_adapter.ProfileCover;
 import com.robillo.readrush.ui.main.profile.profile_covers_adapter.ProfileCoverAdapter;
 import com.robillo.readrush.ui.settings.SettingsActivity;
 
@@ -160,7 +159,7 @@ public class ProfileFragment extends BaseFragment implements ProfileMvpView {
         //Inflate reading recyclerView with mCoversList covers
         mProfileReadingCovers = new ArrayList<>();
         for(int i=0; i<mCoversList.size(); i++){
-            mProfileReadingCovers.add(new ProfileNumbers(mCoversList.get(i).getRushId(), mCoversList.get(i).getTitle(), mCoversList.get(i).getCover()));
+            mProfileReadingCovers.add(new ProfileNumbers(mCoversList.get(i).getRush_id(), mCoversList.get(i).getTitle(), mCoversList.get(i).getCover()));
         }
         ProfileCoverAdapter adapter = new ProfileCoverAdapter(mProfileReadingCovers, getActivity());
         mReadINGRecycler.setAdapter(adapter);

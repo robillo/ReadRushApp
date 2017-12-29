@@ -2,6 +2,7 @@ package com.robillo.readrush.data.db.model.library;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
@@ -12,11 +13,10 @@ import android.support.annotation.NonNull;
 @Entity(tableName = "library_cover")
 public class LibraryCover {
 
-    @SuppressWarnings("WeakerAccess")
     @NonNull
     @PrimaryKey
     @ColumnInfo(name = "rush_id")
-    String rushId;
+    String rush_id;
 
     @ColumnInfo(name = "title")
     private String title;
@@ -43,7 +43,7 @@ public class LibraryCover {
     private boolean rush_audio;
 
     public LibraryCover(@NonNull String rushId, String title, String author, String rating, String estTime, String pages, String cover, String rush_content, boolean rush_audio) {
-        this.rushId = rushId;
+        this.rush_id = rushId;
         this.title = title;
         this.author = author;
         this.rating = rating;
@@ -56,12 +56,12 @@ public class LibraryCover {
 
     @SuppressWarnings("WeakerAccess")
     @NonNull
-    public String getRushId() {
-        return rushId;
+    public String getRush_id() {
+        return rush_id;
     }
 
-    public void setRushId(@NonNull String rushId) {
-        this.rushId = rushId;
+    public void setRush_id(@NonNull String rush_id) {
+        this.rush_id = rush_id;
     }
 
     public String getTitle() {
@@ -130,4 +130,5 @@ public class LibraryCover {
     public void setRush_audio(boolean rush_audio) {
         this.rush_audio = rush_audio;
     }
+
 }

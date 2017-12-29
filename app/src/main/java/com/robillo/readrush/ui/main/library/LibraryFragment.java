@@ -4,8 +4,6 @@ package com.robillo.readrush.ui.main.library;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.Observer;
 import android.os.Bundle;
-import android.os.Handler;
-import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -22,9 +20,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.androidnetworking.model.Progress;
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.robillo.readrush.R;
 import com.robillo.readrush.ReadRushApp;
 import com.robillo.readrush.data.db.model.library.LibraryCover;
@@ -35,9 +31,6 @@ import com.robillo.readrush.data.network.retrofit.model.LibraryItem;
 import com.robillo.readrush.data.prefs.AppPreferencesHelper;
 import com.robillo.readrush.di.component.ActivityComponent;
 import com.robillo.readrush.ui.base.BaseFragment;
-import com.robillo.readrush.ui.main.MainActivity;
-import com.robillo.readrush.ui.onboard.fragment.OnboardFragment;
-import com.robillo.readrush.ui.rushoverview.OverviewActivity;
 import com.robillo.readrush.ui.rushread.ReadRushActivity;
 
 import java.util.List;
@@ -295,7 +288,7 @@ public class LibraryFragment extends BaseFragment implements LibraryMvpView, Vie
     @Override
     public void openReadRushScreen(int index) {
         int count = mCoversList.size();
-        if(count > index) startActivity(ReadRushActivity.getStartIntent(getActivity(), mCoversList.get(index).getRushId(), mCoversList.get(index).isRush_audio(), mCoversList.get(index).getTitle()));
+        if(count > index) startActivity(ReadRushActivity.getStartIntent(getActivity(), mCoversList.get(index).getRush_id(), mCoversList.get(index).isRush_audio(), mCoversList.get(index).getTitle()));
         else Toast.makeText(getActivity(), "Empty Cover", Toast.LENGTH_SHORT).show();
     }
 
@@ -323,9 +316,9 @@ public class LibraryFragment extends BaseFragment implements LibraryMvpView, Vie
                         @Override
                         public void onClick(SweetAlertDialog sDialog) {
 
-                            Log.e("status", "success " + mPrefsHelper.getUserId() + " " + mCoversList.get(coverIndex).getRushId());
+                            Log.e("status", "success " + mPrefsHelper.getUserId() + " " + mCoversList.get(coverIndex).getRush_id());
 
-                            Call<ResponseBody> call = mApiService.deleteRushFromLibrary(mPrefsHelper.getUserId(), mCoversList.get(coverIndex).getRushId());
+                            Call<ResponseBody> call = mApiService.deleteRushFromLibrary(mPrefsHelper.getUserId(), mCoversList.get(coverIndex).getRush_id());
                             if(call!=null){
                                 call.enqueue(new Callback<ResponseBody>() {
                                     @Override

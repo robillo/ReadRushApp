@@ -28,7 +28,6 @@ public class LibraryCoverRepository {
         return mLibraryCoverDao.getAllCoverItems();
     }
 
-    @SuppressWarnings("unused")
     @SuppressLint("StaticFieldLeak")
     public void insertCoverItem(final LibraryCover item) {
         new AsyncTask<Void, Void, Void>() {
@@ -40,7 +39,6 @@ public class LibraryCoverRepository {
         }.execute();
     }
 
-    @SuppressWarnings("unused")
     public void deleteAllCoverItems() {
         mLibraryCoverDao.deleteAllCoverNames();
     }

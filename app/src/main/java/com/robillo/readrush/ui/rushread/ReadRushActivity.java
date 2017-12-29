@@ -27,7 +27,9 @@ import android.widget.Toast;
 
 import com.robillo.readrush.R;
 import com.robillo.readrush.ReadRushApp;
+import com.robillo.readrush.data.db.model.library.LibraryContentRepository;
 import com.robillo.readrush.data.db.model.library.LibraryCover;
+import com.robillo.readrush.data.db.model.library.LibraryCoverContent;
 import com.robillo.readrush.data.db.model.library.LibraryCoverRepository;
 import com.robillo.readrush.data.network.retrofit.ApiClient;
 import com.robillo.readrush.data.network.retrofit.ApiInterface;
@@ -37,9 +39,8 @@ import com.robillo.readrush.ui.base.BaseActivity;
 import com.robillo.readrush.ui.done_activity.DoneActivity;
 import com.robillo.readrush.ui.rushread.content.ContentFragment;
 import com.robillo.readrush.ui.rushread.custom_dialog.CustomFragment;
-import com.robillo.readrush.ui.rushread.custom_dialog_fragment.CustomDialogFragment;
-import com.robillo.readrush.ui.rushread.rating.RatingFragment;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -68,6 +69,9 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
 
     @Inject
     LibraryCoverRepository mLibraryCoverRepository;
+
+    @Inject
+    LibraryContentRepository mLibraryContentRepository;
 
     @Inject
     ReadRushMvpPresenter<ReadRushMvpView> mPresenter;
@@ -198,12 +202,22 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
                         mContentProgress.setMax(response.body().size());
                         mContentProgress.setProgress(1);
                         setFragmentsForContents(mContents);
+
+                        for(int i=0; i<mContents.size(); i++){
+                            LibraryCoverContent coverContent = new LibraryCoverContent
+                                    (mContents.get(i).getContent_id(), mContents.get(i).getRush_id(),
+                                    mContents.get(i).getContent(), mContents.get(i).getAttr(),
+                                    mContents.get(i).getDatetime());
+                            mLibraryContentRepository.insertContentItem(coverContent);
+                        }
+//
                     }
                 }
 
                 @Override
                 public void onFailure(@NonNull Call<List<Content>> call, @NonNull Throwable t) {
                     Toast.makeText(ReadRushActivity.this, "Network Error", Toast.LENGTH_LONG).show();
+                    onBackPressed();
                 }
             });
         }
@@ -429,7 +443,7 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
             public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
                 Toast.makeText(ReadRushActivity.this, "Rush moved from Library to Read rushes", Toast.LENGTH_SHORT).show();
                 for(int i=0; i<mCoversList.size(); i++){
-                    if(mCoversList.get(i).getRushId().equals(mRushId)){
+                    if(mCoversList.get(i).getRush_id().equals(mRushId)){
                         mLibraryCoverRepository.deleteCoverItem(mCoversList.get(i));
                     }
                 }
