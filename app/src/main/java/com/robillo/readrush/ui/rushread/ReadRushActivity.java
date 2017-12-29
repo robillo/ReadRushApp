@@ -198,16 +198,23 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
                 public void onResponse(@NonNull Call<List<Content>> call, @NonNull Response<List<Content>> response) {
                     mContents = response.body();
                     if(mContents!=null && mContents.size()>0){
-                        //noinspection ConstantConditions
-                        mContentProgress.setMax(response.body().size());
-                        mContentProgress.setProgress(1);
+                        if(mContentProgress!=null){
+                            try {
+                                //noinspection ConstantConditions
+                                mContentProgress.setMax(response.body().size());
+                            }
+                            catch (NullPointerException e){
+                                //do something
+                            }
+                            mContentProgress.setProgress(1);
+                        }
                         setFragmentsForContents(mContents);
 
                         for(int i=0; i<mContents.size(); i++){
                             LibraryCoverContent coverContent = new LibraryCoverContent
                                     (mContents.get(i).getContent_id(), mContents.get(i).getRush_id(),
                                     mContents.get(i).getContent(), mContents.get(i).getAttr(),
-                                    mContents.get(i).getDatetime());
+                                    mContents.get(i).getDatetime(), mContents.get(i).getPage_no());
                             mLibraryContentRepository.insertContentItem(coverContent);
                         }
 //

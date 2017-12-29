@@ -3,21 +3,27 @@ package com.robillo.readrush.data.db.model.library;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.PrimaryKey;
 
 /**
  * Created by robinkamboj on 29/12/17.
  */
 
-@Entity( foreignKeys = @ForeignKey( entity = LibraryCover.class, parentColumns = "rush_id", childColumns = "rush_id"))
+@Entity(tableName = "LibraryCoverContent", foreignKeys = @ForeignKey( entity = LibraryCover.class, parentColumns = "rush_id", childColumns = "rush_id", onDelete = ForeignKey.CASCADE))
 public class LibraryCoverContent {
 
-    public LibraryCoverContent(String content_id, String rush_id, String content, String attr, String datetime) {
+    public LibraryCoverContent(String content_id, String rush_id, String content, String attr, String datetime, String page) {
         this.content_id = content_id;
         this.rush_id = rush_id;
         this.content = content;
         this.attr = attr;
         this.datetime = datetime;
+        this.page = page;
     }
+
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "primary")
+    private int primary;
 
     @ColumnInfo(name = "content_id")
     private String content_id;
@@ -34,4 +40,62 @@ public class LibraryCoverContent {
     @ColumnInfo(name = "datetime")
     private String datetime;
 
+    @ColumnInfo(name = "page")
+    private String page;
+
+    public String getContent_id() {
+        return content_id;
+    }
+
+    public void setContent_id(String content_id) {
+        this.content_id = content_id;
+    }
+
+    public String getRush_id() {
+        return rush_id;
+    }
+
+    public void setRush_id(String rush_id) {
+        this.rush_id = rush_id;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public String getAttr() {
+        return attr;
+    }
+
+    public void setAttr(String attr) {
+        this.attr = attr;
+    }
+
+    public String getDatetime() {
+        return datetime;
+    }
+
+    public void setDatetime(String datetime) {
+        this.datetime = datetime;
+    }
+
+    public int getPrimary() {
+        return primary;
+    }
+
+    public void setPrimary(int primary) {
+        this.primary = primary;
+    }
+
+    public String getPage() {
+        return page;
+    }
+
+    public void setPage(String page) {
+        this.page = page;
+    }
 }

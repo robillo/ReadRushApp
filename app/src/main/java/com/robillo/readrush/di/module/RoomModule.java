@@ -71,7 +71,7 @@ public class RoomModule {
 
     @Provides
     @Singleton
-    LibraryContentRepository provideListItemRepositoryLibrary(LibraryCoverContentDao libraryContentDao){
+    LibraryContentRepository provideContentRepositoryLibrary(LibraryCoverContentDao libraryContentDao){
         return new LibraryContentRepository(libraryContentDao);
     }
 

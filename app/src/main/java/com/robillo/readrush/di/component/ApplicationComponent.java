@@ -21,6 +21,9 @@ import android.content.Context;
 import com.robillo.readrush.ReadRushApp;
 import com.robillo.readrush.data.DataManager;
 import com.robillo.readrush.data.db.RoomAppDatabase;
+import com.robillo.readrush.data.db.model.library.LibraryContentRepository;
+import com.robillo.readrush.data.db.model.library.LibraryCoverContent;
+import com.robillo.readrush.data.db.model.library.LibraryCoverDao;
 import com.robillo.readrush.data.db.model.library.LibraryCoverRepository;
 import com.robillo.readrush.data.db.model.search.SearchNameDao;
 import com.robillo.readrush.data.db.model.search.SearchNameRepository;
@@ -51,9 +54,13 @@ public interface ApplicationComponent {
 
     SearchNameDao searchNameDao();
 
+    LibraryCoverDao libraryContentDao();
+
     RoomAppDatabase roomAppDatabase();
 
     SearchNameRepository searchNameRepository();
 
     LibraryCoverRepository libraryCoverRepository();
+
+    LibraryContentRepository libraryContentRepository();
 }

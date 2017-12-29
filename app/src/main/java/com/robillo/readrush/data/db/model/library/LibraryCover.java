@@ -13,6 +13,10 @@ import android.support.annotation.NonNull;
 @Entity(tableName = "library_cover")
 public class LibraryCover {
 
+    public LibraryCover() {
+    }
+
+    @SuppressWarnings("NullableProblems")
     @NonNull
     @PrimaryKey
     @ColumnInfo(name = "rush_id")
