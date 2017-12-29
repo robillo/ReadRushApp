@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -580,5 +581,11 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
             mContentProgress.setProgress(1);
         }
         setFragmentsForContents(mContents);
+    }
+
+    @Override
+    public void onBackPressed() {
+        mCurrentPage = 0;
+        super.onBackPressed();
     }
 }
