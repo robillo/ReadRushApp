@@ -142,6 +142,8 @@ public class OverviewFragment extends BaseFragment implements OverviewFragmentMv
 
         mApiService = ApiClient.getClient().create(ApiInterface.class);
 
+        Glide.with(getActivity()).load(R.color.red4).centerCrop().into(mCover);
+
         //noinspection ConstantConditions
         mPrefsHelper = new AppPreferencesHelper(getActivity(), ReadRushApp.PREF_FILE_NAME);
         mLibraryCoversRushIds = mLibraryCoverRepository.getAllRushIds();
