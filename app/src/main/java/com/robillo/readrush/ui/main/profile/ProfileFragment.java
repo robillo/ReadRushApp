@@ -213,7 +213,7 @@ public class ProfileFragment extends BaseFragment implements ProfileMvpView {
                             if(mProgressRead!=null) mProgressRead.setVisibility(View.GONE);
                             if(mReadRecycler!=null) mReadRecycler.setVisibility(View.VISIBLE);
                             //noinspection ConstantConditions
-                            mRead.setText("Reading: " + response.body().getRushes_read().size());
+                            mRead.setText("Read: " + response.body().getRushes_read().size());
                         }
                         else {
                             //hide progress and set count of textView as zero
@@ -231,7 +231,7 @@ public class ProfileFragment extends BaseFragment implements ProfileMvpView {
                 public void onFailure(@NonNull Call<ProfileNumbersSuper> call, @NonNull Throwable t) {
                     if(mProgressRead!=null) mProgressRead.setVisibility(View.GONE);
                     if(mReadRecycler!=null) mReadRecycler.setVisibility(View.GONE);
-                    Toast.makeText(getActivity(), "Failed to establish network connection", Toast.LENGTH_SHORT).show();
+                    if(getActivity()!=null) Toast.makeText(getActivity(), "Failed to establish network connection", Toast.LENGTH_SHORT).show();
                 }
             });
     }
