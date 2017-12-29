@@ -35,6 +35,7 @@ import com.robillo.readrush.ui.rushoverview.reviewsFragment.ReviewsFragment;
 import com.robillo.readrush.ui.rushread.ReadRushActivity;
 import com.willy.ratingbar.ScaleRatingBar;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -59,6 +60,7 @@ public class OverviewFragment extends BaseFragment implements OverviewFragmentMv
     private RushInfo mRushInfo;
     LiveData<List<String>> mLibraryCoversRushIds;
     LiveData<List<LibraryCoverContent>> mLibraryCoverContents;
+    List<LibraryCoverContent> mLibraryCoverContentsList = new ArrayList<>();
     List<String> mRushIds;
     private List<Content> mContents;
     LibraryCover mRoomCover = null;
@@ -270,15 +272,20 @@ public class OverviewFragment extends BaseFragment implements OverviewFragmentMv
             addRushToOnlineLibrary();
         }
         else if(mAddReadRush.getText().equals(getString(R.string.read_rush))){
-            getContent();
             mLibraryCoverContents.observe(this, new Observer<List<LibraryCoverContent>>() {
                 @Override
                 public void onChanged(@Nullable List<LibraryCoverContent> libraryCoverContents) {
                     if(libraryCoverContents!=null && libraryCoverContents.size()>0){
-                        startActivity(ReadRushActivity.getStartIntent(getActivity(), mRushId, mRushAudio, mName.getText().toString()));
+                        mLibraryCoverContentsList = libraryCoverContents;
+                    }
+                    else {
+                        getContent();
                     }
                 }
             });
+            if(mLibraryCoverContentsList.size()>0){
+                startActivity(ReadRushActivity.getStartIntent(getActivity(), mRushId, mRushAudio, mName.getText().toString()));
+            }
         }
     }
 
@@ -305,11 +312,10 @@ public class OverviewFragment extends BaseFragment implements OverviewFragmentMv
 
                 @Override
                 public void onFailure(@NonNull Call<List<Content>> call, @NonNull Throwable t) {
-                    Toast.makeText(getActivity(), "Network Error while downloading rush content", Toast.LENGTH_LONG).show();
+                    if(getActivity()!=null) Toast.makeText(getActivity(), "Network Error while downloading rush content", Toast.LENGTH_LONG).show();
                     getActivity().onBackPressed();
                 }
             });
         }
-
     }
 }

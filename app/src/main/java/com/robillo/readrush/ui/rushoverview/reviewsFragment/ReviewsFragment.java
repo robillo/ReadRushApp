@@ -108,8 +108,8 @@ public class ReviewsFragment extends BaseFragment implements ReviewsMvpView {
 
     @OnClick(R.id.exit)
     public void setmExit(){
-        //noinspection ConstantConditions
-        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+        FragmentTransaction transaction = null;
+        if(getActivity()!=null) transaction = getActivity().getSupportFragmentManager().beginTransaction();
         if(transaction!=null){
             transaction.setCustomAnimations(R.anim.review_enter_anim, R.anim.review_exit_anim);
             transaction.remove(getActivity().getSupportFragmentManager().findFragmentByTag("review")).commit();

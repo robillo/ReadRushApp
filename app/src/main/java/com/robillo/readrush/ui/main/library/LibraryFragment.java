@@ -23,16 +23,20 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.robillo.readrush.R;
 import com.robillo.readrush.ReadRushApp;
+import com.robillo.readrush.data.db.model.library.LibraryContentRepository;
 import com.robillo.readrush.data.db.model.library.LibraryCover;
+import com.robillo.readrush.data.db.model.library.LibraryCoverContent;
 import com.robillo.readrush.data.db.model.library.LibraryCoverRepository;
 import com.robillo.readrush.data.network.retrofit.ApiClient;
 import com.robillo.readrush.data.network.retrofit.ApiInterface;
+import com.robillo.readrush.data.network.retrofit.model.Content;
 import com.robillo.readrush.data.network.retrofit.model.LibraryItem;
 import com.robillo.readrush.data.prefs.AppPreferencesHelper;
 import com.robillo.readrush.di.component.ActivityComponent;
 import com.robillo.readrush.ui.base.BaseFragment;
 import com.robillo.readrush.ui.rushread.ReadRushActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -58,7 +62,10 @@ public class LibraryFragment extends BaseFragment implements LibraryMvpView, Vie
 
     //offline
     LiveData<List<LibraryCover>> mListLibraryCovers;
+    LiveData<List<LibraryCoverContent>> mRushIDContent;
+    List<LibraryCoverContent> mRushIDContentsList = new ArrayList<>();
     List<LibraryCover> mCoversList;
+    private List<Content> mContents;
 
     @SuppressWarnings("FieldCanBeLocal")
     private AppPreferencesHelper mPrefsHelper;
@@ -115,6 +122,9 @@ public class LibraryFragment extends BaseFragment implements LibraryMvpView, Vie
 
     @Inject
     LibraryCoverRepository mLibraryCoverRepository;
+
+    @Inject
+    LibraryContentRepository mLibraryContentRepository;
 
     @Inject
     LibraryMvpPresenter<LibraryMvpView> mPresenter;
@@ -286,9 +296,28 @@ public class LibraryFragment extends BaseFragment implements LibraryMvpView, Vie
     }
 
     @Override
-    public void openReadRushScreen(int index) {
+    public void openReadRushScreen(final int index) {
         int count = mCoversList.size();
-        if(count > index) startActivity(ReadRushActivity.getStartIntent(getActivity(), mCoversList.get(index).getRush_id(), mCoversList.get(index).isRush_audio(), mCoversList.get(index).getTitle()));
+        if(count > index){
+            mRushIDContent = mLibraryContentRepository.getContentsFromID(mCoversList.get(index).getRush_id());
+            mRushIDContent.observe(this, new Observer<List<LibraryCoverContent>>() {
+                @Override
+                public void onChanged(@Nullable List<LibraryCoverContent> libraryCoverContents) {
+                    if(libraryCoverContents!=null && libraryCoverContents.size()>0){
+                        mRushIDContentsList = libraryCoverContents;
+                    }
+                    else {
+                        getContent(mCoversList.get(index).getRush_id());
+                    }
+                }
+            });
+            if(mRushIDContentsList.size()>0 && mRushIDContentsList.get(0).getRush_id().equals(mCoversList.get(index).getRush_id())){
+                mRushIDContentsList = new ArrayList<>();
+                startActivity(ReadRushActivity.getStartIntent(getActivity(), mCoversList.get(index).getRush_id(),
+                        mCoversList.get(index).isRush_audio(),
+                        mCoversList.get(index).getTitle()));
+            }
+        }
         else Toast.makeText(getActivity(), "Empty Cover", Toast.LENGTH_SHORT).show();
     }
 
@@ -452,6 +481,35 @@ public class LibraryFragment extends BaseFragment implements LibraryMvpView, Vie
             }
             default:
                 return true;
+        }
+    }
+
+    public void getContent(String mRushId) {
+        mApiService = ApiClient.getClient().create(ApiInterface.class);
+        Call<List<Content>> call = mApiService.getRushContent(mRushId);
+        if(call!=null){
+            call.enqueue(new Callback<List<Content>>() {
+                @Override
+                public void onResponse(@NonNull Call<List<Content>> call, @NonNull Response<List<Content>> response) {
+                    mContents = response.body();
+                    if(mContents!=null && mContents.size()>0){
+                        //noinspection ConstantConditions
+                        for(int i=0; i<mContents.size(); i++){
+                            LibraryCoverContent coverContent = new LibraryCoverContent
+                                    (mContents.get(i).getContent_id(), mContents.get(i).getRush_id(),
+                                            mContents.get(i).getContent(), mContents.get(i).getAttr(),
+                                            mContents.get(i).getDatetime(), mContents.get(i).getPage_no());
+                            mLibraryContentRepository.insertContentItem(coverContent);
+                        }
+//
+                    }
+                }
+
+                @Override
+                public void onFailure(@NonNull Call<List<Content>> call, @NonNull Throwable t) {
+                    if(getActivity()!=null) Toast.makeText(getActivity(), "Network Error while downloading rush content", Toast.LENGTH_LONG).show();
+                }
+            });
         }
     }
 }
