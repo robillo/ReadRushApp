@@ -154,12 +154,6 @@ public class OverviewFragment extends BaseFragment implements OverviewFragmentMv
 
 
         mLibraryCoverContents = mLibraryCoverRepository.getContentsForRushID(mRushId);
-        mLibraryCoverContents.observe(this, new Observer<List<LibraryCoverContent>>() {
-            @Override
-            public void onChanged(@Nullable List<LibraryCoverContent> libraryCoverContents) {
-                mLibraryCoverContentsList = libraryCoverContents;
-            }
-        });
     }
 
     @Override
@@ -280,12 +274,18 @@ public class OverviewFragment extends BaseFragment implements OverviewFragmentMv
             addRushToOnlineLibrary();
         }
         else if(mAddReadRush.getText().equals(getString(R.string.read_rush))){
-            if(mLibraryCoverContentsList.size()>0){
-                startActivity(ReadRushActivity.getStartIntent(getActivity(), mRushId, mRushAudio, mName.getText().toString()));
-            }
-            else {
-                getContent();
-            }
+            mLibraryCoverContents.observe(this, new Observer<List<LibraryCoverContent>>() {
+                @Override
+                public void onChanged(@Nullable List<LibraryCoverContent> libraryCoverContents) {
+                    mLibraryCoverContentsList = libraryCoverContents;
+                    if(mLibraryCoverContentsList.size()>0){
+                        startActivity(ReadRushActivity.getStartIntent(getActivity(), mRushId, mRushAudio, mName.getText().toString()));
+                    }
+                    else {
+                        getContent();
+                    }
+                }
+            });
         }
     }
 
@@ -298,15 +298,14 @@ public class OverviewFragment extends BaseFragment implements OverviewFragmentMv
                 public void onResponse(@NonNull Call<List<Content>> call, @NonNull Response<List<Content>> response) {
                     mContents = response.body();
                     if(mContents!=null && mContents.size()>0){
-                        //noinspection ConstantConditions
+                        List<LibraryCoverContent> coverContents = new ArrayList<>();
                         for(int i=0; i<mContents.size(); i++){
-                            LibraryCoverContent coverContent = new LibraryCoverContent
+                            coverContents.add(new LibraryCoverContent
                                     (mContents.get(i).getContent_id(), mContents.get(i).getRush_id(),
                                             mContents.get(i).getContent(), mContents.get(i).getAttr(),
-                                            mContents.get(i).getDatetime(), mContents.get(i).getPage_no());
-                            mLibraryContentRepository.insertContentItem(coverContent);
+                                            mContents.get(i).getDatetime(), mContents.get(i).getPage_no()));
                         }
-//
+                        mLibraryContentRepository.insertContentItemsList(coverContents);
                     }
                 }
 
