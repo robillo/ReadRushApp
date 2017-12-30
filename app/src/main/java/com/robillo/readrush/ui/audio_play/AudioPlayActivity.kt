@@ -72,10 +72,12 @@ class AudioPlayActivity : AppCompatActivity(), AudioPlayMvpView, BetterVideoCall
 
         next.setOnClickListener {
             playNextRushAudio()
+            next.isClickable = false
         }
 
         prev.setOnClickListener {
             playPrevRushAudio()
+            prev.isClickable = false
         }
 
         play_pause.setOnClickListener {
@@ -137,13 +139,11 @@ class AudioPlayActivity : AppCompatActivity(), AudioPlayMvpView, BetterVideoCall
     }
 
     override fun initMediaPlayer(index : Int) {
-        val temp = "(Rush " + (index + 1) + "/" + mAudioContentsList.size + ")"
-        count.text = temp
         preparePlayer(index)
     }
 
     override fun playNextRushAudio() {
-        if(mCurrentPlayingAudioPos<mAudioContentsList.size){
+        if(mCurrentPlayingAudioPos<(mAudioContentsList.size-1)){
             mCurrentPlayingAudioPos = mCurrentPlayingAudioPos + 1
             preparePlayer(mCurrentPlayingAudioPos)
         }
@@ -171,25 +171,14 @@ class AudioPlayActivity : AppCompatActivity(), AudioPlayMvpView, BetterVideoCall
 
     override fun preparePlayer(index: Int) {
 
-        if(mCurrentPlayingAudioPos == 0){
-            prev.visibility = View.INVISIBLE
-            prev.isClickable = true
-        }
-        else{
-            prev.visibility = View.VISIBLE
-            prev.isClickable = false
+        val temp = "(Rush " + (index + 1) + "/" + mAudioContentsList.size + ")"
+        count.text = temp
+
+        if(player.isPlaying && myIsPlaying){
+            player.pause()
         }
 
-        if(mCurrentPlayingAudioPos == mAudioContentsList.size){
-            next.visibility = View.INVISIBLE
-            next.isClickable = true
-        }
-        else{
-            next.visibility = View.VISIBLE
-            next.isClickable = false
-        }
-
-
+        player.reset()
 
         player.setLoop(false)
         player.setLoadingStyle(2)
@@ -208,6 +197,24 @@ class AudioPlayActivity : AppCompatActivity(), AudioPlayMvpView, BetterVideoCall
         play_pause.visibility = View.VISIBLE
         play_pause.isClickable = true
         play_pause.setImageDrawable(resources.getDrawable(R.drawable.ic_play_circle_filled_black_24dp))
+
+        if(mCurrentPlayingAudioPos == 0){
+            prev.visibility = View.INVISIBLE
+            prev.isClickable = false
+        }
+        else{
+            prev.visibility = View.VISIBLE
+            prev.isClickable = true
+        }
+
+        if(mCurrentPlayingAudioPos == (mAudioContentsList.size-1) ){
+            next.visibility = View.INVISIBLE
+            next.isClickable = false
+        }
+        else{
+            next.visibility = View.VISIBLE
+            next.isClickable = true
+        }
     }
 
     override fun onStarted(player: BetterVideoPlayer?) {
