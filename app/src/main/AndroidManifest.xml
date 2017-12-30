@@ -84,7 +84,9 @@
             </intent-filter>
         </service>
         <!-- ./Firebase Notifications -->
-        <activity android:name=".ui.AudioPlayActivity"></activity>
+        <activity android:name=".ui.AudioPlayActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

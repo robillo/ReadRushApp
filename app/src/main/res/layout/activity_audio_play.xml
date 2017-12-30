@@ -20,6 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="12sp"
             android:visibility="gone"
+            tools:visibility="visible"
             android:id="@+id/player_surface"/>
 
         <FrameLayout
@@ -207,26 +208,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:ignore="MissingPrefix"
-            android:text="Oh No!"
+            android:text="Please wait..."
             android:layout_marginTop="15sp"
             android:textColor="@color/readBlack"
             android:textSize="30sp"
             android:layout_gravity="center_horizontal"
             fontPath="fonts/four.ttf"
             android:id="@+id/error_header"/>
-
-        <TextView
-            tools:ignore="MissingPrefix"
-            android:textSize="20sp"
-            android:id="@+id/error_description"
-            fontPath="fonts/three.ttf"
-            android:textColor="@color/readBlack"
-            android:layout_height="wrap_content"
-            android:layout_margin="15sp"
-            android:layout_gravity="center_horizontal"
-            android:text="It seems like you don\'t have any rushes offline. \n Click on the \'+\' button above to discover some rushes."
-            android:layout_width="match_parent"
-            android:gravity="center"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -236,25 +224,11 @@
             android:paddingRight="25sp"
             android:gravity="center_horizontal"
             tools:ignore="MissingPrefix"
-            android:text="If this is your previous account, check for rushes online:"
+            android:text="Your Rush audio content is being loaded."
             android:textColor="@color/readBlack"
             android:textSize="18sp"
             android:layout_gravity="center_horizontal"
             fontPath="fonts/three.ttf"/>
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:ignore="MissingPrefix"
-            android:text="REFRESH"
-            android:layout_marginTop="5sp"
-            android:textColor="@color/rushRed"
-            android:textSize="28sp"
-            android:background="?android:attr/selectableItemBackground"
-            android:layout_gravity="center_horizontal"
-            fontPath="fonts/four.ttf"
-            tools:targetApi="lollipop"
-            android:id="@+id/refresh_buttom"/>
 
     </LinearLayout>
 
