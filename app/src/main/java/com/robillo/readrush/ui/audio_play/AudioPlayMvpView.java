@@ -8,5 +8,7 @@ import com.robillo.readrush.ui.base.MvpView;
 
 public interface AudioPlayMvpView extends MvpView {
 
+    void setUp();
+
     void loadContents();
 }

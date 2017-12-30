@@ -32,6 +32,7 @@ import com.robillo.readrush.data.network.retrofit.ApiClient;
 import com.robillo.readrush.data.network.retrofit.ApiInterface;
 import com.robillo.readrush.data.network.retrofit.model.Content;
 import com.robillo.readrush.data.network.retrofit.model.LibraryItem;
+import com.robillo.readrush.data.network.retrofit.model.RushAudioContent;
 import com.robillo.readrush.data.prefs.AppPreferencesHelper;
 import com.robillo.readrush.di.component.ActivityComponent;
 import com.robillo.readrush.ui.base.BaseFragment;

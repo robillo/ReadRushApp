@@ -444,7 +444,7 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
 
     @OnClick(R.id.launch_audio)
     public void setmLaunchAudio() {
-        startActivity(new Intent(this, AudioPlayActivity.class));
+        startActivity(new AudioPlayActivity().getStartIntent(this, mRushId));
     }
 
     @OnClick(R.id.done_trigger)
