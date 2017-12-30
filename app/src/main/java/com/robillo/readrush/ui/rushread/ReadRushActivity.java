@@ -36,6 +36,7 @@ import com.robillo.readrush.data.network.retrofit.ApiClient;
 import com.robillo.readrush.data.network.retrofit.ApiInterface;
 import com.robillo.readrush.data.network.retrofit.model.Content;
 import com.robillo.readrush.data.prefs.AppPreferencesHelper;
+import com.robillo.readrush.ui.AudioPlayActivity;
 import com.robillo.readrush.ui.base.BaseActivity;
 import com.robillo.readrush.ui.done_activity.DoneActivity;
 import com.robillo.readrush.ui.rushread.content.ContentFragment;
@@ -440,6 +441,11 @@ public class ReadRushActivity extends BaseActivity implements ReadRushMvpView {
             transaction.add(R.id.pager_container, new CustomFragment(), "CUSTOM_DIALOG").commit();
         else
             transaction.remove(getSupportFragmentManager().findFragmentByTag("CUSTOM_DIALOG")).commit();
+    }
+
+    @OnClick(R.id.launch_audio)
+    public void setmLaunchAudio() {
+        startActivity(new Intent(this, AudioPlayActivity.class));
     }
 
     @OnClick(R.id.done_trigger)

@@ -281,7 +281,7 @@ public class OverviewFragment extends BaseFragment implements OverviewFragmentMv
                 public void onChanged(@Nullable List<LibraryCoverContent> libraryCoverContents) {
                     mLibraryCoverContentsList = libraryCoverContents;
                     if(mLibraryCoverContentsList.size()>0){
-                        startActivity(ReadRushActivity.getStartIntent(getActivity(), mRushId, mRushAudio, mName.getText().toString()));
+                        startActivity(ReadRushActivity.getStartIntent(getActivity(), mRushId, mRoomCover.isRush_audio(), mName.getText().toString()));
                     }
                     else {
                         getContent();

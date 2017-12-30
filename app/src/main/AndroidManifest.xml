@@ -41,7 +41,7 @@
         <activity
             android:name=".ui.main.MainActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.search.SearchActivity"
             android:screenOrientation="portrait"
@@ -67,9 +67,10 @@
             android:name=".ui.main.discover.collections.CollectionsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ui.done_activity.DoneActivity"
+        <activity
+            android:name=".ui.done_activity.DoneActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <!-- Firebase Notifications -->
         <service android:name=".push_notifs.MyFirebaseMessagingService">
@@ -77,13 +78,13 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-
         <service android:name=".push_notifs.MyFirebaseInstanceIDService">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
         <!-- ./Firebase Notifications -->
+        <activity android:name=".ui.AudioPlayActivity"></activity>
     </application>
 
 </manifest>

@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.robillo.readrush.ui.AudioPlayActivity">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/audio_layout"
+        android:visibility="gone"
+        tools:context="com.robillo.srtmediaplayerexample.FourActivity">
+
+        <SurfaceView
+            android:layout_width="match_parent"
+            android:layout_height="12sp"
+            android:visibility="gone"
+            android:id="@+id/player_surface"/>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0sp"
+            android:layout_weight="3">
+
+            <com.halilibo.bettervideoplayer.BetterVideoPlayer
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/player"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/back"
+                        android:contentDescription="Back"
+                        android:padding="10sp"
+                        android:layout_margin="10sp"
+                        android:src="@drawable/ic_arrow_back_white_24dp"
+                        android:background="?attr/selectableItemBackground"/>
+
+                    <View
+                        android:layout_width="0sp"
+                        android:layout_height="12sp"
+                        android:layout_weight="1"/>
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/share"
+                        android:contentDescription="Share"
+                        android:padding="10sp"
+                        android:layout_margin="10sp"
+                        android:src="@drawable/ic_share_white_24dp"
+                        android:background="?attr/selectableItemBackground"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10sp"
+                    android:id="@+id/title"
+                    android:text="The Monk Who Sold His Ferrari"
+                    android:textColor="#FFFFFF"
+                    android:textSize="25sp"
+                    android:gravity="center_horizontal"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10sp"
+                    android:id="@+id/count"
+                    android:text="(Rush 1/10)"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:gravity="center_horizontal"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0sp"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10sp"
+                    android:id="@+id/tv_subtitle"
+                    tools:text="The Monk Who Sold His Ferrari"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp"
+                    android:gravity="center_horizontal"
+                    android:layout_gravity="bottom"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="bottom">
+
+                    <TextView
+                        android:layout_width="0sp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10sp"
+                        android:layout_weight="1"
+                        android:id="@+id/tv_current_duration"
+                        android:textColor="#FFFFFF"
+                        android:textSize="20sp"
+                        android:gravity="start"/>
+
+                    <TextView
+                        android:layout_width="0sp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10sp"
+                        android:layout_weight="1"
+                        android:id="@+id/tv_max_duration"
+                        android:textColor="#FFFFFF"
+                        android:textSize="20sp"
+                        android:gravity="end"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0sp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:layout_width="0sp"
+                android:layout_weight="1"
+                android:layout_height="50sp"
+                android:id="@+id/prev"
+                android:contentDescription="previous"
+                android:padding="10sp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_skip_previous_black_24dp"
+                android:background="?attr/selectableItemBackground"
+                tools:ignore="NestedWeights" />
+
+            <ImageButton
+                android:layout_width="0sp"
+                android:layout_weight="1"
+                android:layout_height="70sp"
+                android:id="@+id/play_pause"
+                android:contentDescription="play or pause"
+                android:padding="10sp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_play_circle_filled_black_24dp"
+                android:background="?attr/selectableItemBackground"
+                android:visibility="invisible"
+                android:clickable="false"/>
+
+            <ImageButton
+                android:layout_width="0sp"
+                android:layout_weight="1"
+                android:layout_height="50sp"
+                android:id="@+id/next"
+                android:contentDescription="next"
+                android:padding="10sp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_skip_next_black_24dp"
+                android:background="?attr/selectableItemBackground"
+                tools:ignore="NestedWeights" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:id="@+id/loading_layout"
+        tools:visibility="visible">
+
+        <com.wang.avi.AVLoadingIndicatorView
+            android:id="@+id/avi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/AVLoadingIndicatorView"
+            android:visibility="visible"
+            app:indicatorName="LineScaleIndicator"
+            app:indicatorColor="@color/rushRed" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:ignore="MissingPrefix"
+            android:text="Oh No!"
+            android:layout_marginTop="15sp"
+            android:textColor="@color/readBlack"
+            android:textSize="30sp"
+            android:layout_gravity="center_horizontal"
+            fontPath="fonts/four.ttf"
+            android:id="@+id/error_header"/>
+
+        <TextView
+            tools:ignore="MissingPrefix"
+            android:textSize="20sp"
+            android:id="@+id/error_description"
+            fontPath="fonts/three.ttf"
+            android:textColor="@color/readBlack"
+            android:layout_height="wrap_content"
+            android:layout_margin="15sp"
+            android:layout_gravity="center_horizontal"
+            android:text="It seems like you don\'t have any rushes offline. \n Click on the \'+\' button above to discover some rushes."
+            android:layout_width="match_parent"
+            android:gravity="center"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10sp"
+            android:paddingLeft="25sp"
+            android:paddingRight="25sp"
+            android:gravity="center_horizontal"
+            tools:ignore="MissingPrefix"
+            android:text="If this is your previous account, check for rushes online:"
+            android:textColor="@color/readBlack"
+            android:textSize="18sp"
+            android:layout_gravity="center_horizontal"
+            fontPath="fonts/three.ttf"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:ignore="MissingPrefix"
+            android:text="REFRESH"
+            android:layout_marginTop="5sp"
+            android:textColor="@color/rushRed"
+            android:textSize="28sp"
+            android:background="?android:attr/selectableItemBackground"
+            android:layout_gravity="center_horizontal"
+            fontPath="fonts/four.ttf"
+            tools:targetApi="lollipop"
+            android:id="@+id/refresh_buttom"/>
+
+    </LinearLayout>
+
+</FrameLayout>
