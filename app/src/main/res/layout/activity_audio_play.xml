@@ -33,8 +33,7 @@
                 android:id="@+id/player"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:bvp_disableControls="true"
-                app:bvp_loadingStyle="Wave"/>
+                app:bvp_disableControls="true"/>
 
             <LinearLayout
                 android:layout_width="match_parent"

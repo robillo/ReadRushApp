@@ -2,10 +2,12 @@ package com.robillo.readrush.ui.audio_play
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
+import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import android.widget.Button
@@ -13,6 +15,9 @@ import android.widget.Toast
 import butterknife.BindView
 import butterknife.ButterKnife
 import butterknife.OnClick
+import com.halilibo.bettervideoplayer.BetterVideoCallback
+import com.halilibo.bettervideoplayer.BetterVideoPlayer
+import com.halilibo.bettervideoplayer.subtitle.CaptionsView
 import com.robillo.readrush.R
 import com.robillo.readrush.R2
 import com.robillo.readrush.data.network.retrofit.ApiClient
@@ -23,14 +28,18 @@ import kotlinx.android.synthetic.main.activity_audio_play.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.lang.Exception
 
-class AudioPlayActivity : AppCompatActivity(), AudioPlayMvpView {
+class AudioPlayActivity : AppCompatActivity(), AudioPlayMvpView, BetterVideoCallback {
 
     var mAudioContentsList : List<RushAudioContent> = ArrayList()
     lateinit var mApiService : ApiInterface
     lateinit var mRushId : String
     lateinit var mRushName : String
-    var mCurrentPlayingRush : Int = 1
+    var mCurrentPlayingAudioPos : Int = 0
+
+    //player
+    var myIsPlaying : Boolean = false
 
     fun getStartIntent(context: Context, rush_id: String, rush_name: String): Intent {
         val intent = Intent(context, AudioPlayActivity::class.java)
@@ -70,6 +79,20 @@ class AudioPlayActivity : AppCompatActivity(), AudioPlayMvpView {
 
         mApiService = ApiClient.getClient().create(ApiInterface::class.java)
 
+        play_pause.setOnClickListener {
+            if(player.isPrepared){
+                if(player.isPlaying && myIsPlaying){
+                    player.pause()
+                }
+                else if (!player.isPlaying && !myIsPlaying){
+                    player.start()
+                }
+                else {
+                    Log.e("else", "else" + (player.isPlaying) + (myIsPlaying))
+                }
+            }
+        }
+
         loadContents()
 
     }
@@ -82,6 +105,7 @@ class AudioPlayActivity : AppCompatActivity(), AudioPlayMvpView {
                 if(response.body()!=null){
                     mAudioContentsList = response.body()!!
                     if(mAudioContentsList.size>0){
+                        avi.hide()
                         showAudioLayout()
                     }
                 }
@@ -97,11 +121,91 @@ class AudioPlayActivity : AppCompatActivity(), AudioPlayMvpView {
     override fun showAudioLayout() {
         loading_layout.visibility = View.GONE
         audio_layout.visibility = View.VISIBLE
+        initMediaPlayer(mCurrentPlayingAudioPos)
     }
 
-    override fun initMediaPlayer() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun initMediaPlayer(index : Int) {
+        preparePlayer(index)
     }
+
+    override fun playNextRushAudio() {
+
+    }
+
+    override fun playPrevRushAudio() {
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+    }
+
+    public override fun onPause() {
+        super.onPause()
+        // Make sure the player stops playing if the user presses the home button.
+        if(player.isPlaying && myIsPlaying){
+            player.pause()
+            myIsPlaying = false
+        }
+    }
+
+    override fun preparePlayer(index: Int) {
+        player.setLoop(false)
+        player.setLoadingStyle(2)
+        player.setCaptions(Uri.parse("http://" + mAudioContentsList.get(index).srt), CaptionsView.CMime.SUBRIP)
+        player.setSource(Uri.parse(mAudioContentsList.get(index).audio_link));
+        player.setCallback(this)
+    }
+
+
+
+    override fun onError(player: BetterVideoPlayer?, e: Exception?) {
+
+    }
+
+    override fun onPrepared(player: BetterVideoPlayer?) {
+        play_pause.visibility = View.VISIBLE
+        play_pause.isClickable = true
+        play_pause.setImageDrawable(resources.getDrawable(R.drawable.ic_play_circle_filled_black_24dp))
+    }
+
+    override fun onStarted(player: BetterVideoPlayer?) {
+        play_pause.setImageDrawable(resources.getDrawable(R.drawable.ic_pause_circle_filled_black_24dp))
+        myIsPlaying = true
+    }
+
+    override fun onCompletion(player: BetterVideoPlayer?) {
+
+    }
+
+    override fun onBuffering(percent: Int) {
+
+    }
+
+    override fun onPreparing(player: BetterVideoPlayer?) {
+
+    }
+
+    override fun onToggleControls(player: BetterVideoPlayer?, isShowing: Boolean) {
+
+    }
+
+    override fun onPaused(player: BetterVideoPlayer?) {
+        play_pause.setImageDrawable(resources.getDrawable(R.drawable.ic_play_circle_filled_black_24dp))
+        myIsPlaying = false
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
     override fun showLoading() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
