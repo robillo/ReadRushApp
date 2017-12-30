@@ -8,6 +8,7 @@ import com.robillo.readrush.data.network.retrofit.model.FeaturedSuper;
 import com.robillo.readrush.data.network.retrofit.model.LibraryItem;
 import com.robillo.readrush.data.network.retrofit.model.ProfileNumbersSuper;
 import com.robillo.readrush.data.network.retrofit.model.Review;
+import com.robillo.readrush.data.network.retrofit.model.RushAudioContent;
 import com.robillo.readrush.data.network.retrofit.model.RushInfo;
 import com.robillo.readrush.data.network.retrofit.model.SearchResultSuper;
 import com.robillo.readrush.data.network.retrofit.model.User;
@@ -131,5 +132,10 @@ public interface ApiInterface {
     @GET("new_api/fetch_profile_numbers/{user_id}")
     Call<ProfileNumbersSuper> fetchProfileNumbers(
             @Path("user_id") String user_id
+    );
+
+    @GET("new_api/rush_audio_fetch/{rush_id}")
+    Call<List<RushAudioContent>> fetchRushAudioContent(
+            @Path("rush_id") String rush_id
     );
 }

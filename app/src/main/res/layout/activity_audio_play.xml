@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.robillo.readrush.ui.AudioPlayActivity">
+    tools:context="com.robillo.readrush.ui.audio_play.AudioPlayActivity">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -229,6 +229,20 @@
             android:textSize="18sp"
             android:layout_gravity="center_horizontal"
             fontPath="fonts/three.ttf"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Retry"
+            android:layout_marginTop="10sp"
+            android:paddingLeft="25sp"
+            android:paddingRight="25sp"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/rushRed"
+            android:textSize="25sp"
+            android:visibility="gone"
+            android:background="?attr/selectableItemBackground"
+            android:id="@+id/retry"/>
 
     </LinearLayout>
 
