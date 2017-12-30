@@ -66,18 +66,17 @@ class AudioPlayActivity : AppCompatActivity(), AudioPlayMvpView, BetterVideoCall
             loadContents()
         }
 
-        setUp()
+        back.setOnClickListener {
+            onBackPressed()
+        }
 
-    }
+        next.setOnClickListener {
+            playNextRushAudio()
+        }
 
-    override fun setUp() {
-
-        mRushId = intent.getStringExtra("rush_id")
-        mRushName = intent.getStringExtra("rush_name")
-
-        m_title.text = mRushName
-
-        mApiService = ApiClient.getClient().create(ApiInterface::class.java)
+        prev.setOnClickListener {
+            playPrevRushAudio()
+        }
 
         play_pause.setOnClickListener {
             if(player.isPrepared){
@@ -92,6 +91,19 @@ class AudioPlayActivity : AppCompatActivity(), AudioPlayMvpView, BetterVideoCall
                 }
             }
         }
+
+        setUp()
+
+    }
+
+    override fun setUp() {
+
+        mRushId = intent.getStringExtra("rush_id")
+        mRushName = intent.getStringExtra("rush_name")
+
+        m_title.text = mRushName
+
+        mApiService = ApiClient.getClient().create(ApiInterface::class.java)
 
         loadContents()
 
@@ -125,15 +137,23 @@ class AudioPlayActivity : AppCompatActivity(), AudioPlayMvpView, BetterVideoCall
     }
 
     override fun initMediaPlayer(index : Int) {
+        val temp = "(Rush " + (index + 1) + "/" + mAudioContentsList.size + ")"
+        count.text = temp
         preparePlayer(index)
     }
 
     override fun playNextRushAudio() {
-
+        if(mCurrentPlayingAudioPos<mAudioContentsList.size){
+            mCurrentPlayingAudioPos = mCurrentPlayingAudioPos + 1
+            preparePlayer(mCurrentPlayingAudioPos)
+        }
     }
 
     override fun playPrevRushAudio() {
-
+        if(mCurrentPlayingAudioPos>0){
+            mCurrentPlayingAudioPos = mCurrentPlayingAudioPos - 1
+            preparePlayer(mCurrentPlayingAudioPos)
+        }
     }
 
     override fun onResume() {
@@ -150,6 +170,27 @@ class AudioPlayActivity : AppCompatActivity(), AudioPlayMvpView, BetterVideoCall
     }
 
     override fun preparePlayer(index: Int) {
+
+        if(mCurrentPlayingAudioPos == 0){
+            prev.visibility = View.INVISIBLE
+            prev.isClickable = true
+        }
+        else{
+            prev.visibility = View.VISIBLE
+            prev.isClickable = false
+        }
+
+        if(mCurrentPlayingAudioPos == mAudioContentsList.size){
+            next.visibility = View.INVISIBLE
+            next.isClickable = true
+        }
+        else{
+            next.visibility = View.VISIBLE
+            next.isClickable = false
+        }
+
+
+
         player.setLoop(false)
         player.setLoadingStyle(2)
         player.setCaptions(Uri.parse("http://" + mAudioContentsList.get(index).srt), CaptionsView.CMime.SUBRIP)
@@ -175,7 +216,8 @@ class AudioPlayActivity : AppCompatActivity(), AudioPlayMvpView, BetterVideoCall
     }
 
     override fun onCompletion(player: BetterVideoPlayer?) {
-
+        play_pause.setImageDrawable(resources.getDrawable(R.drawable.ic_play_circle_filled_black_24dp))
+        myIsPlaying = false
     }
 
     override fun onBuffering(percent: Int) {

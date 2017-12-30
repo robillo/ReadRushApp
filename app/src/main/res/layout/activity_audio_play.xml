@@ -87,7 +87,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10sp"
                     android:id="@+id/count"
-                    android:text="(Rush 1/10)"
+                    tools:text="(Rush 1/10)"
                     android:textColor="#FFFFFF"
                     android:textSize="18sp"
                     android:gravity="center_horizontal"/>
