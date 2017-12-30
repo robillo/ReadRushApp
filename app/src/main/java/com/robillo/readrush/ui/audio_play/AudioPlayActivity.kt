@@ -94,6 +94,15 @@ class AudioPlayActivity : AppCompatActivity(), AudioPlayMvpView, BetterVideoCall
             }
         }
 
+        share.setOnClickListener {
+            val i = Intent()
+            i.action = Intent.ACTION_SEND
+            val temp = "Hey, I am reading " + mRushName + " in this amazing App called ReadRush. Check it out at: http://readrush.in/index.php/home/about_us"
+            i.putExtra(Intent.EXTRA_TEXT, temp)
+            i.type = "text/plain"
+            startActivity(i)
+        }
+
         setUp()
 
     }
