@@ -11,4 +11,9 @@ public interface AudioPlayMvpView extends MvpView {
     void setUp();
 
     void loadContents();
+
+    void showAudioLayout();
+
+    void initMediaPlayer();
+
 }

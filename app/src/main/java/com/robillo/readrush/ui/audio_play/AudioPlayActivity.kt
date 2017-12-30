@@ -2,9 +2,12 @@ package com.robillo.readrush.ui.audio_play
 
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
 import android.view.View
+import android.view.WindowManager
 import android.widget.Button
 import android.widget.Toast
 import butterknife.BindView
@@ -26,10 +29,13 @@ class AudioPlayActivity : AppCompatActivity(), AudioPlayMvpView {
     var mAudioContentsList : List<RushAudioContent> = ArrayList()
     lateinit var mApiService : ApiInterface
     lateinit var mRushId : String
+    lateinit var mRushName : String
+    var mCurrentPlayingRush : Int = 1
 
-    fun getStartIntent(context: Context, rush_id: String): Intent {
+    fun getStartIntent(context: Context, rush_id: String, rush_name: String): Intent {
         val intent = Intent(context, AudioPlayActivity::class.java)
         intent.putExtra("rush_id", rush_id)
+        intent.putExtra("rush_name", rush_name)
         return intent
     }
 
@@ -37,6 +43,13 @@ class AudioPlayActivity : AppCompatActivity(), AudioPlayMvpView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_audio_play)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            val window = window
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+            window.statusBarColor = ContextCompat.getColor(this, R.color.black)
+        }
 
         retry.setOnClickListener {
             retry.visibility = View.GONE
@@ -51,6 +64,9 @@ class AudioPlayActivity : AppCompatActivity(), AudioPlayMvpView {
     override fun setUp() {
 
         mRushId = intent.getStringExtra("rush_id")
+        mRushName = intent.getStringExtra("rush_name")
+
+        m_title.text = mRushName
 
         mApiService = ApiClient.getClient().create(ApiInterface::class.java)
 
@@ -65,7 +81,9 @@ class AudioPlayActivity : AppCompatActivity(), AudioPlayMvpView {
             override fun onResponse(call: Call<List<RushAudioContent>>, response: Response<List<RushAudioContent>>) {
                 if(response.body()!=null){
                     mAudioContentsList = response.body()!!
-                    Toast.makeText(this@AudioPlayActivity, "Size " + mAudioContentsList.size, Toast.LENGTH_SHORT).show()
+                    if(mAudioContentsList.size>0){
+                        showAudioLayout()
+                    }
                 }
             }
 
@@ -74,6 +92,15 @@ class AudioPlayActivity : AppCompatActivity(), AudioPlayMvpView {
                 retry.visibility = View.VISIBLE
             }
         })
+    }
+
+    override fun showAudioLayout() {
+        loading_layout.visibility = View.GONE
+        audio_layout.visibility = View.VISIBLE
+    }
+
+    override fun initMediaPlayer() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun showLoading() {
