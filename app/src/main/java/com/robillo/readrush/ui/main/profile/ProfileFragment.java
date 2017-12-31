@@ -231,7 +231,7 @@ public class ProfileFragment extends BaseFragment implements ProfileMvpView {
                 public void onFailure(@NonNull Call<ProfileNumbersSuper> call, @NonNull Throwable t) {
                     if(mProgressRead!=null) mProgressRead.setVisibility(View.GONE);
                     if(mReadRecycler!=null) mReadRecycler.setVisibility(View.GONE);
-                    if(getActivity()!=null) Toast.makeText(getActivity(), "Failed to establish network connection", Toast.LENGTH_SHORT).show();
+                    if(getActivity()!=null) Toast.makeText(getActivity(), "No rushes completed yet", Toast.LENGTH_SHORT).show();
                 }
             });
     }

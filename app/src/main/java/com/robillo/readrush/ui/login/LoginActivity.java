@@ -145,7 +145,7 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
             mTextPrevious.setVisibility(View.VISIBLE);
             Animation animation = AnimationUtils.loadAnimation(this, R.anim.show);
             mTextPrevious.setAnimation(animation);
-            mTextPrevious.setText(mConversations.get(page-1).getKenText());
+            if(mConversations.size()>page) mTextPrevious.setText(mConversations.get(page-1).getKenText());
         }
 
         Animation animation = AnimationUtils.loadAnimation(this, R.anim.fade_in);

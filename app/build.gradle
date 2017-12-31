@@ -13,6 +13,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
+        multiDexEnabled = true
     }
     buildTypes {
         debug {
@@ -118,6 +119,9 @@ dependencies {
 
     //firebase cloud messaging (for notifications)
     compile 'com.google.firebase:firebase-messaging:11.8.0'
+
+    //crash-reporting
+    compile 'com.google.firebase:firebase-crash:11.8.0'
 
     //audio
     compile 'com.github.halilozercan:BetterVideoPlayer:1.1.0'

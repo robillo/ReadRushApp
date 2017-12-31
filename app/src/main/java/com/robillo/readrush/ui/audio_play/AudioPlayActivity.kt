@@ -205,7 +205,7 @@ class AudioPlayActivity : AppCompatActivity(), AudioPlayMvpView, BetterVideoCall
     override fun onPrepared(player: BetterVideoPlayer?) {
         play_pause.visibility = View.VISIBLE
         play_pause.isClickable = true
-        play_pause.setImageDrawable(resources.getDrawable(R.drawable.ic_play_circle_filled_black_24dp))
+        play_pause.setImageDrawable(ContextCompat.getDrawable(this@AudioPlayActivity, R.drawable.ic_play_circle_filled_black_24dp))
 
         if(mCurrentPlayingAudioPos == 0){
             prev.visibility = View.INVISIBLE
@@ -227,12 +227,12 @@ class AudioPlayActivity : AppCompatActivity(), AudioPlayMvpView, BetterVideoCall
     }
 
     override fun onStarted(player: BetterVideoPlayer?) {
-        play_pause.setImageDrawable(resources.getDrawable(R.drawable.ic_pause_circle_filled_black_24dp))
+        play_pause.setImageDrawable(ContextCompat.getDrawable(this@AudioPlayActivity, R.drawable.ic_pause_circle_filled_black_24dp))
         myIsPlaying = true
     }
 
     override fun onCompletion(player: BetterVideoPlayer?) {
-        play_pause.setImageDrawable(resources.getDrawable(R.drawable.ic_play_circle_filled_black_24dp))
+        play_pause.setImageDrawable(ContextCompat.getDrawable(this@AudioPlayActivity, R.drawable.ic_play_circle_filled_black_24dp))
         myIsPlaying = false
     }
 
@@ -249,7 +249,7 @@ class AudioPlayActivity : AppCompatActivity(), AudioPlayMvpView, BetterVideoCall
     }
 
     override fun onPaused(player: BetterVideoPlayer?) {
-        play_pause.setImageDrawable(resources.getDrawable(R.drawable.ic_play_circle_filled_black_24dp))
+        play_pause.setImageDrawable(ContextCompat.getDrawable(this@AudioPlayActivity, R.drawable.ic_play_circle_filled_black_24dp))
         myIsPlaying = false
     }
 
