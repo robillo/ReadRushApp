@@ -35,12 +35,7 @@ public class LibraryContentRepository {
         new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... voids) {
-                try {
                     mLibraryCoverContentDao.insertCoverContents(item);
-                }
-                catch (Exception e){
-                    //abc
-                }
                 return null;
             }
         }.execute();
@@ -52,12 +47,7 @@ public class LibraryContentRepository {
             @Override
             protected Void doInBackground(Void... voids) {
                 for(int i=0; i<items.size(); i++){
-                    try {
-                        mLibraryCoverContentDao.insertCoverContents(items.get(i));
-                    }
-                    catch (Exception e){
-                        //abc
-                    }
+                    mLibraryCoverContentDao.insertCoverContents(items.get(i));
                 }
                 return null;
             }
@@ -69,12 +59,7 @@ public class LibraryContentRepository {
         new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... voids) {
-                try {
-                    mLibraryCoverContentDao.insertCoverContentsList(items);
-                }
-                catch (Exception e){
-                    //abc
-                }
+                mLibraryCoverContentDao.insertCoverContentsList(items);
                 return null;
             }
         }.execute();
