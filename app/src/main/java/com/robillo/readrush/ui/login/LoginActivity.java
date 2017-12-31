@@ -96,6 +96,8 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
 
         mPresenter.onAttach(LoginActivity.this);
 
+        page = 0;
+
         setUp();
     }
 
@@ -111,16 +113,24 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
     protected void setUp() {
         setUpWindowAnimations();
         if(page==0){
+            mPrefsHelper = new AppPreferencesHelper(this, ReadRushApp.PREF_FILE_NAME);
             loadConversations();
             setIsOnBoarded();
-            mPrefsHelper = new AppPreferencesHelper(this, ReadRushApp.PREF_FILE_NAME);
         }
         setPageDetails(page);
     }
 
     @Override
     public void loadConversations() {
-        mConversations = mPresenter.loadLists(loadArray(R.array.ken_text_initial), loadArray(R.array.chat_edit_text_hint_initial), loadArray(R.array.chat_primary_initial), loadArray(R.array.chat_secondary_initial));
+        mConversations = loadLists(loadArray(R.array.ken_text_initial), loadArray(R.array.chat_edit_text_hint_initial), loadArray(R.array.chat_primary_initial), loadArray(R.array.chat_secondary_initial));
+    }
+
+    public List<Conversation> loadLists(String[] ken, String[] hint, String[] primary, String[] secondary) {
+        List<Conversation> mList = new ArrayList<>();
+        for(int i=0; i<ken.length; i++){
+            mList.add(new Conversation(ken[i], hint[i], primary[i], secondary[i]));
+        }
+        return mList;
     }
 
     @Override
@@ -145,7 +155,7 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
             mTextPrevious.setVisibility(View.VISIBLE);
             Animation animation = AnimationUtils.loadAnimation(this, R.anim.show);
             mTextPrevious.setAnimation(animation);
-            if(mConversations.size()>page) mTextPrevious.setText(mConversations.get(page-1).getKenText());
+            mTextPrevious.setText(mConversations.get(page-1).getKenText());
         }
 
         Animation animation = AnimationUtils.loadAnimation(this, R.anim.fade_in);
@@ -195,12 +205,7 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
 
     @Override
     public void setIsOnBoarded() {
-        new Handler().post(new Runnable() {
-            @Override
-            public void run() {
-                mPrefsHelper.setUserIsOnBoarded(true);
-            }
-        });
+        mPrefsHelper.setUserIsOnBoarded(true);
     }
 
     @Override

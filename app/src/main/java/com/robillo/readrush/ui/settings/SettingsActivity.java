@@ -145,6 +145,7 @@ public class SettingsActivity extends BaseActivity implements SettingsMvpView {
     public void setmLogout() {
         mPrefsHelper.setUserIsOnBoarded(false);
         mPrefsHelper.setUserIsLoggedIn(false);
+        mPrefsHelper.setUserEnterMode(null);
         startActivity(SplashActivity.getStartIntent(this));
     }
 
